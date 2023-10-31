@@ -50,3 +50,5 @@ signuForm.addEventListener("submit", (e) => {
 
   signup(userData);
 });
+
+//按下立即登入

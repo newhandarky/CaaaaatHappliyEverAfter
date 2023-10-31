@@ -16,11 +16,17 @@ function login(email, password) {
     .then((res) => {
       let { user, accessToken } = res.data;
       //獲得的用戶資料存入 localStorage
-      localStorage.setItem("myUser", JSON.stringify(user));
-      localStorage.setItem("myToken", JSON.stringify(accessToken));
+      let userTokenAndData = {
+        user,
+        accessToken,
+      };
+      localStorage.setItem(
+        "userTokenAndData",
+        JSON.stringify(userTokenAndData)
+      );
 
-      console.log(JSON.parse(localStorage.getItem("myUser")));
-      console.log(JSON.parse(localStorage.getItem("myToken")));
+      console.log(JSON.parse(localStorage.getItem("userTokenAndData")));
+
       window.location.href = "./index.html";
     })
     .catch((err) => {
