@@ -8,13 +8,18 @@
   <body>
     <%- include('./layout/header'); -%>
     <h1>會員登入</h1>
-    <form method="GET">
-      <input class="email" type="email" placeholder="請輸入Email" />
+    <form id="loginForm" method="GET">
+      <input id="email" class="email" type="email" placeholder="請輸入Email" />
       <br />
-      <input class="password" type="password" placeholder="請輸入密碼" />
+      <input
+        id="password"
+        class="password"
+        type="password"
+        placeholder="請輸入密碼"
+      />
       <br />
-      <button type="submit" class="loginBtn">會員登入</button>
-      <button>立即註冊</button>
+      <button id="loginBtn" type="submit" class="loginBtn">會員登入</button>
+      <button id="signupBtn" class="signupBtn">立即註冊</button>
     </form>
     <%- include('./layout/footer'); -%>
     <script type="module" src="../main.js"></script>
