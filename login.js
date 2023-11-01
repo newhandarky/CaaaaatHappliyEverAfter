@@ -7,12 +7,9 @@ const loginForm = document.getElementById("loginForm");
 const signupBtn = document.getElementById("signupBtn");
 
 // 登入 function
-function login(email, password) {
+function login(userAccount) {
   axios
-    .post(`${host}/login`, {
-      email,
-      password,
-    })
+    .post(`${host}/login`, userAccount)
     .then((res) => {
       let { user, accessToken } = res.data;
       //獲得的用戶資料存入 localStorage
@@ -39,15 +36,14 @@ function login(email, password) {
 //按下會員登入
 loginForm.addEventListener("submit", (e) => {
   e.preventDefault();
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
 
-  let email = e.target[0].value;
-  let password = e.target[1].value;
-  console.log(email);
-  console.log(password);
-
+  let userAccount = { email, password };
   // 使用登入函數來登入會員
+  console.log(userAccount);
 
-  login(email, password);
+  login(userAccount);
 });
 
 //按下立即註冊

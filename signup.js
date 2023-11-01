@@ -3,7 +3,7 @@ import axios from "axios";
 //抓到 Dom 元素
 const host = "https://catroomdb.onrender.com";
 
-const signuForm = document.getElementById("signuForm");
+const signupForm = document.getElementById("signupForm");
 const loginBtn = document.getElementById("loginBtn");
 
 // 註冊 function
@@ -23,32 +23,46 @@ function signup(userData) {
 }
 
 //按下會員註冊
-signuForm.addEventListener("submit", (e) => {
+signupForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  let formData = e.explicitOriginalTarget;
-  console.log(formData);
+  //抓取表單資料
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  const name = document.getElementById("name").value;
+  const male = document.getElementById("male");
+  const female = document.getElementById("female");
+  const other = document.getElementById("other");
+  const birthday = document.getElementById("birthday").value;
+  const phone = document.getElementById("phone").value;
+  const address = document.getElementById("address").value;
   //判斷哪個性別被選取
-  let gender = () => {
-    for (let i = 3; i <= 5; i++) {
-      if (formData[i].checked) {
-        return formData[i].value;
-      }
-    }
-  };
+  let gender = () =>
+    // 使用三元条件运算符来判断哪个性别被选取，并返回相应的值
+    male.checked
+      ? male.value
+      : female.checked
+      ? female.value
+      : other.checked
+      ? other.value
+      : "Not Specified";
+
   let userData = {
-    email: formData[0].value,
-    password: formData[1].value,
-    name: formData[2].value,
+    email,
+    password,
+    name,
     gender: gender(),
-    birthday: formData[6].value,
-    phone: formData[7].value,
-    address: formData[8].value,
+    birthday,
+    phone,
+    address,
   };
   console.log(userData);
-
   // 使用註冊函數來註冊會員
-
   signup(userData);
 });
 
 //按下立即登入
+loginBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  window.location.href = "./login.html";
+});

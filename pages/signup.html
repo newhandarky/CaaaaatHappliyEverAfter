@@ -8,11 +8,12 @@
   <body>
     <%- include('./layout/header'); -%>
     <h1>會員註冊</h1>
-    <form id="signuForm" method="GET">
+    <form id="signupForm" class="signupForm" method="GET">
       <input
         id="email"
         class="email"
         type="email"
+        name="email"
         placeholder="請輸入Email"
         required
       />
@@ -21,6 +22,7 @@
         id="password"
         class="password"
         type="password"
+        name="password"
         placeholder="請輸入密碼"
         required
       />
@@ -29,6 +31,7 @@
         id="name"
         class="name"
         type="text"
+        name="name"
         placeholder="請輸入姓名"
         required
       />
@@ -37,16 +40,23 @@
       <label for="male">男</label>
       <input id="female" type="radio" name="gender" value="female" required />
       <label for="female">女</label>
-      <input id="else" type="radio" name="gender" value="other" required />
-      <label for="else">其他</label>
+      <input id="other" type="radio" name="gender" value="other" required />
+      <label for="other">其他</label>
       <br />
-      <input id="birthday" type="date" placeholder="請輸入生日" required />
+      <input
+        id="birthday"
+        type="date"
+        placeholder="請輸入生日"
+        name="birthday"
+        required
+      />
       <br />
       <input
         id="phone"
         class="phone"
         type="number"
         placeholder="請輸入電話"
+        name="phone"
         required
       />
       <br />
@@ -55,6 +65,7 @@
         class="address"
         type="text"
         placeholder="請輸入地址"
+        name="address"
         required
       />
       <br />
