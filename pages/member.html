@@ -8,14 +8,17 @@
   <body>
     <%- include('./layout/header'); -%>
     <h1>會員功能</h1>
-    <h1 class="name"></h1>
+    <h1 id="name" class="name"></h1>
     <ul>
-      <li class="gender">性別：</li>
-      <li class="gender">地址：</li>
-      <li class="address">電話：</li>
-      <li class="email">信箱：</li>
+      <li id="gender" class="gender"></li>
+      <li id="birthday" class="birthday"></li>
+      <li id="address" class="address"></li>
+      <li id="phone" class="phone"></li>
+      <li id="email" class="email"></li>
     </ul>
-
+    <button id="signout" class="signout">登出</button>
     <%- include('./layout/footer'); -%>
+    <script type="module" src="../main.js"></script>
+    <script type="module" src="../member.js"></script>
   </body>
 </html>
