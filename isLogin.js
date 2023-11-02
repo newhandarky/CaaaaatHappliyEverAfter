@@ -1,11 +1,11 @@
 import axios from "axios";
-
+import { _url } from "./config";
 //偵測是否為登入狀態
-export function isLogin(_url, href) {
+export function isLogin(href) {
   // 防呆機制
   // 檢查必要的參數是否已經提供
-  if (!_url || !href) {
-    console.error("isLogin 缺少必要的參數");
+  if (!href) {
+    console.error("isLogin 缺少 href 參數");
     return;
   }
 
