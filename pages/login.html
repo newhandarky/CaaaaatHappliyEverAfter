@@ -1,21 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>index</title>
-</head>
-
-<body>
+    <title>Document</title>
+  </head>
+  <body>
     <%- include('./layout/header'); -%>
-
-    <h1>這是登入頁面</h1>
-
+    <h1>會員登入</h1>
+    <form id="loginForm" method="GET">
+      <input id="email" class="email" type="email" placeholder="請輸入Email" />
+      <br />
+      <input
+        id="password"
+        class="password"
+        type="password"
+        placeholder="請輸入密碼"
+      />
+      <br />
+      <button id="loginBtn" type="submit" class="loginBtn">會員登入</button>
+      <button id="signupBtn" class="signupBtn">立即註冊</button>
+    </form>
     <%- include('./layout/footer'); -%>
-
     <script type="module" src="../main.js"></script>
-</body>
-
+    <script type="module" src="../login.js"></script>
+    <script type="module" src="../navbar.js"></script>
+  </body>
 </html>

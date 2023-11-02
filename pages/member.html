@@ -1,18 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <%- include('./layout/header'); -%>
-
-    <h1>這是會員頁面</h1>
-    <a href="./login.html">登入</a> <a class="ms-3" href="./register.html">註冊</a>
-
-    <%- include('./layout/footer'); -%>   
-    
+    <h1>資料管理</h1>
+    <h1 id="name" class="name"></h1>
+    <ul>
+      <li id="gender" class="gender"></li>
+      <li id="birthday" class="birthday"></li>
+      <li id="address" class="address"></li>
+      <li id="phone" class="phone"></li>
+      <li id="email" class="email"></li>
+    </ul>
+    <img id="photo" src="" alt="會員照片" />
+    <br />
+    <button id="signout" class="signout">登出</button>
+    <%- include('./layout/footer'); -%>
     <script type="module" src="../main.js"></script>
-</body>
+    <script type="module" src="../memberData.js"></script>
+    <script type="module" src="../navbar.js"></script>
+  </body>
 </html>
