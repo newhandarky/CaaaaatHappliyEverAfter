@@ -53,6 +53,9 @@ signupForm.addEventListener("submit", (e) => {
     birthday,
     phone,
     address,
+    userPhoto: "https://i.imgur.com/rUTLxZC.jpg",
+    catId: null,
+    lastLoginTime: null,
   };
   console.log(userData);
   // 使用註冊函數來註冊會員

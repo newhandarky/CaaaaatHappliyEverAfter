@@ -17,7 +17,8 @@ function lodingMember(userTokenAndData) {
       },
     })
     .then((res) => {
-      const { name, gender, birthday, address, phone, email } = res.data;
+      const { name, gender, birthday, address, phone, email, userPhoto } =
+        res.data;
 
       //抓取頁面物件 準備推資料
       const nameDom = document.getElementById("name");
@@ -26,15 +27,29 @@ function lodingMember(userTokenAndData) {
       const addressDom = document.getElementById("address");
       const phoneDom = document.getElementById("phone");
       const emailDom = document.getElementById("email");
+      const imgDom = document.getElementById("photo");
 
-      console.log(name, gender, birthday, address, phone, email);
+      const genderToChiniese = () =>
+        gender === "male"
+          ? "男 "
+          : gender === "female"
+          ? "女 "
+          : gender === "other"
+          ? "其他 "
+          : "未定義";
+
+      console.log(name, gender, birthday, address, phone, email, userPhoto);
 
       nameDom.textContent = name;
-      genderDom.textContent = `性別： ${gender}`;
+      genderDom.textContent = `性別： ${genderToChiniese()}`;
       birthdayDom.textContent = `生日： ${birthday}`;
       addressDom.textContent = `地址： ${address}`;
       phoneDom.textContent = `電話： ${phone}`;
       emailDom.textContent = `信箱：${email}`;
+      imgDom.setAttribute(
+        "src",
+        userPhoto || "https://i.imgur.com/rUTLxZC.jpg"
+      );
     })
     .catch((err) => {
       console.log(err);
