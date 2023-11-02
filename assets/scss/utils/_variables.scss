@@ -345,7 +345,7 @@ $enable-grid-classes:         true !default;
 $enable-container-classes:    true !default;
 $enable-cssgrid:              false !default;
 $enable-button-pointers:      true !default;
-$enable-rfs:                  true !default;
+$enable-rfs:                  false !default;  // true (自行隨RWD自適應縮放)  $custom
 $enable-validation-icons:     true !default;
 $enable-negative-margins:     false !default;
 $enable-deprecation-messages: true !default;
@@ -371,14 +371,29 @@ $gradient: linear-gradient(180deg, rgba($white, .15), rgba($white, 0)) !default;
 // You can add more entries to the $spacers map, should you need more variation.
 
 // scss-docs-start spacer-variables-maps
-$spacer: 1rem !default;
+$spacer: 1rem !default;  // 自訂間距 $custom
 $spacers: (
   0: 0,
   1: $spacer * .25,
   2: $spacer * .5,
-  3: $spacer,
-  4: $spacer * 1.5,
-  5: $spacer * 3,
+  3: $spacer * .75,
+  4: $spacer,
+  5: $spacer * 1.25,
+  6: $spacer * 1.5,
+  7: $spacer * 1.75,
+  8: $spacer * 2,
+  9: $spacer * 2.25,
+  10: $spacer * 2.5,
+  11: $spacer * 2.75,
+  12: $spacer * 3,
+  13: $spacer * 3.25,
+  14: $spacer * 3.5,
+  15: $spacer * 3.75,
+  16: $spacer * 4,
+  17: $spacer * 4.25,  
+  18: $spacer * 4.5,
+  19: $spacer * 4.75,
+  20: $spacer * 5
 ) !default;
 // scss-docs-end spacer-variables-maps
 
@@ -407,7 +422,7 @@ $body-text-align:           null !default;
 // Style anchor elements.
 
 $link-color:                              $primary !default;
-$link-decoration:                         underline !default;
+$link-decoration:                         none !default;        // underline $custom
 $link-shade-percentage:                   20% !default;
 $link-hover-color:                        shift-color($link-color, $link-shade-percentage) !default;
 $link-hover-decoration:                   null !default;
@@ -419,7 +434,7 @@ $stretched-link-z-index:                  1 !default;
 //
 // Style p element.
 
-$paragraph-margin-bottom:   1rem !default;
+$paragraph-margin-bottom:   0 !default;    // 1rem $custom
 
 
 // Grid breakpoints
@@ -556,7 +571,7 @@ $font-size-lg:                $font-size-base * 1.25 !default;
 $font-weight-lighter:         lighter !default;
 $font-weight-light:           300 !default;
 $font-weight-normal:          400 !default;
-$font-weight-semibold:        600 !default;
+$font-weight-semibold:        500 !default;   // 600 $custom
 $font-weight-bold:            700 !default;
 $font-weight-bolder:          bolder !default;
 
