@@ -1,7 +1,7 @@
 import axios from "axios";
+import { _url } from "./config";
 
 //抓到 Dom 元素
-const host = "https://catroomdb.onrender.com";
 
 const loginForm = document.getElementById("loginForm");
 const signupBtn = document.getElementById("signupBtn");
@@ -9,7 +9,7 @@ const signupBtn = document.getElementById("signupBtn");
 // 登入 function
 function login(userAccount) {
   axios
-    .post(`${host}/login`, userAccount)
+    .post(`${_url}/login`, userAccount)
     .then((res) => {
       let { user, accessToken } = res.data;
       //獲得的用戶資料存入 localStorage

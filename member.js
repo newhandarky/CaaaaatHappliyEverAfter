@@ -1,6 +1,6 @@
 import axios from "axios";
+import { _url } from "./config";
 
-const host = "https://catroomdb.onrender.com";
 const userTokenAndData = JSON.parse(localStorage.getItem("userTokenAndData"));
 const { accessToken, user } = userTokenAndData;
 const signoutBtn = document.getElementById("signout");
@@ -11,7 +11,7 @@ function lodingMember(userTokenAndData) {
   const { accessToken, user } = userTokenAndData;
   const memberId = user.id;
   axios
-    .get(`${host}/600/users/${memberId}`, {
+    .get(`${_url}/600/users/${memberId}`, {
       headers: {
         authorization: `Bearer ${accessToken}`,
       },

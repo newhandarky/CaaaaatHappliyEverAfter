@@ -1,7 +1,6 @@
 import axios from "axios";
-
+import { _url } from "./config";
 //抓到 Dom 元素
-const host = "https://catroomdb.onrender.com";
 
 const signupForm = document.getElementById("signupForm");
 const loginBtn = document.getElementById("loginBtn");
@@ -9,7 +8,7 @@ const loginBtn = document.getElementById("loginBtn");
 // 註冊 function
 function signup(userData) {
   axios
-    .post(`${host}/signup`, userData)
+    .post(`${_url}/signup`, userData)
     .then((res) => {
       console.log(res);
       alert("註冊成功");
