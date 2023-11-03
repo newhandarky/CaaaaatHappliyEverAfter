@@ -8,20 +8,22 @@
   <body>
     <%- include('./layout/header'); -%>
     <h1>資料管理</h1>
-    <h1 id="name" class="name"></h1>
-    <ul>
-      <li id="gender" class="gender"></li>
-      <li id="birthday" class="birthday"></li>
-      <li id="address" class="address"></li>
-      <li id="phone" class="phone"></li>
-      <li id="email" class="email"></li>
-    </ul>
-    <img id="photo" src="" alt="會員照片" />
-    <br />
-    <button id="signout" class="signout">登出</button>
+    <div id="user" class="user">
+      <h1 id="name" class="name"></h1>
+      <ul>
+        <li id="gender" class="gender"></li>
+        <li id="birthday" class="birthday"></li>
+        <li id="address" class="address"></li>
+        <li id="phone" class="phone"></li>
+        <li id="email" class="email"></li>
+      </ul>
+      <img id="photo" src="" alt="會員照片" />
+      <br />
+      <button id="signout" class="signout">登出</button>
+    </div>
     <%- include('./layout/footer'); -%>
     <script type="module" src="../main.js"></script>
-    <script type="module" src="../memberData.js"></script>
     <script type="module" src="../navbar.js"></script>
+    <script type="module" src="../memberData.js"></script>
   </body>
 </html>

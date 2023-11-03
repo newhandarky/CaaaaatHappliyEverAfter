@@ -1,14 +1,14 @@
 import axios from "axios";
 import { _url } from "./config";
 
+//取得所需要的資療及DOM元素
 const userTokenAndData = JSON.parse(localStorage.getItem("userTokenAndData"));
 const { accessToken, user } = userTokenAndData;
 const signoutBtn = document.getElementById("signout");
 
 //抓到localsorage 的資料去後端回傳
-function lodingMember(userTokenAndData) {
+function lodingMember() {
   //使用 Json Server 驗證路由 /600
-  const { accessToken, user } = userTokenAndData;
   const memberId = user.id;
   axios
     .get(`${_url}/600/users/${memberId}`, {
@@ -58,7 +58,7 @@ function lodingMember(userTokenAndData) {
     });
 }
 
-lodingMember(userTokenAndData);
+lodingMember();
 
 //登出點擊後 刪除 localStorage 資料 並導回首頁
 signoutBtn.addEventListener("click", () => {
