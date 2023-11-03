@@ -29,8 +29,16 @@ function lodingCat() {
       userCat.forEach((element) => {
         console.log(element);
 
-        const { catName, gender, birthday, catBreeds, colors, weight, id } =
-          element;
+        const {
+          catName,
+          catPhoto,
+          gender,
+          birthday,
+          catBreeds,
+          colors,
+          weight,
+          id,
+        } = element;
 
         console.log(catName, gender, birthday, catBreeds, colors, weight, id);
 
@@ -45,7 +53,7 @@ function lodingCat() {
           <li id="catColors_${id}" class="catColors">花色：${colors}</li>
           <li id="catWeight_${id}" class="catWeight">體重：${weight}</li>
         </ul>
-        <img id="catPhoto_${id}" src="" alt="貓咪照片" />
+        <img id="catPhoto_${id}" src="${catPhoto}" alt="貓咪照片" />
         <br />
         <button id="catEdit_${id}" class="catEdit">編輯資料</button>
         <button id="catDelete_${id}" class="catDelete">刪除資料</button>
@@ -60,8 +68,28 @@ function lodingCat() {
     })
     .catch((err) => {
       console.log(err);
-      //   alert(err);
-      //   window.location.href = "./login.html";
+      const response = err.response.data;
+
+      console.log(response);
+
+      if (
+        response ===
+        "Private resource access: entity must have a reference to the owner id"
+      ) {
+        const catInfoDOM = document.getElementById("catInfo");
+        let createCatAddDataDOM = JSON.stringify(`
+        <div id="catContainer_add" class="catContainer">
+        <h1 id="catAddTitle" class="catAddTitle">快來新增您的愛貓！</h1>        
+      </div>
+      `);
+
+        let resultDom = JSON.parse(createCatAddDataDOM);
+
+        catInfoDOM.innerHTML = resultDom;
+      } else {
+        alert(err);
+        window.location.href = "./login.html";
+      }
     });
 }
 
