@@ -25,30 +25,38 @@ function lodingCat() {
       const userCat = res.data;
 
       //開始創建 DOM 元素
+      let resultDom = [];
       userCat.forEach((element) => {
         console.log(element);
-        const catUserDOM = document.getElementById("catUser");
-        let createCatDataDOM = `
-        <div id="catUser" class="catUser">
-        <h1 id="catName" class="catName"></h1>
+
+        const { catName, gender, birthday, catBreeds, colors, weight, id } =
+          element;
+
+        console.log(catName, gender, birthday, catBreeds, colors, weight, id);
+
+        const catInfoDOM = document.getElementById("catInfo");
+        let createCatDataDOM = JSON.stringify(`
+        <div id="catContainer_${id}" class="catContainer">
+        <h1 id="catName_${id}" class="catName">${catName}</h1>
         <ul>
-          <li id="catGender" class="catGender"></li>
-          <li id="catBirthday" class="catBirthday"></li>
-          <li id="catBreeds" class="catBreeds"></li>
-          <li id="catColors" class="catColors"></li>
-          <li id="catWeight" class="catWeight"></li>
+          <li id="catGender_${id}" class="catGender">性別：${gender}</li>
+          <li id="catBirthday_${id}" class="catBirthday">生日：${birthday}</li>
+          <li id="catBreeds_${id}" class="catBreeds">品種：${catBreeds}</li>
+          <li id="catColors_${id}" class="catColors">花色：${colors}</li>
+          <li id="catWeight_${id}" class="catWeight">體重：${weight}</li>
         </ul>
-        <img id="catPhoto" src="" alt="貓咪照片" />
+        <img id="catPhoto_${id}" src="" alt="貓咪照片" />
         <br />
-        <button id="catEdit" class="catEdit">編輯資料</button>
-        <button id="catDelete" class="catDelete">刪除資料</button>
+        <button id="catEdit_${id}" class="catEdit">編輯資料</button>
+        <button id="catDelete_${id}" class="catDelete">刪除資料</button>
       </div>
-      `;
+      `);
 
-        catUserDOM.innerHTML = createCatDataDOM;
+        resultDom += JSON.parse(createCatDataDOM);
+        console.log(resultDom);
+
+        catInfoDOM.innerHTML = resultDom;
       });
-
-      console.log(h1);
     })
     .catch((err) => {
       console.log(err);
