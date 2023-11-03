@@ -581,12 +581,12 @@ $line-height-base:            1.5 !default;
 $line-height-sm:              1.25 !default;
 $line-height-lg:              2 !default;
 
-$h1-font-size:                $font-size-base * 2.5 !default;
-$h2-font-size:                $font-size-base * 2 !default;
-$h3-font-size:                $font-size-base * 1.75 !default;
-$h4-font-size:                $font-size-base * 1.5 !default;
-$h5-font-size:                $font-size-base * 1.25 !default;
-$h6-font-size:                $font-size-base !default;
+$h1-font-size:                $font-size-base * 3 !default;       // 48px 自訂字體大小 $custom 
+$h2-font-size:                $font-size-base * 2.5 !default;     // 40px
+$h3-font-size:                $font-size-base * 2 !default;       // 32px 
+$h4-font-size:                $font-size-base * 1.5 !default;     // 24px
+$h5-font-size:                $font-size-base * 1.25 !default;    // 20px
+$h6-font-size:                $font-size-base * 1 !default;       // 16px
 // scss-docs-end font-variables
 
 // scss-docs-start font-sizes
@@ -601,19 +601,19 @@ $font-sizes: (
 // scss-docs-end font-sizes
 
 // scss-docs-start headings-variables
-$headings-margin-bottom:      $spacer * .5 !default;
+$headings-margin-bottom:      0 !default;    // $spacer * .5 $custom 
 $headings-font-family:        null !default;
 $headings-font-style:         null !default;
 $headings-font-weight:        500 !default;
-$headings-line-height:        1.2 !default;
+$headings-line-height:        1.5 !default;   // 1.2 $custom 
 $headings-color:              null !default;
 // scss-docs-end headings-variables
 
 // scss-docs-start display-headings
 $display-font-sizes: (
-  1: 5rem,
+  1: 6rem,    // 96px (預設5)自訂字體大小 $custom 
   2: 4.5rem,
-  3: 4rem,
+  3: 4rem,    // 64px
   4: 3.5rem,
   5: 3rem,
   6: 2.5rem
@@ -774,7 +774,7 @@ $btn-padding-y-lg:            $input-btn-padding-y-lg !default;
 $btn-padding-x-lg:            $input-btn-padding-x-lg !default;
 $btn-font-size-lg:            $input-btn-font-size-lg !default;
 
-$btn-border-width:            $input-btn-border-width !default;
+$btn-border-width:            0 !default;   // $input-btn-border-width  $custom 
 
 $btn-font-weight:             $font-weight-normal !default;
 $btn-box-shadow:              inset 0 1px 0 rgba($white, .15), 0 1px 1px rgba($black, .075) !default;
