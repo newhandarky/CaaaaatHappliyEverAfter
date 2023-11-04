@@ -89,6 +89,7 @@ editMemberFrom.addEventListener("submit", (e) => {
   e.preventDefault();
 
   //先判斷是否為登入狀態
+  // isLoginStay 是自訂一的函數 判斷登入狀態
   isLoginStay();
 
   //抓取表單資料
@@ -134,7 +135,5 @@ cancelEdit.addEventListener("click", (e) => {
   const cancelEditHerf = cancelEdit.getAttribute("href");
 
   // isLoginToHref 是自訂一的函數 判斷登入狀態 需要帶入前往的網址頁面路徑
-  // _url 是後端主機位置
-  // memberHerf 試驗成功登入後 要前往的連結位置 形式像是 "../member.html"
   isLoginToHref(cancelEditHerf);
 });
