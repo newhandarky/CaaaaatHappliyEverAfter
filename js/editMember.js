@@ -1,8 +1,6 @@
 import axios from "axios";
 import { _url } from "./config";
-import { isLoginToHref } from "./isLoginToHref";
-
-import { isLoginStay } from "./isLoginStay";
+import { isLogin } from "./isLogin";
 
 //取得所需要的資療及DOM元素
 const userTokenAndData = JSON.parse(localStorage.getItem("userTokenAndData"));
@@ -90,7 +88,7 @@ editMemberFrom.addEventListener("submit", (e) => {
 
   //先判斷是否為登入狀態
   // isLoginStay 是自訂一的函數 判斷登入狀態
-  isLoginStay();
+  isLogin();
 
   //抓取表單資料
 
@@ -135,5 +133,5 @@ cancelEdit.addEventListener("click", (e) => {
   const cancelEditHerf = cancelEdit.getAttribute("href");
 
   // isLoginToHref 是自訂一的函數 判斷登入狀態 需要帶入前往的網址頁面路徑
-  isLoginToHref(cancelEditHerf);
+  isLogin(cancelEditHerf);
 });

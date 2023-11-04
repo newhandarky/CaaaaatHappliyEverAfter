@@ -1,6 +1,6 @@
 import axios from "axios";
 import { _url } from "./config";
-import { isLoginToHref } from "./isLoginToHref";
+import { isLogin } from "./isLogin";
 
 //取得所需要的資療及DOM元素
 const userTokenAndData = JSON.parse(localStorage.getItem("userTokenAndData"));
@@ -74,5 +74,5 @@ editMemberLink.addEventListener("click", (e) => {
 
   const editMemberHerf = editMemberLink.getAttribute("href");
 
-  isLoginToHref(editMemberHerf);
+  isLogin(editMemberHerf);
 });
