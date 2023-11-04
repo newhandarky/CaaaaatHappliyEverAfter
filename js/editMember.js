@@ -7,6 +7,10 @@ const userTokenAndData = JSON.parse(localStorage.getItem("userTokenAndData"));
 const { accessToken, user } = userTokenAndData;
 const editMemberFrom = document.getElementById("editMemberFrom");
 const cancelEdit = document.getElementById("cancelEdit");
+const myFile = document.getElementById("myFile");
+
+// 上傳圖片需要轉存為 Base64 數據宣告
+const imageData = {};
 
 // 呈現input 舊資料的值
 function showOriginalData() {
@@ -90,7 +94,7 @@ editMemberFrom.addEventListener("submit", (e) => {
   // isLoginStay 是自訂一的函數 判斷登入狀態
   isLogin();
 
-  //抓取表單資料
+  //抓取表單資料 除了圖片
 
   const nameDom = document.getElementById("name");
   const maleDom = document.getElementById("male");
@@ -99,7 +103,7 @@ editMemberFrom.addEventListener("submit", (e) => {
   const birthdayDom = document.getElementById("birthday");
   const phoneDom = document.getElementById("phone");
   const addressDom = document.getElementById("address");
-  const photoDom = document.getElementById("photo");
+
   //判斷哪個性別被選取
   let gender = () =>
     // 使用三元条件运算符来判断哪个性别被选取，并返回相应的值
@@ -117,8 +121,7 @@ editMemberFrom.addEventListener("submit", (e) => {
     birthday: birthdayDom.value,
     phone: phoneDom.value,
     address: addressDom.value,
-    userPhoto:
-      phoneDom.getAttribute("src") || "https://i.imgur.com/rUTLxZC.jpg",
+    userPhoto: imageData.base64Image,
   };
   console.log(userData);
 
@@ -134,4 +137,32 @@ cancelEdit.addEventListener("click", (e) => {
 
   // isLoginToHref 是自訂一的函數 判斷登入狀態 需要帶入前往的網址頁面路徑
   isLogin(cancelEditHerf);
+});
+
+//上傳圖片
+
+myFile.addEventListener("change", (event) => {
+  // 抓到選擇的圖片檔案描述
+  const selectedFile = event.target.files[0];
+
+  // 轉換圖片格式為 Base64
+  const reader = new FileReader();
+
+  reader.onload = (e) => {
+    const base64Data = e.target.result;
+
+    // 将图像数据编码为 Base64 字符串
+
+    imageData.base64Image = base64Data;
+    imageData.fileName = selectedFile.name;
+
+    // 将图像数据显示在<img>元素中
+    const photoDom = document.getElementById("photo");
+    photoDom.src = imageData.base64Image;
+
+    // 在这里可以将 imageData 发送到后端，更新用户的头像等操作
+  };
+
+  reader.readAsDataURL(selectedFile);
+  console.log(imageData);
 });
