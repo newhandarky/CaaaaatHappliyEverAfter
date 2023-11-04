@@ -10,18 +10,15 @@ memberData.addEventListener("click", (e) => {
   const memberHerf = memberData.getAttribute("href");
 
   // isLogin 是自訂一的函數 判斷登入狀態 可以在確認後前往的網址頁面路徑
-  // _url 是後端主機位置
-  // memberHerf 試驗成功登入後 要前往的連結位置 形式像是 "../member.html"
   isLogin(memberHerf);
 });
 
+//進入我的貓咪前 判斷是不是已登入
 catData.addEventListener("click", (e) => {
   e.preventDefault();
 
   const catHerf = catData.getAttribute("href");
 
   // isLogin 是自訂一的函數 判斷登入狀態 可以在確認後前往的網址頁面路徑
-  // _url 是後端主機位置
-  // memberHerf 試驗成功登入後 要前往的連結位置 形式像是 "../member.html"
   isLogin(catHerf);
 });
