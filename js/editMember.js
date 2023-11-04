@@ -1,10 +1,14 @@
 import axios from "axios";
 import { _url } from "./config";
+import { isLoginToHref } from "./isLoginToHref";
+
+import { isLoginStay } from "./isLoginStay";
 
 //取得所需要的資療及DOM元素
 const userTokenAndData = JSON.parse(localStorage.getItem("userTokenAndData"));
 const { accessToken, user } = userTokenAndData;
 const editMemberFrom = document.getElementById("editMemberFrom");
+const cancelEdit = document.getElementById("cancelEdit");
 
 // 呈現input 舊資料的值
 function showOriginalData() {
@@ -83,6 +87,10 @@ function editData(userData) {
 // //按下完成編輯
 editMemberFrom.addEventListener("submit", (e) => {
   e.preventDefault();
+
+  //先判斷是否為登入狀態
+  isLoginStay();
+
   //抓取表單資料
 
   const nameDom = document.getElementById("name");
@@ -117,4 +125,16 @@ editMemberFrom.addEventListener("submit", (e) => {
 
   // 使用編輯函數來編輯會員資料
   editData(userData);
+});
+
+// 按下取消編輯時 偵測是否為登入狀態
+cancelEdit.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  const cancelEditHerf = cancelEdit.getAttribute("href");
+
+  // isLoginToHref 是自訂一的函數 判斷登入狀態 需要帶入前往的網址頁面路徑
+  // _url 是後端主機位置
+  // memberHerf 試驗成功登入後 要前往的連結位置 形式像是 "../member.html"
+  isLoginToHref(cancelEditHerf);
 });
