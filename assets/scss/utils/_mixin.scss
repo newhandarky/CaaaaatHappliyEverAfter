@@ -1,0 +1,61 @@
+// RWD
+@mixin media-min-1200 {
+    @media(min-width: 1200px) {
+        @content;
+    }
+}
+@mixin media-min-992 {
+    @media(min-width: 992px) {
+        @content;
+    }
+}
+
+@mixin media-min-768 {
+    @media(min-width: 768px) {
+        @content;
+    }
+}
+
+@mixin media-min-576 {
+    @media(min-width: 576px) {
+        @content;
+    }
+}
+
+@mixin media-min-375 {
+    @media(min-width: 375px) {
+        @content;
+    }
+}
+
+// 水平方向的漸層 
+@mixin gradient-x($start-color: $primary, $end-color: $secondary) {
+    background-image: linear-gradient(to right, $start-color, $end-color);
+}
+
+  // 垂直方向的漸層
+@mixin gradient-y($start-color: $primary, $end-color: $secondary) {
+    background-image: linear-gradient(to bottom, $start-color, $end-color);
+}
+
+// 背景圖
+@mixin bg-img-cover {
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+//文字間距
+@mixin set-letter-spacing($font-size){
+    font-size: $font-size;
+    letter-spacing: $font-size;
+}
+
+// 旋轉動畫
+@mixin rotate-360{
+    animation-name: rotate-360;
+    animation-duration: 4s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+}
