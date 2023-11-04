@@ -4,7 +4,6 @@ import { _url } from "./config";
 //抓到 Dom 元素
 
 const loginForm = document.getElementById("loginForm");
-const signupBtn = document.getElementById("signupBtn");
 
 // 登入 function
 function login(userAccount) {
@@ -44,11 +43,4 @@ loginForm.addEventListener("submit", (e) => {
   console.log(userAccount);
 
   login(userAccount);
-});
-
-//按下立即註冊
-signupBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-
-  window.location.href = "./signup.html";
 });

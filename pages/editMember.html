@@ -7,49 +7,32 @@
   </head>
   <body>
     <%- include('./layout/header'); -%>
-    <h1>會員註冊</h1>
-    <form id="signupForm" class="signupForm" method="GET">
-      <input
-        id="email"
-        class="email"
-        type="email"
-        name="email"
-        placeholder="請輸入Email"
-        required
-      />
-      <br />
-      <input
-        id="password"
-        class="password"
-        type="password"
-        name="password"
-        placeholder="請輸入密碼"
-        required
-      />
-      <br />
+    <h1>編輯個人資料</h1>
+    <form id="editMemberFrom" class="editMemberFrom" method="GET">
+      <label for="name">姓名：</label>
       <input
         id="name"
         class="name"
         type="text"
         name="name"
         placeholder="請輸入姓名"
+        value=""
         required
       />
       <br />
-      <div id="gender" class="gender">
-        <input id="male" type="radio" name="gender" value="male" required />
-        <label for="male">男</label>
-        <input id="female" type="radio" name="gender" value="female" required />
-        <label for="female">女</label>
-        <input id="other" type="radio" name="gender" value="other" required />
-        <label for="other">其他</label>
-      </div>
-
+      <input id="male" type="radio" name="gender" value="male" required />
+      <label for="male">男</label>
+      <input id="female" type="radio" name="gender" value="female" required />
+      <label for="female">女</label>
+      <input id="other" type="radio" name="gender" value="other" required />
+      <label for="other">其他</label>
+      <br />
       <input
         id="birthday"
         type="date"
         placeholder="請輸入生日"
         name="birthday"
+        value=""
         required
       />
       <br />
@@ -59,6 +42,7 @@
         type="number"
         placeholder="請輸入電話"
         name="phone"
+        value=""
         required
       />
       <br />
@@ -68,15 +52,18 @@
         type="text"
         placeholder="請輸入地址"
         name="address"
+        value=""
         required
       />
       <br />
-      <button id="signupBtn" type="submit" class="signupBtn">會員註冊</button>
-      <a id="loginBtn" class="loginBtn" href="./login.html">立即登入</a>
+      <img id="photo" src="" alt="會員照片" />
+      <br />
+      <button id="finishEdit" type="submit" class="finishEdit">完成編輯</button>
+      <a id="cancelEdit" class="cancelEdit" href="./member.html">取消編輯</a>
     </form>
     <%- include('./layout/footer'); -%>
     <script type="module" src="../main.js"></script>
     <script type="module" src="../js/navbar.js"></script>
-    <script type="module" src="../js/signup.js"></script>
+    <script type="module" src="../js/editMember.js"></script>
   </body>
 </html>

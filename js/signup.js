@@ -61,10 +61,3 @@ signupForm.addEventListener("submit", (e) => {
   // 使用註冊函數來註冊會員
   signup(userData);
 });
-
-//按下立即登入
-loginBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-
-  window.location.href = "./login.html";
-});
