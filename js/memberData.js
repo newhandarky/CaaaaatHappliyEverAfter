@@ -1,10 +1,12 @@
 import axios from "axios";
 import { _url } from "./config";
+import { isLoginToHref } from "./isLoginToHref";
 
 //取得所需要的資療及DOM元素
 const userTokenAndData = JSON.parse(localStorage.getItem("userTokenAndData"));
 const { accessToken, user } = userTokenAndData;
 const signoutBtn = document.getElementById("signout");
+const editMemberLink = document.getElementById("editMember");
 
 //抓到localsorage 的資料去後端回傳
 function lodingMember() {
@@ -64,4 +66,13 @@ lodingMember();
 signoutBtn.addEventListener("click", () => {
   localStorage.removeItem("userTokenAndData");
   window.location.href = "./index.html";
+});
+
+// 編輯會員點擊後 偵測是否再登入狀態 沒有就返回登入介面
+editMemberLink.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  const editMemberHerf = editMemberLink.getAttribute("href");
+
+  isLoginToHref(editMemberHerf);
 });

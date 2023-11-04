@@ -56,50 +56,65 @@ function showOriginalData() {
 
 showOriginalData();
 
-// // 註冊 function
-// function editData(userData) {
-//   axios
-//     .post(`${_url}/signup`, userData)
-//     .then((res) => {
-//       console.log(res);
-//       alert("註冊成功");
-//       window.location.href = "./login.html";
-//     })
-//     .catch((err) => {
-//       //錯誤提示
-//       alert(`註冊失敗：${err.response.data}`);
-//       console.log(err);
-//     });
-// }
+// // 變更資料 function
+function editData(userData) {
+  const memberId = user.id;
+  axios
+    .patch(`${_url}/600/users/${memberId}`, userData, {
+      headers: {
+        authorization: `Bearer ${accessToken}`,
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      alert("修改會員資料成功");
+      window.location.href = "./member.html";
+    })
+    .catch((err) => {
+      //錯誤提示
+      console.log(err);
+      alert(
+        `修改會員資料失敗 請重新登入後嘗試 /n錯誤提示：${err.response.data}`
+      );
+      window.location.href = "./login.html";
+    });
+}
 
-// //按下會員註冊
-// editMemberFrom.addEventListener("submit", (e) => {
-//   e.preventDefault();
+// //按下完成編輯
+editMemberFrom.addEventListener("submit", (e) => {
+  e.preventDefault();
+  //抓取表單資料
 
-//   //判斷哪個性別被選取
-//   let gender = () =>
-//     // 使用三元条件运算符来判断哪个性别被选取，并返回相应的值
-//     male.checked
-//       ? male.value
-//       : female.checked
-//       ? female.value
-//       : other.checked
-//       ? other.value
-//       : "Not Specified";
+  const nameDom = document.getElementById("name");
+  const maleDom = document.getElementById("male");
+  const femaleDom = document.getElementById("female");
+  const otherDom = document.getElementById("other");
+  const birthdayDom = document.getElementById("birthday");
+  const phoneDom = document.getElementById("phone");
+  const addressDom = document.getElementById("address");
+  const photoDom = document.getElementById("photo");
+  //判斷哪個性別被選取
+  let gender = () =>
+    // 使用三元条件运算符来判断哪个性别被选取，并返回相应的值
+    maleDom.checked
+      ? male.value
+      : femaleDom.checked
+      ? female.value
+      : otherDom.checked
+      ? other.value
+      : "Not Specified";
 
-//   let userData = {
-//     email,
-//     password,
-//     name,
-//     gender: gender(),
-//     birthday,
-//     phone,
-//     address,
-//     userPhoto: "https://i.imgur.com/rUTLxZC.jpg",
-//     catId: null,
-//     lastLoginTime: null,
-//   };
-//   console.log(userData);
-//   // 使用編輯函數來編輯會員資料
-//   //   editData(userData);
-// });
+  let userData = {
+    name: nameDom.value,
+    gender: gender(),
+    birthday: birthdayDom.value,
+    phone: phoneDom.value,
+    address: addressDom.value,
+    userPhoto:
+      phoneDom.getAttribute("src") || "https://i.imgur.com/rUTLxZC.jpg",
+  };
+  console.log(userData);
+
+  // 使用編輯函數來編輯會員資料
+  editData(userData);
+});
