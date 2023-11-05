@@ -6,7 +6,6 @@ import { isLogin } from "./isLogin";
 const userTokenAndData = JSON.parse(localStorage.getItem("userTokenAndData"));
 const { accessToken, user } = userTokenAndData;
 
-const catDelete = document.getElementById("catDelete");
 const catAdd = document.getElementById("catAdd");
 
 //創建 呈現貓咪資料的 HTML DOM 元素
@@ -80,7 +79,6 @@ function lodingCat() {
         <img id="catPhoto_${index}" src="${catPhoto}" alt="貓咪照片" />
         <br />
         <a id="catEdit_${index}" data-Index="${index}" data-catId="${id}" class="catEdit" href="./editCat.html">編輯資料</a>
-        <button id="catDelete_${index}" class="catDelete">刪除資料</button>
       </div>
       `);
 

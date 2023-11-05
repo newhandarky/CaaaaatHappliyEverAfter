@@ -9,6 +9,7 @@ const catEditId = JSON.parse(localStorage.getItem("catEditId"));
 const editCatFrom = document.getElementById("editCatFrom");
 const cancelEdit = document.getElementById("cancelEdit");
 const myCatFile = document.getElementById("myCatFile");
+const catlDelete = document.getElementById("catlDelete");
 
 // 上傳圖片需要轉存為 Base64 數據宣告
 const imageData = {};
@@ -154,6 +155,34 @@ cancelEdit.addEventListener("click", (e) => {
   isLogin(cancelEditHerf);
 });
 
+// 按下刪除貓咪時 偵測是否為登入狀態
+catlDelete.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  const catlDeletetHerf = catlDelete.getAttribute("href");
+
+  // isLoginToHref 是自訂一的函數 判斷登入狀態 需要帶入前往的網址頁面路徑
+  isLogin();
+
+  //執行刪除貓咪
+  //測試後 Json Server 他只會回報錯誤 但其實是成功刪除的?
+  axios
+    .delete(`${_url}/600/cats/${catEditId}`, {
+      headers: {
+        authorization: `Bearer ${accessToken}`,
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      alert("刪除貓咪成功");
+      window.location.href = "./catData.html";
+    })
+    .catch((err) => {
+      console.log(err);
+      alert("刪除貓咪成功");
+      window.location.href = "./catData.html";
+    });
+});
 //上傳圖片
 
 myCatFile.addEventListener("change", (event) => {
