@@ -5,41 +5,101 @@ import { isLogin } from "./isLogin";
 //取得所需要的資療及DOM元素
 const userTokenAndData = JSON.parse(localStorage.getItem("userTokenAndData"));
 const { accessToken, user } = userTokenAndData;
-const addCatFrom = document.getElementById("addCatFrom");
-const cancelAdd = document.getElementById("cancelAdd");
+const catEditId = JSON.parse(localStorage.getItem("catEditId"));
+const editCatFrom = document.getElementById("editCatFrom");
+const cancelEdit = document.getElementById("cancelEdit");
 const myCatFile = document.getElementById("myCatFile");
 
 // 上傳圖片需要轉存為 Base64 數據宣告
 const imageData = {};
+console.log(imageData);
 
-// // 新增貓咪資料 function
-function catAddData(catData) {
+// 呈現input 舊資料的值
+function showOriginalData() {
   axios
-    .post(`${_url}/cats`, catData, {
+    .get(`${_url}/600/cats/${catEditId}`, {
+      headers: {
+        authorization: `Bearer ${accessToken}`,
+      },
+    })
+    .then((res) => {
+      const {
+        catName,
+        catBreeds,
+        colors,
+        gender,
+        birthday,
+        weight,
+        userId,
+        catPhoto,
+      } = res.data;
+
+      console.log(birthday);
+      //抓取表單資料
+
+      const catNameDom = document.getElementById("catName");
+      const catMaleDom = document.getElementById("catMale");
+      const catFemaleDom = document.getElementById("catFemale");
+      const catOtherDom = document.getElementById("catOther");
+      const catBirthdayDom = document.getElementById("catBirthday");
+      const catBreedsDom = document.getElementById("catBreeds");
+      const catColorsDom = document.getElementById("catColors");
+      const catWeightDom = document.getElementById("catWeight");
+      const catPhotoDom = document.getElementById("catPhoto");
+
+      // 把原有的資料呈現 input 裡面
+      catNameDom.value = catName;
+      // 資料是什麼性別 DOM就呈現在 input 裡面
+      (function isGender() {
+        if (gender === "male") {
+          catMaleDom.checked = true;
+        } else if (gender === "female") {
+          catFemaleDom.checked = true;
+        } else if (gender === "other") {
+          catOtherDom.checked = true;
+        }
+      })();
+      catBirthdayDom.value = birthday;
+      catBreedsDom.value = catBreeds;
+      catColorsDom.value = colors;
+      catWeightDom.value = weight;
+      catPhotoDom.setAttribute("src", catPhoto);
+    })
+    .catch((err) => {
+      console.log(err);
+      alert(err);
+      window.location.href = "./login.html";
+    });
+}
+
+showOriginalData();
+
+// // 變更資料 function
+function editData(catData) {
+  const memberId = user.id;
+  axios
+    .patch(`${_url}/600/cats/${catEditId}`, catData, {
       headers: {
         authorization: `Bearer ${accessToken}`,
       },
     })
     .then((res) => {
       console.log(res);
-      alert("新增貓咪資料成功");
+      alert("修改貓咪資料成功");
       window.location.href = "./catData.html";
-
-      //再來要同步更新會員裡面的 catDataId
-      //始終覺得catDataId不需要 新增貓咪及編輯都要配合很麻煩 先暫時不寫
     })
     .catch((err) => {
       //錯誤提示
       console.log(err);
       alert(
-        `新增貓咪資料失敗 請重新登入後嘗試 /n錯誤提示：${err.response.data}`
+        `修改貓咪資料失敗 請重新登入後嘗試 /n錯誤提示：${err.response.data}`
       );
       window.location.href = "./login.html";
     });
 }
 
-// //按下完成新增
-addCatFrom.addEventListener("submit", (e) => {
+// //按下完成編輯
+editCatFrom.addEventListener("submit", (e) => {
   e.preventDefault();
 
   //先判斷是否為登入狀態
@@ -68,8 +128,6 @@ addCatFrom.addEventListener("submit", (e) => {
       ? catOtherDom.value
       : "Not Specified";
 
-  console.dir(catMaleDom);
-
   let catData = {
     catName: catNameDom.value,
     catBreeds: catBreedsDom.value,
@@ -77,23 +135,23 @@ addCatFrom.addEventListener("submit", (e) => {
     gender: gender(),
     birthday: catBirthdayDom.value,
     weight: catWeightDom.value,
-    catPhoto: imageData.base64Image || "https://i.imgur.com/slCGtuf.png",
+    catPhoto: imageData.base64Image,
     userId: user.id,
   };
   console.log(catData);
 
-  // // 使用新增貓咪函數來新增貓咪會員資料
-  catAddData(catData);
+  // 使用編輯函數來編輯會員資料
+  editData(catData);
 });
 
-// 按下取消新增時 偵測是否為登入狀態
-cancelAdd.addEventListener("click", (e) => {
+// 按下取消編輯時 偵測是否為登入狀態
+cancelEdit.addEventListener("click", (e) => {
   e.preventDefault();
 
-  const cancelAddHerf = cancelAdd.getAttribute("href");
+  const cancelEditHerf = cancelEdit.getAttribute("href");
 
   // isLoginToHref 是自訂一的函數 判斷登入狀態 需要帶入前往的網址頁面路徑
-  isLogin(cancelAddHerf);
+  isLogin(cancelEditHerf);
 });
 
 //上傳圖片
@@ -121,5 +179,5 @@ myCatFile.addEventListener("change", (event) => {
   };
 
   reader.readAsDataURL(selectedFile);
-  console.log(imageData);
+  console.dir(imageData);
 });

@@ -8,7 +8,7 @@
   <body>
     <%- include('./layout/header'); -%>
     <h1>編輯貓咪</h1>
-    <form id="addCatFrom" class="addCatFrom" method="GET">
+    <form id="editCatFrom" class="editCatFrom" method="GET">
       <label for="catName">姓名：</label>
       <input
         id="catName"
@@ -82,11 +82,12 @@
       <br />
       <input id="myCatFile" class="myFile" type="file" />
       <br />
-      <button id="finishEdit" type="submit" class="finishEdit">編輯貓咪</button>
-      <a id="canceledit" class="canceledit" href="./catData.html">取消編輯</a>
+      <button id="finishEdit" type="submit" class="finishEdit">完成編輯</button>
+      <a id="cancelEdit" class="cancelEdit" href="./catData.html">取消編輯</a>
     </form>
     <%- include('./layout/footer'); -%>
     <script type="module" src="../main.js"></script>
     <script type="module" src="../js/navbar.js"></script>
+    <script type="module" src="../js/editCat.js"></script>
   </body>
 </html>

@@ -55,6 +55,15 @@ function lodingCat() {
 
         console.log(catName, gender, birthday, catBreeds, colors, weight, id);
 
+        const genderToChiniese = () =>
+          gender === "male"
+            ? "男 "
+            : gender === "female"
+            ? "女 "
+            : gender === "other"
+            ? "其他 "
+            : "未定義";
+
         const catInfoDOM = document.getElementById("catInfo");
         //準備 innerHtml 添加資料
 
@@ -62,7 +71,7 @@ function lodingCat() {
         <div id="catContainer_${index}" class="catContainer">
         <h1 id="catName_${index}" class="catName">${catName}</h1>
         <ul>
-          <li id="catGender_${index}" class="catGender">性別：${gender}</li>
+          <li id="catGender_${index}" class="catGender">性別：${genderToChiniese()}</li>
           <li id="catBirthday_${index}" class="catBirthday">生日：${birthday}</li>
           <li id="catBreeds_${index}" class="catBreeds">品種：${catBreeds}</li>
           <li id="catColors_${index}" class="catColors">花色：${colors}</li>
