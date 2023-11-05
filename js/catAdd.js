@@ -24,6 +24,9 @@ function catAddData(catData) {
       console.log(res);
       alert("新增貓咪資料成功");
       window.location.href = "./catData.html";
+
+      //再來要同步更新會員裡面的 catDataId
+      //始終覺得catDataId不需要 新增貓咪及編輯都要配合很麻煩 先暫時不寫
     })
     .catch((err) => {
       //錯誤提示

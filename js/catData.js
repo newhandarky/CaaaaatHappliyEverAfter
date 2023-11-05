@@ -5,7 +5,7 @@ import { isLogin } from "./isLogin";
 //取得所需要的資療及DOM元素
 const userTokenAndData = JSON.parse(localStorage.getItem("userTokenAndData"));
 const { accessToken, user } = userTokenAndData;
-const catEdit = document.getElementById("catEdit");
+
 const catDelete = document.getElementById("catDelete");
 const catAdd = document.getElementById("catAdd");
 
@@ -23,12 +23,23 @@ function lodingCat() {
       },
     })
     .then((res) => {
-      //抓到後端回傳的貓咪資料
+      //回傳貓咪資料
       const userCat = res.data;
+      //抓到後端回傳的貓咪資料 到 localstorage 的 userTokenAndData
+      const userTokenAndData = JSON.parse(
+        localStorage.getItem("userTokenAndData")
+      );
+      userTokenAndData.showCatinCatPage = userCat;
+
+      localStorage.setItem(
+        "userTokenAndData",
+        JSON.stringify(userTokenAndData)
+      );
 
       //開始創建 DOM 元素
       let resultDom = [];
-      userCat.forEach((element) => {
+
+      userCat.forEach((element, index) => {
         console.log(element);
 
         const {
@@ -45,20 +56,22 @@ function lodingCat() {
         console.log(catName, gender, birthday, catBreeds, colors, weight, id);
 
         const catInfoDOM = document.getElementById("catInfo");
+        //準備 innerHtml 添加資料
+
         let createCatDataDOM = JSON.stringify(`
-        <div id="catContainer_${id}" class="catContainer">
-        <h1 id="catName_${id}" class="catName">${catName}</h1>
+        <div id="catContainer_${index}" class="catContainer">
+        <h1 id="catName_${index}" class="catName">${catName}</h1>
         <ul>
-          <li id="catGender_${id}" class="catGender">性別：${gender}</li>
-          <li id="catBirthday_${id}" class="catBirthday">生日：${birthday}</li>
-          <li id="catBreeds_${id}" class="catBreeds">品種：${catBreeds}</li>
-          <li id="catColors_${id}" class="catColors">花色：${colors}</li>
-          <li id="catWeight_${id}" class="catWeight">體重：${weight} Kg</li>
+          <li id="catGender_${index}" class="catGender">性別：${gender}</li>
+          <li id="catBirthday_${index}" class="catBirthday">生日：${birthday}</li>
+          <li id="catBreeds_${index}" class="catBreeds">品種：${catBreeds}</li>
+          <li id="catColors_${index}" class="catColors">花色：${colors}</li>
+          <li id="catWeight_${index}" class="catWeight">體重：${weight} Kg</li>
         </ul>
-        <img id="catPhoto_${id}" src="${catPhoto}" alt="貓咪照片" />
+        <img id="catPhoto_${index}" src="${catPhoto}" alt="貓咪照片" />
         <br />
-        <button id="catEdit_${id}" data-catId="${id}" class="catEdit">編輯資料</button>
-        <button id="catDelete_${id}" class="catDelete">刪除資料</button>
+        <a id="catEdit_${index}" data-Index="${index}" data-catId="${id}" class="catEdit" href="./editCat.html">編輯資料</a>
+        <button id="catDelete_${index}" class="catDelete">刪除資料</button>
       </div>
       `);
 
@@ -66,6 +79,28 @@ function lodingCat() {
         console.log(resultDom);
 
         catInfoDOM.innerHTML = resultDom;
+      });
+
+      // 抓到每隻編輯貓咪的按鈕
+      const catEdit = document.querySelectorAll(".catEdit");
+      console.log(catEdit);
+
+      //掛載每隻編輯貓咪按鈕的監聽
+      catEdit.forEach((element) => {
+        element.addEventListener("click", (e) => {
+          e.preventDefault();
+
+          const catEditHerf = element.getAttribute("href");
+
+          //傳送要編輯隻貓咪的 Id 到 localstorge
+          const catEditId = element.getAttribute("data-catId");
+          console.log(catEditId);
+
+          localStorage.setItem("catEditId", JSON.stringify(catEditId));
+
+          // isLogin 是自訂一的函數 判斷登入狀態 可以在確認後前往的網址頁面路徑
+          isLogin(catEditHerf);
+        });
       });
     })
     .catch((err) => {
@@ -107,3 +142,19 @@ catAdd.addEventListener("click", (e) => {
 
   isLogin(catAddHerf);
 });
+
+// 當按下編輯貓咪時 判斷是不是已登入 同時存入要編輯貓咪的 Id 到 localstorage
+
+// catEdit.addEventListener("click", (e) => {
+//   e.preventDefault();
+
+//   const catEditHerf = catEdit.getAttribute("href");
+
+//   //存入要編輯貓咪的 Id 到 localstorage
+//   const catEditId = catEdit.getAttribute("data-catId");
+
+//   console.log(catEditId, catEditHerf);
+
+//   // isLogin 是自訂一的函數 判斷登入狀態 可以在確認後前往的網址頁面路徑
+//   // isLogin(catEditHerf);
+// });

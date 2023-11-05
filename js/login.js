@@ -15,6 +15,7 @@ function login(userAccount) {
       let userTokenAndData = {
         user,
         accessToken,
+        showCatinCatPage: [],
       };
       localStorage.setItem(
         "userTokenAndData",
