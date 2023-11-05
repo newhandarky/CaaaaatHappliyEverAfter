@@ -33,6 +33,7 @@ export function isLogin(href) {
       .catch((err) => {
         console.log(err);
         alert("登入時間已到期 請重新登入後再執行一次");
+        localStorage.removeItem("userTokenAndData");
         window.location.href = "./login.html";
       });
   }
