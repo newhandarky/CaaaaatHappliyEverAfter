@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>後台訂單列表</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,700,0,200" />
+</head>
+
+<body>
+    <%- include('./layout/admin_header'); -%>
+
+        <main class="container pb-15">
+            <div class="row">
+                <div class="p-8">
+                    <h2>
+                        <a href="#">後台首頁</a> > <a href="./admin_booking.html">訂單管理</a> > 訂單列表
+                    </h2>
+                </div>
+            </div>
+
+            <%- include('./layout/admin_searchBar'); -%>
+
+                <div class="row">
+                    <div class="ps-8 pe-8">
+                        <div class="border border-2 rounded-2 p-8">
+                            <h2 class="mb-8">訂單總覽</h2>
+
+                            <table
+                                class="table table-success table-bordered border border-dark table-hover table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th width="5%" scope="col">訂單編號</th>
+                                        <th width="5%" scope="col">會員姓名</th>
+                                        <th width="5%" scope="col">入住日期</th>
+                                        <th width="5%" scope="col">入住天數</th>
+                                        <th width="5%" scope="col">預定房型</th>
+                                        <th width="5%" scope="col">訂單狀態</th>
+                                        <th width="5%" scope="col">訂單總額</th>
+                                        <th width="15%" scope="col">備註</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="tbody">
+                                </tbody>
+                            </table>
+
+                            <nav aria-label="Page navigation example" class="mt-10">
+                                <ul class="pagination justify-content-center d-flex">
+                                    <li class="page-item disabled">
+                                        <a class="page-link p-4">Previous</a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link p-4" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link p-4" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link p-4" href="#">3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link p-4" href="#">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                            
+                        </div>
+                    </div>
+                </div>
+
+
+        </main>
+        <script type="module" src="../js/admin_bookingList.js"></script>
+        <script type="module" src="../main.js"></script>
+</body>
+
+</html>

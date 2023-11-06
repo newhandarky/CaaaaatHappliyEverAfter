@@ -11,6 +11,8 @@ const payedBooking = document.querySelector(".payedBooking");
 const canceled = document.querySelector(".canceled");
 
 // 變數
+const url = "http://localhost:3000"; // 本機端
+// const url = "https://catroomdb.onrender.com"; // json=server端
 let bookingStatesObject = {
     "confirmCount": 0,
     "confirmedCount": 0,
@@ -20,7 +22,7 @@ let bookingStatesObject = {
     "canceledCount": 0
 }
 
-axios.get("https://catroomdb.onrender.com/660/bookings",{
+axios.get(`${url}/660/bookings`,{
     headers: {
         "authorization":`Bearer ${localStorage.getItem("userLoginToken")}`
     }
@@ -54,9 +56,3 @@ function renderBookingsStateData(){
     payedBooking.innerHTML = bookingStatesObject.payedCount;
     canceled.innerHTML = bookingStatesObject.canceledCount;
 }
-
-
-    
-
-    
-    

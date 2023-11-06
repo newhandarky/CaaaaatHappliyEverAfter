@@ -1,13 +1,15 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 
+const url = "http://localhost:3000"; // 本機端
+// const url = "https://catroomdb.onrender.com"; // json=server端
 const welcome = document.querySelector(".welcome");
 const logout = document.querySelector(".logout");
 const adminLogin = document.querySelector(".adminLogin");
 
 
 adminLogin.addEventListener("click", function () {
-    axios.post("https://catroomdb.onrender.com/login", {
+    axios.post(`${url}/login`, {
         // 管理員帳密
         "email": "userTest053@gmail.com",
         "password": "userTest053"
@@ -53,4 +55,8 @@ logout.addEventListener("click", function () {
 
 function render() {
     localStorage.getItem("userName") === null ? welcome.innerHTML = "" : welcome.innerHTML = `登入人員 : ${localStorage.getItem("userName")} 歡迎您回來`;
+}
+
+window.onload = function(){
+    render();
 }
