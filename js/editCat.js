@@ -165,7 +165,6 @@ catlDelete.addEventListener("click", (e) => {
   isLogin();
 
   //執行刪除貓咪
-  //測試後 Json Server 他只會回報錯誤 但其實是成功刪除的?
   axios
     .delete(`${_url}/600/cats/${catEditId}`, {
       headers: {
@@ -179,8 +178,8 @@ catlDelete.addEventListener("click", (e) => {
     })
     .catch((err) => {
       console.log(err);
-      alert("刪除貓咪成功");
-      window.location.href = "./catData.html";
+      alert("刪除貓咪失敗");
+      window.location.href = "./login.html";
     });
 });
 //上傳圖片
