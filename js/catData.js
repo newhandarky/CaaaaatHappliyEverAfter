@@ -13,7 +13,6 @@ const catAdd = document.getElementById("catAdd");
 //先抓到後端使用者的貓咪資料
 function lodingCat() {
   const memberId = user.id;
-  console.log(`${_url}/600/cats?_expand=user&userId=${memberId}`);
 
   axios
     .get(`${_url}/600/cats?_expand=user&userId=${memberId}`, {
