@@ -7,87 +7,110 @@
   </head>
   <body>
     <%- include('./layout/header'); -%>
-    <h1>編輯貓咪</h1>
-    <form id="editCatFrom" class="editCatFrom" method="GET">
-      <label for="catName">姓名：</label>
-      <input
-        id="catName"
-        class="name"
-        type="text"
-        name="name"
-        placeholder="請輸入姓名"
-        required
-      />
-      <br />
-      <label>性別：</label>
-      <input id="catMale" type="radio" name="catGender" value="male" required />
-      <label for="catMale">男</label>
-      <input
-        id="catFemale"
-        type="radio"
-        name="catGender"
-        value="female"
-        required
-      />
-      <label for="catFemale">女</label>
-      <input
-        id="catOther"
-        type="radio"
-        name="catGender"
-        value="other"
-        required
-      />
-      <label for="catOther">其他</label>
-      <br />
-      <label for="catBirthday">生日：</label>
-      <input
-        id="catBirthday"
-        type="date"
-        placeholder="請輸入生日"
-        name="catBirthday"
-        required
-      />
-      <br />
-      <label for="catBreeds">品種：</label>
-      <input
-        id="catBreeds"
-        class="breeds"
-        type="text"
-        name="phone"
-        placeholder="請輸入品種"
-        required
-      />
-      <br />
-      <label for="catColors">花色：</label>
-      <input
-        id="catColors"
-        class="colors"
-        type="text"
-        placeholder="請輸入花色"
-        name="address"
-        required
-      />
-      <br />
-      <label for="catWeight">體重：</label>
-      <input
-        id="catWeight"
-        class="weight"
-        type="number"
-        placeholder="請輸入體重"
-        name="address"
-        required
-      />
-      <br />
-      <img id="catPhoto" src="https://i.imgur.com/slCGtuf.png" alt="貓咪照片" />
-      <br />
-      <input id="myCatFile" class="myFile" type="file" />
-      <br />
-      <button id="finishEdit" type="submit" class="finishEdit">完成編輯</button>
-      <a id="cancelEdit" class="cancelEdit" href="./catData.html">取消編輯</a>
-    </form>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-2"><%- include('./layout/aside'); -%></div>
+        <div class="col-10">
+          <h1>編輯貓咪</h1>
+          <form id="editCatFrom" class="editCatFrom" method="GET">
+            <label for="catName">姓名：</label>
+            <input
+              id="catName"
+              class="name"
+              type="text"
+              name="name"
+              placeholder="請輸入姓名"
+              required
+            />
+            <br />
+            <label>性別：</label>
+            <input
+              id="catMale"
+              type="radio"
+              name="catGender"
+              value="male"
+              required
+            />
+            <label for="catMale">男</label>
+            <input
+              id="catFemale"
+              type="radio"
+              name="catGender"
+              value="female"
+              required
+            />
+            <label for="catFemale">女</label>
+            <input
+              id="catOther"
+              type="radio"
+              name="catGender"
+              value="other"
+              required
+            />
+            <label for="catOther">其他</label>
+            <br />
+            <label for="catBirthday">生日：</label>
+            <input
+              id="catBirthday"
+              type="date"
+              placeholder="請輸入生日"
+              name="catBirthday"
+              required
+            />
+            <br />
+            <label for="catBreeds">品種：</label>
+            <input
+              id="catBreeds"
+              class="breeds"
+              type="text"
+              name="phone"
+              placeholder="請輸入品種"
+              required
+            />
+            <br />
+            <label for="catColors">花色：</label>
+            <input
+              id="catColors"
+              class="colors"
+              type="text"
+              placeholder="請輸入花色"
+              name="address"
+              required
+            />
+            <br />
+            <label for="catWeight">體重：</label>
+            <input
+              id="catWeight"
+              class="weight"
+              type="number"
+              placeholder="請輸入體重"
+              name="address"
+              required
+            />
+            <br />
+            <img
+              id="catPhoto"
+              src="https://i.imgur.com/slCGtuf.png"
+              alt="貓咪照片"
+            />
+            <br />
+            <input id="myCatFile" class="myFile" type="file" />
+            <br />
+            <button id="finishEdit" type="submit" class="finishEdit">
+              完成編輯
+            </button>
+            <a id="cancelEdit" class="cancelEdit" href="./catData.html"
+              >取消編輯</a
+            >
+          </form>
+        </div>
+      </div>
+    </div>
+
     <%- include('./layout/footer'); -%>
     <script type="module" src="../main.js"></script>
     <script type="module" src="../js/navbar.js"></script>
+    <script type="module" src="../js/aside.js"></script>
     <script type="module" src="../js/editCat.js"></script>
   </body>
 </html>

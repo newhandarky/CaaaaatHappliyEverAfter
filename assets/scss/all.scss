@@ -1,17 +1,18 @@
 @import "../../node_modules/bootstrap/scss/functions";
-@import './utils/variables';
-@import './utils/generic';
-@import './utils/mixin';
+@import "./utils/variables";
+@import "./utils/generic";
+@import "./utils/mixin";
 
 @import "./layout/admin_header";
 @import "./layout/header";
+@import "./layout/aside";
 @import "./layout/footer";
 
-@import './pages/index.scss';
-@import './pages/aboutus.scss';
-@import './pages/article.scss';
-@import './pages/booking.scss';
-@import './pages/member.scss';
-@import './pages/rooms.scss';
+@import "./pages/index.scss";
+@import "./pages/aboutus.scss";
+@import "./pages/article.scss";
+@import "./pages/booking.scss";
+@import "./pages/member.scss";
+@import "./pages/rooms.scss";
 
 @import "../../node_modules/bootstrap";

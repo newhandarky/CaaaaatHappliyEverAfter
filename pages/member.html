@@ -7,24 +7,33 @@
   </head>
   <body>
     <%- include('./layout/header'); -%>
-    <h1>資料管理</h1>
-    <div id="user" class="user">
-      <h1 id="name" class="name"></h1>
-      <ul>
-        <li id="email" class="email"></li>
-        <li id="gender" class="gender"></li>
-        <li id="birthday" class="birthday"></li>
-        <li id="address" class="address"></li>
-        <li id="phone" class="phone"></li>
-      </ul>
-      <img id="photo" src="" alt="會員照片" />
-      <br />
-      <button id="signout" class="signout">登出</button>
-      <a id="editMember" href="../pages/editMember.html">編輯會員資料</a>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-2"><%- include('./layout/aside'); -%></div>
+        <div class="col-10">
+          <h1>資料管理</h1>
+          <div id="user" class="user">
+            <h1 id="name" class="name"></h1>
+            <ul>
+              <li id="email" class="email"></li>
+              <li id="gender" class="gender"></li>
+              <li id="birthday" class="birthday"></li>
+              <li id="address" class="address"></li>
+              <li id="phone" class="phone"></li>
+            </ul>
+            <img id="photo" src="" alt="會員照片" />
+            <br />
+            <button id="signout" class="signout">登出</button>
+            <a id="editMember" href="../pages/editMember.html">編輯會員資料</a>
+          </div>
+        </div>
+      </div>
     </div>
+
     <%- include('./layout/footer'); -%>
     <script type="module" src="../main.js"></script>
     <script type="module" src="../js/navbar.js"></script>
+    <script type="module" src="../js/aside.js"></script>
     <script type="module" src="../js/memberData.js"></script>
   </body>
 </html>
