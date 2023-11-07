@@ -79,6 +79,7 @@ function lodingCat() {
         <img id="catPhoto_${index}" src="${catPhoto}" alt="貓咪照片" />
         <br />
         <a id="catEdit_${index}" data-Index="${index}" data-catId="${id}" class="catEdit" href="./editCat.html">編輯資料</a>
+        <button id="catDelete_${index}" data-Index="${index}" data-catId="${id}" class="catDelete" >刪除資料</button>
       </div>
       `);
 
@@ -91,7 +92,6 @@ function lodingCat() {
       // 抓到每隻編輯貓咪的按鈕
       const catEdit = document.querySelectorAll(".catEdit");
       console.log(catEdit);
-
       //掛載每隻編輯貓咪按鈕的監聽
       catEdit.forEach((element) => {
         element.addEventListener("click", (e) => {
@@ -107,6 +107,41 @@ function lodingCat() {
 
           // isLogin 是自訂一的函數 判斷登入狀態 可以在確認後前往的網址頁面路徑
           isLogin(catEditHerf);
+        });
+      });
+
+      // 抓到每隻刪除貓咪的按鈕
+      const catDelete = document.querySelectorAll(".catDelete");
+      console.log(catDelete);
+
+      //掛載每隻刪除貓咪按鈕的監聽
+      catDelete.forEach((element) => {
+        // 按下刪除貓咪時 偵測是否為登入狀態
+        element.addEventListener("click", (e) => {
+          e.preventDefault();
+
+          // isLoginToHref 是自訂一的函數 判斷登入狀態 需要帶入前往的網址頁面路徑
+          isLogin();
+
+          //執行刪除貓咪
+          const catEditId = element.getAttribute("data-catId");
+          console.log(catEditId);
+          axios
+            .delete(`${_url}/600/cats/${catEditId}`, {
+              headers: {
+                authorization: `Bearer ${accessToken}`,
+              },
+            })
+            .then((res) => {
+              console.log(res);
+              alert("刪除貓咪成功");
+              window.location.href = "./catData.html";
+            })
+            .catch((err) => {
+              console.log(err);
+              alert("刪除貓咪失敗");
+              window.location.href = "./login.html";
+            });
         });
       });
     })
