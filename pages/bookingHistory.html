@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <%- include('./layout/header'); -%>
+
+    <h1>訂房紀錄</h1>
+    <div id="bookingInfo" class="bookingInfo">
+      <h3 id="checkIn" class="checkDate">2023-12-10</h3>
+      <h3>→</h3>
+      <h3 id="checkOut" class="checkDate">2023-12-12</h3>
+      <h3 id="roomType" class="roomType">精緻房</h3>
+      <h5 id="bookingId" class="bookingId">訂單編號 401</h5>
+      <h1 id="price" class="price">1600</h1>
+    </div>
+
+    <%- include('./layout/footer'); -%>
+
+    <script type="module" src="../main.js"></script>
+    <script type="module" src="../js/navbar.js"></script>
+    <script type="module" src="../js/bookingHistory.js"></script>
+  </body>
+</html>
