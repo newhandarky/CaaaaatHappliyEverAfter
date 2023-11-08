@@ -11,69 +11,69 @@
 <body>
     <%- include('./layout/admin_header'); -%>
 
-        <main class="container pb-15">
-            <div class="row">
-                <div class="p-8">
-                    <h2>
-                        <a href="#">後台首頁</a> > 訂單管理
-                    </h2>
-                </div>                
-            </div>
+    <main class="container pb-15">
+        <div class="row">
+            <div class="p-8">
+                <h2>
+                    <a href="#">後台首頁</a> > 訂單管理
+                </h2>
+            </div>                
+        </div>
 
     <%- include('./layout/admin_searchBar'); -%>
 
-            <div class="row">
-                <div class="ps-8 pe-8">
-                    <div class="border border-2 rounded-2 p-8">
-                        <h2 class="mb-8">訂單總覽</h2>
-                        <div class="row ps-15 pe-15 mb-8">
-                            <div class="col-4 pt-5 pb-5 border-end border-5">
-                                <h2 class="text-center waitConfirm mb-5"></h2>
-                                <div class="d-flex justify-content-center mb-5">
-                                    <button class="btn btn-primary">待確認訂單</button>    
-                                </div>
-                            </div>
-                            <div class="col-4 pt-5 pb-5">
-                                <h2 class="text-center confirmed mb-5"></h2>
-                                <div class="d-flex justify-content-center mb-5">
-                                    <button class="btn btn-primary">已確認訂單</button>    
-                                </div>
-                            </div>
-                            <div class="col-4 pt-5 pb-5 border-start border-5">
-                                <h2 class="text-center turnover mb-5"></h2>
-                                <div class="d-flex justify-content-center mb-5">
-                                    <button class="btn btn-primary">總營業額</button>    
-                                </div>
+        <div class="row">
+            <div class="ps-8 pe-8">
+                <div class="border border-2 rounded-2 p-8">
+                    <h2 class="mb-8">訂單總覽</h2>
+                    <div class="row ps-15 pe-15 mb-8">
+                        <div class="col-4 pt-5 pb-5 border-end border-5">
+                            <h2 class="text-center mb-5 fs-4">本月訂單共 <span class="thisMonth fs-2"></span> 筆</h2>
+                            <div class="d-flex justify-content-center mb-5">
+                                <button class="btn btn-primary bookingList">查看當月訂單</button>    
                             </div>
                         </div>
-                        <div class="row ps-15 pe-15 mt-8 mb-8">
-                            <div class="col-4 pt-5 pb-5 border-end border-5">
-                                <h2 class="text-center waitPay mb-5"></h2>
-                                <div class="d-flex justify-content-center mb-5">
-                                    <button class="btn btn-primary">待付款訂單</button>    
-                                </div>
+                        <div class="col-4 pt-5 pb-5">
+                            <h2 class="text-center confirmed mb-5"></h2>
+                            <div class="d-flex justify-content-center mb-5">
+                                <button class="btn btn-primary">已確認訂單</button>    
                             </div>
-                            <div class="col-4 pt-5 pb-5">
-                                <h2 class="text-center payedBooking mb-5"></h2>
-                                <div class="d-flex justify-content-center mb-5">
-                                    <button class="btn btn-primary">已付款訂單</button>    
-                                </div>
+                        </div>
+                        <div class="col-4 pt-5 pb-5 border-start border-5">
+                            <h2 class="text-center turnover mb-5"></h2>
+                            <div class="d-flex justify-content-center mb-5">
+                                <button class="btn btn-primary">總營業額</button>    
                             </div>
-                            <div class="col-4 pt-5 pb-5 border-start border-5">
-                                <h2 class="text-center canceled mb-5"></h2>
-                                <div class="d-flex justify-content-center mb-5">
-                                    <button class="btn btn-primary">已取消訂單</button>    
-                                </div>
+                        </div>
+                    </div>
+                    <div class="row ps-15 pe-15 mt-8 mb-8">
+                        <div class="col-4 pt-5 pb-5 border-end border-5">
+                            <h2 class="text-center waitPay mb-5"></h2>
+                            <div class="d-flex justify-content-center mb-5">
+                                <button class="btn btn-primary">待付款訂單</button>    
+                            </div>
+                        </div>
+                        <div class="col-4 pt-5 pb-5">
+                            <h2 class="text-center payedBooking mb-5"></h2>
+                            <div class="d-flex justify-content-center mb-5">
+                                <button class="btn btn-primary">已付款訂單</button>    
+                            </div>
+                        </div>
+                        <div class="col-4 pt-5 pb-5 border-start border-5">
+                            <h2 class="text-center canceled mb-5"></h2>
+                            <div class="d-flex justify-content-center mb-5">
+                                <button class="btn btn-primary">已取消訂單</button>    
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
 
-        </main>
-        <script type="module" src="../js/admin_booking.js"></script>
-        <script type="module" src="../main.js"></script>
+    </main>
+    <script type="module" src="../js/admin_booking.js"></script>
+    <script type="module" src="../main.js"></script>
 </body>
 
 </html>

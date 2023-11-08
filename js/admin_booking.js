@@ -3,18 +3,23 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 // doms
-const waitConfirm = document.querySelector(".waitConfirm");
+const thisMonth = document.querySelector(".thisMonth");
 const confirmed = document.querySelector(".confirmed");
 const turnover = document.querySelector(".turnover");
 const waitPay = document.querySelector(".waitPay");
 const payedBooking = document.querySelector(".payedBooking");
 const canceled = document.querySelector(".canceled");
+const bookingList = document.querySelector(".bookingList");
+
+// 暫存日期資料
+localStorage.setItem("thisYear", new Date().getFullYear());
+localStorage.setItem("thisMonth", new Date().getMonth() + 1);
 
 // 變數
-const url = "http://localhost:3000"; // 本機端
-// const url = "https://catroomdb.onrender.com"; // json=server端
+// const url = "http://localhost:3000"; // 本機端
+const url = "https://catroomdb.onrender.com"; // json=server端
 let bookingStatesObject = {
-    "confirmCount": 0,
+    "thisMonthCount": 0,
     "confirmedCount": 0,
     "totalTurnover": 0,
     "waitPayCount": 0,
@@ -29,10 +34,12 @@ axios.get(`${url}/660/bookings`,{
 })
 .then(function(res){
     // console.log(res.data);
+    const bookingArr = [];
     res.data.forEach(function(item){
-        if(item.state === "已預定"){
-            bookingStatesObject.confirmCount++;
-        }else if(item.state === "已確認"){
+        if(item.checkIn.startsWith(`${localStorage.getItem("thisYear")}-${localStorage.getItem("thisMonth")}`)){
+            bookingArr.push(item);
+        }
+        if(item.state === "已確認"){
             bookingStatesObject.confirmedCount++;
         }else if(item.state === "待付款"){
             bookingStatesObject.waitPayCount++;
@@ -43,16 +50,24 @@ axios.get(`${url}/660/bookings`,{
             bookingStatesObject.canceledCount++;
         }
     })
+    bookingStatesObject.bookingCount = bookingArr.length;
     renderBookingsStateData();
 }).catch(function(err){
     console.log(err.response);
 })
 
 function renderBookingsStateData(){
-    waitConfirm.innerHTML = bookingStatesObject.confirmCount;
+    thisMonth.innerHTML = bookingStatesObject.bookingCount;
     confirmed.innerHTML = bookingStatesObject.confirmedCount;
     turnover.innerHTML = bookingStatesObject.totalTurnover;
     waitPay.innerHTML = bookingStatesObject.waitPayCount;
     payedBooking.innerHTML = bookingStatesObject.payedCount;
     canceled.innerHTML = bookingStatesObject.canceledCount;
 }
+
+bookingList.addEventListener("click", function(){
+    if(bookingStatesObject.bookingCount === 0){
+        console.log("當月無訂房");
+    }
+    location = "../pages/admin_bookingList.html"
+})

@@ -12,62 +12,68 @@
 <body>
     <%- include('./layout/admin_header'); -%>
 
-        <main class="container pb-15">
-            <div class="row">
-                <div class="p-8">
-                    <h2>
-                        <a href="#">後台首頁</a> > <a href="./admin_booking.html">訂單管理</a> > 訂單列表
-                    </h2>
+    <main class="container pb-8">
+        <div class="row">
+            <div class="p-6">
+                <h2>
+                    <a href="#">後台首頁</a> > <a href="./admin_booking.html">訂單管理</a> > 訂單列表
+                </h2>
+            </div>
+        </div>
+
+        <%- include('./layout/admin_searchBar'); -%>
+
+        <div class="row">
+            <div class="ps-8 pe-8">
+                <div class="bookingListBox border border-2 rounded-2 p-8 d-flex flex-column justify-content-between">
+                    <div class="overflow-auto">
+                        <div class="d-flex justify-content-center mb-5">
+                            <div class="d-flex align-items-center">
+                                <button class="before btn btn-info pt-0 pb-0">
+                                    <span class="material-symbols-outlined pt-2">
+                                        chevron_left
+                                    </span>
+                                </button>
+                            </div>
+                            <h2 class="date ms-6 me-6"></h2>
+                            <div class="d-flex align-items-center">
+                                <button class="after btn btn-info pt-0 pb-0">
+                                    <span class="material-symbols-outlined pt-2">
+                                        chevron_right
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                        <table
+                            class="table table-success table-bordered border border-dark table-hover table-responsive">
+                            <thead>
+                                <tr>
+                                    <th class="text-nowrap text-center p-2" scope="col">訂單編號</th>
+                                    <th class="text-nowrap text-center p-2" scope="col">會員姓名</th>
+                                    <th class="text-nowrap text-center p-2" scope="col">入住日期</th>
+                                    <th class="text-nowrap text-center p-2" scope="col">入住天數</th>
+                                    <th class="text-nowrap text-center p-2" scope="col">預定房型</th>
+                                    <th class="text-nowrap text-center p-2" scope="col">訂單狀態</th>
+                                    <th class="text-nowrap text-center p-2" scope="col">訂單總額</th>
+                                    <th class="text-nowrap text-start p-2" scope="col">備註</th>
+                                </tr>
+                            </thead>
+                            <tbody class="tbody">
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <nav aria-label="Page navigation example" class="mt-5">
+                        <ul class="getPages pagination justify-content-center d-flex">
+
+                        </ul>
+                    </nav>                            
                 </div>
             </div>
-
-            <%- include('./layout/admin_searchBar'); -%>
-
-                <div class="row">
-                    <div class="ps-8 pe-8">
-                        <div class="border border-2 rounded-2 p-8">
-                            <h2 class="mb-8">訂單總覽</h2>
-
-                            <table
-                                class="table table-success table-bordered border border-dark table-hover table-responsive">
-                                <thead>
-                                    <tr>
-                                        <th width="5%" scope="col">訂單編號</th>
-                                        <th width="5%" scope="col">會員姓名</th>
-                                        <th width="5%" scope="col">入住日期</th>
-                                        <th width="5%" scope="col">入住天數</th>
-                                        <th width="5%" scope="col">預定房型</th>
-                                        <th width="5%" scope="col">訂單狀態</th>
-                                        <th width="5%" scope="col">訂單總額</th>
-                                        <th width="15%" scope="col">備註</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="tbody">
-                                </tbody>
-                            </table>
-
-                            <nav aria-label="Page navigation example" class="mt-10">
-                                <ul class="pagination justify-content-center d-flex">
-                                    <li class="page-item disabled">
-                                        <a class="page-link p-4">Previous</a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link p-4" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link p-4" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link p-4" href="#">3</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link p-4" href="#">Next</a>
-                                    </li>
-                                </ul>
-                            </nav>
-                            
-                        </div>
-                    </div>
-                </div>
-
-
-        </main>
-        <script type="module" src="../js/admin_bookingList.js"></script>
-        <script type="module" src="../main.js"></script>
+        </div>
+    </main>
+    <script type="module" src="../js/admin_bookingList.js"></script>
+    <script type="module" src="../main.js"></script>
 </body>
 
 </html>
