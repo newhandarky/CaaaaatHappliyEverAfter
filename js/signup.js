@@ -1,5 +1,13 @@
 import axios from "axios";
 import { _url } from "./config";
+import flatpickr from "flatpickr";
+
+//flatpickr 套件使用
+flatpickr("#birthday", {
+  enableTime: false,
+  dateFormat: "Y-m-d",
+});
+
 //抓到 Dom 元素
 
 const signupForm = document.getElementById("signupForm");

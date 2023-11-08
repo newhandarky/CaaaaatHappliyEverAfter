@@ -7,8 +7,17 @@
   </head>
   <body>
     <%- include('./layout/header'); -%>
+    <div class="container-fluid p-0">
+      <div class="row min-vh-100">
+        <div class="col-lg-2 d-none d-lg-block">
+          <%- include('./layout/aside'); -%>
+        </div>
+        <div class="col-lg-10">
+          <h1>這是修改訂單頁面</h1>
+        </div>
+      </div>
 
-    <h1>這是修改訂單頁面</h1>
+    
 
     <%- include('./layout/footer'); -%>
 

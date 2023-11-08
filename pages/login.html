@@ -9,15 +9,20 @@
     <%- include('./layout/header'); -%>
     <h1>會員登入</h1>
     <form id="loginForm" method="GET">
-      <input id="email" class="email" type="email" placeholder="請輸入Email" />
-      <br />
+      <input
+        id="email"
+        class="form-control"
+        type="email"
+        placeholder="請輸入Email"
+      />
+
       <input
         id="password"
-        class="password"
+        class="form-control"
         type="password"
         placeholder="請輸入密碼"
       />
-      <br />
+
       <button id="loginBtn" type="submit" class="loginBtn">會員登入</button>
       <a id="signupBtn" class="signupBtn" href="./signup.html">立即註冊</a>
     </form>

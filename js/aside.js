@@ -1,10 +1,11 @@
 import { isLogin } from "./isLogin";
 
-//進入會員功能前 判斷是不是已登入
+// 抓到 dom 元素
 const memberData = document.getElementById("memberData");
 const catData = document.getElementById("catData");
 const bookingHistory = document.getElementById("bookingHistory");
 
+//進入會員功能前 判斷是不是已登入
 memberData.addEventListener("click", (e) => {
   e.preventDefault();
 

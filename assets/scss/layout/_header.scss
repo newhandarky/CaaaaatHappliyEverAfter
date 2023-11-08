@@ -1,6 +1,9 @@
-header {
+.navBar {
   background-color: $gray-200;
   a {
-    color: $black;
+    color: $gray-800;
+  }
+  .navAside {
+    background-color: $gray-500;
   }
 }
