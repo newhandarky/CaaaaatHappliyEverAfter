@@ -9,8 +9,10 @@
     <%- include('./layout/header'); -%>
     <div class="container-fluid p-0">
       <div class="row min-vh-100">
-        <div class="col-2"><%- include('./layout/aside'); -%></div>
-        <div class="col-10">
+        <div class="col-lg-2 d-none d-lg-block">
+          <%- include('./layout/aside'); -%>
+        </div>
+        <div class="col-lg-10">
           <h1>我的貓咪</h1>
           <div id="catInfo" class="catInfo"></div>
           <!-- <div id="catContainer_" class="catContainer_">

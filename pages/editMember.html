@@ -9,8 +9,10 @@
     <%- include('./layout/header'); -%>
     <div class="container-fluid p-0">
       <div class="row min-vh-100">
-        <div class="col-2 p-0"><%- include('./layout/aside'); -%></div>
-        <div class="col-10">
+        <div class="col-lg-2 d-none d-lg-block">
+          <%- include('./layout/aside'); -%>
+        </div>
+        <div class="col-lg-10">
           <h1>編輯個人資料</h1>
           <form id="editMemberFrom" class="editMemberFrom" method="GET">
             <label for="name">姓名：</label>

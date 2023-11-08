@@ -183,19 +183,3 @@ catAdd.addEventListener("click", (e) => {
 
   isLogin(catAddHerf);
 });
-
-// 當按下編輯貓咪時 判斷是不是已登入 同時存入要編輯貓咪的 Id 到 localstorage
-
-// catEdit.addEventListener("click", (e) => {
-//   e.preventDefault();
-
-//   const catEditHerf = catEdit.getAttribute("href");
-
-//   //存入要編輯貓咪的 Id 到 localstorage
-//   const catEditId = catEdit.getAttribute("data-catId");
-
-//   console.log(catEditId, catEditHerf);
-
-//   // isLogin 是自訂一的函數 判斷登入狀態 可以在確認後前往的網址頁面路徑
-//   // isLogin(catEditHerf);
-// });
