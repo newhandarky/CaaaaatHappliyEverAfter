@@ -14,5 +14,9 @@
 @import "./pages/booking.scss";
 @import "./pages/member.scss";
 @import "./pages/rooms.scss";
+@import "./pages/signup";
+
+// flatpickr 套件使用 CSS
+@import "../../node_modules/flatpickr/dist/flatpickr.min.css";
 
 @import "../../node_modules/bootstrap";

@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Document</title>
   </head>
   <body>
@@ -11,32 +12,32 @@
     <form id="signupForm" class="signupForm" method="GET">
       <input
         id="email"
-        class="email"
+        class="form-control"
         type="email"
         name="email"
         placeholder="請輸入Email"
         required
       />
-      <br />
+
       <input
         id="password"
-        class="password"
+        class="form-control"
         type="password"
         name="password"
         placeholder="請輸入密碼"
         required
       />
-      <br />
+
       <input
         id="name"
-        class="name"
+        class="form-control"
         type="text"
         name="name"
         placeholder="請輸入姓名"
         required
       />
-      <br />
-      <div id="gender" class="gender">
+
+      <div id="gender" class="form-control">
         <input id="male" type="radio" name="gender" value="male" required />
         <label for="male">男</label>
         <input id="female" type="radio" name="gender" value="female" required />
@@ -47,30 +48,31 @@
 
       <input
         id="birthday"
-        type="date"
+        type="text"
         placeholder="請輸入生日"
+        class="form-control datepicker"
         name="birthday"
         required
       />
-      <br />
+
       <input
         id="phone"
-        class="phone"
+        class="form-control"
         type="number"
         placeholder="請輸入電話"
         name="phone"
         required
       />
-      <br />
+
       <input
         id="address"
-        class="address"
+        class="form-control"
         type="text"
         placeholder="請輸入地址"
         name="address"
         required
       />
-      <br />
+
       <button id="signupBtn" type="submit" class="signupBtn">會員註冊</button>
       <a id="loginBtn" class="loginBtn" href="./login.html">立即登入</a>
     </form>
