@@ -18,72 +18,71 @@
             <label for="catName">姓名：</label>
             <input
               id="catName"
-              class="name"
+              class="form-control"
               type="text"
               name="name"
               placeholder="請輸入姓名"
               required
             />
-            <br />
             <label>性別：</label>
-            <input
-              id="catMale"
-              type="radio"
-              name="catGender"
-              value="male"
-              required
-            />
-            <label for="catMale">男</label>
-            <input
-              id="catFemale"
-              type="radio"
-              name="catGender"
-              value="female"
-              required
-            />
-            <label for="catFemale">女</label>
-            <input
-              id="catOther"
-              type="radio"
-              name="catGender"
-              value="other"
-              required
-            />
-            <label for="catOther">其他</label>
-            <br />
+            <div class="form-control">
+              <input
+                id="catMale"
+                type="radio"
+                name="catGender"
+                value="male"
+                required
+              />
+              <label for="catMale">男</label>
+              <input
+                id="catFemale"
+                type="radio"
+                name="catGender"
+                value="female"
+                required
+              />
+              <label for="catFemale">女</label>
+              <input
+                id="catOther"
+                type="radio"
+                name="catGender"
+                value="other"
+                required
+              />
+              <label for="catOther">其他</label>
+            </div>
+
             <label for="catBirthday">生日：</label>
             <input
               id="catBirthday"
-              type="date"
+              class="form-control"
+              type="text"
               placeholder="請輸入生日"
               name="catBirthday"
               required
             />
-            <br />
             <label for="catBreeds">品種：</label>
             <input
               id="catBreeds"
-              class="breeds"
+              class="form-control"
               type="text"
               name="phone"
               placeholder="請輸入品種"
               required
             />
-            <br />
             <label for="catColors">花色：</label>
             <input
               id="catColors"
-              class="colors"
+              class="form-control"
               type="text"
               placeholder="請輸入花色"
               name="address"
               required
             />
-            <br />
             <label for="catWeight">體重：</label>
             <input
               id="catWeight"
-              class="weight"
+              class="form-control"
               type="number"
               placeholder="請輸入體重"
               name="weight"

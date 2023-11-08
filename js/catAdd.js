@@ -1,6 +1,13 @@
 import axios from "axios";
 import { _url } from "./config";
 import { isLogin } from "./isLogin";
+import flatpickr from "flatpickr";
+
+//flatpickr 套件使用
+flatpickr("#catBirthday", {
+  enableTime: false,
+  dateFormat: "Y-m-d",
+});
 
 //取得所需要的資療及DOM元素
 const userTokenAndData = JSON.parse(localStorage.getItem("userTokenAndData"));
