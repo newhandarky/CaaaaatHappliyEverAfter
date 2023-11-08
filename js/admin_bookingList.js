@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 /*------------------------------------*\
     doms
 \*------------------------------------*/
-// let tbody = document.querySelector(".tbody");
+let tbody = document.querySelector(".tbody");
 const date = document.querySelector(".date");
 const before = document.querySelector(".before");
 const after = document.querySelector(".after");
@@ -52,8 +52,6 @@ function showPagination() {
     pageNum.classList.add("active");
 
     getPages.addEventListener("click", function (e) {
-        console.log(e.target);
-
         if (e.target.classList.contains("next")) {
             defaultPage++
             if (defaultPage <= pagesCount +5) { // 避免亂點
@@ -78,6 +76,16 @@ function showPagination() {
                 next.classList.remove("disabled");
                 getBookingData(defaultPage);
             }
+        }else if(e.target.classList.contains("page-link")){     //點選頁頁切數字切換顯示頁數
+            console.log(e.target.parentElement.dataset.page);
+            defaultPage = e.target.parentElement.dataset.page;
+            document.querySelector(".active").classList.remove("active"); // 移除當前頁籤
+            pageNums.forEach(function (item) {
+                item.dataset.page == defaultPage ? item.classList.add("active") : "";
+            })
+            defaultPage == pagesCount ? next.classList.add("disabled") : next.classList.remove("disabled");
+            defaultPage == 1 ? previous.classList.add("disabled") : previous.classList.remove("disabled");
+            getBookingData(defaultPage);
         }
     })
 
@@ -131,7 +139,7 @@ function getBookingData(num) {
         res.data.forEach(function (item) {
             if (item.checkIn.startsWith(getBookingMonth)) {
                 const singleBookingData = {};
-                singleBookingData.id = item.userId;
+                singleBookingData.id = item.id;
                 singleBookingData.name = item.user.name;
                 singleBookingData.checkIn = item.checkIn;
                 singleBookingData.quantity = item.quantity;
@@ -159,9 +167,9 @@ function getBookingData(num) {
 function renderTable(arr) {
     const tbody = document.querySelector(".tbody");
     let str = "";
-    arr.forEach(function (item) {
+    arr.forEach(function (item) {       // 
         str += `<tr>
-                <th class="text-nowrap text-center" scope="row"><a href="">${item.id}</a></th>
+                <th class="text-nowrap text-center" scope="row"><a class="bookingNum" data-bookingnum="${item.id}" href="../pages/admin_updateBooking.html">${item.id}</a></th>       
                 <td class="text-nowrap text-center">${item.name}</td>
                 <td class="text-nowrap text-center">${item.checkIn}</td>
                 <td class="text-nowrap text-center">${item.quantity}</td>
@@ -263,6 +271,14 @@ after.addEventListener("click", function () {
     localStorage.setItem("thisYear", year);
     getBookingMonth = `${year}-${month}`;
     location.reload();  // 切換月份重整網頁
+})
+
+// 點擊訂單編號時儲存訂單編號到localStorage
+tbody.addEventListener("click", function(e){
+    console.log(e.target);
+    if(e.target.classList.contains("bookingNum")){
+        localStorage.setItem("bookingNum", e.target.dataset.bookingnum);
+    }
 })
 
 getAllBookingData();

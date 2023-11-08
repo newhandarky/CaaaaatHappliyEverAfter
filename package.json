@@ -19,6 +19,7 @@
     "bootstrap": "^5.2.3",
     "gh-pages": "^5.0.0",
     "glob": "^10.2.2",
+    "moment": "^2.29.4",
     "sass": "^1.61.0",
     "sass-loader": "^13.2.2",
     "sweetalert2": "^11.9.0",
