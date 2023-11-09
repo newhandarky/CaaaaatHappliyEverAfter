@@ -34,18 +34,17 @@
                                     <input type="text" class="bookingId form-control ms-3" id="bookingId" disabled
                                         readonly>
                                 </div>
-                                <div class="d-flex align-items-center">
-                                    <button class="btn btn-warning text-white">送出修改</button>
-                                    <button class="ms-3 btn btn-danger">取消訂單</button>
-                                    <button class="ms-3 btn btn-success">返回列表</button>
+                                <div class="d-flex align-items-center btns">
+                                    <button class="btn btnUpdate btn-warning text-white">送出修改</button>
+                                    <button class="ms-3 btn btnCancel btn-danger">取消訂單</button>
+                                    <button class="ms-3 btn btnBack btn-success">返回列表</button>
                                 </div>
                             </div>
                             <form class="d-flex justify-content-between">
                                 <div class="col-6 row">
                                     <div class="mb-3 col-6">
                                         <label for="memberName" class="form-label">會員姓名</label>
-                                        <input type="text" class="form-control memberName" id="memberName" disabled
-                                            readonly>
+                                        <input type="text" class="form-control memberName" id="memberName" disabled readonly>
                                     </div>
                                     <div class="mb-3 col-6">
                                         <label for="bookingState" class="form-label">訂單狀態</label>
@@ -70,7 +69,7 @@
 
                                     <div class="mb-3 col-6">
                                         <label for="memberPhone" class="form-label">連絡電話</label>
-                                        <input type="tel" class="form-control memberPhone" id="memberPhone">
+                                        <input type="tel" class="form-control memberPhone" id="memberPhone" disabled readonly>
                                     </div>
 
                                     <div class="mb-3 col-6">
@@ -90,7 +89,7 @@
 
                                     <div class="mb-3 col-6">
                                         <label for="totalPrice" class="form-label">訂單總額</label>
-                                        <input type="number" class="form-control totalPrice" id="totalPrice">
+                                        <input type="number" class="form-control totalPrice" id="totalPrice" disabled readonly>
                                     </div>
                                     <h6 class="mb-1">入住貓咪</h6>
                                     <div class="row getCats">
