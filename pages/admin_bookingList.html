@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>後台訂單列表</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,700,0,200" />
+</head>
+
+<body>
+    <%- include('./layout/admin_header'); -%>
+
+    <main class="container pb-8">
+        <div class="row">
+            <div class="p-6">
+                <h2>
+                    <a href="#">後台首頁</a> > <a href="./admin_booking.html">訂單管理</a> > 訂單列表
+                </h2>
+            </div>
+        </div>
+
+        <%- include('./layout/admin_searchBar'); -%>
+
+        <div class="row">
+            <div class="ps-8 pe-8">
+                <div class="bookingContent border border-2 rounded-2 p-8 d-flex flex-column justify-content-between">
+                    <div class="overflow-auto">
+                        <div class="d-flex justify-content-center mb-5">
+                            <div class="d-flex align-items-center">
+                                <button class="before btn btn-info pt-0 pb-0">
+                                    <span class="material-symbols-outlined pt-2">
+                                        chevron_left
+                                    </span>
+                                </button>
+                            </div>
+                            <h2 class="date ms-6 me-6"></h2>
+                            <div class="d-flex align-items-center">
+                                <button class="after btn btn-info pt-0 pb-0">
+                                    <span class="material-symbols-outlined pt-2">
+                                        chevron_right
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                        <table
+                            class="table table-success table-bordered border border-dark table-hover table-responsive">
+                            <thead>
+                                <tr>
+                                    <th class="text-nowrap text-center p-2" scope="col">訂單編號</th>
+                                    <th class="text-nowrap text-center p-2" scope="col">會員姓名</th>
+                                    <th class="text-nowrap text-center p-2" scope="col">入住日期</th>
+                                    <th class="text-nowrap text-center p-2" scope="col">入住天數</th>
+                                    <th class="text-nowrap text-center p-2" scope="col">預定房型</th>
+                                    <th class="text-nowrap text-center p-2" scope="col">訂單狀態</th>
+                                    <th class="text-nowrap text-center p-2" scope="col">訂單總額</th>
+                                    <th class="text-nowrap text-start p-2" scope="col">備註</th>
+                                </tr>
+                            </thead>
+                            <tbody class="tbody">
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <nav aria-label="Page navigation example" class="mt-5">
+                        <ul class="getPages pagination justify-content-center d-flex">
+
+                        </ul>
+                    </nav>                            
+                </div>
+            </div>
+        </div>
+    </main>
+    <script type="module" src="../js/admin_bookingList.js"></script>
+    <script type="module" src="../main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>後台檢視訂單頁面</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,700,0,200" />
+</head>
+
+<body>
+    <%- include('./layout/admin_header'); -%>
+
+        <main class="container pb-15">
+            <div class="row">
+                <div class="p-8">
+                    <h2>
+                        <a href="#">後台首頁</a> > <a href="./admin_booking.html">訂單管理</a> > <a
+                            href="./admin_bookingList.html">訂單列表</a> > 檢視訂單
+                    </h2>
+                </div>
+            </div>
+
+            <%- include('./layout/admin_searchBar'); -%>
+                <div class="row">
+                    <div class="ps-8 pe-8">
+                        <div
+                            class="bookingContent border border-2 rounded-2 p-8 d-flex flex-column justify-content-between">
+                            <div class="d-flex justify-content-between ">
+                                <h2 class="">檢視訂單</h2>
+                                <div class="d-flex align-items-center">
+                                    <label for="bookingId" class="form-label text-nowrap">訂單編號</label>
+                                    <input type="text" class="bookingId form-control ms-3" id="bookingId" disabled
+                                        readonly>
+                                </div>
+                                <div class="d-flex align-items-center btns">
+                                    <button class="btn btnUpdate btn-warning text-white">送出修改</button>
+                                    <button class="ms-3 btn btnCancel btn-danger">取消訂單</button>
+                                    <button class="ms-3 btn btnBack btn-success">返回列表</button>
+                                </div>
+                            </div>
+                            <form class="d-flex justify-content-between">
+                                <div class="col-6 row">
+                                    <div class="mb-3 col-6">
+                                        <label for="memberName" class="form-label">會員姓名</label>
+                                        <input type="text" class="form-control memberName" id="memberName" disabled readonly>
+                                    </div>
+                                    <div class="mb-3 col-6">
+                                        <label for="bookingState" class="form-label">訂單狀態</label>
+                                        <select id="bookingState" class="form-select bookingState">
+                                            <option selected>請選擇</option>
+                                            <option>已預定</option>
+                                            <option>已排房</option>
+                                            <option>已付款</option>
+                                            <option>已入住</option>
+                                            <option>已退房</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3 col-6">
+                                        <label for="checkIn" class="form-label">入住日期</label>
+                                        <input type="date" class="form-control checkIn" id="checkIn">
+                                    </div>
+
+                                    <div class="mb-3 col-6">
+                                        <label for="checkOut" class="form-label">退房日期</label>
+                                        <input type="date" class="form-control checkOut" id="checkOut">
+                                    </div>
+
+                                    <div class="mb-3 col-6">
+                                        <label for="memberPhone" class="form-label">連絡電話</label>
+                                        <input type="tel" class="form-control memberPhone" id="memberPhone" disabled readonly>
+                                    </div>
+
+                                    <div class="mb-3 col-6">
+                                        <label for="bookingRoomType" class="form-label">預定房型</label>
+                                        <select id="bookingRoomType" class="form-select bookingRoomType">
+                                            <option selected>請選擇</option>
+                                            <option>經典房</option>
+                                            <option>精緻房</option>
+                                            <option>豪華房</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-3 col-6">
+                                        <label for="bookingDays" class="form-label">入住天數</label>
+                                        <input type="number" class="form-control bookingDays" id="bookingDays">
+                                    </div>
+
+                                    <div class="mb-3 col-6">
+                                        <label for="totalPrice" class="form-label">訂單總額</label>
+                                        <input type="number" class="form-control totalPrice" id="totalPrice" disabled readonly>
+                                    </div>
+                                    <h6 class="mb-1">入住貓咪</h6>
+                                    <div class="row getCats">
+
+
+                                        <div class="col-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="memberCat">
+                                                <label class="form-check-label memberCat" for="memberCat"></label>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="col-6">
+
+                                    <div class="mb-3 col-12">
+                                        <label for="remark" class="form-label col-12">訂單備註</label>
+                                        <textarea class="textarea col-12 remark py-1 px-3" id="remark" name="remark"
+                                            rows="6"></textarea>
+                                    </div>
+                                    <div class="col-12 bookingStateTable overflow-auto">
+                                        <label for="bookingLog" class="form-label">訂單修改履歷</label>
+                                        <table class="table table-bordered ">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-nowrap p-1" scope="col">修改日期</th>
+                                                    <th class="text-nowrap p-1" scope="col">訂單狀態</th>
+                                                    <th class="text-nowrap p-1" scope="col">入住日期</th>
+                                                    <th class="text-nowrap p-1" scope="col">退房日期</th>
+                                                    <th class="text-nowrap p-1" scope="col">天數</th>
+                                                    <th class="text-nowrap p-1" scope="col">房型</th>
+                                                    <th class="text-nowrap p-1" scope="col">訂單總額</th>
+                                                    <th class="text-nowrap p-1" scope="col">貓咪數量</th>
+                                                    <th class="text-nowrap p-1" scope="col">備註</th>
+                                                    <th class="text-nowrap p-1" scope="col">修改人員</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="tbody"></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+        </main>
+
+
+        <script type="module" src="../main.js"></script>
+        <script type="module" src="../js/admin_updateBooking.js"></script>
+</body>
+
+</html>
