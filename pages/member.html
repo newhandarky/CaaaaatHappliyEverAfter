@@ -7,26 +7,39 @@
   </head>
   <body>
     <%- include('./layout/header'); -%>
-    <div class="container-fluid p-0">
+    <div class="container p-0">
       <div class="row min-vh-100">
         <div class="col-lg-2 d-none d-lg-block">
           <%- include('./layout/aside'); -%>
         </div>
-        <div class="col-lg-10">
-          <h1>資料管理</h1>
-          <div id="user" class="user">
-            <h1 id="name" class="name"></h1>
-            <ul>
-              <li id="email" class="email"></li>
-              <li id="gender" class="gender"></li>
-              <li id="birthday" class="birthday"></li>
-              <li id="address" class="address"></li>
-              <li id="phone" class="phone"></li>
-            </ul>
-            <img id="photo" src="" alt="會員照片" />
-            <br />
-            <button id="signout" class="signout">登出</button>
-            <a id="editMember" href="../pages/editMember.html">編輯會員資料</a>
+        <div class="col-lg-10 d-flex justify-content-center">
+          <!-- <h1>資料管理</h1> -->
+          <div class="container my-10">
+            <div class="row d-flex align-items-center">
+              <div id="userDataPresent" class="col-5">
+                <h1 id="name" class="name"></h1>
+                <ul class="list-inline">
+                  <li id="email" class="my-3"></li>
+                  <li id="gender" class="my-3"></li>
+                  <li id="birthday" class="my-3"></li>
+                  <li id="address" class="my-3"></li>
+                  <li id="phone" class="my-3"></li>
+                </ul>
+              </div>
+              <div id="userPhotoPresent" class="col-7">
+                <img
+                  id="photo"
+                  class="rounded mx-auto d-block"
+                  src=""
+                  alt="會員照片"
+                />
+                <br />
+                <button id="signout" class="signout">登出</button>
+                <a id="editMember" href="../pages/editMember.html"
+                  >編輯會員資料</a
+                >
+              </div>
+            </div>
           </div>
         </div>
       </div>
