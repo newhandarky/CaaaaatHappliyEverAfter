@@ -21,10 +21,14 @@ function login(userAccount) {
         "userTokenAndData",
         JSON.stringify(userTokenAndData)
       );
-
+              
       console.log(JSON.parse(localStorage.getItem("userTokenAndData")));
-
-      window.location.href = "./index.html";
+            
+      if(JSON.parse(localStorage.getItem("userTokenAndData")).user.role === "admin"){
+        window.location.href = "./admin_index.html"   // 後台工作人員轉址到後台
+      }else{
+        window.location.href = "./index.html";
+      }
     })
     .catch((err) => {
       //錯誤提示

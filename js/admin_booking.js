@@ -4,6 +4,8 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 import moment from "moment";
+import { _url } from "./config";
+import { isLogin } from "./isLogin";
 
 /*------------------------------------*\
     doms
@@ -19,8 +21,6 @@ const bookingList = document.querySelector(".bookingList");
 /*------------------------------------*\
     變數
 \*------------------------------------*/
-// const url = "http://localhost:3000"; // 本機端
-const url = "https://catroomdb.onrender.com"; // json=server端
 // 暫存日期資料
 localStorage.setItem("thisYear", new Date().getFullYear());
 localStorage.setItem("thisMonth", new Date().getMonth() + 1);
@@ -37,8 +37,8 @@ let bookingStatesObject = {
     function
 \*------------------------------------*/
 // 取得所有訂單資料
-// axios.get(`${url}/660/bookings?_expand=room`,{  // 建立bookingHistory資料用
-axios.get(`${url}/660/bookings`,{
+// axios.get(`${_url}/660/bookings?_expand=room`,{  // 建立bookingHistory資料用
+axios.get(`${_url}/660/bookings`,{
     headers: {
         "authorization":`Bearer ${localStorage.getItem("userLoginToken")}`
     }
