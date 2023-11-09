@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0"
+    />
+    <title>admin_login</title>
+  </head>
+  <body>
+    <%- include('./layout/admin_header'); -%>
+    <div
+      class="container d-flex flex-column justify-content-center align-items-center mt-164"
+    >
+      <h2 class="fs-2 mb-6">歡迎登入</h2>
+      <form class="row">
+        <div class="col-12 mb-8">
+          <input
+            type="text"
+            class="form-control fs-5 p-4"
+            id="adminLoginAccount"
+            placeholder="請輸入信箱"
+            required
+          />
+        </div>
+        <div class="col-12 mb-8">
+          <input
+            type="text"
+            class="form-control fs-5 p-4"
+            id="adminLoginPassword"
+            placeholder="請輸入密碼"
+            required
+          />
+        </div>
+        <div class="col-12">
+          <button class="fs-5 btn btn-success w-100 p-3" type="submit">
+            登入
+          </button>
+        </div>
+        <p class="text-primary">
+          <small><a href="#">聯繫開發人員？</a></small>
+        </p>
+      </form>
+    </div>
+
+    <script type="module" src="../main.js"></script>
+  </body>
+</html>
+
+<!-- 補上驗證功能 -->
+
+<!-- 登入跟登出只會出現一個 -->
+
+<!-- 後台首頁不會在導覽列上
+登出後，點 logo 會跳到登入頁
+登入後，點 logo 會跳到後台首頁 -->
