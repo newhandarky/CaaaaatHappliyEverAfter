@@ -1,18 +1,3 @@
 .fs-36 {
   font-size: 36px !important;
 }
-
-main {
-  .pageNavigateWrap {
-    width: 70% !important;
-    @include media-min-992 {
-      width: 40% !important;
-    }
-    .pageNavigateBtn {
-      width: 50% !important;
-      @include media-min-992 {
-        width: 70% !important;
-      }
-    }
-  }
-}
