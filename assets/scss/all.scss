@@ -1,4 +1,5 @@
 @import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/sweetalert2/dist/sweetalert2.min.css";
 @import './utils/variables';
 @import './utils/generic';
 @import './utils/mixin';
@@ -13,5 +14,7 @@
 @import './pages/booking.scss';
 @import './pages/member.scss';
 @import './pages/rooms.scss';
+@import "./pages/admin_bookingList";
+@import "./pages/admin_updateBooking";
 
 @import "../../node_modules/bootstrap";
