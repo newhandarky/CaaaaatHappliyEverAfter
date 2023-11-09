@@ -4,13 +4,235 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>index</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0"
+    />
+    <title>admin_index</title>
   </head>
   <body>
     <%- include('./layout/admin_header'); -%>
 
-    <h1>歡迎來到CaaaaatHappliyEverAfter後台首頁</h1>
+    <!-- h1 RWD 會有 X 軸先註解掉 -->
+    <!-- <div class="container">
+      <h1>歡迎來到CaaaaatHappliyEverAfter後台首頁</h1>
+    </div> -->
 
+    <section class="container d-flex align-items-center">
+      <img class="rounded-circle me-8" src="https://fakeimg.pl/150/" />
+
+      <!-- 後面用 JS 渲染 -->
+      <p class="fs-4">使用者名稱：</p>
+    </section>
+    <main class="container my-9">
+      <div class="row justify-content-between mb-md-4">
+        <div
+          class="statusWrap d-flex flex-column justify-content-between col-12 col-md-6 p-4 mb-4 mb-md-0 border border-dark"
+        >
+          <h3 class="border-bottom border-2 border-dark mb-4">帳號狀態</h3>
+          <table class="table table-bordered border-dark">
+            <thead>
+              <tr>
+                <th>使用者名稱</th>
+                <th>最後登入時間</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center">
+                    <span class="material-symbols-outlined">
+                      account_circle
+                    </span>
+                    <span>user002</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex align-items-center">
+                    <span class="material-symbols-outlined"> schedule </span>
+                    <span>13 hr ago</span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center">
+                    <span class="material-symbols-outlined">
+                      account_circle
+                    </span>
+                    <span>user003</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex align-items-center">
+                    <span class="material-symbols-outlined"> schedule </span>
+                    <span>1 day ago</span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center">
+                    <span class="material-symbols-outlined">
+                      account_circle
+                    </span>
+                    <span>user004</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex align-items-center">
+                    <span class="material-symbols-outlined"> schedule </span>
+                    <span>2 hr ago</span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div
+            class="pageNavigateWrap d-flex justify-content-center align-items-center mx-auto mx-md-0 ms-md-auto bg-dark text-white border rounded-3 p-2"
+          >
+            <span class="material-symbols-outlined"> arrow_forward </span>
+            <input
+              class="pageNavigateBtn d-block border-0 rounded-5 bg-dark text-white"
+              type="button"
+              value="前往帳號管理"
+            />
+          </div>
+        </div>
+        <div
+          class="statusWrap d-flex flex-column justify-content-between col-12 col-md-6 p-4 mb-4 mb-md-0 border border-dark"
+        >
+          <h3 class="border-bottom border-2 border-dark mb-4">訂單總覽</h3>
+          <div class="d-flex justify-content-around">
+            <div class="text-center">
+              <p class="fs-4">已確認訂單</p>
+              <p class="fs-36">10</p>
+            </div>
+            <div class="text-center">
+              <p class="fs-4">今日營業額</p>
+              <p class="fs-36">$10000</p>
+            </div>
+          </div>
+
+          <div
+            class="pageNavigateWrap d-flex justify-content-center align-items-center mx-auto mx-md-0 ms-md-auto bg-dark text-white border rounded-3 p-2"
+          >
+            <span class="material-symbols-outlined"> arrow_forward </span
+            ><input
+              class="pageNavigateBtn d-block border-0 rounded-5 bg-dark text-white"
+              type="button"
+              value="前往訂單管理"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-between">
+        <div
+          class="statusWrap d-flex flex-column justify-content-between col-12 col-md-6 p-4 mb-4 mb-md-0 border border-dark"
+        >
+          <h3 class="border-bottom border-2 border-dark mb-4">客房總覽</h3>
+          <table class="table table-bordered border-dark">
+            <thead>
+              <tr>
+                <th>房間類型</th>
+                <th>每晚價格</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>經典房</td>
+                <td>800</td>
+              </tr>
+              <tr>
+                <td>精緻房</td>
+                <td>1000</td>
+              </tr>
+              <tr>
+                <td>豪華房</td>
+                <td>1500</td>
+              </tr>
+            </tbody>
+          </table>
+          <div
+            class="pageNavigateWrap d-flex justify-content-center align-items-center mx-auto mx-md-0 ms-md-auto bg-dark text-white border rounded-3 p-2"
+          >
+            <span class="material-symbols-outlined"> arrow_forward </span
+            ><input
+              class="pageNavigateBtn d-block border-0 rounded-5 bg-dark text-white"
+              type="button"
+              value="前往客房總覽"
+            />
+          </div>
+        </div>
+        <div
+          class="statusWrap d-flex flex-column justify-content-between col-12 col-md-6 p-4 border border-dark"
+        >
+          <h3 class="border-bottom border-2 border-dark mb-4">文章總覽</h3>
+          <div class="row">
+            <div class="col col-md-6 col-lg-4">
+              <div class="card">
+                <img class="card-img-top" src="https://fakeimg.pl/150/" />
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <div class="d-flex justify-content-end align-items-center">
+                    <span class="material-symbols-outlined me-4">
+                      thumb_up
+                    </span>
+                    <span class="material-symbols-outlined"> chat </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col col-md-6 col-lg-4">
+              <div class="card">
+                <img class="card-img-top" src="https://fakeimg.pl/150/" />
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <div class="d-flex justify-content-end align-items-center">
+                    <span class="material-symbols-outlined me-4">
+                      thumb_up
+                    </span>
+                    <span class="material-symbols-outlined"> chat </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="d-md-none d-lg-block col col-md-6 col-lg-4">
+              <div class="card">
+                <img class="card-img-top" src="https://fakeimg.pl/150/" />
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <div class="d-flex justify-content-end align-items-center">
+                    <span class="material-symbols-outlined me-4">
+                      thumb_up
+                    </span>
+                    <span class="material-symbols-outlined"> chat </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="pageNavigateWrap d-flex justify-content-center align-items-center mx-auto mx-md-0 ms-md-auto bg-dark text-white border rounded-3 p-2 mt-2"
+          >
+            <span class="material-symbols-outlined"> arrow_forward </span
+            ><input
+              class="pageNavigateBtn d-block border-0 rounded-5 bg-dark text-white"
+              type="button"
+              value="前往文章總覽"
+            />
+          </div>
+        </div>
+      </div>
+    </main>
     <script type="module" src="../main.js"></script>
   </body>
 </html>
+
+<!-- 用一個row col-12 col-md-6 嘗試看看 -->
+<!-- input btn 改成用bs5 btn component -->
+<!-- 高度看看是否要寫死？ -->
