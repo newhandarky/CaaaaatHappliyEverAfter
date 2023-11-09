@@ -9,39 +9,40 @@
     <%- include('./layout/header'); -%>
     <div class="container p-0">
       <div class="row min-vh-100">
-        <div class="col-lg-2 d-none d-lg-block">
+        <div class="col-lg-3 d-none d-lg-block">
           <%- include('./layout/aside'); -%>
         </div>
-        <div class="col-lg-10 d-flex justify-content-center">
+        <div class="col-lg-9 d-flex">
           <!-- <h1>資料管理</h1> -->
-          <div class="container my-10">
-            <div class="row d-flex align-items-center">
-              <div id="userDataPresent" class="col-5">
-                <h1 id="name" class="name"></h1>
-                <ul class="list-inline">
-                  <li id="email" class="my-3"></li>
-                  <li id="gender" class="my-3"></li>
-                  <li id="birthday" class="my-3"></li>
-                  <li id="address" class="my-3"></li>
-                  <li id="phone" class="my-3"></li>
-                </ul>
-              </div>
-              <div id="userPhotoPresent" class="col-7">
-                <img
-                  id="photo"
-                  class="rounded mx-auto d-block"
-                  src=""
-                  alt="會員照片"
-                />
-                <br />
-                <button id="signout" class="signout">登出</button>
-                <a id="editMember" href="../pages/editMember.html"
-                  >編輯會員資料</a
-                >
-              </div>
+          <div
+            id="userDataPresent"
+            class="col-5 position-relative d-flex justify-content-center"
+          >
+            <div class="w-10 d-inline-flex flex-column">
+              <h1 id="name" class="name d-inline-block"></h1>
+              <ul class="list-inline d-inline-block">
+                <li id="email" class="my-3"></li>
+                <li id="gender" class="my-3"></li>
+                <li id="birthday" class="my-3"></li>
+                <li id="address" class="my-3"></li>
+                <li id="phone" class="my-3"></li>
+              </ul>
+              <a id="editMember" href="../pages/editMember.html"
+                >編輯會員資料</a
+              >
+              <button id="signout" class="signout">登出</button>
             </div>
           </div>
+          <div id="userPhotoPresent" class="col-7">
+            <img
+              id="photo"
+              class="rounded mx-auto d-block"
+              src=""
+              alt="會員照片"
+            />
+          </div>
         </div>
+        <br />
       </div>
     </div>
 
