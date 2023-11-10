@@ -1,14 +1,40 @@
+/*------------------------------------*\
+    import
+\*------------------------------------*/
 import axios from "axios";
 import Swal from "sweetalert2";
+import { _url } from "./config";
 
-// const url = "http://localhost:3000"; // 本機端
-const url = "https://catroomdb.onrender.com"; // json=server端
+/*------------------------------------*\
+    dom
+\*------------------------------------*/
 const welcome = document.querySelector(".welcome");
 const logout = document.querySelector(".logout");
 const adminLogin = document.querySelector(".adminLogin");
+const adminAccount = document.querySelector(".adminAccount");
+let adminEmailPassword = {};
 
+/*------------------------------------*\
+    測試登入
+\*------------------------------------*/
 adminLogin.addEventListener("click", function () {
-  login();
+  login(adminEmailPassword);
+});
+
+adminAccount.addEventListener("change", function () {
+  if (adminAccount.value == 1052) {
+    adminEmailPassword.email = "userTest052@gmail.com";
+    adminEmailPassword.password = "userTest052";
+  } else if (adminAccount.value == 1053) {
+    adminEmailPassword.email = "userTest053@gmail.com";
+    adminEmailPassword.password = "userTest053";
+  } else if (adminAccount.value == 1054) {
+    adminEmailPassword.email = "userTest054@gmail.com";
+    adminEmailPassword.password = "userTest054";
+  } else if (adminAccount.value == 1055) {
+    adminEmailPassword.email = "userTest055@gmail.com";
+    adminEmailPassword.password = "userTest055";
+  }
 });
 
 logout.addEventListener("click", function () {
@@ -43,12 +69,26 @@ function render() {
       )} 歡迎您回來`);
 }
 
-function login() {
+function login(obj) {
   axios
-    .post(`${url}/login`, {
+    .post(`${_url}/login`, {
       // 管理員帳密
-      email: "userTest053@gmail.com",
-      password: "userTest053",
+      email: obj.email,
+      password: obj.password,
+    })
+    .then(function (res) {
+      console.log(res);
+      localStorage.setItem("userLoginToken", res.data.accessToken);
+      if (res.data.user.role === "admin") {
+        localStorage.setItem("userRole", res.data.user.role);
+        localStorage.setItem("userName", res.data.user.name);
+      } else {
+        location = "index.html";
+      }
+      render();
+    })
+    .catch(function (err) {
+      console.log(err.response);
     })
     .then(function (res) {
       console.log(res);

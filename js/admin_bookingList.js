@@ -3,6 +3,8 @@
 \*------------------------------------*/
 import axios from "axios";
 import Swal from "sweetalert2";
+import { _url } from "./config";
+import { isLogin } from "./isLogin";
 
 /*------------------------------------*\
     doms
@@ -16,8 +18,6 @@ const getPages = document.querySelector(".getPages");
 /*------------------------------------*\
     變數
 \*------------------------------------*/
-// const url = "http://localhost:3000"; // 本機端
-const url = "https://catroomdb.onrender.com"; // json=server端
 // 取得當前年月份的字串
 let getBookingMonth = `${localStorage.getItem("thisYear")}-${localStorage.getItem("thisMonth")}`;
 let getOneMonthBooking = [];
@@ -92,7 +92,7 @@ function showPagination() {
 }
 // 抓整個月份訂房數量
 function getAllBookingData() {
-    axios.get(`${url}/660/bookings?_expand=user&_expand=room`, {
+    axios.get(`${_url}/660/bookings?_expand=user&_expand=room`, {
         headers: {
             authorization: `Bearer ${localStorage.getItem("userLoginToken")}`,
         },
@@ -131,7 +131,7 @@ function getAllBookingData() {
 
 // 依照頁籤顯示訂單
 function getBookingData(num) {
-    axios.get(`${url}/660/bookings?_expand=user&_expand=room&_page=${num}&_limit=8`, {
+    axios.get(`${_url}/660/bookings?_expand=user&_expand=room&_page=${num}&_limit=8`, {
         headers: {
             authorization: `Bearer ${localStorage.getItem("userLoginToken")}`,
         },
@@ -210,7 +210,7 @@ function pagination(pages) {
 
 // 重新登入
 // function reLogin(){
-//     axios.post(`${url}/login`, {
+//     axios.post(`${_url}/login`, {
 //         // 管理員帳密
 //         "email": "userTest053@gmail.com",
 //         "password": "userTest053"                    

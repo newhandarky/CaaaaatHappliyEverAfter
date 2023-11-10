@@ -4,6 +4,8 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 import moment from "moment";
+import { _url } from "./config";
+import { isLogin } from "./isLogin";
 
 /*------------------------------------*\
     doms
@@ -31,8 +33,6 @@ const btns = document.querySelector(".btns");
 /*------------------------------------*\
     變數
 \*------------------------------------*/
-// const url = "http://localhost:3000"; // 本機端
-const url = "https://catroomdb.onrender.com"; // json=server端
 let beforeBookingData = {};
 let afterBookingData = {};
 const roomsData = {
