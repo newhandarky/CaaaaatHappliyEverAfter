@@ -1,0 +1,8 @@
+.memeberEditWrap {
+  input {
+    width: 100%;
+    @include media-min-992 {
+      width: 70%;
+    }
+  }
+}

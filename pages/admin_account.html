@@ -8,10 +8,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
     />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0"
-    />
+
     <title>admin_account</title>
   </head>
   <body>
@@ -19,22 +16,112 @@
 
     <main class="container p-8">
       <h2><a href="./admin_index.html">首頁</a> > 後台人員管理</h2>
-      <div class="d-flex justify-content-end">
+      <div class="d-flex justify-content-end mb-8">
         <a
           href="./admin_accountEditMember.html"
           role="button"
-          class="fs-5 btn btn-warning text-white rounded-1 me-4 p-3"
+          class="btn btn-warning text-white rounded-1 me-4 p-3"
         >
           編輯人員
         </a>
         <a
           href="./admin_accountAddNewMember.html"
           role="button"
-          class="fs-5 btn btn-success rounded-1 p-3"
+          class="btn btn-success rounded-1 p-3"
         >
           新增人員
         </a>
       </div>
+      <table class="table table-bordered border-gray align-middle fs-4">
+        <thead>
+          <tr>
+            <th scope="col">員工編號</th>
+            <th scope="col">員工姓名</th>
+            <th scope="col">聯絡電話</th>
+            <th scope="col">聯絡地址</th>
+            <th scope="col">到職日期</th>
+            <th class="text-center" scope="col">編輯</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <!-- users -->
+            <!-- id -->
+            <td>1052</td>
+            <!-- name -->
+            <td>陳奕辰</td>
+            <!-- phone -->
+            <td>0933333333</td>
+            <!-- address -->
+            <td>高雄市橋頭區竹林街32號</td>
+            <!-- 到職日期 加幾個參數紀錄edit time? -->
+            <td>1989-01-08</td>
+            <!-- icons -->
+            <td class="text-center">
+              <a href="./admin_accountEditMember.html">
+                <span class="material-symbols-outlined"> edit_square </span>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <!-- users -->
+            <!-- id -->
+            <td>1053</td>
+            <!-- name -->
+            <td>周怡君</td>
+            <!-- phone -->
+            <td>0944444444</td>
+            <!-- address -->
+            <td>屏東縣佳冬鄉佳和路15號</td>
+            <!-- 到職日期 加幾個參數紀錄edit time? -->
+            <td>1991-01-08</td>
+            <!-- icons -->
+            <td class="text-center">
+              <a href="./admin_accountEditMember.html">
+                <span class="material-symbols-outlined"> edit_square </span>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <!-- users -->
+            <!-- id -->
+            <td>1054</td>
+            <!-- name -->
+            <td>易佳悅</td>
+            <!-- phone -->
+            <td>0914238751</td>
+            <!-- address -->
+            <td>台北市中山區南京東路三段27號</td>
+            <!-- 到職日期 加幾個參數紀錄edit time? -->
+            <td>1988-03-17</td>
+            <!-- icons -->
+            <td class="text-center">
+              <a href="./admin_accountEditMember.html">
+                <span class="material-symbols-outlined"> edit_square </span>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <!-- users -->
+            <!-- id -->
+            <td>1055</td>
+            <!-- name -->
+            <td>殷榮方</td>
+            <!-- phone -->
+            <td>0945641428</td>
+            <!-- address -->
+            <td>高新北市三峡區中正路123號</td>
+            <!-- 到職日期 加幾個參數紀錄edit time? -->
+            <td>1992-12-21</td>
+            <!-- icons -->
+            <td class="text-center">
+              <a href="./admin_accountEditMember.html">
+                <span class="material-symbols-outlined"> edit_square </span>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </main>
     <script type="module" src="../main.js"></script>
   </body>

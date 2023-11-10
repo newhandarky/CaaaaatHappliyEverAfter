@@ -17,11 +17,184 @@
   <body>
     <%- include('./layout/admin_header'); -%>
 
-    <main class="container pb-8">
-      <h2>
+    <main class="container p-8">
+      <h2 class="mb-8">
         <a href="./admin_index.html">首頁</a> >
         <a href="./admin_account.html">後台人員管理</a> > 編輯後台管理人員
       </h2>
+      <form
+        class="memeberEditWrap w-100 border border-2 rounded-2 border-gray p-8"
+      >
+        <h2 class="mb-8">編輯後台管理人員</h2>
+        <div class="row">
+          <div class="col-12 col-lg-4 mb-8 mb-lg-0">
+            <div class="mb-8">
+              <label class="fs-4 mb-1" for="memberId">管理人員編號</label>
+              <br />
+              <input
+                id="memberId"
+                class="memberId fs-5 py-1 ps-2"
+                type="text"
+                value="1052"
+                disabled
+              />
+            </div>
+            <div class="mb-8">
+              <label class="fs-4 mb-1" for="memberName">管理人員姓名</label>
+              <br />
+              <input
+                id="memberName"
+                placeholder="請輸入管理員姓名"
+                class="memberName fs-5 py-1 ps-2"
+                type="text"
+                value="陳奕辰"
+                required
+              />
+            </div>
+            <div class="mb-8">
+              <label class="fs-4 mb-1" for="memberNickname">管理人員暱稱</label>
+              <br />
+              <input
+                id="memberNickname"
+                placeholder="請輸入管理員暱稱"
+                class="memberNickname fs-5 py-1 ps-2"
+                type="text"
+                value="小辰辰"
+                required
+              />
+            </div>
+            <div>
+              <label class="fs-4 mb-1" for="memberTel">聯絡電話</label>
+              <br />
+              <input
+                id="memberTel"
+                placeholder="請輸入管理員電話"
+                class="memberTel fs-5 py-1 ps-2"
+                type="tel"
+                value="0933333333"
+                required
+              />
+            </div>
+          </div>
+          <div class="col-12 col-lg-4 mb-8 mb-lg-0">
+            <div class="mb-8">
+              <label class="fs-4 mb-1" for="memberArrivedDate">到職日期</label>
+              <br />
+              <input
+                id="memberArrivedDate"
+                class="memberArrivedDate fs-5 py-1 ps-2"
+                type="date"
+                value="1989-01-08"
+                disabled
+              />
+            </div>
+            <div class="mb-8">
+              <label class="fs-4 mb-1" for="memberEmergencyContact"
+                >緊急聯絡人</label
+              >
+              <br />
+              <input
+                id="memberEmergencyContact"
+                class="memberEmergencyContact fs-5 py-1 ps-2"
+                placeholder="請輸入緊急聯絡人姓名"
+                type="text"
+                value="陳太太"
+                required
+              />
+            </div>
+            <div class="mb-8">
+              <label class="fs-4 mb-1" for="memberEmergencyContactTel"
+                >緊急聯絡人電話</label
+              >
+              <br />
+              <input
+                id="memberEmergencyContactTel"
+                class="memberEmergencyContactTel fs-5 py-1 ps-2"
+                placeholder="請輸入緊急聯絡人電話"
+                type="text"
+                value="0933334444"
+                required
+              />
+            </div>
+            <div>
+              <label class="fs-4 mb-1" for="memberEmergencyContactRel"
+                >緊急聯絡人關係</label
+              >
+              <br />
+              <input
+                id="memberEmergencyContactRel"
+                class="memberEmergencyContactRel fs-5 py-1 ps-2"
+                placeholder="請輸入緊急聯絡人關係"
+                type="text"
+                value="夫妻"
+                required
+              />
+            </div>
+          </div>
+          <div class="col-12 col-lg-4">
+            <div class="mb-8">
+              <label class="fs-4 mb-1" for="memberAccount"
+                >電子郵件信箱/後台登入帳號</label
+              >
+              <br />
+              <input
+                id="memberAccount"
+                class="memberAccount w-100 fs-5 py-1 ps-2"
+                type="email"
+                value="userTest052@gmail.com"
+                disabled
+              />
+            </div>
+            <div class="mb-8">
+              <label class="fs-4 mb-1" for="memberPassword">後台登入密碼</label>
+              <br />
+              <input
+                id="memberPassword"
+                class="memberPassword w-100 fs-5 py-1 ps-2"
+                placeholder="請輸入密碼"
+                type="password"
+                value="userTest052"
+                required
+              />
+            </div>
+            <div class="mb-8">
+              <label class="fs-4 mb-1" for="memberAddress">聯絡地址</label>
+              <br />
+              <input
+                id="memberAddress"
+                class="memberAddress w-100 fs-5 py-1 ps-2"
+                placeholder="請輸入聯絡地址"
+                type="text"
+                value="高雄市橋頭區竹林街32號"
+                required
+              />
+            </div>
+            <div class="d-flex justify-content-between align-items-end">
+              <div>
+                <label class="fs-4 mb-1" for="memberStatus">任職狀態</label>
+                <br />
+                <select
+                  name="memberStatus"
+                  class="memberStatus fs-5 py-1 ps-2"
+                  id="memberStatus"
+                  required
+                >
+                  <option value="employed">在職中</option>
+                  <option value="resigned">已離職</option>
+                </select>
+              </div>
+              <!-- 應該要重新render，因為還沒按新增所以還沒儲存到資料庫 -->
+              <a
+                class="text-white btn btn-warning"
+                href="./admin_account.html"
+                role="button"
+                >取消變更</a
+              >
+              <a class="btn btn-success" href="#" role="button">儲存變更</a>
+            </div>
+          </div>
+        </div>
+      </form>
     </main>
     <script type="module" src="../main.js"></script>
   </body>
