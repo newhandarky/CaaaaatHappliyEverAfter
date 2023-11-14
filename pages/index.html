@@ -12,7 +12,7 @@
       <div class="row image-container position-relative">
         <img
           src="../assets/images/ImgBanner.png"
-          class="img-fluid w-100 h-100 object-fit-cover"
+          class="imgBanner object-fit-cover"
           alt="indexPhoto"
         />
         <div class="position-absolute top-0 start-50 translate-middle-x">
@@ -25,9 +25,10 @@
         </div>
 
         <div class="searchBar position-absolute bottom-0">
-          <div class="container mt-3">
-            <div class="row no-gutters">
-              <div class="col-3">
+          <h2 class="roomBarTitle">快速預約房型</h2>
+          <div class="container">
+            <div class="row allInputBar">
+              <div class="col-lg-3 col-12">
                 <!--input 按鈕自製模組-->
                 <div id="catRoomInput_checkIn" class="catRoomInput">
                   <div class="inputBar">
@@ -47,7 +48,7 @@
                   />
                 </div>
               </div>
-              <div class="col-3">
+              <div class="col-lg-3 col-12">
                 <!--input 按鈕自製模組-->
                 <div id="catRoomInput_checkOut" class="catRoomInput">
                   <div class="inputBar">
@@ -67,28 +68,37 @@
                   />
                 </div>
               </div>
-              <div class="col-4">
+              <div class="col-lg-4 col-12">
                 <!--input 按鈕自製模組-->
                 <div id="catRoomInput_roomType" class="catRoomInput">
                   <div class="inputBar">
                     <p class="fs-7 m-0">房型</p>
-                    <select id="roomType" class="inputText position-relative">
-                      <option value="volvo">Volvo</option>
-                      <option value="saab">Saab</option>
-                      <option value="fiat">Fiat</option>
-                      <option value="audi">Audi</option>
+                    <select id="roomType" class="roomType position-relative">
+                      <option disabled selected style="color: #ced4da">
+                        請選擇
+                      </option>
+                      <option value="經典房">經典房</option>
+                      <option value="精緻房">精緻房</option>
+                      <option value="豪華房">豪華房</option>
                     </select>
                   </div>
 
                   <img
                     class="icon"
-                    src="../assets/icons/iconDate.svg"
+                    src="../assets/icons/iconArrowDown.svg"
                     alt="date_icon"
                   />
                 </div>
               </div>
-              <div class="col-2">
-                <button type="button" class="btn btn-primary">立即預約</button>
+              <div class="col-lg-2 col-12">
+                <button type="button" class="searchBarBtn catRoomInput">
+                  <p class="fs-5">立即預約</p>
+                  <img
+                    class="icon"
+                    src="../assets/icons/dogPaw.svg"
+                    alt="date_icon"
+                  />
+                </button>
               </div>
             </div>
           </div>

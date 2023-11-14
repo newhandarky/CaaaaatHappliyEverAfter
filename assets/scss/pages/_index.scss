@@ -1,9 +1,12 @@
 .image-container {
   //   background: red;
-  height: 1008px;
+  .imgBanner {
+    height: 1008px;
+  }
+
   .object-fit-cover {
     object-fit: cover;
-    object-position: center left;
+    object-position: left top;
   }
 
   .image-text {
@@ -23,15 +26,60 @@
     }
   }
   .searchBar {
-    height: 265px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 265px;
     background: rgba(72, 60, 52, 0.5);
+
+    .roomBarTitle {
+      text-align: center;
+      color: $white;
+    }
+    .catRoomInput {
+      margin: 10px 0;
+    }
+    .searchBarBtn {
+      width: 100%;
+      height: 86px;
+      border: none;
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: $primary02;
+
+      p {
+        margin: 0;
+        font-weight: 900;
+      }
+      .icon {
+        width: 30px;
+        height: 30px;
+        margin: 0;
+      }
+    }
   }
 }
 
 @media screen and (max-width: 992px) {
   .image-container {
+    height: 1300px;
+    .object-fit-cover {
+      object-position: -150px top;
+    }
     .image-text {
       margin: 63px 0 0 0;
+      h1 {
+        font-size: 32px;
+      }
+      h2 {
+        font-size: 28px;
+      }
     }
+  }
+  .searchBar {
+    padding: 3rem;
   }
 }

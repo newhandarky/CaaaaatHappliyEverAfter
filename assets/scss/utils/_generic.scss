@@ -112,6 +112,7 @@ li {
     input
 \*------------------------------------*/
 .catRoomInput {
+  cursor: pointer;
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -139,6 +140,25 @@ li {
       }
       &:focus {
         outline: none;
+      }
+    }
+    .roomType {
+      height: 30px;
+      border: none;
+      font-weight: 900;
+      color: $text;
+
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      text-indent: 1px;
+      text-overflow: "";
+      &:focus {
+        outline: none;
+      }
+      option {
+        font-weight: 900;
+        color: $text;
       }
     }
   }

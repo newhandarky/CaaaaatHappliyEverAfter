@@ -27,3 +27,19 @@ catRoomInput_checkOut.addEventListener("click", (e) => {
   e.preventDefault();
   checkOutInput.focus();
 });
+
+// 下拉選單
+const roomType = document.getElementById("roomType");
+function defaltClolr() {
+  if (roomType.value === "請選擇") {
+    console.log(roomType.value);
+    roomType.style.color = "#ced4da";
+  }
+}
+defaltClolr();
+
+roomType.addEventListener("change", (e) => {
+  if (roomType.value !== "請選擇") {
+    roomType.style.color = null;
+  }
+});
