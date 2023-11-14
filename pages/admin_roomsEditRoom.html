@@ -36,6 +36,7 @@
                 placeholder="請輸入房型名稱"
                 class="roomName py-1 ps-2"
                 type="text"
+                value="經典房"
                 required
               />
             </div>
@@ -47,7 +48,6 @@
                 placeholder="請輸入房型價格"
                 class="roomPrice py-1 ps-2"
                 type="number"
-                value="800"
                 required
               />
             </div>
@@ -59,7 +59,6 @@
                 placeholder="請輸入封面照網址"
                 class="roomUrl py-1 ps-2 mb-5"
                 type="url"
-                value=""
                 required
               />
               <div>
@@ -89,9 +88,7 @@
                 class="roomFacilities w-100 py-1 ps-2"
                 placeholder="請輸入基礎設施"
                 rows="5"
-              >
-床舖, 小型爬架, 個人窩, 對外窗, 循環飲水機, 平面貓砂盆, 優質貓砂</textarea
-              >
+              ></textarea>
             </div>
             <div class="fs-4 mb-6">
               <label class="mb-1" for="roomMustKnow">入住須知</label>
@@ -102,9 +99,7 @@
                 class="roomMustKnow w-100 py-1 ps-2"
                 placeholder="請輸入入住須知"
                 rows="5"
-              >
-1. 請入住前確認貓咪都已注射疫苗 2. 特殊需求請在訂房時告知，若未告知恕不負責 3. 房費均已含飲食費用 4. 逾時每貓每小時加收$300</textarea
-              >
+              ></textarea>
             </div>
             <div class="d-flex justify-content-end align-items-center">
               <!-- 應該要重新render，因為還沒按新增所以還沒儲存到資料庫 -->
@@ -120,7 +115,7 @@
         </div>
       </form>
     </main>
-    <script type="module" src="../js/admin_accountEditMember.js"></script>
+    <script type="module" src="../js/admin_roomsEditRoom.js"></script>
     <script type="module" src="../main.js"></script>
   </body>
 </html>

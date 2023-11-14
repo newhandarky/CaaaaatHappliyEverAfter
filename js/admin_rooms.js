@@ -29,7 +29,7 @@ function renderData() {
     <td>$${item.price}</td>
     <td>1</td>
     <td>
-        <a href="./admin_roomsEditRoom.html/?id=${item.id}"
+        <a href="./admin_roomsEditRoom.html?id=${item.id}"
           ><span class="material-symbols-outlined fs-2 text-dark">
             edit_square
           </span></a
