@@ -1,0 +1,37 @@
+.image-container {
+  //   background: red;
+  height: 1008px;
+  .object-fit-cover {
+    object-fit: cover;
+    object-position: center left;
+  }
+
+  .image-text {
+    display: inline-block;
+    margin: 84px 0 0 63px;
+    background-color: $secondary;
+    transform: translateY(15px);
+    h1 {
+      transform: translateY(-15px);
+      color: $primary01;
+      margin: 0;
+    }
+    h2 {
+      transform: translateY(-15px);
+      color: $text;
+      margin: 0;
+    }
+  }
+  .searchBar {
+    height: 265px;
+    background: rgba(72, 60, 52, 0.5);
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .image-container {
+    .image-text {
+      margin: 63px 0 0 0;
+    }
+  }
+}
