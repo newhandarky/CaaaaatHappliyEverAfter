@@ -113,6 +113,9 @@
 @media screen and (max-width: 992px) {
   .image-container {
     height: 1300px;
+    img {
+      padding: 0;
+    }
     .object-fit-cover {
       object-position: -150px top;
     }
@@ -127,11 +130,11 @@
     }
   }
   .searchBar {
-    padding: 3rem;
+    padding: 3rem 0;
   }
 
   .promote {
-    height: 320px;
+    min-height: 320px;
     .promoteText {
       width: 100%;
     }
