@@ -50,10 +50,6 @@
       align-items: center;
       background-color: $primary02;
 
-      p {
-        margin: 0;
-        font-weight: 900;
-      }
       .icon {
         width: 30px;
         height: 30px;
@@ -112,9 +108,15 @@
 
 @media screen and (max-width: 992px) {
   .image-container {
-    height: 1300px;
+    height: 1150px;
+    .imgBanner {
+      height: 708px;
+    }
     img {
       padding: 0;
+    }
+    .allInputBar {
+      margin: 0 1rem;
     }
     .object-fit-cover {
       object-position: -150px top;
