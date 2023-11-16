@@ -298,22 +298,22 @@ $cyans: (
 // fusv-enable
 
 // scss-docs-start theme-color-variables
-$primary: #fa863e !default; // $custom  $blue !default;
-$primary02: #fef2eb !default; // $custom  新增自訂色彩 primary02
-$secondary: #faf9e0 !default; // $custom  $gray-600 !default;
-$success: $green !default;
-$info: $cyan !default;
-$warning: $yellow !default;
-$danger: $red !default;
-$light: $gray-100 !default;
-$dark: $gray-900 !default;
-$background: #fdfcfa !default; // $custom  新增自訂色彩 background
-$neutral01: #686869 !default; // $custom  新增自訂色彩 neutral01
-$neutral02: #cccdcf !default; // $custom  新增自訂色彩 neutral02
-$neutral03: #e6e7e8 !default; // $custom  新增自訂色彩 neutral03
-$neutral04: #f2f3f5 !default; // $custom  新增自訂色彩 neutral04
-$neutral05: #f7f8fa !default; // $custom  新增自訂色彩 neutral05
-$text: #202124 !default; // $custom  新增自訂色彩 text
+$primary: #fa863e; // $custom  $blue !default;
+$primary02: #fef2eb; // $custom  新增自訂色彩 primary02
+$secondary: #faf9e0; // $custom  $gray-600 !default;
+$success: $green;
+$info: $cyan;
+$warning: $yellow;
+$danger: $red;
+$light: $gray-100;
+$dark: $gray-900;
+$background: #fdfcfa; // $custom  新增自訂色彩 background
+$neutral01: #686869; // $custom  新增自訂色彩 neutral01
+$neutral02: #cccdcf; // $custom  新增自訂色彩 neutral02
+$neutral03: #e6e7e8; // $custom  新增自訂色彩 neutral03
+$neutral04: #f2f3f5; // $custom  新增自訂色彩 neutral04
+$neutral05: #f7f8fa; // $custom  新增自訂色彩 neutral05
+$text: #483c34; // $custom  新增自訂色彩 text
 // scss-docs-end theme-color-variables
 
 // scss-docs-start theme-colors-map
@@ -339,7 +339,7 @@ $theme-colors: (
   // $custom  自定義變數
   "text": $text,
   // $custom  自定義變數
-  "background": $background // $custom  自定義變數,
+  "background": $background // $custom  自定義變數,,,,,,,,,,,,,,
 ) !default;
 // scss-docs-end theme-colors-map
 
@@ -624,9 +624,9 @@ $font-sizes: (
   // 24px     $fs-3-font-size,
   4: $font-size-base * 1.25,
   // 20px     $fs-4-font-size,
-  5: $font-size-base * 1.125,
+  5: $font-size-base * 11.25,
   // 18px     $fs-5-font-size,
-  6: $h6-font-size * 1 // 16px     $fs-6-font-size,,
+  6: $h6-font-size * 1 // 16px     $fs-6-font-size,,,,,,,,,,,,,,,
 ) !default;
 // scss-docs-end font-sizes
 

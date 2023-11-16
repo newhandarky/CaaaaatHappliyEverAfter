@@ -12,30 +12,64 @@ import { reLogin } from "./loginIsTimeUp";
 \*------------------------------------*/
 const thisMonth = document.querySelector(".thisMonth");
 const newBooking = document.querySelector(".newBooking");
+const bookingRate = document.querySelector(".bookingRate");
 const revenue = document.querySelector(".revenue");
 const todayCheckIn = document.querySelector(".todayCheckIn");
 const todayCheckOut = document.querySelector(".todayCheckOut");
-const canceled = document.querySelector(".canceled");
 const bookingList = document.querySelector(".bookingList");
+const checkBookingRate = document.querySelector(".checkBookingRate");
 
 /*------------------------------------*\
     變數
 \*------------------------------------*/
 // 暫存日期資料
 localStorage.setItem("thisYear", new Date().getFullYear());
-localStorage.setItem("thisMonth", new Date().getMonth() + 1);
+localStorage.setItem("thisMonth", new Date().getMonth() + 2);
 let bookingStatesObject = {
     "thisMonthCount": 0,
     "newBooking": 0,
     "todayCheckIn": 0,
     "todayCheckOut": 0,
     "revenue": 0,
-    "canceledCount": 0
+    "bookingRate": 0
 }
 
 /*------------------------------------*\
     function
 \*------------------------------------*/
+// 取得當月所有房況資料
+axios.get(`${_url}/660/roomStates`,{
+    headers: {
+        "authorization":`Bearer ${localStorage.getItem("userLoginToken")}`
+    }
+})
+.then(function(res){
+    const roomStatesArr = [];
+    let monthBookingRate = {
+        "classicRoomCount":0,
+        "delicateRoomCount":0,
+        "luxuryRoomCount":0,
+        "roomCounts": 0
+    }
+
+    res.data.forEach(function(item){
+        if(item.date.startsWith(`${localStorage.getItem("thisYear")}-${localStorage.getItem("thisMonth")}`)){
+            roomStatesArr.push(item);
+            monthBookingRate.classicRoomCount += item.availableCount.classic;
+            monthBookingRate.delicateRoomCount += item.availableCount.delicate;
+            monthBookingRate.luxuryRoomCount += item.availableCount.luxury;
+        }          
+    })
+    monthBookingRate.roomCounts = roomStatesArr.length * 9;
+    
+    bookingRate.innerHTML = Math.round(((monthBookingRate.roomCounts) - 
+                (monthBookingRate.classicRoomCount + monthBookingRate.delicateRoomCount + monthBookingRate.luxuryRoomCount)) * 100
+                / monthBookingRate.roomCounts);
+}).catch(function(err){
+    console.log(err);
+    reLogin(err.response.data);
+})
+
 // 取得所有訂單資料
 axios.get(`${_url}/660/bookings`,{
     headers: {
@@ -59,16 +93,13 @@ axios.get(`${_url}/660/bookings`,{
             bookingStatesObject.todayCheckOut++;
         }            
         if(item.state === "已退房"){                                // 抓當月已完成之訂單總額
-            bookingStatesObject.revenue += item.price;
+            bookingStatesObject.revenue += parseInt(item.price);
         }            
-        if(item.state === "已取消"){                                // 抓當月取消訂單數量
-            bookingStatesObject.canceledCount++;            
-        }        
     })
     bookingStatesObject.bookingCount = bookingArr.length;
     renderBookingsStateData();
 }).catch(function(err){
-    console.log(err.response);
+    console.log(err);
     reLogin(err.response.data);
 })
 
@@ -78,7 +109,6 @@ function renderBookingsStateData(){
     revenue.innerHTML = bookingStatesObject.revenue;
     todayCheckIn.innerHTML = bookingStatesObject.todayCheckIn;
     todayCheckOut.innerHTML = bookingStatesObject.todayCheckOut;
-    canceled.innerHTML = bookingStatesObject.canceledCount;
 }
 
 /*------------------------------------*\

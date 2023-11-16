@@ -1,0 +1,211 @@
+// 取消container-fluid 本身自帶的 padding
+.container-fluid {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.image-container {
+  //   background: red;
+  .imgBanner {
+    height: 1008px;
+  }
+
+  .object-fit-cover {
+    object-fit: cover;
+    object-position: left top;
+  }
+
+  .image-text {
+    display: inline-block;
+    margin: 84px 0 0 63px;
+    background-color: $secondary;
+    transform: translateY(15px);
+    h1 {
+      transform: translateY(-15px);
+      color: $primary;
+      margin: 0;
+    }
+    h2 {
+      transform: translateY(-15px);
+      color: $text;
+      margin: 0;
+    }
+  }
+  .searchBar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 265px;
+    background: rgba(72, 60, 52, 0.5);
+
+    .roomBarTitle {
+      text-align: center;
+      color: $white;
+    }
+    .catRoomInput {
+      margin: 10px 0;
+    }
+    .searchBarBtn {
+      width: 100%;
+      height: 86px;
+      border: none;
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: $primary02;
+      transition: background-color 0.3s ease, color 0.3s ease,
+        transform 0.3s ease;
+      &:hover {
+        background-color: $primary;
+        p {
+          color: $white;
+        }
+        .icon {
+          filter: brightness(100);
+        }
+        &:active {
+          transform: scale(0.95);
+        }
+      }
+
+      .icon {
+        width: 30px;
+        height: 30px;
+        margin: 0;
+      }
+    }
+  }
+}
+
+.catRoom {
+  overflow: hidden;
+  img {
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  &:hover img {
+    transform: scale(1.1);
+    opacity: 0.5;
+  }
+  &:active img {
+    transform: scale(1.05);
+  }
+  .roomImgText {
+    margin: 20px;
+    display: inline-block;
+    background-color: $secondary;
+    z-index: 3;
+    .text {
+      position: relative;
+      transform: translate(8px, -3px);
+    }
+  }
+}
+
+.promote {
+  background: $background;
+  z-index: -2;
+  .promoteText {
+    width: 640px;
+    height: 100%;
+
+    .textArea {
+      .ImgCat01 {
+        width: 150px;
+        height: 120px;
+        transform: translate(-100px, -30px);
+        z-index: -1;
+      }
+      .ImgCat02 {
+        width: 270px;
+        height: 172px;
+        transform: translate(180px, 100px);
+        z-index: -1;
+      }
+      .icon {
+        width: 30px;
+        height: 30px;
+        margin: 0;
+      }
+    }
+  }
+  .promoteImg {
+    overflow: hidden;
+  }
+}
+
+.evaluate {
+  min-height: 831px;
+  .title {
+    min-height: 115px;
+  }
+  .personBox {
+    box-shadow: 0 5px 0 $gray-400;
+    height: 504px;
+
+    .photo {
+      border-radius: 50%;
+      width: 240px;
+      height: 240px;
+      overflow: hidden;
+    }
+    .star {
+      color: $primary;
+    }
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .image-container {
+    height: 1150px;
+    .imgBanner {
+      height: 708px;
+    }
+    img {
+      padding: 0;
+    }
+    .allInputBar {
+      margin: 0 1rem;
+    }
+    .object-fit-cover {
+      object-position: -150px top;
+    }
+    .image-text {
+      margin: 63px 0 0 0;
+      h1 {
+        font-size: 32px;
+      }
+      h2 {
+        font-size: 28px;
+      }
+    }
+  }
+  .searchBar {
+    padding: 3rem 0;
+  }
+
+  .promote {
+    min-height: 350px;
+    .promoteText {
+      width: 100%;
+      .textArea {
+        .ImgCat01 {
+          transform: translate(-50px, -30px);
+          z-index: -1;
+        }
+        .ImgCat02 {
+          width: 187px;
+          height: 119px;
+          transform: translate(130px, 100px);
+          z-index: -1;
+        }
+      }
+    }
+  }
+}
