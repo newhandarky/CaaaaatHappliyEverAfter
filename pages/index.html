@@ -10,103 +10,113 @@
     <%- include('./layout/header'); -%>
     <!-- Banner區塊 -->
     <div class="container-fluid">
-      <div class="row image-container position-relative p-0">
-        <img
-          src="../assets/images/ImgBanner.png"
-          class="imgBanner object-fit-cover"
-          alt="indexPhoto"
-        />
-        <div class="position-absolute w-100 top-0 start-50 translate-middle-x">
-          <div class="container">
-            <div class="row image-text">
-              <h1>貓の幸福角落</h1>
-              <h2>在城市裡保留一個屬於貓的幸福角落</h2>
+      <div class="row g-0">
+        <!-- 主圖區塊 -->
+        <div class="col-12 position-relative">
+          <div class="image-container position-relative">
+            <img
+              src="../assets/images/ImgBanner.png"
+              class="img-fluid d-sm-block d-none"
+              alt="indexPhoto"
+            /><img
+              src="../assets/images/ImgBanner-M.png"
+              class="img-fluid d-sm-none d-block"
+              alt="indexPhoto"
+            />
+            <div
+              class="position-absolute w-100 top-0 start-50 translate-middle-x"
+            >
+              <div class="container">
+                <div class="row image-text">
+                  <h1>貓の幸福角落</h1>
+                  <h2>在城市裡保留一個屬於貓的幸福角落</h2>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+          <!-- 快速預約房型區塊 -->
+          <div class="searchBar position-absolute bottom-0">
+            <h2 class="roomBarTitle">快速預約房型</h2>
+            <div class="container">
+              <div class="row allInputBar">
+                <div class="col-lg-3 col-12">
+                  <!--input 按鈕自製模組-->
+                  <div id="catRoomInput_checkIn" class="catRoomInput">
+                    <div class="inputBar">
+                      <p class="fs-7 m-0">入住日期</p>
+                      <input
+                        id="checkIn"
+                        type="text"
+                        class="inputText position-relative"
+                        placeholder="請輸入日期"
+                      />
+                    </div>
 
-        <div class="searchBar position-absolute bottom-0">
-          <h2 class="roomBarTitle">快速預約房型</h2>
-          <div class="container">
-            <div class="row allInputBar">
-              <div class="col-lg-3 col-12">
-                <!--input 按鈕自製模組-->
-                <div id="catRoomInput_checkIn" class="catRoomInput">
-                  <div class="inputBar">
-                    <p class="fs-7 m-0">入住日期</p>
-                    <input
-                      id="checkIn"
-                      type="text"
-                      class="inputText position-relative"
-                      placeholder="請輸入日期"
+                    <img
+                      class="icon"
+                      src="../assets/icons/iconDate.svg"
+                      alt="date_icon"
                     />
                   </div>
-
-                  <img
-                    class="icon"
-                    src="../assets/icons/iconDate.svg"
-                    alt="date_icon"
-                  />
                 </div>
-              </div>
-              <div class="col-lg-3 col-12">
-                <!--input 按鈕自製模組-->
-                <div id="catRoomInput_checkOut" class="catRoomInput">
-                  <div class="inputBar">
-                    <p class="fs-7 m-0">退房日期</p>
-                    <input
-                      id="checkOut"
-                      type="text"
-                      class="inputText position-relative"
-                      placeholder="請輸入日期"
+                <div class="col-lg-3 col-12">
+                  <!--input 按鈕自製模組-->
+                  <div id="catRoomInput_checkOut" class="catRoomInput">
+                    <div class="inputBar">
+                      <p class="fs-7 m-0">退房日期</p>
+                      <input
+                        id="checkOut"
+                        type="text"
+                        class="inputText position-relative"
+                        placeholder="請輸入日期"
+                      />
+                    </div>
+
+                    <img
+                      class="icon"
+                      src="../assets/icons/iconDate.svg"
+                      alt="date_icon"
                     />
                   </div>
-
-                  <img
-                    class="icon"
-                    src="../assets/icons/iconDate.svg"
-                    alt="date_icon"
-                  />
                 </div>
-              </div>
-              <div class="col-lg-4 col-12">
-                <!--input 按鈕自製模組-->
-                <div id="catRoomInput_roomType" class="catRoomInput">
-                  <div class="inputBar">
-                    <p class="fs-7 m-0">房型</p>
-                    <select id="roomType" class="roomType position-relative">
-                      <option disabled selected style="color: #ced4da">
-                        請選擇
-                      </option>
-                      <option value="經典房">經典房</option>
-                      <option value="精緻房">精緻房</option>
-                      <option value="豪華房">豪華房</option>
-                    </select>
+                <div class="col-lg-4 col-12">
+                  <!--input 按鈕自製模組-->
+                  <div id="catRoomInput_roomType" class="catRoomInput">
+                    <div class="inputBar">
+                      <p class="fs-7 m-0">房型</p>
+                      <select id="roomType" class="roomType position-relative">
+                        <option disabled selected style="color: #ced4da">
+                          請選擇
+                        </option>
+                        <option value="經典房">經典房</option>
+                        <option value="精緻房">精緻房</option>
+                        <option value="豪華房">豪華房</option>
+                      </select>
+                    </div>
+
+                    <img
+                      class="icon"
+                      src="../assets/icons/iconArrowDown.svg"
+                      alt="date_icon"
+                    />
                   </div>
-
-                  <img
-                    class="icon"
-                    src="../assets/icons/iconArrowDown.svg"
-                    alt="date_icon"
-                  />
                 </div>
-              </div>
-              <div class="col-lg-2 col-12">
-                <button type="button" class="searchBarBtn catRoomInput">
-                  <p class="fs-5 m-0">立即預約</p>
-                  <img
-                    class="icon"
-                    src="../assets/icons/dogPaw.svg"
-                    alt="date_icon"
-                  />
-                </button>
+                <div class="col-lg-2 col-12">
+                  <button type="button" class="searchBarBtn catRoomInput">
+                    <p class="fs-5 m-0">立即預約</p>
+                    <img
+                      class="icon"
+                      src="../assets/icons/dogPaw.svg"
+                      alt="date_icon"
+                    />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
     <!-- 房型區塊 -->
     <div class="container-fluid">
       <div class="row g-0">
@@ -272,15 +282,19 @@
     <div class="container">
       <div class="row evaluate">
         <div
-          class="col-12 title d-inline-flex justify-content-center align-items-center m-3"
+          class="col-12 d-inline-flex justify-content-center align-items-end"
         >
-          <img
-            class="position-absolute"
-            src="../assets/icons/laurelWreath.svg"
-            alt="laurelWreath"
-            srcset=""
-          />
-          <h3>顧客好評</h3>
+          <div
+            class="title d-inline-flex justify-content-center align-items-center my-3"
+          >
+            <img
+              class="img-fluid position-absolute"
+              src="../assets/icons/laurelWreath.svg"
+              alt="laurelWreath"
+              srcset=""
+            />
+            <h3>顧客好評</h3>
+          </div>
         </div>
         <div class="col-lg-4 col-12">
           <div class="personBox d-flex flex-column align-items-center mx-3 p-3">
