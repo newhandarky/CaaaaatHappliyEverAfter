@@ -183,12 +183,51 @@
                 role="button"
                 >返回列表</a
               >
-              <a class="btn btn-success" href="#" role="button">確定新增</a>
+              <!-- BS5 Modal 彈跳視窗主觸發鈕 -->
+              <a
+                class="sendNewMember btn btn-success"
+                role="button"
+                data-bs-toggle="modal"
+                data-bs-target="#saveNewAccount"
+                >確定新增</a
+              >
             </div>
           </div>
         </div>
       </form>
     </main>
+    <!-- Modal 彈跳視窗主體 -->
+    <div
+      class="modal fade"
+      id="saveNewAccount"
+      tabindex="-1"
+      aria-labelledby="saveNewAccountLabel"
+      aria-hidden="true"
+    >
+      <div class="saveNewAccountModal modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header border-0 p-0"></div>
+          <div
+            class="modal-body d-flex flex-column justify-content-center align-items-center"
+          >
+            <span
+              class="checkCircle material-symbols-outlined text-success mb-1"
+            >
+              check_circle
+            </span>
+            <p class="fs-3 mb-4">新增後台人員成功</p>
+            <a
+              href="./admin_account.html"
+              role="button"
+              class="saveNewAccountBtn btn btn-success fs-3"
+            >
+              返回人員管理頁面
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="../js/admin_accountAddNewMember.js"></script>
     <script type="module" src="../main.js"></script>
   </body>
 </html>

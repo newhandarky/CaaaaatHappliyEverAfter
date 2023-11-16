@@ -183,19 +183,58 @@
                   <option value="resigned">已離職</option>
                 </select>
               </div>
-              <!-- 應該要重新render，因為還沒按新增所以還沒儲存到資料庫 -->
+              <!-- 應該要重新 render，因為還沒按新增所以還沒儲存到資料庫 -->
               <a
                 class="text-white btn btn-warning"
                 href="./admin_account.html"
                 role="button"
                 >取消變更</a
               >
-              <a class="btn btn-success" href="#" role="button">儲存變更</a>
+              <!-- BS5 Modal 彈跳視窗主觸發鈕 -->
+              <a
+                class="btn btn-success"
+                role="button"
+                data-bs-toggle="modal"
+                data-bs-target="#saveAccount"
+                >儲存變更</a
+              >
             </div>
           </div>
         </div>
       </form>
     </main>
+
+    <!-- Modal 彈跳視窗主體 -->
+    <div
+      class="modal fade"
+      id="saveAccount"
+      tabindex="-1"
+      aria-labelledby="saveAccountLabel"
+      aria-hidden="true"
+    >
+      <div class="savaAccountModal modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header border-0 p-0"></div>
+          <div
+            class="modal-body d-flex flex-column justify-content-center align-items-center"
+          >
+            <span
+              class="checkCircle material-symbols-outlined text-success mb-1"
+            >
+              check_circle
+            </span>
+            <p class="fs-3 mb-4">後台人員編輯完成</p>
+            <a
+              href="./admin_account.html"
+              role="button"
+              class="savaAccountBtn btn btn-success fs-3"
+            >
+              返回人員管理頁面
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
     <script type="module" src="../js/admin_accountEditMember.js"></script>
     <script type="module" src="../main.js"></script>
   </body>
