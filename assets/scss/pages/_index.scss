@@ -6,6 +6,7 @@
 
 .image-container {
   //   background: red;
+  overflow: hidden;
   .imgBanner {
     height: 1008px;
   }
@@ -22,7 +23,7 @@
     transform: translateY(15px);
     h1 {
       transform: translateY(-15px);
-      color: $primary01;
+      color: $primary;
       margin: 0;
     }
     h2 {
@@ -31,54 +32,53 @@
       margin: 0;
     }
   }
-  .searchBar {
+}
+.searchBar {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 265px;
+  background: rgba(72, 60, 52, 0.5);
+
+  .roomBarTitle {
+    text-align: center;
+    color: $white;
+  }
+  .catRoomInput {
+    margin: 10px 0;
+  }
+  .searchBarBtn {
+    width: 100%;
+    height: 86px;
+    border: none;
+    border-radius: 8px;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 265px;
-    background: rgba(72, 60, 52, 0.5);
-
-    .roomBarTitle {
-      text-align: center;
-      color: $white;
-    }
-    .catRoomInput {
-      margin: 10px 0;
-    }
-    .searchBarBtn {
-      width: 100%;
-      height: 86px;
-      border: none;
-      border-radius: 8px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: $primary02;
-      transition: background-color 0.3s ease, color 0.3s ease,
-        transform 0.3s ease;
-      &:hover {
-        background-color: $primary01;
-        p {
-          color: $white;
-        }
-        .icon {
-          filter: brightness(100);
-        }
-        &:active {
-          transform: scale(0.95);
-        }
+    background-color: $primary02;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    &:hover {
+      background-color: $primary;
+      p {
+        color: $white;
       }
-
       .icon {
-        width: 30px;
-        height: 30px;
-        margin: 0;
+        filter: brightness(100);
       }
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+
+    .icon {
+      width: 30px;
+      height: 30px;
+      margin: 0;
     }
   }
 }
-
 .catRoom {
   overflow: hidden;
   img {
@@ -156,7 +156,7 @@
       overflow: hidden;
     }
     .star {
-      color: $primary01;
+      color: $primary;
     }
   }
 }

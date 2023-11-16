@@ -21,12 +21,16 @@ body {
     max-width: 510px;
   }
   .photo {
-    .personPhoto-rotateLeft {
-      transform: rotate(-5deg);
+    .personPhoto {
+      z-index: 2;
+      &.rotateLeft {
+        transform: rotate(-5deg);
+      }
     }
   }
 
   .catLeg01 {
+    z-index: 3;
     height: 460px;
     transform: translate(300px, 300px) rotate(-5deg);
   }
@@ -55,7 +59,6 @@ body {
     }
 
     .catTail {
-      z-index: 0;
       height: 100px;
       transform: translate(-200px, 200px) rotate(-5deg);
     }
