@@ -8,7 +8,131 @@
   <body>
     <%- include('./layout/header'); -%>
 
-    <h1>這是關於我們頁面</h1>
+    <!--創辦人的話-->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-12">
+          <div
+            class="contentArea d-flex flex-column justify-content-center align-items-center"
+          >
+            <div class="text-type01">
+              <div class="d-inline-flex align-items-center">
+                <img
+                  class="img-fluid dogPaw mx-2"
+                  src="../assets/icons/dogPaw.svg"
+                  alt="dogPaw"
+                />
+                <h1>貓樂天地</h1>
+              </div>
+
+              <p class="mt-3">
+                「貓の幸福」源自對貓咪的熱愛，我們以關懷、細心呵護每一隻貓，打造一個充滿愛的度假天地。透過舒適的環境、專業的護理，營造家的溫馨，讓貓咪在這裡能快樂遊玩、安心入眠。我們深信，這不僅是一個旅館，更是貓咪們的幸福樂園，期待與您一同分享愛和陪伴。
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-12">
+          <div
+            class="contentArea position-relative d-flex justify-content-center align-items-center"
+          >
+            <div
+              class="photo d-flex flex-column justify-content-center align-items-start"
+            >
+              <img
+                class="img-fluid personPhoto-rotateLeft"
+                src="../assets/images/founderPhoto.png"
+                alt="dogPaw"
+              />
+              <div class="d-inline-flex align-items-center my-3">
+                <img
+                  class="img-fluid dogPaw-sm mx-2"
+                  src="../assets/icons/dogPaw.svg"
+                  alt="dogPaw"
+                />
+
+                <h2>創辦人：陳品琦</h2>
+              </div>
+              <img
+                class="img-fluid position-absolute catLeg01"
+                src="../assets/images/catLeg01.svg"
+                alt="dogPaw"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 旅館照片 -->
+    <div class="container-fluid">
+      <div class="row g-0">
+        <img
+          class="img-fluid roomPhoto d-none d-md-block"
+          src="../assets/images/RoomPhoto01.png"
+          alt="RoomPhoto01"
+        />
+        <img
+          class="img-fluid roomPhoto d-block d-md-none"
+          src="../assets/images/RoomPhoto02.png"
+          alt="RoomPhoto02"
+        />
+      </div>
+    </div>
+
+    <!--經理的話-->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-12">
+          <div
+            class="contentArea position-relative d-flex justify-content-center align-items-center"
+          >
+            <div
+              class="photo d-flex flex-column justify-content-center align-items-start"
+            >
+              <img
+                class="img-fluid personPhoto-rotateLeft"
+                src="../assets/images/managerPhoto.png"
+                alt="dogPaw"
+              />
+              <div class="d-inline-flex align-items-center my-3">
+                <img
+                  class="img-fluid dogPaw-sm mx-2"
+                  src="../assets/icons/dogPaw.svg"
+                  alt="dogPaw"
+                />
+
+                <h2>經理：黃家銘</h2>
+              </div>
+              <img
+                class="img-fluid position-absolute catTail"
+                src="../assets/images/catTail.svg"
+                alt="catTail"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-12">
+          <div
+            class="contentArea d-flex flex-column justify-content-center align-items-center"
+          >
+            <div class="text-type02">
+              <div class="d-inline-flex align-items-center">
+                <img
+                  class="img-fluid dogPaw mx-2"
+                  src="../assets/icons/dogPaw.svg"
+                  alt="dogPaw"
+                />
+                <h1>愛與專業的完美結合</h1>
+              </div>
+
+              <p class="mt-3">
+                在『貓の幸福』，我們擁抱對貓咪的極致呵護，透過細心環境設計與專業照顧，打造一充滿愛的度假天地。這不僅是旅館，更是我們對貓咪熱愛的真摯體現。每一刻，我們致力提供獨特、舒適的體驗，讓您的貓咪快樂遊玩。期待您與我們共同分享對貓咪的熱情與關懷的美好旅程，一同創造難忘、充滿愛的時光。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <%- include('./layout/footer'); -%>
 

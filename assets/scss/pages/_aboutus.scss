@@ -1,0 +1,82 @@
+body {
+  background-color: $background;
+}
+
+.dogPaw {
+  width: 44px;
+  height: 44px;
+}
+
+.dogPaw-sm {
+  width: 29px;
+  height: 29px;
+}
+
+.contentArea {
+  min-height: 800px;
+  .text-type01 {
+    max-width: 416px;
+  }
+  .text-type02 {
+    max-width: 510px;
+  }
+  .photo {
+    .personPhoto-rotateLeft {
+      transform: rotate(-5deg);
+    }
+  }
+
+  .catLeg01 {
+    height: 460px;
+    transform: translate(300px, 300px) rotate(-5deg);
+  }
+  .catTail {
+    height: 300px;
+    transform: translate(-110px, 0px) rotate(-5deg);
+  }
+}
+
+.roomPhoto {
+  z-index: 10;
+}
+
+@media screen and (max-width: 992px) {
+  .contentArea {
+    min-height: 375px;
+    .photo {
+      h2 {
+        font-size: 20px;
+      }
+    }
+
+    .catLeg01 {
+      height: 420px;
+      transform: translate(310px, 300px) rotate(-5deg);
+    }
+
+    .catTail {
+      z-index: 0;
+      height: 100px;
+      transform: translate(-200px, 200px) rotate(-5deg);
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .contentArea {
+    .photo {
+      h2 {
+        font-size: 16px;
+      }
+    }
+    .catLeg01 {
+      right: 310px;
+      height: 380px;
+      transform: translate(300px, 270px) rotate(-5deg);
+    }
+    .catTail {
+      height: 80px;
+      transform: translate(-150px, 150px) rotate(-5deg);
+    }
+  }
+}

@@ -10,7 +10,7 @@
     h1, h2, h3, h4, h5, h6 style
 \*------------------------------------*/
 h1 {
-  font-size: 4rem;
+  font-size: 3rem;
   font-weight: 700;
   color: $text;
 }
@@ -40,6 +40,8 @@ h6 {
   color: $text;
 }
 p {
+  font-size: 1rem;
+  font-weight: 400;
   color: $text;
 }
 
@@ -72,11 +74,6 @@ p {
   color: $text;
 }
 .fs-6 {
-  font-size: 1rem !important;
-  font-weight: 400;
-  color: $text;
-}
-.fs-7 {
   font-size: 1rem !important;
   font-weight: 400;
   color: $text;
