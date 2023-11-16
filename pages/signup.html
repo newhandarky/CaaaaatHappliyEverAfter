@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Document</title>
+  </head>
+  <body>
+    <%- include('./layout/header'); -%>
+    <h1>會員註冊</h1>
+    <form id="signupForm" class="signupForm" method="GET">
+      <input
+        id="email"
+        class="form-control"
+        type="email"
+        name="email"
+        placeholder="請輸入Email"
+        required
+      />
+
+      <input
+        id="password"
+        class="form-control"
+        type="password"
+        name="password"
+        placeholder="請輸入密碼"
+        required
+      />
+
+      <input
+        id="name"
+        class="form-control"
+        type="text"
+        name="name"
+        placeholder="請輸入姓名"
+        required
+      />
+
+      <div id="gender" class="form-control">
+        <input id="male" type="radio" name="gender" value="male" required />
+        <label for="male">男</label>
+        <input id="female" type="radio" name="gender" value="female" required />
+        <label for="female">女</label>
+        <input id="other" type="radio" name="gender" value="other" required />
+        <label for="other">其他</label>
+      </div>
+
+      <input
+        id="birthday"
+        type="text"
+        placeholder="請輸入生日"
+        class="form-control"
+        name="birthday"
+        required
+      />
+
+      <input
+        id="phone"
+        class="form-control"
+        type="number"
+        placeholder="請輸入電話"
+        name="phone"
+        required
+      />
+
+      <input
+        id="address"
+        class="form-control"
+        type="text"
+        placeholder="請輸入地址"
+        name="address"
+        required
+      />
+
+      <button id="signupBtn" type="submit" class="signupBtn">會員註冊</button>
+      <a id="loginBtn" class="loginBtn" href="./login.html">立即登入</a>
+    </form>
+    <%- include('./layout/footer'); -%>
+    <script type="module" src="../main.js"></script>
+    <script type="module" src="../js/navbar.js"></script>
+    <script type="module" src="../js/signup.js"></script>
+  </body>
+</html>

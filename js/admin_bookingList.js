@@ -3,6 +3,8 @@
 \*------------------------------------*/
 import axios from "axios";
 import Swal from "sweetalert2";
+import { _url } from "./config";
+import { reLogin } from "./loginIsTimeUp";
 
 /*------------------------------------*\
     doms
@@ -16,8 +18,6 @@ const getPages = document.querySelector(".getPages");
 /*------------------------------------*\
     變數
 \*------------------------------------*/
-// const url = "http://localhost:3000"; // 本機端
-const url = "https://catroomdb.onrender.com"; // json=server端
 // 取得當前年月份的字串
 let getBookingMonth = `${localStorage.getItem("thisYear")}-${localStorage.getItem("thisMonth")}`;
 let getOneMonthBooking = [];
@@ -92,7 +92,7 @@ function showPagination() {
 }
 // 抓整個月份訂房數量
 function getAllBookingData() {
-    axios.get(`${url}/660/bookings?_expand=user&_expand=room`, {
+    axios.get(`${_url}/660/bookings?_expand=user&_expand=room`, {
         headers: {
             authorization: `Bearer ${localStorage.getItem("userLoginToken")}`,
         },
@@ -106,32 +106,14 @@ function getAllBookingData() {
             })
             pagination(bookingCount);  // 取得數量顯示下方分頁
         }).catch(function (err) {
-            console.log(err);
-            if (err.response.data === "jwt expired") {
-                alert("您的帳號登入時效已過, 請重新登入")
-            }
-            // if(err.response.data === "jwt expired"){
-            //     Swal.fire({
-            //         title: "您的帳號登入時效已過, 要重新登入嗎?",
-            //         icon: "info",
-            //         showDenyButton: true,
-            //         confirmButtonText: "重新登入",
-            //         denyButtonText: `返回首頁`
-            //     }).then((result) => {
-            //         if (result.isConfirmed) {
-            //             // 重新登入
-            //             reLogin();
-            //         } else if (result.isDenied) {
-            //             location = "../pages/login.html";
-            //         }
-            //     });
-            // }
+            console.log(err);            
+            reLogin(err.response.data);
         })
 }
 
 // 依照頁籤顯示訂單
 function getBookingData(num) {
-    axios.get(`${url}/660/bookings?_expand=user&_expand=room&_page=${num}&_limit=8`, {
+    axios.get(`${_url}/660/bookings?_expand=user&_expand=room&_page=${num}&_limit=8`, {
         headers: {
             authorization: `Bearer ${localStorage.getItem("userLoginToken")}`,
         },
@@ -160,6 +142,7 @@ function getBookingData(num) {
         getOneMonthBooking = [];
     }).catch(function (err) {
         console.log(err);
+        reLogin(err.response.data);    
     })
 }
 
@@ -208,32 +191,6 @@ function pagination(pages) {
     showPagination();
 }
 
-// 重新登入
-// function reLogin(){
-//     axios.post(`${url}/login`, {
-//         // 管理員帳密
-//         "email": "userTest053@gmail.com",
-//         "password": "userTest053"                    
-//     }).then(function (res) {
-//         const Toast = Swal.mixin({
-//             toast: true,
-//             position: "center-center",
-//             showConfirmButton: false,
-//             timer: 1000,
-//             timerProgressBar: true,
-//             didOpen: (toast) => {
-//                 toast.onmouseenter = Swal.stopTimer;
-//                 toast.onmouseleave = Swal.resumeTimer;
-//             }
-//         });
-//         Toast.fire({
-//             icon: "success",
-//             title: `登入成功 ${localStorage.getItem("userName")} 歡迎您回來`
-//         });
-//     }).catch(function (err) {
-//         console.log(err.response);
-//     })
-// }
 
 /*------------------------------------*\
     事件

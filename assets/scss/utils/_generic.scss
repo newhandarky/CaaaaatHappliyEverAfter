@@ -1,48 +1,187 @@
 /*------------------------------------*\
     background-color
 \*------------------------------------*/
-.adminHeader{
-    background: #D3E4E1;
-}
 
 /*------------------------------------*\
     link style
 \*------------------------------------*/
 
+/*------------------------------------*\
+    h1, h2, h3, h4, h5, h6 style
+\*------------------------------------*/
+h1 {
+  font-size: 4rem;
+  font-weight: 700;
+  color: $text;
+}
+h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: $text;
+}
+h3 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: $text;
+}
+h4 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: $text;
+}
+h5 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: $text;
+}
+h6 {
+  font-size: 1rem;
+  font-weight: 500;
+  color: $text;
+}
+p {
+  color: $text;
+}
 
+/*------------------------------------*\
+    fs-1, fs-2, fs-3, fs-4, fs-5, fs-6 caption style
+\*------------------------------------*/
+.fs-1 {
+  font-size: 2rem !important;
+  font-weight: 400;
+  color: $text;
+}
+.fs-2 {
+  font-size: 1.75rem !important;
+  font-weight: 400;
+  color: $text;
+}
+.fs-3 {
+  font-size: 1.5rem !important;
+  font-weight: 400;
+  color: $text;
+}
+.fs-4 {
+  font-size: 1.25rem !important;
+  font-weight: 400;
+  color: $text;
+}
+.fs-5 {
+  font-size: 1.125rem !important;
+  font-weight: 400;
+  color: $text;
+}
+.fs-6 {
+  font-size: 1rem !important;
+  font-weight: 400;
+  color: $text;
+}
+.fs-7 {
+  font-size: 1rem !important;
+  font-weight: 400;
+  color: $text;
+}
+
+caption {
+  font-size: 14px;
+  font-weight: 200;
+}
 /*------------------------------------*\
     ul, ol, li style
 \*------------------------------------*/
-ul, ol, li {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+ul,
+ol,
+li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
-
 
 /*------------------------------------*\
     font style
 \*------------------------------------*/
 
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+body {
+  font-family: "Noto Sans TC", sans-serif;
+}
 
 /*------------------------------------*\
     btn icon
 \*------------------------------------*/
 
+/*------------------------------------*\
+    input
+\*------------------------------------*/
+.catRoomInput {
+  cursor: pointer;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  background-color: $white;
+
+  .inputBar {
+    display: inline-flex;
+    flex-direction: column;
+    font-size: 20px;
+    margin: 1rem;
+    width: 100%;
+
+    p {
+      font-weight: 500;
+    }
+    .inputText {
+      width: 150px;
+      height: 30px;
+      border: none;
+      color: $text;
+      caret-color: transparent;
+      &::placeholder {
+        color: $gray-400;
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+    .roomType {
+      cursor: pointer;
+      height: 30px;
+      border: none;
+      color: $text;
+
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      text-indent: 1px;
+      text-overflow: "";
+      &:focus {
+        outline: none;
+      }
+      option {
+        color: $text;
+      }
+    }
+  }
+  .icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 1rem;
+    right: 0;
+  }
+}
 
 /*------------------------------------*\
     color
 \*------------------------------------*/
 
-
 /*------------------------------------*\
     margin, padding
 \*------------------------------------*/
 
-
 /*------------------------------------*\
     content size
 \*------------------------------------*/
-.bookingContent{
-    min-height: 500px;
+.bookingContent {
+  min-height: 500px;
 }

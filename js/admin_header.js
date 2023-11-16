@@ -1,23 +1,59 @@
+/*------------------------------------*\
+    import
+\*------------------------------------*/
 import axios from "axios";
 import Swal from "sweetalert2";
+import { _url } from "./config";
+import { reLogin } from "./loginIsTimeUp";
 
-// const url = "http://localhost:3000"; // 本機端
-const url = "https://catroomdb.onrender.com"; // json=server端
+/*------------------------------------*\
+    dom
+\*------------------------------------*/
 const welcome = document.querySelector(".welcome");
 const logout = document.querySelector(".logout");
 const adminLogin = document.querySelector(".adminLogin");
+const adminAccount = document.querySelector(".adminAccount");
+const loginTimeOut = document.querySelector(".loginTimeOut");
+let adminEmailPassword = {};
 
-
+/*------------------------------------*\
+    測試登入
+\*------------------------------------*/
 adminLogin.addEventListener("click", function () {
-    login()
+    login(adminEmailPassword)
+})
+
+adminAccount.addEventListener("change", function(){
+    if(adminAccount.value == 1052){
+        adminEmailPassword.email = "userTest052@gmail.com";
+        adminEmailPassword.password ="userTest052"
+    }else if(adminAccount.value == 1053){
+        adminEmailPassword.email = "userTest053@gmail.com";
+        adminEmailPassword.password ="userTest053"
+    }else if(adminAccount.value == 1054){
+        adminEmailPassword.email = "userTest054@gmail.com";
+        adminEmailPassword.password ="userTest054"
+    }else if(adminAccount.value == 1055){
+        adminEmailPassword.email = "userTest055@gmail.com";
+        adminEmailPassword.password ="userTest055"
+    }
+})
+
+loginTimeOut.addEventListener("click", function(){
+    axios.get(`${_url}/sasasasas`)
+        .then(function(res){
+
+        }).catch(function(err){
+            reLogin();
+        })
 })
 
 logout.addEventListener("click", function () {
     const Toast = Swal.mixin({
         toast: true,
-        position: 'top-end',
+        position: 'center-center',
         showConfirmButton: false,
-        timer: 3000,
+        timer: 1200,
         timerProgressBar: true,
         didOpen: (toast) => {
             toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -30,7 +66,7 @@ logout.addEventListener("click", function () {
         title: '您已成功登出'
     })
     localStorage.clear();
-    render()
+    location = "index.html"
 })
 
 
@@ -41,18 +77,22 @@ function render() {
     localStorage.getItem("userName") === null ? welcome.innerHTML = "" : welcome.innerHTML = `登入人員 : ${localStorage.getItem("userName")} 歡迎您回來`;
 }
 
-function login(){
-    axios.post(`${url}/login`, {
+
+
+function login(obj){
+    axios.post(`${_url}/login`, {
         // 管理員帳密
-        "email": "userTest053@gmail.com",
-        "password": "userTest053"
+        "email": obj.email,
+        "password": obj.password
 
     }).then(function (res) {
         console.log(res);
         localStorage.setItem("userLoginToken", res.data.accessToken);
         if (res.data.user.role === "admin") {
+            console.log(res.data);
             localStorage.setItem("userRole", res.data.user.role);
             localStorage.setItem("userName", res.data.user.name);
+            localStorage.setItem("userLoginToken", res.data.accessToken);
         } else {
             location = "index.html"
         }

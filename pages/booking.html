@@ -1,17 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <%- include('./layout/header'); -%>
 
-    <h1>這是訂房頁面</h1>
+    <h1>這是線上訂房</h1>
 
-    <%- include('./layout/footer'); -%>   
-    
+    <ul>
+      
+      <li><a href="">經典房</a></li>
+      <li><a href="bookingDelicateRoom.html">精緻房</a></li>
+      <li><a href="">標準房</a></li>
+    </ul>
+
+
+    <%- include('./layout/footer'); -%>
+
     <script type="module" src="../main.js"></script>
-</body>
+    <script type="module" src="../js/navbar.js"></script>
+    <script type="module" src="../js/booking.js"></script>
+    <script type="module" src="../js/aside.js"></script>
+    <script type="module" src="../js/aside.js"></script>
+  </body>
 </html>

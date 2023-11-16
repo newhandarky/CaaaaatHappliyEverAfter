@@ -1,20 +1,24 @@
+@import "../../node_modules/bootstrap";
 @import "../../node_modules/bootstrap/scss/functions";
 @import "../../node_modules/sweetalert2/dist/sweetalert2.min.css";
-@import './utils/variables';
-@import './utils/generic';
-@import './utils/mixin';
+@import "./utils/variables";
+@import "./utils/generic";
+@import "./utils/mixin";
 
 @import "./layout/admin_header";
 @import "./layout/header";
+@import "./layout/aside";
 @import "./layout/footer";
 
-@import './pages/index.scss';
-@import './pages/aboutus.scss';
-@import './pages/article.scss';
-@import './pages/booking.scss';
-@import './pages/member.scss';
-@import './pages/rooms.scss';
+@import "./pages/index.scss";
+@import "./pages/aboutus.scss";
+@import "./pages/article.scss";
+@import "./pages/booking.scss";
+@import "./pages/member.scss";
+@import "./pages/rooms.scss";
+@import "./pages/signup";
 @import "./pages/admin_bookingList";
 @import "./pages/admin_updateBooking";
 
-@import "../../node_modules/bootstrap";
+// flatpickr 套件使用 CSS
+@import "../../node_modules/flatpickr/dist/flatpickr.min.css";
