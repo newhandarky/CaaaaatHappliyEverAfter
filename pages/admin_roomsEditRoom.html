@@ -103,18 +103,89 @@
             </div>
             <div class="d-flex justify-content-end align-items-center">
               <!-- 應該要重新render，因為還沒按新增所以還沒儲存到資料庫 -->
+              <!-- BS5 Modal 編輯成功彈跳視窗主觸發鈕 -->
               <a
                 class="text-white btn btn-success me-4"
-                href="./admin_rooms.html"
                 role="button"
+                data-bs-toggle="modal"
+                data-bs-target="#editRoom"
                 >完成編輯</a
               >
-              <a class="btn btn-danger" href="#" role="button">刪除房型</a>
+              <!-- BS5 Modal 刪除成功彈跳視窗主觸發鈕 -->
+              <a
+                class="btn btn-danger"
+                role="button"
+                data-bs-toggle="modal"
+                data-bs-target="#deleteRoom"
+                >刪除房型</a
+              >
             </div>
           </div>
         </div>
       </form>
     </main>
+    <!-- Modal 編輯成功彈跳視窗主體 -->
+    <div
+      class="modal fade"
+      id="editRoom"
+      tabindex="-1"
+      aria-labelledby="editRoomLabel"
+      aria-hidden="true"
+    >
+      <div class="roomModal modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header border-0 p-0"></div>
+          <div
+            class="modal-body d-flex flex-column justify-content-center align-items-center"
+          >
+            <span
+              class="checkCircle material-symbols-outlined text-success mb-1"
+            >
+              check_circle
+            </span>
+            <p class="fs-3 mb-4">房型編輯成功</p>
+            <a
+              href="./admin_rooms.html"
+              role="button"
+              class="editRoomBtn btn btn-success fs-3"
+            >
+              返回客房總覽
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal 刪除成功彈跳視窗主體 -->
+    <div
+      class="modal fade"
+      id="deleteRoom"
+      tabindex="-1"
+      aria-labelledby="deleteRoomLabel"
+      aria-hidden="true"
+    >
+      <div class="roomModal modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header border-0 p-0"></div>
+          <div
+            class="modal-body d-flex flex-column justify-content-center align-items-center"
+          >
+            <span
+              class="checkCircle material-symbols-outlined text-success mb-1"
+            >
+              check_circle
+            </span>
+            <p class="fs-3 mb-4">房型刪除成功</p>
+            <a
+              href="./admin_rooms.html"
+              role="button"
+              class="deleteRoomBtn btn btn-success fs-3"
+            >
+              返回客房總覽
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
     <script type="module" src="../js/admin_roomsEditRoom.js"></script>
     <script type="module" src="../main.js"></script>
   </body>
