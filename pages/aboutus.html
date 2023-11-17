@@ -7,10 +7,10 @@
   </head>
   <body>
     <%- include('./layout/header'); -%>
-    <!-- 區塊1 -->
-    <div class="sectionBlock sectionBlock-1">
+    <!-- 創辦人區塊 -->
+    <section class="sectionBlock sectionBlock-1">
       <!--創辦人的話-->
-      <div class="container p-0">
+      <div class="container">
         <div class="row">
           <div class="col-lg-6 col-12">
             <div
@@ -37,22 +37,22 @@
               class="contentArea d-flex justify-content-center align-items-center"
             >
               <div
-                class="photo d-flex flex-column justify-content-center align-items-center"
+                class="d-flex flex-column justify-content-center align-items-center"
               >
                 <div
-                  class="position-relative d-flex flex-column justify-content-center align-items-start"
+                  class="photo position-relative d-inline-flex flex-column justify-content-center align-items-center"
                 >
                   <img
-                    class="img-fluid personPhoto founderPhoto rotateLeft"
+                    class="img-fluid personPhoto rotateLeft"
                     src="../assets/images/founderPhoto.png"
                     alt="founderPhoto"
                   />
                   <img
-                    class="img-fluid position-absolute catLeg01"
+                    class="img-fluid position-absolute catLeg catLeg01"
                     src="../assets/images/catLeg01.svg"
-                    alt="catLeg01"
+                    alt="catLeg"
                   />
-                  <div class="d-inline-flex align-items-center my-3">
+                  <div class="w-100 d-flex align-items-center m-3 p-3">
                     <img
                       class="img-fluid dogPaw-sm mx-2"
                       src="../assets/icons/dogPaw.svg"
@@ -67,11 +67,12 @@
           </div>
         </div>
       </div>
-    </div>
-    <!-- 區塊2 -->
-    <div class="sectionBlock sectionBlock-1">
+    </section>
+
+    <!-- 旅館照片區塊 -->
+    <section class="sectionBlock sectionBlock-2">
       <!-- 旅館照片 -->
-      <div class="col-12 w-100 p-0">
+      <div class="w-100 p-0 mb-5">
         <img
           class="img-fluid roomPhoto d-none d-md-block"
           src="../assets/images/RoomPhoto01.png"
@@ -83,43 +84,47 @@
           alt="RoomPhoto02"
         />
       </div>
-    </div>
+    </section>
 
-    <!-- 區塊3 -->
-    <div class="sectionBlock sectionBlock-1">
+    <!-- 其他人的話區塊 -->
+    <section class="sectionBlock sectionBlock-3">
       <!--經理的話-->
       <div class="container">
         <div class="row">
-          <div class="col-lg-6 col-12">
+          <div class="col-lg-6 col-12 order-lg-1 order-2">
             <div
               class="contentArea position-relative d-flex justify-content-center align-items-center"
             >
               <div
-                class="photo d-flex flex-column justify-content-center align-items-start"
+                class="d-flex flex-column justify-content-center align-items-center"
               >
-                <img
-                  class="img-fluid personPhoto rotateLeft"
-                  src="../assets/images/managerPhoto.png"
-                  alt="dogPaw"
-                />
-                <div class="d-inline-flex align-items-center my-3">
+                <div
+                  class="photo position-relative d-inline-flex flex-column justify-content-center align-items-center"
+                >
                   <img
-                    class="img-fluid dogPaw-sm mx-2"
-                    src="../assets/icons/dogPaw.svg"
-                    alt="dogPaw"
+                    class="img-fluid position-absolute catTail"
+                    src="../assets/images/catTail.svg"
+                    alt="catTail"
                   />
+                  <img
+                    class="img-fluid personPhoto rotateLeft"
+                    src="../assets/images/managerPhoto.png"
+                    alt="managerPhoto"
+                  />
+                  <div class="w-100 d-flex align-items-center m-3 p-3">
+                    <img
+                      class="img-fluid dogPaw-sm mx-2"
+                      src="../assets/icons/dogPaw.svg"
+                      alt="dogPaw"
+                    />
 
-                  <h2>經理：黃家銘</h2>
+                    <h2>經理：黃家銘</h2>
+                  </div>
                 </div>
-                <img
-                  class="img-fluid position-absolute catTail"
-                  src="../assets/images/catTail.svg"
-                  alt="catTail"
-                />
               </div>
             </div>
           </div>
-          <div class="col-lg-6 col-12">
+          <div class="col-lg-6 col-12 order-lg-2 order-1">
             <div
               class="contentArea d-flex flex-column justify-content-center align-items-center"
             >
@@ -130,7 +135,7 @@
                     src="../assets/icons/dogPaw.svg"
                     alt="dogPaw"
                   />
-                  <h1>愛與專業的完美結合</h1>
+                  <h1>愛與專業的結合</h1>
                 </div>
 
                 <p class="mt-3">
@@ -156,7 +161,7 @@
                     src="../assets/icons/dogPaw.svg"
                     alt="dogPaw"
                   />
-                  <h1>打造愛心寵物天堂</h1>
+                  <h1>打造寵物天堂</h1>
                 </div>
 
                 <p class="mt-3">
@@ -170,38 +175,103 @@
               class="contentArea position-relative d-flex justify-content-center align-items-center"
             >
               <div
-                class="photo d-flex flex-column justify-content-center align-items-start"
+                class="d-flex flex-column justify-content-center align-items-center"
               >
-                <img
-                  class="img-fluid personPhoto rotateRight"
-                  src="../assets/images/deputyManagerBossPhoto.png"
-                  alt="dogPaw"
-                />
-                <div class="d-inline-flex align-items-center my-3">
+                <div
+                  class="photo d-inline-flex flex-column justify-content-center align-items-center"
+                >
+                  <div class="catEars position-absolute">
+                    <img
+                      class="img-fluid position-relative catEar01"
+                      src="../assets/images/catEar.svg"
+                      alt="catEar"
+                    />
+                    <img
+                      class="img-fluid position-relative catEar02"
+                      src="../assets/images/catEar.svg"
+                      alt="catEar"
+                    />
+                  </div>
                   <img
-                    class="img-fluid dogPaw-sm mx-2"
-                    src="../assets/icons/dogPaw.svg"
-                    alt="dogPaw"
+                    class="img-fluid personPhoto rotateRight"
+                    src="../assets/images/deputyManagerBossPhoto.png"
+                    alt="deputyManagerBossPhoto"
                   />
+                  <div class="w-100 d-flex align-items-center m-3">
+                    <img
+                      class="img-fluid dogPaw-sm mx-2"
+                      src="../assets/icons/dogPaw.svg"
+                      alt="dogPaw"
+                    />
 
-                  <h2>副理：童鈺婷</h2>
+                    <h2>副理：童鈺婷</h2>
+                  </div>
                 </div>
-                <img
-                  class="img-fluid position-absolute catEar catEar01"
-                  src="../assets/images/catEar.svg"
-                  alt="catEar"
-                />
-                <img
-                  class="img-fluid position-absolute catEar catEar02"
-                  src="../assets/images/catEar.svg"
-                  alt="catEar"
-                />
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+
+      <!--店長的話-->
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 col-12 order-lg-1 order-2">
+            <div
+              class="contentArea position-relative d-flex justify-content-center align-items-center"
+            >
+              <div
+                class="d-flex flex-column justify-content-center align-items-center"
+              >
+                <div
+                  class="photo position-relative d-inline-flex flex-column justify-content-center align-items-center"
+                >
+                  <img
+                    class="img-fluid position-absolute catLeg catLeg02"
+                    src="../assets/images/catLeg02.svg"
+                    alt="catLeg"
+                  />
+                  <img
+                    class="img-fluid personPhoto rotateLeft"
+                    src="../assets/images/storeManagerPhoto.png"
+                    alt="storeManagerPhoto"
+                  />
+                  <div class="w-100 d-flex align-items-center m-3 p-3">
+                    <img
+                      class="img-fluid dogPaw-sm mx-2"
+                      src="../assets/icons/dogPaw.svg"
+                      alt="dogPaw"
+                    />
+
+                    <h2>店長：彭依瑜</h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-12 order-lg-2 order-1">
+            <div
+              class="contentArea d-flex flex-column justify-content-center align-items-center"
+            >
+              <div class="text type02">
+                <div class="d-inline-flex align-items-center">
+                  <img
+                    class="img-fluid dogPaw mx-2"
+                    src="../assets/icons/dogPaw.svg"
+                    alt="dogPaw"
+                  />
+                  <h1>締造溫馨寵愛</h1>
+                </div>
+
+                <p class="mt-3">
+                  在『貓の幸福』，我深信每一隻毛小客人都應該享受到充滿愛與呵護的空間。我們致力提供專業照顧和溫馨的環境，讓貓咪們能快樂遊玩、安心入眠。這是一個寵物天堂，充滿愛和陪伴，期望成為每隻貓咪的第二個家，一同編織屬於牠們的幸福時光。在這片溫馨的空間，我們以心為本，擁抱並創造一個無微不至的愛的環境，讓您的貓咪感受到家的溫暖。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <%- include('./layout/footer'); -%>
 
