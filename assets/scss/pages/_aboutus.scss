@@ -2,6 +2,11 @@ body {
   background-color: $background;
 }
 
+.sectionBlock {
+  width: 100%;
+  overflow: hidden;
+}
+
 .dogPaw {
   width: 44px;
   height: 44px;
@@ -14,29 +19,48 @@ body {
 
 .contentArea {
   min-height: 800px;
-  .text-type01 {
-    max-width: 416px;
+  .text {
+    p {
+      line-height: 2rem;
+    }
+    &.type01 {
+      max-width: 416px;
+    }
+    &.type02 {
+      max-width: 520px;
+    }
   }
-  .text-type02 {
-    max-width: 510px;
-  }
+
   .photo {
+    width: 100%;
     .personPhoto {
       z-index: 2;
       &.rotateLeft {
         transform: rotate(-5deg);
+      }
+      &.rotateRight {
+        transform: rotate(5deg);
       }
     }
   }
 
   .catLeg01 {
     z-index: 3;
-    height: 460px;
-    transform: translate(300px, 300px) rotate(-5deg);
+    height: 450px;
+
+    transform: translate(350px, 300px) rotate(-5deg);
   }
   .catTail {
     height: 300px;
     transform: translate(-110px, 0px) rotate(-5deg);
+  }
+  .catEar {
+    &.catEar01 {
+      transform: translate(80px, -320px) rotate(5deg);
+    }
+    &.catEar02 {
+      transform: translate(300px, -300px) rotate(5deg);
+    }
   }
 }
 
@@ -55,7 +79,7 @@ body {
 
     .catLeg01 {
       height: 420px;
-      transform: translate(310px, 300px) rotate(-5deg);
+      transform: translate(-150px, 300px) rotate(-5deg);
     }
 
     .catTail {
@@ -71,6 +95,10 @@ body {
       h2 {
         font-size: 16px;
       }
+      .founderPhoto {
+        max-height: 350px;
+        max-width: 350px;
+      }
     }
     .catLeg01 {
       right: 310px;
@@ -80,6 +108,22 @@ body {
     .catTail {
       height: 80px;
       transform: translate(-150px, 150px) rotate(-5deg);
+    }
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .contentArea {
+    .photo {
+      .founderPhoto {
+        max-height: 280px;
+        max-width: 280px;
+      }
+    }
+    .catLeg01 {
+      right: 310px;
+      height: 300px;
+      transform: translate(340px, 200px) rotate(-5deg);
     }
   }
 }
