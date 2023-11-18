@@ -141,14 +141,13 @@ console.log(bookingHistorys)
 toComfirmation.addEventListener("click", function(e){
     e.preventDefault();
     postPatch();
-    window.alert("貓的幸福歡迎您的到來！")
-    window.location.href = "./index.html"
+    // window.alert("貓的幸福歡迎您的到來！")
+    // window.location.href = "./index.html"
 })
 
 
 function postPatch(){
     postBooking();
-    postbookingHistorys()
     patchData();
 
 
@@ -158,6 +157,7 @@ function postPatch(){
 function postBooking(){
     axios.post(`${_url}/bookings`, booking).then(response =>{
         console.log(response.data);
+        postbookingHistorys()
     })
     .catch(error =>{
         console.error(error);
@@ -212,6 +212,7 @@ function patchData(){
 function postbookingHistorys(){
     //取得送出的訂單的bookingId
     axios.get(`${_url}/bookings?userId=${userTokenAndData.user.id}&bookingDate=${bookingData.bookingDate}`).then(response=>{
+        console.log(response.data);
         console.log(`bookingID:${response.data[0].id}`)
         let bookingId = response.data[0].id;
         bookingHistorys["bookingId"] = bookingId; //把booking的ID放進去bookingHistorys{}裡面
