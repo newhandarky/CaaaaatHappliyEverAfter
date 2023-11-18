@@ -4,17 +4,14 @@
   padding-left: 0;
 }
 
+.sectionBlock {
+  width: 100%;
+  overflow: hidden;
+}
+
 .image-container {
   //   background: red;
   overflow: hidden;
-  .imgBanner {
-    height: 1008px;
-  }
-
-  .object-fit-cover {
-    object-fit: cover;
-    object-position: left top;
-  }
 
   .image-text {
     display: inline-block;
@@ -164,18 +161,14 @@
 @media screen and (max-width: 992px) {
   .image-container {
     height: 1150px;
-    .imgBanner {
-      height: 708px;
-    }
+
     img {
       padding: 0;
     }
     .allInputBar {
       margin: 0 1rem;
     }
-    .object-fit-cover {
-      object-position: -150px top;
-    }
+
     .image-text {
       margin: 63px 0 0 0;
       h1 {
