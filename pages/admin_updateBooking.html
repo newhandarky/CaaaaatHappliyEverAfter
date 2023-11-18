@@ -13,7 +13,7 @@
     <%- include('./layout/admin_header'); -%>
 
         <main class="container pb-15">
-            <div class="row">
+            <div class="row adminBreadcrumb">
                 <div class="p-8">
                     <h2>
                         <a href="#">後台首頁</a> > <a href="./admin_booking.html">訂單管理</a> > <a
@@ -26,7 +26,7 @@
                 <div class="row">
                     <div class="ps-8 pe-8">
                         <div
-                            class="bookingContent border border-2 rounded-2 p-8 d-flex flex-column justify-content-between">
+                            class="bookingContent border border-2 rounded-2 adminBooking_content d-flex flex-column justify-content-between">
                             <div class="d-flex justify-content-between ">
                                 <h2 class="">檢視訂單</h2>
                                 <div class="d-flex align-items-center">
@@ -83,26 +83,25 @@
                                         </select>
                                     </div>
 
-                                    <div class="mb-3 col-6">
+                                    <div class="mb-3 col-3">
                                         <label for="bookingDays" class="form-label">入住天數</label>
                                         <input type="number" class="form-control bookingDays" id="bookingDays">
                                     </div>
+                                    <div class="mb-3 col-3">
+                                        <label for="checkInCats" class="form-label">入住貓咪數量</label>
+                                        <input type="number" class="form-control checkInCats" id="checkInCats" disabled readonly>
+                                    </div>
+                                    <div class="mb-3 col-3">
+                                        <label for="plusCatPay" class="form-label">加貓費用</label>
+                                        <input type="number" class="form-control plusCatPay" id="plusCatPay" disabled readonly>
+                                    </div>
 
-                                    <div class="mb-3 col-6">
+                                    <div class="mb-3 col-3">
                                         <label for="totalPrice" class="form-label">訂單總額</label>
                                         <input type="number" class="form-control totalPrice" id="totalPrice" disabled readonly>
                                     </div>
                                     <h6 class="mb-1">入住貓咪</h6>
                                     <div class="row getCats">
-
-
-                                        <!-- <div class="col-4">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="memberCat">
-                                                <label class="form-check-label memberCat" for="memberCat"></label>
-                                            </div>
-                                        </div> -->
-
 
                                     </div>
                                 </div>

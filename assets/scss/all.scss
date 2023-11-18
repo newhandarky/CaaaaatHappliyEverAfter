@@ -18,6 +18,7 @@
 @import "./layout/header";
 @import "./layout/aside";
 @import "./layout/footer";
+@import "./layout/admin_searchBar";
 
 @import "./pages/index.scss";
 @import "./pages/aboutus.scss";
@@ -26,5 +27,6 @@
 @import "./pages/member.scss";
 @import "./pages/rooms.scss";
 @import "./pages/signup";
+@import "./pages/admin_booking";
 @import "./pages/admin_bookingList";
 @import "./pages/admin_updateBooking";

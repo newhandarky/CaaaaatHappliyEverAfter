@@ -152,7 +152,7 @@ function renderTable(arr) {
     let str = "";
     arr.forEach(function (item) {       // 
         str += `<tr>
-                <th class="text-nowrap text-center" scope="row"><a class="bookingNum" data-bookingnum="${item.id}" href="../pages/admin_updateBooking.html">${item.id}</a></th>       
+                <th class="text-nowrap border-0 text-center d-flex align-items-center justify-content-center" scope="row"><a class="bookingNum adminLink" data-bookingnum="${item.id}" href="../pages/admin_updateBooking.html">${item.id}</a></th>       
                 <td class="text-nowrap text-center">${item.name}</td>
                 <td class="text-nowrap text-center">${item.checkIn}</td>
                 <td class="text-nowrap text-center">${item.quantity}</td>
@@ -178,14 +178,14 @@ function pagination(pages) {
     }
     pagesCount = Math.ceil((pages) / 8);    // 取得下方分頁數量
     let previous = ` <li class="page-item previous">
-                        <a class="page-link previous p-4">Previous</a>
+                        <a class="page-link previous">Previous</a>
                     </li> `;
     let next = `<li class="page-item next">
-                        <a class="page-link next p-4">Next</a>
+                        <a class="page-link next">Next</a>
                     </li>`
     let pagesStr = "";
     for (let i = 1; i <= pagesCount; i++) {
-        pagesStr += `<li class="page-item pageNum" data-page="${i}"><a class="page-link p-4">${i}</a></li>`
+        pagesStr += `<li class="page-item pageNum" data-page="${i}"><a class="page-link">${i}</a></li>`
     }
     getPages.innerHTML = previous + pagesStr + next;
     showPagination();

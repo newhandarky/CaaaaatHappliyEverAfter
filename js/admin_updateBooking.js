@@ -18,6 +18,8 @@ const checkOut = document.querySelector(".checkOut");
 const memberPhone = document.querySelector(".memberPhone");
 const bookingRoomType = document.querySelector(".bookingRoomType");
 const bookingDays = document.querySelector(".bookingDays");
+const checkInCats = document.querySelector(".checkInCats");
+const plusCatPay = document.querySelector(".plusCatPay");
 const totalPrice = document.querySelector(".totalPrice");
 const getCats = document.querySelector(".getCats");
 const remark = document.querySelector(".remark");
@@ -143,7 +145,7 @@ async function getHistory(bookingHistoryArr) {
 // 渲染訂單資料
 function renderData(bookingObj, roomObj, userObj) {
     let roomType = "";
-    // console.log(bookingObj);
+    console.log(bookingObj);
     // console.log(roomObj);
     // console.log(userObj);
 
@@ -161,8 +163,11 @@ function renderData(bookingObj, roomObj, userObj) {
     memberPhone.value = userObj.phone;
     bookingRoomType.value = roomType;
     bookingDays.value = bookingObj.quantity;
-    totalPrice.value = bookingObj.price;
     remark.value = bookingObj.remark;
+    checkInCats.value = bookingObj.cats.length;
+    plusCatPay.value = (bookingObj.cats.length - 1) * 300;
+    totalPrice.value = bookingObj.price + (bookingObj.cats.length - 1) * 300 * bookingObj.quantity;
+
 
     // 取得貓咪資料
     let getCatsArr = [];
@@ -200,6 +205,8 @@ function renderData(bookingObj, roomObj, userObj) {
         if (bookingObj.state === "已取消" || bookingObj.state === "已退房") {
             btnUpdate.setAttribute("disabled", true);
         }
+
+        
     }).catch(function (err) {
         console.log(err);
         reLogin(err.response.data);
@@ -306,16 +313,15 @@ function countSelectedCheckboxes(formCheckInputs) {
 function checkCatChecked(){
     const formCheckInputs = document.querySelectorAll(".form-check-input");
     // 入住貓咪數量不能小於1
-    formCheckInputs.forEach(function (checkbox) {
-        let selectedCount = countSelectedCheckboxes(formCheckInputs);
-        if(selectedCount <= 0){
-            Swal.fire({
-                icon: "error",
-                title: "入住貓咪數量不能小於 1"
-            });
-        }
-    });
+    let selectedCount = countSelectedCheckboxes(formCheckInputs);
+    if(selectedCount <= 0){
+        Swal.fire({
+            icon: "error",
+            title: "入住貓咪數量不能小於 1"
+        });
+    }
     countSelectedCheckboxes(formCheckInputs);
+    return selectedCount;
 }
 
 // 當訂單取消或變更時取得畫面當前的訂單履歷
