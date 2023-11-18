@@ -1,7 +1,41 @@
-.aside {
-  background-color: $gray-500;
+aside {
   a {
-    color: $white;
-    font-size: 24px;
+    position: relative;
+    width: 100%;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease,
+      filter 0.3s ease;
+
+    div {
+      width: 100%;
+
+      p {
+        color: $primary;
+      }
+    }
+    &:hover {
+      background-color: $primary;
+      img {
+        filter: brightness(100);
+      }
+      p {
+        color: $white;
+      }
+    }
+  }
+}
+
+//給 JS 用 判斷當前頁面加入 class
+
+.onThisPage {
+  div {
+    background-color: $primary;
+    border-radius: 0.5rem;
+    img {
+      filter: brightness(100);
+    }
+    p {
+      color: $white;
+    }
   }
 }

@@ -9,20 +9,28 @@
     <%- include('./layout/header'); -%>
     <div class="container">
       <div class="row loginContent">
-        <div class="col-12"><h1>會員登入</h1></div>
         <div class="col-12">
-          <div class="signupAll position-relative">
-            <form id="loginForm" method="GET">
+          <div class="d-flex justify-content-center align-items-end h-100 p-5">
+            <h1>會員登入</h1>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="loginAll position-relative">
+            <form
+              id="loginForm"
+              class="loginForm position-relative"
+              method="GET"
+            >
               <input
                 id="email"
-                class="form-control"
+                class="input form-control my-3"
                 type="email"
                 placeholder="請輸入Email"
               />
 
               <input
                 id="password"
-                class="form-control"
+                class="input form-control my-3"
                 type="password"
                 placeholder="請輸入密碼"
               />
