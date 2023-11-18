@@ -12,11 +12,11 @@
 <body>
     <%- include('./layout/admin_header'); -%>
 
-    <main class="container">
+    <main class="container mb-15">
         <div class="row">
-            <div class="adminBreadcrumb">
+            <div class="adminBreadcrumb py-8">
                 <h2>
-                    <a href="#">後台首頁</a> > <a href="./admin_booking.html">訂單管理</a> > 訂單列表
+                    <a href="./admin_index.html">後台首頁</a> > <a href="./admin_booking.html">訂單管理</a> > 訂單列表
                 </h2>
             </div>
         </div>
@@ -26,18 +26,18 @@
         <div class="row">
             <div class="adminBookingListContent">
                 <div class="bookingContent border border-2 rounded-2 d-flex flex-column justify-content-between">
-                    <div class="overflow-auto adminBookingDatas">
-                        <div class="d-flex justify-content-center bookingMonthChange">
+                    <div class="overflow-auto p-8 adminBookingDatas">
+                        <div class="d-flex justify-content-center mb-8 bookingMonthChange">
                             <div class="d-flex align-items-center">
-                                <button class="before btn btn-info">
+                                <button class="before btn btn-primary d-flex justify-content-center align-items-center">
                                     <span class="material-symbols-outlined">
                                         chevron_left
                                     </span>
                                 </button>
                             </div>
-                            <h2 class="date bookingMonth"></h2>
+                            <h2 class="date mx-8 bookingMonth"></h2>
                             <div class="d-flex align-items-center">
-                                <button class="after btn btn-info">
+                                <button class="after btn btn-primary d-flex justify-content-center align-items-center">
                                     <span class="material-symbols-outlined">
                                         chevron_right
                                     </span>
@@ -63,7 +63,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <nav aria-label="Page navigation example" class="bookingNavigation">
+                    <nav aria-label="Page navigation example" class="bookingNavigation mb-12">
                         <ul class="getPages pagination justify-content-center d-flex">
 
                         </ul>

@@ -38,69 +38,17 @@ let bookingStatesObject = {
     function
 \*------------------------------------*/
 // 取得當月所有房況資料
-axios.get(`${_url}/660/roomStates`,{
+const roomStatesPromise = axios.get(`${_url}/660/roomStates`,{
     headers: {
         "authorization":`Bearer ${localStorage.getItem("userLoginToken")}`
     }
-})
-.then(function(res){
-    const roomStatesArr = [];
-    let monthBookingRate = {
-        "classicRoomCount":0,
-        "delicateRoomCount":0,
-        "luxuryRoomCount":0,
-        "roomCounts": 0
-    }
-
-    res.data.forEach(function(item){
-        if(item.date.startsWith(`${localStorage.getItem("thisYear")}-${localStorage.getItem("thisMonth")}`)){
-            roomStatesArr.push(item);
-            monthBookingRate.classicRoomCount += item.availableCount.classic;
-            monthBookingRate.delicateRoomCount += item.availableCount.delicate;
-            monthBookingRate.luxuryRoomCount += item.availableCount.luxury;
-        }          
-    })
-    monthBookingRate.roomCounts = roomStatesArr.length * 9;
-    
-    bookingRate.innerHTML = Math.round(((monthBookingRate.roomCounts) - 
-                (monthBookingRate.classicRoomCount + monthBookingRate.delicateRoomCount + monthBookingRate.luxuryRoomCount)) * 100
-                / monthBookingRate.roomCounts);
-}).catch(function(err){
-    console.log(err);
-    reLogin(err.response.data);
 })
 
 // 取得所有訂單資料
-axios.get(`${_url}/660/bookings`,{
+const bookingsPromise = axios.get(`${_url}/660/bookings`,{
     headers: {
         "authorization":`Bearer ${localStorage.getItem("userLoginToken")}`
     }
-})
-.then(function(res){
-    const bookingArr = [];
-    res.data.forEach(function(item){
-            // 抓當月份訂單總數量
-        if(item.checkIn.startsWith(`${localStorage.getItem("thisYear")}-${localStorage.getItem("thisMonth")}`)){
-            bookingArr.push(item);
-        }            
-        if(item.bookingDate === moment().format("YYYY-MM-DD")){     // 抓當天新增訂單總數量
-            bookingStatesObject.newBooking++;
-        }            
-        if(item.checkIn === moment().format("YYYY-MM-DD")){         // 抓當天入住訂單總數量
-            bookingStatesObject.todayCheckIn++;
-        }            
-        if(item.checkOut === moment().format("YYYY-MM-DD")){        // 抓當天退房訂單總數量
-            bookingStatesObject.todayCheckOut++;
-        }            
-        if(item.state === "已退房"){                                // 抓當月已完成之訂單總額
-            bookingStatesObject.revenue += parseInt(item.price);
-        }            
-    })
-    bookingStatesObject.bookingCount = bookingArr.length;
-    renderBookingsStateData();
-}).catch(function(err){
-    console.log(err);
-    reLogin(err.response.data);
 })
 
 function renderBookingsStateData(){
@@ -110,6 +58,65 @@ function renderBookingsStateData(){
     todayCheckIn.innerHTML = bookingStatesObject.todayCheckIn;
     todayCheckOut.innerHTML = bookingStatesObject.todayCheckOut;
 }
+
+Promise.all([roomStatesPromise, bookingsPromise])
+    .then(function (results) {
+        const roomStatesRes = results[0].data;
+        const bookingsRes = results[1].data;
+        
+        // 在這裡處理 roomStatesRes 和 bookingsRes 的資料
+        const roomStatesArr = [];
+        let monthBookingRate = {
+            "classicRoomCount":0,
+            "delicateRoomCount":0,
+            "luxuryRoomCount":0,
+            "roomCounts": 0
+        }
+
+        // 計算當月住房率並顯示在booking頁面
+        roomStatesRes.forEach(function(item){
+            if(item.date.startsWith(`${localStorage.getItem("thisYear")}-${localStorage.getItem("thisMonth")}`)){
+                roomStatesArr.push(item);
+                monthBookingRate.classicRoomCount += item.availableCount.classic;
+                monthBookingRate.delicateRoomCount += item.availableCount.delicate;
+                monthBookingRate.luxuryRoomCount += item.availableCount.luxury;
+            }          
+        })
+        monthBookingRate.roomCounts = roomStatesArr.length * 9;
+        
+        bookingRate.innerHTML = Math.round(((monthBookingRate.roomCounts) - 
+            (monthBookingRate.classicRoomCount + monthBookingRate.delicateRoomCount + monthBookingRate.luxuryRoomCount))
+            * 100 / monthBookingRate.roomCounts);
+
+
+        const bookingArr = [];
+        // 抓當月份訂單總數量
+        bookingsRes.forEach(function(item){
+            if(item.checkIn.startsWith(`${localStorage.getItem("thisYear")}-${localStorage.getItem("thisMonth")}`)){
+                bookingArr.push(item);
+            }            
+            if(item.bookingDate === moment().format("YYYY-MM-DD")){     // 抓當天新增訂單總數量
+                bookingStatesObject.newBooking++;
+            }            
+            if(item.checkIn === moment().format("YYYY-MM-DD")){         // 抓當天入住訂單總數量
+                bookingStatesObject.todayCheckIn++;
+            }            
+            if(item.checkOut === moment().format("YYYY-MM-DD")){        // 抓當天退房訂單總數量
+                bookingStatesObject.todayCheckOut++;
+            }            
+            if(item.state === "已退房"){                                // 抓當月已完成之訂單總額
+                bookingStatesObject.revenue += parseInt(item.price);
+            }            
+        })
+        // 確保資料處理完成後再執行相關的後續步驟
+        // 其他相關操作
+        bookingStatesObject.bookingCount = bookingArr.length;
+        renderBookingsStateData();
+    })
+    .catch(function (err) {
+        console.log(err);
+        // reLogin(err.response);
+    });
 
 /*------------------------------------*\
     事件
