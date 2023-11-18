@@ -7,25 +7,44 @@
   </head>
   <body>
     <%- include('./layout/header'); -%>
-    <h1>會員登入</h1>
-    <form id="loginForm" method="GET">
-      <input
-        id="email"
-        class="form-control"
-        type="email"
-        placeholder="請輸入Email"
-      />
+    <div class="container">
+      <div class="row loginContent">
+        <div class="col-12"><h1>會員登入</h1></div>
+        <div class="col-12">
+          <div class="signupAll position-relative">
+            <form id="loginForm" method="GET">
+              <input
+                id="email"
+                class="form-control"
+                type="email"
+                placeholder="請輸入Email"
+              />
 
-      <input
-        id="password"
-        class="form-control"
-        type="password"
-        placeholder="請輸入密碼"
-      />
+              <input
+                id="password"
+                class="form-control"
+                type="password"
+                placeholder="請輸入密碼"
+              />
+              <div class="loginBtns d-flex justify-content-around">
+                <div class="primaryFill-btn-primary">
+                  <button id="loginBtn" type="submit" class="loginBtn h4">
+                    會員登入
+                  </button>
+                </div>
 
-      <button id="loginBtn" type="submit" class="loginBtn">會員登入</button>
-      <a id="signupBtn" class="signupBtn" href="./signup.html">立即註冊</a>
-    </form>
+                <div class="primaryStroke-btn-primary">
+                  <a id="signupBtn" class="loginBtn h4" href="./signup.html"
+                    >立即註冊</a
+                  >
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <%- include('./layout/footer'); -%>
     <script type="module" src="../main.js"></script>
     <script type="module" src="../js/navbar.js"></script>

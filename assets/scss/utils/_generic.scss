@@ -74,7 +74,75 @@ body {
 /*------------------------------------*\
     btn icon
 \*------------------------------------*/
+/* 自訂按鈕樣式 */
+.primaryStrokeToFill-btn-primary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 1px $primary;
+  border-radius: 2rem;
+  padding: 0.3rem 1.2rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  button,
+  a {
+    text-align: center;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    color: $primary !important;
+  }
+  &:hover {
+    background-color: $primary;
+    button,
+    a {
+      color: $white !important;
+    }
+  }
+}
 
+.primaryFill-btn-primary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 1px $primary;
+  border-radius: 2rem;
+  padding: 0.3rem 1.2rem;
+  background-color: $primary;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  button,
+  a {
+    text-align: center;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    color: $white !important;
+  }
+  &:hover {
+    border-color: #e46d23;
+    background-color: #e46d23;
+  }
+}
+
+.primaryStroke-btn-primary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 1px $primary;
+  border-radius: 2rem;
+  padding: 0.3rem 1.2rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  button,
+  a {
+    text-align: center;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    color: $primary !important;
+  }
+  &:hover {
+    background-color: $primary02;
+  }
+}
 /*------------------------------------*\
     input
 \*------------------------------------*/
