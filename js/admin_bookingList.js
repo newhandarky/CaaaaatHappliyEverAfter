@@ -107,7 +107,7 @@ function getAllBookingData() {
             pagination(bookingCount);  // 取得數量顯示下方分頁
         }).catch(function (err) {
             console.log(err);            
-            reLogin(err.response.data);
+            // reLogin(err.response.data);
         })
 }
 
@@ -142,7 +142,7 @@ function getBookingData(num) {
         getOneMonthBooking = [];
     }).catch(function (err) {
         console.log(err);
-        reLogin(err.response.data);    
+        // reLogin(err.response.data);    
     })
 }
 

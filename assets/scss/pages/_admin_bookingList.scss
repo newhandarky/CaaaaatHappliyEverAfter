@@ -6,47 +6,47 @@
     cursor: not-allowed;
 }
 
-.adminBookingListContent{
-    margin-bottom: 40px;
-}
+// .adminBookingListContent{
+//     margin-bottom: 40px;
+// }
 
-.adminBookingDatas{
-    padding: 32px;
-}
+// .adminBookingDatas{
+//     padding: 32px;
+// }
 
-.bookingMonth{
-    margin-left: 24px;
-    margin-right: 24px;
-    margin-bottom: 0;
-}
+// .bookingMonth{
+//     margin-left: 24px;
+//     margin-right: 24px;
+//     margin-bottom: 0;
+// }
 
-.bookingMonthChange{
-    margin-bottom: 24px;
-}
+// .bookingMonthChange{
+//     margin-bottom: 24px;
+// }
 
-.bookingNum{
-    color: $primary;
-    text-decoration: none;
-    &:hover{
-        color: $danger;
-    }
-    &::after {
-        content: "";
-        display: block;
-        width: 0%;
-        height: 2px;
-        background-color: $danger;
-        margin: 0 auto;
-        transition: width 0.8s;
-    }
-    &:hover::after {
-        width: 100%;
-    }
-}
+// .bookingNum{
+//     color: $primary;
+//     text-decoration: none;
+//     &:hover{
+//         color: $danger;
+//     }
+//     &::after {
+//         content: "";
+//         display: block;
+//         width: 0%;
+//         height: 2px;
+//         background-color: $danger;
+//         margin: 0 auto;
+//         transition: width 0.8s;
+//     }
+//     &:hover::after {
+//         width: 100%;
+//     }
+// }
 
-.bookingNavigation{
-    margin-bottom: 48px;
-    a{
-        padding: 16px 24px;
-    }
-}
+// .bookingNavigation{
+//     margin-bottom: 48px;
+//     a{
+//         padding: 16px 24px;
+//     }
+// }
