@@ -5,7 +5,18 @@
   a {
     color: $text;
     &:hover {
-      color: $primary01;
+      color: $primary;
+    }
+  }
+  .memberBtn {
+    border: solid 2px $primary;
+    border-radius: 1rem;
+    padding: 0.2rem 0.7rem;
+    a {
+      color: $primary;
+    }
+    &:hover {
+      background-color: $white;
     }
   }
 

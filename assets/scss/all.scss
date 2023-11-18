@@ -1,14 +1,24 @@
-@import "../../node_modules/bootstrap";
 @import "../../node_modules/bootstrap/scss/functions";
-@import "../../node_modules/sweetalert2/dist/sweetalert2.min.css";
 @import "./utils/variables";
+@import "../../node_modules/bootstrap";
+
 @import "./utils/generic";
 @import "./utils/mixin";
+
+// sweetalert2 套件使用 CSS
+@import "../../node_modules/sweetalert2/dist/sweetalert2.min.css";
+
+// flatpickr 套件使用 CSS
+@import "../../node_modules/flatpickr/dist/flatpickr.min.css";
+
+//boostrap 5 官方Icon CSS
+@import "../../node_modules/bootstrap-icons/font/bootstrap-icons.css";
 
 @import "./layout/admin_header";
 @import "./layout/header";
 @import "./layout/aside";
 @import "./layout/footer";
+@import "./layout/admin_searchBar";
 
 @import "./pages/index.scss";
 @import "./pages/aboutus.scss";
@@ -17,8 +27,6 @@
 @import "./pages/member.scss";
 @import "./pages/rooms.scss";
 @import "./pages/signup";
+@import "./pages/admin_booking";
 @import "./pages/admin_bookingList";
 @import "./pages/admin_updateBooking";
-
-// flatpickr 套件使用 CSS
-@import "../../node_modules/flatpickr/dist/flatpickr.min.css";

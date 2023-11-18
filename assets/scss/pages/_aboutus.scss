@@ -1,0 +1,179 @@
+body {
+  background-color: $background;
+}
+
+//自定義區塊 超出部分隱藏
+.sectionBlock {
+  width: 100%;
+  overflow: hidden;
+}
+
+.dogPaw {
+  width: 44px;
+  height: 44px;
+}
+
+.dogPaw-sm {
+  width: 29px;
+  height: 29px;
+}
+
+.contentArea {
+  min-height: 700px;
+  .text {
+    p {
+      line-height: 2rem;
+    }
+    &.type01 {
+      max-width: 416px;
+    }
+    &.type02 {
+      max-width: 400px;
+    }
+  }
+
+  .photo {
+    width: 100%;
+    padding: 1rem;
+    .personPhoto {
+      box-shadow: 0 5px 0 $gray-400;
+      z-index: 2;
+      &.rotateLeft {
+        transform: rotate(-5deg);
+      }
+      &.rotateRight {
+        transform: rotate(5deg);
+      }
+    }
+  }
+
+  .catLeg {
+    z-index: 3;
+    height: 450px;
+    transform: translate(220px, 300px) rotate(-5deg);
+  }
+  .catTail {
+    height: 300px;
+    transform: translate(-230px, 0px) rotate(-5deg);
+  }
+  .catEars {
+    transform: translate(-20px, -315px) rotate(5deg);
+    .catEar01 {
+    }
+    .catEar02 {
+      transform: translateX(100px);
+    }
+  }
+}
+
+.roomPhoto {
+  z-index: 10;
+}
+
+@media screen and (max-width: 1200px) {
+  .contentArea {
+    .catEars {
+      transform: translate(-10px, -280px) scale(0.9) rotate(5deg);
+      .catEar01 {
+      }
+      .catEar02 {
+        transform: translateX(100px);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .contentArea {
+    min-height: 375px;
+    .photo {
+      h2 {
+        font-size: 20px;
+      }
+    }
+    .text {
+      h1 {
+        font-size: 32px;
+      }
+    }
+
+    .catLeg {
+      height: 420px;
+      transform: translate(180px, 300px) rotate(-5deg);
+    }
+
+    .catTail {
+      height: 300px;
+      transform: translate(-230px, 50px) rotate(-5deg);
+    }
+
+    .catEars {
+      transform: translate(-25px, -305px) rotate(5deg);
+      .catEar01 {
+      }
+      .catEar02 {
+        transform: translateX(100px);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .contentArea {
+    .photo {
+      height: 350px;
+      width: 350px;
+      h1 {
+        font-size: 32px;
+      }
+      h2 {
+        font-size: 16px;
+      }
+    }
+    .catLeg {
+      right: 310px;
+      height: 380px;
+      transform: translate(320px, 210px) scale(0.9) rotate(-5deg);
+    }
+
+    .catTail {
+      height: 210px;
+      transform: translate(-140px, 10px) rotate(-5deg);
+    }
+    .catEars {
+      transform: translate(0px, -210px) scale(0.7) rotate(5deg);
+      .catEar01 {
+      }
+      .catEar02 {
+        transform: translateX(80px);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .contentArea {
+    .photo {
+      .personPhoto {
+        min-height: 280px;
+        min-width: 280px;
+      }
+    }
+    .catLeg {
+      height: 300px;
+      transform: translate(300px, 200px) rotate(-5deg);
+    }
+    .catTail {
+      height: 210px;
+      transform: translate(-140px, 0px) scale(0.9) rotate(-5deg);
+    }
+    .catEars {
+      transform: translate(0px, -190px) scale(0.65) rotate(5deg);
+      .catEar01 {
+      }
+      .catEar02 {
+        transform: translateX(60px);
+      }
+    }
+  }
+}

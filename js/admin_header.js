@@ -39,14 +39,15 @@ adminAccount.addEventListener("change", function(){
     }
 })
 
-loginTimeOut.addEventListener("click", function(){
-    axios.get(`${_url}/sasasasas`)
-        .then(function(res){
+// 模擬登入逾時的測試, 功能完成後移除
+// loginTimeOut.addEventListener("click", function(){
+//     axios.get(`${_url}/sasasasas`)
+//         .then(function(res){
 
-        }).catch(function(err){
-            reLogin();
-        })
-})
+//         }).catch(function(err){
+//             reLogin();
+//         })
+// })
 
 logout.addEventListener("click", function () {
     const Toast = Swal.mixin({
