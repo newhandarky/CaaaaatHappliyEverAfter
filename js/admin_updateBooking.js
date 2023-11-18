@@ -30,7 +30,6 @@ const btnSave = document.querySelector(".btnSave");
 const btnCancel = document.querySelector(".btnCancel");
 const btnBack = document.querySelector(".btnBack");
 const form = document.querySelector("form");
-// const btns = document.querySelector(".btns");
 
 /*------------------------------------*\
     變數
@@ -77,7 +76,6 @@ let roomStatesObj = await axios.get(`${_url}/660/roomstates/`, {
     console.log(err);
     reLogin(err.response.data);
 })
-
 
 /*------------------------------------*\
     function
@@ -165,8 +163,14 @@ function renderData(bookingObj, roomObj, userObj) {
     bookingDays.value = bookingObj.quantity;
     remark.value = bookingObj.remark;
     checkInCats.value = bookingObj.cats.length;
-    plusCatPay.value = (bookingObj.cats.length - 1) * 300;
-    totalPrice.value = bookingObj.price + (bookingObj.cats.length - 1) * 300 * bookingObj.quantity;
+    plusCatPay.value = (bookingObj.cats.length - 1) * 300 * bookingObj.quantity;
+
+    roomObj.forEach(function(item){
+        if(item.id === bookingObj.roomId){
+            totalPrice.value = item.price * bookingObj.quantity + (bookingObj.cats.length - 1) * 300 * bookingObj.quantity;
+        }
+    })
+    // totalPrice.value = bookingObj.roomId + (bookingObj.cats.length - 1) * 300 * bookingObj.quantity;
 
 
     // 取得貓咪資料
