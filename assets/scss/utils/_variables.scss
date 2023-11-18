@@ -339,7 +339,7 @@ $theme-colors: (
   // $custom  自定義變數
   "text": $text,
   // $custom  自定義變數
-  "background": $background // $custom  自定義變數,,,,,,,,,,,
+  "background": $background // $custom  自定義變數,,,,,,,,,,,,
 ) !default;
 // scss-docs-end theme-colors-map
 
@@ -624,9 +624,9 @@ $font-sizes: (
   // 24px     $fs-3-font-size,
   4: $font-size-base * 1.25,
   // 20px     $fs-4-font-size,
-  5: $font-size-base * 11.25,
+  5: $font-size-base * 1.25,
   // 18px     $fs-5-font-size,
-  6: $h6-font-size * 1 // 16px     $fs-6-font-size,,,,,,,,,,,,
+  6: $h6-font-size * 1 // 16px     $fs-6-font-size,,,,,,,,,,,,,
 ) !default;
 // scss-docs-end font-sizes
 
