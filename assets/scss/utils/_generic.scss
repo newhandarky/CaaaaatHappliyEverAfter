@@ -6,7 +6,7 @@
     link style
 \*------------------------------------*/
 /*------------------------------------*\
-    h1, h2, h3, h4, h5, h6 style fs-1, fs-2, fs-3, fs-4, fs-5, fs-6 caption style
+    h1, h2, h3, h4, h5, h6  fs-1, fs-2, fs-3, fs-4, fs-5, fs-6 caption style
 \*------------------------------------*/
 
 h1,
@@ -25,6 +25,31 @@ p,
 caption {
   color: $text;
 }
+
+h1,
+h2,
+h3 {
+  font-weight: $font-weight-bold;
+}
+
+h4,
+h5,
+h6 {
+  font-weight: $font-weight-semibold;
+}
+p {
+  font-weight: $font-weight-normal;
+}
+
+.fs-1,
+.fs-2,
+.fs-3,
+.fs-4,
+.fs-5,
+.fs-6 {
+  font-weight: $font-weight-normal;
+}
+
 /*------------------------------------*\
     ul, ol, li style
 \*------------------------------------*/
