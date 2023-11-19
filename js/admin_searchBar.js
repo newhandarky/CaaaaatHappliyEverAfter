@@ -74,13 +74,8 @@ btnDate.addEventListener("click", function () {
 
     Promise.all([bookingsPromise])
         .then(function (results) {
-
             const allBookings = results[0].data;
-
             let resultBookings = [];
-            
-            console.log(diffDays);
-            console.log(allBookings);
 
             for (let i = 0; i <= diffDays; i++) {
                 const bookingDay = moment(startDate).add(i, "day").format("YYYY-MM-DD");
@@ -94,9 +89,7 @@ btnDate.addEventListener("click", function () {
 
             if(resultBookings.length !== 0){
                 // 將起始與結束日期存入localStorage帶到下個頁面
-                localStorage.setItem("startDate", startDate.format("YYYY-MM-DD"));
-                localStorage.setItem("endDate", endDate.format("YYYY-MM-DD"));
-                localStorage.setItem("diffDays", diffDays);
+                localStorage.setItem("h2Content", `住房日期 <span class="text-primary">${startDate.format("YYYY-MM-DD")}</span> 到 <span class="text-primary">${endDate.format("YYYY-MM-DD")}</span> 的搜尋結果`);
                 localStorage.setItem("searchResult", JSON.stringify(resultBookings))
                 location = "../pages/admin_bookingSearch.html"
             }else{

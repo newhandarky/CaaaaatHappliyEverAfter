@@ -8,13 +8,14 @@ import { _url } from "./config";
 /*------------------------------------*\
     doms
 \*------------------------------------*/
-const startDate = document.querySelector(".startDate");
-const endDate = document.querySelector(".endDate");
+// const startDate = document.querySelector(".startDate");
+// const endDate = document.querySelector(".endDate");
 const tbody = document.querySelector(".tbody");
+const searchContent = document.querySelector(".searchContent");
 
 
-startDate.textContent = localStorage.getItem("startDate");
-endDate.textContent = localStorage.getItem("endDate");
+// startDate.textContent = localStorage.getItem("startDate");
+// endDate.textContent = localStorage.getItem("endDate");
 /*------------------------------------*\
     變數
 \*------------------------------------*/
@@ -40,6 +41,7 @@ function renderTable(searchResult) {
             </tr>`;
     })
     tbody.innerHTML = str;
+    searchContent.innerHTML = localStorage.getItem("h2Content");
 }
 
 /*------------------------------------*\

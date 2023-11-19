@@ -17,14 +17,17 @@ const revenue = document.querySelector(".revenue");
 const todayCheckIn = document.querySelector(".todayCheckIn");
 const todayCheckOut = document.querySelector(".todayCheckOut");
 const bookingList = document.querySelector(".bookingList");
-const checkBookingRate = document.querySelector(".checkBookingRate");
+const btnNewBooking = document.querySelector(".btnNewBooking");
+const btnTodayCheckIn = document.querySelector(".btnTodayCheckIn");
+const btnTodayCheckOut = document.querySelector(".btnTodayCheckOut");
+const checkBookingTable = document.querySelector(".checkBookingTable");
 
 /*------------------------------------*\
     變數
 \*------------------------------------*/
 // 暫存日期資料
 localStorage.setItem("thisYear", new Date().getFullYear());
-localStorage.setItem("thisMonth", new Date().getMonth() + 2);
+localStorage.setItem("thisMonth", new Date().getMonth() + 1);
 let bookingStatesObject = {
     "thisMonthCount": 0,
     "newBooking": 0,
@@ -45,12 +48,13 @@ const roomStatesPromise = axios.get(`${_url}/660/roomStates`,{
 })
 
 // 取得所有訂單資料
-const bookingsPromise = axios.get(`${_url}/660/bookings`,{
+const bookingsPromise = axios.get(`${_url}/660/bookings?_expand=user&_expand=room`,{
     headers: {
         "authorization":`Bearer ${localStorage.getItem("userLoginToken")}`
     }
 })
 
+// 渲染訂單功能頁面資料
 function renderBookingsStateData(){
     thisMonth.innerHTML = bookingStatesObject.bookingCount;
     newBooking.innerHTML = bookingStatesObject.newBooking;
@@ -59,11 +63,33 @@ function renderBookingsStateData(){
     todayCheckOut.innerHTML = bookingStatesObject.todayCheckOut;
 }
 
+// 根據功能按鍵將資料帶入下個頁面
+function setSearchData(searchObj){
+    if(searchObj.searchDate === 0){
+        Swal.fire({
+            title: "系統訊息",
+            text: `並無${searchObj.searchStr}`,
+            icon: "warning"
+        });
+    }else{
+        const todayCheckInBookings = [];
+        searchObj.bookingData.forEach(function(item){
+            if(item[searchObj.itemStr] === moment().format("YYYY-MM-DD")){
+                todayCheckInBookings.push(item);
+            }
+        })
+        localStorage.setItem("searchResult", JSON.stringify(todayCheckInBookings));
+        localStorage.setItem("h2Content", `<span class="text-primary"> ${moment().format("YYYY-MM-DD")} </span> ${searchObj.searchStr}`)
+        location = "../pages/admin_bookingSearch.html"
+    }
+}
+
 Promise.all([roomStatesPromise, bookingsPromise])
     .then(function (results) {
         const roomStatesRes = results[0].data;
-        const bookingsRes = results[1].data;
+        const bookingData = results[1].data;
         
+        console.log(bookingData);
         // 在這裡處理 roomStatesRes 和 bookingsRes 的資料
         const roomStatesArr = [];
         let monthBookingRate = {
@@ -83,15 +109,17 @@ Promise.all([roomStatesPromise, bookingsPromise])
             }          
         })
         monthBookingRate.roomCounts = roomStatesArr.length * 9;
-        
-        bookingRate.innerHTML = Math.round(((monthBookingRate.roomCounts) - 
+
+        let thisMonthBookingRate = Math.round(((monthBookingRate.roomCounts) - 
             (monthBookingRate.classicRoomCount + monthBookingRate.delicateRoomCount + monthBookingRate.luxuryRoomCount))
             * 100 / monthBookingRate.roomCounts);
+        
+        bookingRate.innerHTML = isNaN(thisMonthBookingRate)? 0 : thisMonthBookingRate;
 
 
         const bookingArr = [];
         // 抓當月份訂單總數量
-        bookingsRes.forEach(function(item){
+        bookingData.forEach(function(item){
             if(item.checkIn.startsWith(`${localStorage.getItem("thisYear")}-${localStorage.getItem("thisMonth")}`)){
                 bookingArr.push(item);
             }            
@@ -108,8 +136,38 @@ Promise.all([roomStatesPromise, bookingsPromise])
                 bookingStatesObject.revenue += parseInt(item.price);
             }            
         })
-        // 確保資料處理完成後再執行相關的後續步驟
-        // 其他相關操作
+
+        // 點擊新進訂單時
+        btnNewBooking.addEventListener("click", function(){
+            const searchObj = {
+                searchDate :bookingStatesObject.newBooking,
+                bookingData : bookingData,
+                searchStr : "當日新進訂單",
+                itemStr : "bookingDate"
+            }
+            setSearchData(searchObj)
+        })
+        // 點擊今日入住訂單時
+        btnTodayCheckIn.addEventListener("click", function(){
+            const searchObj = {
+                searchDate :bookingStatesObject.todayCheckIn,
+                bookingData : bookingData,
+                searchStr : "當日入住訂單",
+                itemStr : "checkIn"
+            }
+            setSearchData(searchObj)
+        })
+        // 點擊今日退房訂單時
+        btnTodayCheckOut.addEventListener("click", function(){
+            const searchObj = {
+                searchDate :bookingStatesObject.todayCheckOut,
+                bookingData : bookingData,
+                searchStr : "當日退房訂單",
+                itemStr : "checkOut"
+            }
+            setSearchData(searchObj)
+        })
+
         bookingStatesObject.bookingCount = bookingArr.length;
         renderBookingsStateData();
     })
