@@ -77,7 +77,6 @@ function showPagination() {
                 getBookingData(defaultPage);
             }
         }else if(e.target.classList.contains("page-link")){     //點選頁頁切數字切換顯示頁數
-            console.log(e.target.parentElement.dataset.page);
             defaultPage = e.target.parentElement.dataset.page;
             document.querySelector(".active").classList.remove("active"); // 移除當前頁籤
             pageNums.forEach(function (item) {
@@ -98,6 +97,7 @@ function getAllBookingData() {
         },
     })
         .then(function (res) {
+            console.log(res.data);
             let bookingCount = 0;
             res.data.forEach(function (item) {
                 if (item.checkIn.startsWith(getBookingMonth)) {
@@ -147,7 +147,7 @@ function getBookingData(num) {
 }
 
 // 渲染table資料
-function renderTable(arr) {
+export function renderTable(arr) {
     const tbody = document.querySelector(".tbody");
     let str = "";
     arr.forEach(function (item) {       // 
@@ -178,14 +178,14 @@ function pagination(pages) {
     }
     pagesCount = Math.ceil((pages) / 8);    // 取得下方分頁數量
     let previous = ` <li class="page-item previous">
-                        <a class="page-link previous">Previous</a>
+                        <a class="page-link py-3 px-6 previous">Previous</a>
                     </li> `;
     let next = `<li class="page-item next">
-                        <a class="page-link next">Next</a>
+                        <a class="page-link py-3 px-6 next">Next</a>
                     </li>`
     let pagesStr = "";
     for (let i = 1; i <= pagesCount; i++) {
-        pagesStr += `<li class="page-item pageNum" data-page="${i}"><a class="page-link">${i}</a></li>`
+        pagesStr += `<li class="page-item pageNum" data-page="${i}"><a class="page-link py-3 px-6">${i}</a></li>`
     }
     getPages.innerHTML = previous + pagesStr + next;
     showPagination();
@@ -232,7 +232,6 @@ after.addEventListener("click", function () {
 
 // 點擊訂單編號時儲存訂單編號到localStorage
 tbody.addEventListener("click", function(e){
-    console.log(e.target);
     if(e.target.classList.contains("bookingNum")){
         localStorage.setItem("bookingNum", e.target.dataset.bookingnum);
     }
