@@ -2,6 +2,13 @@ import axios from "axios";
 import { _url } from "./config";
 import { isLogin } from "./isLogin";
 
+// aside bar 顯示當前頁面
+// 因為有兩個 aside bar 所以要用 querySelectorAll
+const asideLocation = document.querySelectorAll("#catData");
+asideLocation.forEach((element) => {
+  element.classList.add("onThisPage");
+});
+
 //取得所需要的資療及DOM元素
 const userTokenAndData = JSON.parse(localStorage.getItem("userTokenAndData"));
 const { accessToken, user } = userTokenAndData;

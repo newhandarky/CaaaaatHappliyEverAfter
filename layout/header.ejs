@@ -48,28 +48,9 @@
             <i class="bi bi-person"></i>會員功能
           </a>
         </li>
-      <aside
-        class="navAside w-100 d-flex flex-column align-items-center d-lg-none"
-      >
-        <a
-          id="navMemberData"
-          class="memberData mx-5 my-3 d-lg-none"
-          href="../pages/member.html"
-          >資料管理</a
-        >
-        <a
-          id="navCatData"
-          class="catData mx-5 my-3 d-lg-none"
-          href="../pages/catData.html"
-          >我的貓咪</a
-        >
-        <a
-          id="navBookingHistory"
-          class="bookingHistory mx-5 my-3 d-lg-none"
-          href="../pages/bookingHistory.html"
-          >訂房紀錄</a
-        >
-      </aside>
+        
+        <li class="nav-item mx-3 my-3 burgerAside d-lg-none d-block"><%- include('./aside.ejs'); -%></li>
+
     </div>
   </div>
 </header>
