@@ -2,13 +2,6 @@ import axios from "axios";
 import { _url } from "./config";
 import { isLogin } from "./isLogin";
 
-// aside bar 顯示當前頁面
-// 因為有兩個 aside bar 所以要用 querySelectorAll
-const asideLocation = document.querySelectorAll("#catData");
-asideLocation.forEach((element) => {
-  element.classList.add("onThisPage");
-});
-
 //取得所需要的資療及DOM元素
 const userTokenAndData = JSON.parse(localStorage.getItem("userTokenAndData"));
 const { accessToken, user } = userTokenAndData;
@@ -74,20 +67,20 @@ function lodingCat() {
 
         let createCatDataDOM = JSON.stringify(`
         <div id="catContainer_${index}" class="catContainer">
-        <h1 id="catName_${index}" class="catName">${catName}</h1>
-        <ul>
-          <li id="catGender_${index}" class="catGender">性別：${genderToChiniese()}</li>
-          <li id="catBirthday_${index}" class="catBirthday">生日：${birthday}</li>
-          <li id="catBreeds_${index}" class="catBreeds">品種：${catBreeds}</li>
-          <li id="catColors_${index}" class="catColors">花色：${colors}</li>
-          <li id="catWeight_${index}" class="catWeight">體重：${weight} Kg</li>
-        </ul>
-        <img id="catPhoto_${index}" src="${catPhoto}" alt="貓咪照片" />
-        <br />
-        <a id="catEdit_${index}" data-Index="${index}" data-catId="${id}" class="catEdit" href="./editCat.html">編輯資料</a>
-        <button id="catDelete_${index}" data-Index="${index}" data-catId="${id}" class="catDelete" >刪除資料</button>
-      </div>
-      `);
+          <h1 id="catName_${index}" class="catName">${catName}</h1>
+          <ul>
+            <li id="catGender_${index}" class="catGender">性別：${genderToChiniese()}</li>
+            <li id="catBirthday_${index}" class="catBirthday">生日：${birthday}</li>
+            <li id="catBreeds_${index}" class="catBreeds">品種：${catBreeds}</li>
+            <li id="catColors_${index}" class="catColors">花色：${colors}</li>
+            <li id="catWeight_${index}" class="catWeight">體重：${weight} Kg</li>
+          </ul>
+          <img id="catPhoto_${index}" src="${catPhoto}" alt="貓咪照片" />
+          <br />
+          <a id="catEdit_${index}" data-Index="${index}" data-catId="${id}" class="catEdit" href="./editCat.html">編輯資料</a>
+          <button id="catDelete_${index}" data-Index="${index}" data-catId="${id}" class="catDelete" >刪除資料</button>
+        </div>
+        `);
 
         resultDom += JSON.parse(createCatDataDOM);
         console.log(resultDom);
