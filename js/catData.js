@@ -2,6 +2,13 @@ import axios from "axios";
 import { _url } from "./config";
 import { isLogin } from "./isLogin";
 
+// aside bar 顯示當前頁面
+// 因為有兩個 aside bar 所以要用 querySelectorAll
+const asideLocation = document.querySelectorAll("#catData");
+asideLocation.forEach((element) => {
+  element.classList.add("onThisPage");
+});
+
 //取得所需要的資療及DOM元素
 const userTokenAndData = JSON.parse(localStorage.getItem("userTokenAndData"));
 const { accessToken, user } = userTokenAndData;
@@ -219,9 +226,9 @@ function lodingCat() {
       ) {
         const catInfoDOM = document.getElementById("catInfo");
         let createCatAddDataDOM = JSON.stringify(`
-        <div id="catContainer_add" class="catContainer">
-        <h1 id="catAddTitle" class="catAddTitle">快來新增您的愛貓！</h1>        
-      </div>
+        <div id="catContainer_add" class="catContainer d-flex justify-content-center align-items-center m-5">
+          <h1 id="catAddTitle" class="catAddTitle">快來新增您的愛貓！</h1>        
+        </div>
       `);
 
         let resultDom = JSON.parse(createCatAddDataDOM);
