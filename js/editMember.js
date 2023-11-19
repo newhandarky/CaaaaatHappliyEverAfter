@@ -3,6 +3,13 @@ import { _url } from "./config";
 import { isLogin } from "./isLogin";
 import flatpickr from "flatpickr";
 
+// aside bar 顯示當前頁面
+// 因為有兩個 aside bar 所以要用 querySelectorAll
+const asideLocation = document.querySelectorAll("#memberData");
+asideLocation.forEach((element) => {
+  element.classList.add("onThisPage");
+});
+
 //flatpickr 套件使用
 flatpickr("#birthday", {
   enableTime: false,
