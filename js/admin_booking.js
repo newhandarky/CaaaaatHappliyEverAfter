@@ -26,8 +26,8 @@ const checkBookingTable = document.querySelector(".checkBookingTable");
     變數
 \*------------------------------------*/
 // 暫存日期資料
-localStorage.setItem("thisYear", new Date().getFullYear());
-localStorage.setItem("thisMonth", new Date().getMonth() + 2);
+// localStorage.setItem("thisMonth", moment().format("YYYY-MM"));
+localStorage.setItem("thisMonth", moment().add(1, "months").format("YYYY-MM"));
 let bookingStatesObject = {
     "thisMonthCount": 0,
     "newBooking": 0,
@@ -101,7 +101,7 @@ Promise.all([roomStatesPromise, bookingsPromise])
 
         // 計算當月住房率並顯示在booking頁面
         roomStatesRes.forEach(function(item){
-            if(item.date.startsWith(`${localStorage.getItem("thisYear")}-${localStorage.getItem("thisMonth")}`)){
+            if(item.date.startsWith(`${localStorage.getItem("thisMonth")}`)){
                 roomStatesArr.push(item);
                 monthBookingRate.classicRoomCount += item.availableCount.classic;
                 monthBookingRate.delicateRoomCount += item.availableCount.delicate;
@@ -120,7 +120,7 @@ Promise.all([roomStatesPromise, bookingsPromise])
         const bookingArr = [];
         // 抓當月份訂單總數量
         bookingData.forEach(function(item){
-            if(item.checkIn.startsWith(`${localStorage.getItem("thisYear")}-${localStorage.getItem("thisMonth")}`)){
+            if(item.checkIn.startsWith(`${localStorage.getItem("thisMonth")}`)){
                 bookingArr.push(item);
             }            
             if(item.bookingDate === moment().format("YYYY-MM-DD")){     // 抓當天新增訂單總數量
