@@ -13,6 +13,85 @@
           <%- include('./layout/aside'); -%>
         </div>
         <div class="col-lg-9">
+          <h1>以下是測試排版</h1>
+          <div class="d-flex flex-column">
+            <div
+              class="catData d-flex flex-lg-row flex-column justify-content-center align-items-center"
+            >
+              <div
+                id="userDataPresent"
+                class="userDataPresent flex-grow-1 position-relative d-flex justify-content-center"
+              >
+                <div
+                  id="catContainer_${index}"
+                  class="w-10 d-inline-flex flex-column"
+                >
+                  <h1 id="catName_${index}" class="catName">${catName}</h1>
+                  <ul>
+                    <li id="catGender_${index}" class="catGender">
+                      性別：${genderToChiniese()}
+                    </li>
+                    <li id="catBirthday_${index}" class="catBirthday">
+                      生日：${birthday}
+                    </li>
+                    <li id="catBreeds_${index}" class="catBreeds">
+                      品種：${catBreeds}
+                    </li>
+                    <li id="catColors_${index}" class="catColors">
+                      花色：${colors}
+                    </li>
+                    <li id="catWeight_${index}" class="catWeight">
+                      體重：${weight} Kg
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div
+                id="userPhotoPresent"
+                class="userPhotoPresent position-relative flex-grow-1 d-flex justify-content-center align-items-center"
+              >
+                <img
+                  class="photoFrame position-absolute"
+                  src="../assets/images/photoFrame.svg"
+                  alt="photoFrame"
+                />
+                <div class="photoGroup position-absolute">
+                  <img
+                    id="catPhoto_${index}"
+                    class="photo img-fluid rounded mx-auto d-block"
+                    src="${catPhoto}"
+                    alt="貓咪照片"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              class="catBtns d-flex flex-column justify-content-around align-items-center"
+            >
+              <div class="catBtn primaryStroke-btn-primary">
+                <a
+                  id="catEdit_${index}"
+                  data-Index="${index}"
+                  data-catId="${id}"
+                  class="catEdit"
+                  href="./editCat.html"
+                  >編輯資料</a
+                >
+              </div>
+              <div class="catBtn primaryFill-btn-primary">
+                <button
+                  id="catDelete_${index}"
+                  data-Index="${index}"
+                  data-catId="${id}"
+                  class="catDelete"
+                >
+                  登出
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <h1>以上是測試排版</h1>
           <div id="catInfo" class="d-flex flex-column"></div>
           <!-- <div id="catContainer_" class="catContainer_">
             <h1 id="catName" class="catName"></h1>
