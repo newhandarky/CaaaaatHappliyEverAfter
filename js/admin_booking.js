@@ -27,7 +27,7 @@ const checkBookingTable = document.querySelector(".checkBookingTable");
 \*------------------------------------*/
 // 暫存日期資料
 localStorage.setItem("thisYear", new Date().getFullYear());
-localStorage.setItem("thisMonth", new Date().getMonth() + 1);
+localStorage.setItem("thisMonth", new Date().getMonth() + 2);
 let bookingStatesObject = {
     "thisMonthCount": 0,
     "newBooking": 0,
@@ -184,4 +184,8 @@ bookingList.addEventListener("click", function(){
         console.log("當月無訂房");
     }
     location = "../pages/admin_bookingList.html"
+})
+
+checkBookingTable.addEventListener("click", function(){
+    location = "../pages/admin_bookingRoomTable.html"
 })

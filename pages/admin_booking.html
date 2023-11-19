@@ -15,7 +15,7 @@
         <div class="row adminBreadcrumb">
             <div class="py-8">
                 <h2>
-                    <a class="" href="./admin_index.html">後台首頁</a> > 訂單管理
+                    <a href="./admin_index.html">後台首頁</a> > 訂單管理
                 </h2>
             </div>                
         </div>
@@ -23,47 +23,45 @@
     <%- include('./layout/admin_searchBar'); -%>
 
         <div class="row">
-            <div>
-                <div class="border border-2 rounded-2 adminBooking_content">
-                    <h2 class="adminBooingTitle p-8">訂單總覽</h2>
-                    <div class="row">
-                        <div class="col-4 p-8 mb-8 border-end border-5 adminBookingBLock">
-                            <h2 class="text-center fs-4 mb-6 adminBookingH2">本月訂單共 <span class="thisMonth fs-2 fw-bold"></span> 筆</h2>
-                            <div class="d-flex justify-content-center">
-                                <button class="btn btn-outline-primary border border-1 border-primary bookingList">查看當月訂單</button>    
-                            </div>
-                        </div>
-                        <div class="col-4 p-8 mb-8 adminBookingBLock">
-                            <h2 class="text-center fs-4 mb-6 adminBookingH2">今日新進訂單共 <span class="newBooking fs-2 fw-bold"></span> 筆</h2>
-                            <div class="d-flex justify-content-center">
-                                <button class="btn btn-outline-primary border border-1 border-primary btnNewBooking">查看今日新進訂單</button>    
-                            </div>
-                        </div>
-                        <div class="col-4 p-8 mb-8 border-start border-5 adminBookingBLock">
-                            <h2 class="text-center fs-4 mb-6 adminBookingH2">本月住房率為 <span class="bookingRate fs-2 fw-bold"></span> %</h2>
-                            <div class="d-flex justify-content-center">
-                                <button class="btn btn-outline-primary border border-1 border-primary checkBookingTable">查看本月房況表</button>    
-                            </div>
+            <div class="border border-2 rounded-2 adminBooking_content">
+                <h2 class="adminBooingTitle p-8">訂單總覽</h2>
+                <div class="row">
+                    <div class="col-4 p-8 mb-8 border-end border-5 adminBookingBLock">
+                        <h2 class="text-center fs-4 mb-6 adminBookingH2">本月訂單共 <span class="thisMonth fs-2 fw-bold"></span> 筆</h2>
+                        <div class="d-flex justify-content-center">
+                            <button class="btn btn-outline-primary border border-1 border-primary bookingList">查看當月訂單</button>    
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-4 p-8 mb-8 border-end border-5 adminBookingBLock">
-                            <h2 class="text-center fs-4 mb-6 adminBookingH2">今日入住訂單共 <span class="todayCheckIn fs-2 fw-bold"></span> 筆</h2>
-                            <div class="d-flex justify-content-center">
-                                <button class="btn btn-outline-primary border border-1 border-primary btnTodayCheckIn">查看今日入住訂單</button>    
-                            </div>
+                    <div class="col-4 p-8 mb-8 adminBookingBLock">
+                        <h2 class="text-center fs-4 mb-6 adminBookingH2">今日新進訂單共 <span class="newBooking fs-2 fw-bold"></span> 筆</h2>
+                        <div class="d-flex justify-content-center">
+                            <button class="btn btn-outline-primary border border-1 border-primary btnNewBooking">查看今日新進訂單</button>    
                         </div>
-                        <div class="col-4 p-8 mb-8 adminBookingBLock">
-                            <h2 class="text-center fs-4 mb-6 adminBookingH2">今日退房訂單共 <span class="todayCheckOut fs-2 fw-bold"></span> 筆</h2>
-                            <div class="d-flex justify-content-center">
-                                <button class="btn btn-outline-primary border border-1 border-primary btnTodayCheckOut">查看今日退房訂單</button>    
-                            </div>
+                    </div>
+                    <div class="col-4 p-8 mb-8 border-start border-5 adminBookingBLock">
+                        <h2 class="text-center fs-4 mb-6 adminBookingH2">本月住房率為 <span class="bookingRate fs-2 fw-bold"></span> %</h2>
+                        <div class="d-flex justify-content-center">
+                            <button class="btn btn-outline-primary border border-1 border-primary checkBookingTable">查看本月房況表</button>    
                         </div>
-                        <div class="col-4 p-8 mb-8 border-start border-5 adminBookingBLock">
-                            <h2 class="text-center fs-4 mb-6 adminBookingH2">本月已結帳總額為 <span class="revenue fs-2 fw-bold"></span> 元</h2>
-                            <div class="d-flex justify-content-center">
-                                <button class="btn btn-outline-primary border border-1 border-primary">本月營業總額</button>    
-                            </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4 p-8 mb-8 border-end border-5 adminBookingBLock">
+                        <h2 class="text-center fs-4 mb-6 adminBookingH2">今日入住訂單共 <span class="todayCheckIn fs-2 fw-bold"></span> 筆</h2>
+                        <div class="d-flex justify-content-center">
+                            <button class="btn btn-outline-primary border border-1 border-primary btnTodayCheckIn">查看今日入住訂單</button>    
+                        </div>
+                    </div>
+                    <div class="col-4 p-8 mb-8 adminBookingBLock">
+                        <h2 class="text-center fs-4 mb-6 adminBookingH2">今日退房訂單共 <span class="todayCheckOut fs-2 fw-bold"></span> 筆</h2>
+                        <div class="d-flex justify-content-center">
+                            <button class="btn btn-outline-primary border border-1 border-primary btnTodayCheckOut">查看今日退房訂單</button>    
+                        </div>
+                    </div>
+                    <div class="col-4 p-8 mb-8 border-start border-5 adminBookingBLock">
+                        <h2 class="text-center fs-4 mb-6 adminBookingH2">本月已結帳總額為 <span class="revenue fs-2 fw-bold"></span> 元</h2>
+                        <div class="d-flex justify-content-center">
+                            <button class="btn btn-outline-primary border border-1 border-primary">本月營業總額</button>    
                         </div>
                     </div>
                 </div>
