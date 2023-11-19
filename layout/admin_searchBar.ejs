@@ -1,10 +1,17 @@
 <div class="row adminSearchBar mb-8">
-    <div class="col-2">
+    <div class="col-4 d-flex">
         <div>
             <input class="rounded-2 form-control inputBookingNumber" type="text" name="bookingNumber"
                 placeholder="請輸入訂單編號">
         </div>
+        <div>
+            <button class="ms-6 btn btn-success d-flex align-items-center btnBookingNum">
+                依編號查詢
+                <span class="material-symbols-outlined ms-2">search</span>
+            </button>
+        </div>
     </div>
+    <div class="col-1"></div>
     <div class="d-flex col-7">
         <div class="input-group adminSearchBar_startDate">
             <span class="input-group-text">請選取起始日期</span>
@@ -14,11 +21,12 @@
             <span class="input-group-text">請選取結束日期</span>
             <input type="date" name="endDate" class="form-control inputEndDate">
         </div>
-    </div>
-    <div class="col-3 d-flex justify-content-end">
-        <button class="btn btn-success d-flex align-items-center">
-            查詢
-            <span class="material-symbols-outlined ms-2">search</span>
-        </button>
+        <div class="d-flex justify-content-end text-nowrap">
+            <button class="ms-6 btn btn-success d-flex align-items-center btnDate">
+                依日期查詢
+                <span class="material-symbols-outlined ms-2">search</span>
+            </button>
+        </div>
     </div>
 </div>
+<script type="module" src="../js/admin_searchBar.js"></script>
