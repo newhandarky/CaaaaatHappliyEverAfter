@@ -127,7 +127,7 @@ function lodingCat() {
                   data-catId="${id}"
                   class="catEdit"
                   href="./editCat.html"
-                  >編輯資料</a
+                  >編輯貓咪</a
                 >
               </div>
               <div class="catBtn primaryFill-btn-primary">
@@ -137,11 +137,12 @@ function lodingCat() {
                   data-catId="${id}"
                   class="catDelete"
                 >
-                  登出
+                  刪除貓咪
                 </button>
               </div>
             </div>
           </div>
+          <hr class="m-5" style="border: 1.5px solid black;">
         `);
 
         resultDom += JSON.parse(createCatDataDOM);
