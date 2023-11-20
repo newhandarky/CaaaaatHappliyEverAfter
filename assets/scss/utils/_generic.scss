@@ -5,23 +5,23 @@
 /*------------------------------------*\
     link style
 \*------------------------------------*/
-.adminLink{
+.adminLink {
   color: $primary;
   text-decoration: none;
-  &:hover{
-      color: $danger;
+  &:hover {
+    color: $danger;
   }
   &::after {
-      content: "";
-      display: block;
-      width: 0%;
-      height: 2px;
-      background-color: $danger;
-      margin: 0 auto;
-      transition: width 0.8s;
+    content: "";
+    display: block;
+    width: 0%;
+    height: 2px;
+    background-color: $danger;
+    margin: 0 auto;
+    transition: width 0.8s;
   }
   &:hover::after {
-      width: 100%;
+    width: 100%;
   }
 }
 /*------------------------------------*\
@@ -104,6 +104,7 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
   button,
   a {
+    width: 100%;
     text-align: center;
     padding: 0;
     border: none;
@@ -130,6 +131,7 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
   button,
   a {
+    width: 100%;
     text-align: center;
     padding: 0;
     background-color: transparent;
@@ -152,6 +154,7 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
   button,
   a {
+    width: 100%;
     text-align: center;
     padding: 0;
     border: none;
@@ -173,6 +176,7 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
   button,
   a {
+    width: 100%;
     text-align: center;
     padding: 0;
     border: none;

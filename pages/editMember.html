@@ -9,95 +9,105 @@
     <%- include('./layout/header'); -%>
     <div class="container p-0">
       <div class="row min-vh-100">
-        <div class="col-lg-2 d-none d-lg-block">
+        <div class="col-lg-3 d-none d-lg-block">
           <%- include('./layout/aside'); -%>
         </div>
-        <div class="col-lg-10">
-          <h1>編輯個人資料</h1>
-          <form id="editMemberFrom" class="editMemberFrom" method="GET">
-            <label for="name">姓名：</label>
-            <input
-              id="name"
-              class="form-control"
-              type="text"
-              name="name"
-              placeholder="請輸入姓名"
-              value=""
-              required
-            />
-
-            <label>性別：</label>
-            <div class="form-control">
-              <input
-                id="male"
-                type="radio"
-                name="gender"
-                value="male"
-                required
-              />
-              <label for="male">男</label>
-              <input
-                id="female"
-                type="radio"
-                name="gender"
-                value="female"
-                required
-              />
-              <label for="female">女</label>
-              <input
-                id="other"
-                type="radio"
-                name="gender"
-                value="other"
-                required
-              />
-              <label for="other">其他</label>
-            </div>
-
-            <label for="birthday">生日：</label>
-            <input
-              id="birthday"
-              class="form-control"
-              type="text"
-              placeholder="請輸入生日"
-              name="birthday"
-              value=""
-              required
-            />
-
-            <label for="phone">電話：</label>
-            <input
-              id="phone"
-              class="form-control"
-              type="number"
-              placeholder="請輸入電話"
-              name="phone"
-              value=""
-              required
-            />
-
-            <label for="address">地址：</label>
-            <input
-              id="address"
-              class="form-control"
-              type="text"
-              placeholder="請輸入地址"
-              name="address"
-              value=""
-              required
-            />
-            <br />
-            <img id="photo" src="" alt="會員照片" />
-            <br />
-            <input id="myFile" class="myFile" type="file" />
-            <br />
-            <button id="finishEdit" type="submit" class="finishEdit">
-              完成編輯
-            </button>
-            <a id="cancelEdit" class="cancelEdit" href="./member.html"
-              >取消編輯</a
+        <div class="col-lg-9">
+          <div class="d-flex justify-content-center align-items-center m-5">
+            <div
+              class="d-inline-flex flex-column justify-content-center align-items-center"
             >
-          </form>
+              <form id="editMemberFrom" class="editMemberFrom" method="GET">
+                <h1>編輯個人資料</h1>
+                <img id="photo" src="" alt="會員照片" />
+                <br />
+                <input id="myFile" class="myFile" type="file" />
+                <br />
+                <label for="name">姓名：</label>
+                <input
+                  id="name"
+                  class="form-control"
+                  type="text"
+                  name="name"
+                  placeholder="請輸入姓名"
+                  value=""
+                  required
+                />
+
+                <label>性別：</label>
+                <div class="form-control">
+                  <input
+                    id="male"
+                    type="radio"
+                    name="gender"
+                    value="male"
+                    required
+                  />
+                  <label for="male">男</label>
+                  <input
+                    id="female"
+                    type="radio"
+                    name="gender"
+                    value="female"
+                    required
+                  />
+                  <label for="female">女</label>
+                  <input
+                    id="other"
+                    type="radio"
+                    name="gender"
+                    value="other"
+                    required
+                  />
+                  <label for="other">其他</label>
+                </div>
+
+                <label for="birthday">生日：</label>
+                <input
+                  id="birthday"
+                  class="form-control"
+                  type="text"
+                  placeholder="請輸入生日"
+                  name="birthday"
+                  value=""
+                  required
+                />
+
+                <label for="phone">電話：</label>
+                <input
+                  id="phone"
+                  class="form-control"
+                  type="number"
+                  placeholder="請輸入電話"
+                  name="phone"
+                  value=""
+                  required
+                />
+
+                <label for="address">地址：</label>
+                <input
+                  id="address"
+                  class="form-control"
+                  type="text"
+                  placeholder="請輸入地址"
+                  name="address"
+                  value=""
+                  required
+                />
+                <br />
+                <div class="primaryStroke-btn-primary">
+                  <button id="finishEdit" type="submit" class="finishEdit">
+                    完成編輯
+                  </button>
+                </div>
+                <div class="primaryFill-btn-primary">
+                  <a id="cancelEdit" class="cancelEdit" href="./member.html"
+                    >取消編輯</a
+                  >
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </div>
