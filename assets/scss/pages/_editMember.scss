@@ -1,0 +1,29 @@
+.editMemberFrom {
+  input,
+  .gender {
+    border: none;
+    box-shadow: 0 3px 0 $gray-400;
+  }
+  .gender {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 2rem;
+    .radio {
+      width: 16px;
+      height: 16px;
+      display: inline-block;
+      accent-color: $text;
+      box-shadow: none;
+      height: auto;
+    }
+  }
+  label {
+    min-width: 3rem;
+  }
+  .btns {
+    div * {
+      min-width: 10rem;
+    }
+  }
+}

@@ -19,91 +19,134 @@
             >
               <form id="editMemberFrom" class="editMemberFrom" method="GET">
                 <h1>編輯個人資料</h1>
-                <img id="photo" src="" alt="會員照片" />
-                <br />
-                <input id="myFile" class="myFile" type="file" />
-                <br />
-                <label for="name">姓名：</label>
-                <input
-                  id="name"
-                  class="form-control"
-                  type="text"
-                  name="name"
-                  placeholder="請輸入姓名"
-                  value=""
-                  required
-                />
-
-                <label>性別：</label>
-                <div class="form-control">
-                  <input
-                    id="male"
-                    type="radio"
-                    name="gender"
-                    value="male"
-                    required
-                  />
-                  <label for="male">男</label>
-                  <input
-                    id="female"
-                    type="radio"
-                    name="gender"
-                    value="female"
-                    required
-                  />
-                  <label for="female">女</label>
-                  <input
-                    id="other"
-                    type="radio"
-                    name="gender"
-                    value="other"
-                    required
-                  />
-                  <label for="other">其他</label>
+                <div id="userPhotoPresent" class="PhotoPresent">
+                  <img src="../assets/images/photoFrame.svg" alt="photoFrame" />
+                  <div>
+                    <img id="photo" src="" alt="會員照片" />
+                  </div>
+                </div>
+                <div class="selectImgFile">
+                  <label for="myFile">上傳照片</label>
+                  <input id="myFile" type="file" />
                 </div>
 
-                <label for="birthday">生日：</label>
-                <input
-                  id="birthday"
-                  class="form-control"
-                  type="text"
-                  placeholder="請輸入生日"
-                  name="birthday"
-                  value=""
-                  required
-                />
-
-                <label for="phone">電話：</label>
-                <input
-                  id="phone"
-                  class="form-control"
-                  type="number"
-                  placeholder="請輸入電話"
-                  name="phone"
-                  value=""
-                  required
-                />
-
-                <label for="address">地址：</label>
-                <input
-                  id="address"
-                  class="form-control"
-                  type="text"
-                  placeholder="請輸入地址"
-                  name="address"
-                  value=""
-                  required
-                />
-                <br />
-                <div class="primaryStroke-btn-primary">
-                  <button id="finishEdit" type="submit" class="finishEdit">
-                    完成編輯
-                  </button>
+                <div
+                  class="d-flex justify-content-center align-items-center m-3 py-3"
+                >
+                  <label for="name">姓名：</label>
+                  <input
+                    id="name"
+                    class="form-control"
+                    type="text"
+                    name="name"
+                    placeholder="請輸入姓名"
+                    value=""
+                    required
+                  />
                 </div>
-                <div class="primaryFill-btn-primary">
-                  <a id="cancelEdit" class="cancelEdit" href="./member.html"
-                    >取消編輯</a
-                  >
+
+                <div
+                  class="d-flex justify-content-center align-items-center m-3 py-3"
+                >
+                  <label for="">性別</label>
+                  <div id="gender" class="form-control my-3 gender">
+                    <div>
+                      <input
+                        id="male"
+                        class="radio mx-1"
+                        type="radio"
+                        name="gender"
+                        value="male"
+                        required
+                      />
+                      <label class="fs-6" for="male">男</label>
+                    </div>
+
+                    <div>
+                      <input
+                        id="female"
+                        class="radio mx-1"
+                        type="radio"
+                        name="gender"
+                        value="female"
+                        required
+                      />
+                      <label class="fs-6" for="female">女</label>
+                    </div>
+
+                    <div>
+                      <input
+                        id="other"
+                        class="radio mx-1"
+                        type="radio"
+                        name="gender"
+                        value="other"
+                        required
+                      />
+                      <label class="fs-6" for="other">其他</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="d-flex justify-content-center align-items-center m-3 py-3"
+                >
+                  <label for="birthday">生日：</label>
+                  <input
+                    id="birthday"
+                    class="form-control"
+                    type="text"
+                    placeholder="請輸入生日"
+                    name="birthday"
+                    value=""
+                    required
+                  />
+                </div>
+
+                <div
+                  class="d-flex justify-content-center align-items-center m-3 py-3"
+                >
+                  <label for="phone">電話：</label>
+                  <input
+                    id="phone"
+                    class="form-control"
+                    type="number"
+                    placeholder="請輸入電話"
+                    name="phone"
+                    value=""
+                    required
+                  />
+                </div>
+
+                <div
+                  class="d-flex justify-content-center align-items-center m-3 py-3"
+                >
+                  <label for="address">地址：</label>
+                  <input
+                    id="address"
+                    class="form-control"
+                    type="text"
+                    placeholder="請輸入地址"
+                    name="address"
+                    value=""
+                    required
+                  />
+                </div>
+
+                <br />
+                <div
+                  class="btns d-flex flex-column justify-content-center align-items-center"
+                >
+                  <div class="primaryStroke-btn-primary m-2">
+                    <button id="finishEdit" type="submit" class="finishEdit">
+                      完成編輯
+                    </button>
+                  </div>
+                  <div class="primaryFill-btn-primary m-2">
+                    <a id="cancelEdit" class="cancelEdit" href="./member.html"
+                      >取消編輯</a
+                    >
+                  </div>
                 </div>
               </form>
             </div>
