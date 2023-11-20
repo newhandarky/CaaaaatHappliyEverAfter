@@ -1,16 +1,19 @@
-@import "../../node_modules/bootstrap";
 @import "../../node_modules/bootstrap/scss/functions";
 @import "../../node_modules/sweetalert2/dist/sweetalert2.min.css";
-@import "./utils/variables";
-@import "./utils/generic";
-@import "./utils/mixin";
 
+@import "./utils/variables";
+@import "./utils/mixin";
+@import "./utils/generic";
+// 這支bootstrap放在最上面後台樣式會消失，但是移到generic或是其他位置，變成首頁樣式跑版
+@import "../../node_modules/bootstrap";
+// 超難搞的
 @import "./layout/admin_header";
 @import "./layout/header";
 @import "./layout/aside";
 @import "./layout/footer";
 
 @import "./pages/index.scss";
+
 @import "./pages/aboutus.scss";
 @import "./pages/article.scss";
 @import "./pages/booking.scss";
