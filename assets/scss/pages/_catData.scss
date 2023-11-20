@@ -1,4 +1,4 @@
-.menberData {
+.catData {
   min-height: 500px;
   .userPhotoPresent {
     width: 350px;
@@ -18,9 +18,14 @@
     }
   }
 }
-.menberBtns {
-  .menberBtn {
+.catBtns {
+  .catBtn {
     margin: 0.5rem;
     width: 250px;
   }
+}
+
+.catAddBtns {
+  margin: 1rem;
+  width: 300px;
 }
