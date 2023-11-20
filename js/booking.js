@@ -22,11 +22,11 @@ let delicateRoomPrice = document.querySelector(".delicateRoomPrice");
 //size
 axios.get(`${_url}/rooms/52`).then(function(response){
     let delicateRoomDimensionClaim = response.data.size;
-    let str = `尺寸：`;
+    let str = '尺寸：';
     delicateRoomDimensionClaim.forEach(function(item){
         let content = `${item}cm `;
         str += content;
-        delicateRoomDimension.innerHTML=str
+        delicateRoomDimension.innerHTML= str
     })
 })
 //設備
