@@ -223,10 +223,9 @@ function postbookingHistorys(){
         //把新的bookingHistorys（有bookingID)post到bookingHistorys
         axios.post(`${_url}/bookingHistorys?bookingsId=${bookingId}`, bookingHistorys ).then((response)=>{
             console.log(`try`)
-            console.log(response.data)
-        });
+            console.log(response.data);
 
-        //在bookingHistorys透過bookingId與UserID取得訂單的所有bookingHistoryID;一個bookingId可能會有多種狀態
+            //在bookingHistorys透過bookingId與UserID取得訂單的所有bookingHistoryID;一個bookingId可能會有多種狀態
         axios.get(`${_url}/bookingHistorys?userId=${userTokenAndData.user.id}&?bookingId=${bookingId}`).then((response) => {
             console.log(`訂單的booking History`)
             console.log(response.data);
@@ -246,6 +245,9 @@ function postbookingHistorys(){
             });
             
         })
+        });
+
+        
 
     });
     

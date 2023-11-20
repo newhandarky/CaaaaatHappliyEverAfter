@@ -5,6 +5,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { _url } from "./config";
 import { reLogin } from "./loginIsTimeUp";
+import moment from "moment";
 
 /*------------------------------------*\
     doms
@@ -19,7 +20,7 @@ const getPages = document.querySelector(".getPages");
     變數
 \*------------------------------------*/
 // 取得當前年月份的字串
-let getBookingMonth = `${localStorage.getItem("thisYear")}-${localStorage.getItem("thisMonth")}`;
+let getBookingMonth = `${localStorage.getItem("thisMonth")}`;
 let getOneMonthBooking = [];
 let defaultPage = 1;
 let pagesCount = 0;
@@ -197,36 +198,23 @@ function pagination(pages) {
 \*------------------------------------*/
 
 before.addEventListener("click", function () {
-    let year = localStorage.getItem("thisYear");
-    let month = localStorage.getItem("thisMonth");
-    month--;
-    if (month < 1) {
-        month = 12;
-        year--;
-    }
-    if (year <= 2023 && month <= 9) {
+    let month = moment(localStorage.getItem("thisMonth")).add(-1, "month").format("YYYY-MM");
+
+    if (month === "2023-08") {
         Swal.fire({
             title: "抱歉並無2023-09以前的資料",
             icon: "error"
         });
+        before.setAttribute("disabled", true);
+        return;
     }
     localStorage.setItem("thisMonth", month);
-    localStorage.setItem("thisYear", year);
-    getBookingMonth = `${year}-${month}`;
     location.reload();  // 切換月份重整網頁
 })
 
 after.addEventListener("click", function () {
-    let year = localStorage.getItem("thisYear");
-    let month = localStorage.getItem("thisMonth");
-    month++;
-    if (month > 12) {
-        month = 1;
-        year++;
-    }
+    let month = moment(localStorage.getItem("thisMonth")).add(1, "month").format("YYYY-MM");
     localStorage.setItem("thisMonth", month);
-    localStorage.setItem("thisYear", year);
-    getBookingMonth = `${year}-${month}`;
     location.reload();  // 切換月份重整網頁
 })
 
