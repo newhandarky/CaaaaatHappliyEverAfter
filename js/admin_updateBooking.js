@@ -18,6 +18,8 @@ const checkOut = document.querySelector(".checkOut");
 const memberPhone = document.querySelector(".memberPhone");
 const bookingRoomType = document.querySelector(".bookingRoomType");
 const bookingDays = document.querySelector(".bookingDays");
+const checkInCats = document.querySelector(".checkInCats");
+const plusCatPay = document.querySelector(".plusCatPay");
 const totalPrice = document.querySelector(".totalPrice");
 const getCats = document.querySelector(".getCats");
 const remark = document.querySelector(".remark");
@@ -28,7 +30,6 @@ const btnSave = document.querySelector(".btnSave");
 const btnCancel = document.querySelector(".btnCancel");
 const btnBack = document.querySelector(".btnBack");
 const form = document.querySelector("form");
-// const btns = document.querySelector(".btns");
 
 /*------------------------------------*\
     變數
@@ -48,7 +49,19 @@ let bookingObj = await axios.get(`${_url}/660/bookings/${localStorage.getItem('b
     return res.data;
 }).catch(function (err) {
     console.log(err);
-    reLogin(err.response.data);
+    // 如果找不到訂單資料返回訂單列表
+    if (err.response.status === 404) {
+        Swal.fire({
+            title: "查詢不到資料",
+            text: "請確認輸入訂單編號是否正確",
+            icon: "error"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                location = "../pages/admin_bookingList.html"
+            } 
+        });
+    }
+    // reLogin(err.response.data);
 });
 
 // 取得客房資料
@@ -60,7 +73,7 @@ let roomObj = await axios.get(`${_url}/660/rooms/`, {
     return res.data;
 }).catch(function (err) {
     console.log(err);
-    reLogin(err.response.data);
+    // reLogin(err.response.data);
 })
 
 // 取得每日房況資料
@@ -73,9 +86,8 @@ let roomStatesObj = await axios.get(`${_url}/660/roomstates/`, {
     return res.data;
 }).catch(function (err) {
     console.log(err);
-    reLogin(err.response.data);
+    // reLogin(err.response.data);
 })
-
 
 /*------------------------------------*\
     function
@@ -90,7 +102,7 @@ function getUser(userId) {
         return res.data;
     }).catch(function (err) {
         console.log(err);
-        reLogin(err.response.data);
+        // reLogin(err.response.data);
     })
 }
 
@@ -120,7 +132,7 @@ async function getHistory(bookingHistoryArr) {
             logArr.push(logObj);
         } catch (err) {
             console.error(err);
-            reLogin(err.response.data);
+            // reLogin(err.response.data);
         }
     }
     logArr.forEach(function (item) {
@@ -143,7 +155,7 @@ async function getHistory(bookingHistoryArr) {
 // 渲染訂單資料
 function renderData(bookingObj, roomObj, userObj) {
     let roomType = "";
-    // console.log(bookingObj);
+    console.log(bookingObj);
     // console.log(roomObj);
     // console.log(userObj);
 
@@ -161,8 +173,17 @@ function renderData(bookingObj, roomObj, userObj) {
     memberPhone.value = userObj.phone;
     bookingRoomType.value = roomType;
     bookingDays.value = bookingObj.quantity;
-    totalPrice.value = bookingObj.price;
     remark.value = bookingObj.remark;
+    checkInCats.value = bookingObj.cats.length;
+    plusCatPay.value = (bookingObj.cats.length - 1) * 300 * bookingObj.quantity;
+
+    roomObj.forEach(function (item) {
+        if (item.id === bookingObj.roomId) {
+            totalPrice.value = item.price * bookingObj.quantity + (bookingObj.cats.length - 1) * 300 * bookingObj.quantity;
+        }
+    })
+    // totalPrice.value = bookingObj.roomId + (bookingObj.cats.length - 1) * 300 * bookingObj.quantity;
+
 
     // 取得貓咪資料
     let getCatsArr = [];
@@ -188,9 +209,9 @@ function renderData(bookingObj, roomObj, userObj) {
         toggleData();
 
         // 多隻貓咪時根據住宿的貓咪加上預售勾選
-        bookingObj.cats.forEach(function(cat){
-            document.querySelectorAll(".form-check-input").forEach(function(item){
-                if(parseInt(item.dataset.catid) === cat){
+        bookingObj.cats.forEach(function (cat) {
+            document.querySelectorAll(".form-check-input").forEach(function (item) {
+                if (parseInt(item.dataset.catid) === cat) {
                     item.setAttribute("checked", true)
                 }
             })
@@ -200,9 +221,10 @@ function renderData(bookingObj, roomObj, userObj) {
         if (bookingObj.state === "已取消" || bookingObj.state === "已退房") {
             btnUpdate.setAttribute("disabled", true);
         }
+
     }).catch(function (err) {
         console.log(err);
-        reLogin(err.response.data);
+        // reLogin(err.response.data);
     })
 }
 
@@ -247,7 +269,7 @@ function addBookingHistory(bookingHistoryObj) {
         saveHistoryBackBooking(res.data);
     }).catch(function (err) {
         console.log(err);
-        reLogin(err.response.data);
+        // reLogin(err.response.data);
     })
 }
 
@@ -264,7 +286,7 @@ function saveHistoryBackBooking(bookingHistoryObj) {
         updateBooking(newBookingObj);       // 將更新後的訂單寫回原訂單資料
     }).catch(function (err) {
         console.log(err);
-        reLogin(err.response.data);
+        // reLogin(err.response.data);
     })
 }
 
@@ -287,7 +309,7 @@ function updateBooking(newBookingObj) {
         renderData(res.data, roomObj, userObj)  // 渲染更新後的資料
     }).catch(function (err) {
         console.log(err);
-        reLogin(err.response.data);
+        // reLogin(err.response.data);
     })
 }
 
@@ -303,23 +325,22 @@ function countSelectedCheckboxes(formCheckInputs) {
 }
 
 // 判斷入住貓咪數量幾隻
-function checkCatChecked(){
+function checkCatChecked() {
     const formCheckInputs = document.querySelectorAll(".form-check-input");
     // 入住貓咪數量不能小於1
-    formCheckInputs.forEach(function (checkbox) {
-        let selectedCount = countSelectedCheckboxes(formCheckInputs);
-        if(selectedCount <= 0){
-            Swal.fire({
-                icon: "error",
-                title: "入住貓咪數量不能小於 1"
-            });
-        }
-    });
+    let selectedCount = countSelectedCheckboxes(formCheckInputs);
+    if (selectedCount <= 0) {
+        Swal.fire({
+            icon: "error",
+            title: "入住貓咪數量不能小於 1"
+        });
+    }
     countSelectedCheckboxes(formCheckInputs);
+    return selectedCount;
 }
 
 // 當訂單取消或變更時取得畫面當前的訂單履歷
-function setNewBookingHistoryObj(newBookingObj, bookingStateStr){
+function setNewBookingHistoryObj(newBookingObj, bookingStateStr) {
     // 取消與變更的state狀態在個別的function加上
     // 計算總共住幾隻貓咪
     let checkboxCount = 0;
@@ -340,7 +361,7 @@ function setNewBookingHistoryObj(newBookingObj, bookingStateStr){
 }
 
 // 將取消的日期房間數歸還到原本的相對應的房型屬性
-function setFreeRoomToRoomStates(newRoomStates, roomStatesObj){
+function setFreeRoomToRoomStates(newRoomStates, roomStatesObj) {
     let bookingStartDate = bookingObj.checkIn;   // 取得訂單當前日期
     const roomStateObj = {                  // 房型對比資料
         "51": "classic",
@@ -360,7 +381,7 @@ function setFreeRoomToRoomStates(newRoomStates, roomStatesObj){
 }
 
 // 房型不夠的錯誤提示
-function roomNotEnough(){
+function roomNotEnough() {
     Swal.fire({
         icon: "error",
         title: "很抱歉",
@@ -416,7 +437,7 @@ form.addEventListener("change", function (e) {
     }
     // 判斷入住貓咪數量是否<0
     checkCatChecked();
-    
+
 })
 
 // 點擊取消訂單時
@@ -439,7 +460,7 @@ btnCancel.addEventListener("click", function () {
                     authorization: `Bearer ${localStorage.getItem("userLoginToken")}`,
                 },
             }).then(function (res) {
-                
+
                 const bookingHistoryObj = {};
                 setNewBookingHistoryObj(bookingHistoryObj, "已取消");
 
@@ -481,10 +502,10 @@ btnCancel.addEventListener("click", function () {
                             })
                         }
                     })
-                })                
+                })
             }).catch(function (err) {
                 console.log(err);
-                reLogin(err.response.data);
+                // reLogin(err.response.data);
             })
         }
     });
@@ -502,15 +523,15 @@ document.querySelectorAll("a").forEach(function (item) {
         console.log(bookingObj.cats.join(""));
 
         let newCat = "";
-        document.querySelectorAll(".form-check-input").forEach(function(item){
-            if(item.checked){
-                newCat+=item.dataset.catid;
+        document.querySelectorAll(".form-check-input").forEach(function (item) {
+            if (item.checked) {
+                newCat += item.dataset.catid;
             }
         })
 
-        if(bookingState.value === "已取消"){
+        if (bookingState.value === "已取消") {
             return;
-        }else if (bookingObj.checkIn !== checkIn.value
+        } else if (bookingObj.checkIn !== checkIn.value
             || bookingObj.checkOut !== checkOut.value
             || bookingObj.state !== bookingState.value
             || bookingObj.remark !== remark.value
@@ -537,14 +558,14 @@ btnUpdateCancel.addEventListener("click", function () {
 
 // 點擊送出儲存時
 btnSave.addEventListener("click", function () {
-     // 儲存變更後的日期狀態物件
+    // 儲存變更後的日期狀態物件
     let newRoomStatesArr = [];
-    roomStatesObj.forEach(function(item){       // 複製一份房況陣列判斷客房是否足夠
+    roomStatesObj.forEach(function (item) {       // 複製一份房況陣列判斷客房是否足夠
         newRoomStatesArr.push(item);
     })
 
     // 儲存需要比對的日期物件, 之後傳到server更新
-    let roomStateUpdate = [];     
+    let roomStateUpdate = [];
     // 將取消的日期房間數歸還到原本的相對應的房型屬性
     setFreeRoomToRoomStates(roomStateUpdate, newRoomStatesArr);
 
@@ -558,34 +579,34 @@ btnSave.addEventListener("click", function () {
     let checkCanUpdateNum = 1;
 
     // 以複製的房況陣列來判斷是否能接受換房
-    for(let i = 1; i <= bookingDays.value; i++){
-        newRoomStatesArr.forEach(function(item){
-            if(item.date === moment(checkIn.value).add(i - 1, "day").format("YYYY-MM-DD")){
+    for (let i = 1; i <= bookingDays.value; i++) {
+        newRoomStatesArr.forEach(function (item) {
+            if (item.date === moment(checkIn.value).add(i - 1, "day").format("YYYY-MM-DD")) {
                 // 用房間數字做運算, 如果數字等於0即代表其中有日期已經沒房間不可進行換房
                 checkCanUpdateNum *= item.availableCount[roomStateObjZh[bookingRoomType.value]];
             }
         })
     }
     // 判斷數字大於0即代表尚有客房可以更換
-    if(checkCanUpdateNum > 0){
-        for(let i = 1; i <= bookingDays.value; i++){
-            newRoomStatesArr.forEach(function(item){
-                if(item.date === moment(checkIn.value).add(i - 1, "day").format("YYYY-MM-DD")){
+    if (checkCanUpdateNum > 0) {
+        for (let i = 1; i <= bookingDays.value; i++) {
+            newRoomStatesArr.forEach(function (item) {
+                if (item.date === moment(checkIn.value).add(i - 1, "day").format("YYYY-MM-DD")) {
                     item.availableCount[roomStateObjZh[bookingRoomType.value]]--;
                     roomStateUpdate.push(item);
                 }
             })
         }
-        
+
         // 將更新後的房況更新到server
-        roomStateUpdate.forEach(function(item){
+        roomStateUpdate.forEach(function (item) {
             axios.patch(`${_url}/660/roomStates/${item.id}`, item, {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem("userLoginToken")}`,
                 },
-            }).then(function(res){
+            }).then(function (res) {
                 // console.log(res.data);
-            }).catch(function(err){
+            }).catch(function (err) {
                 console.log(err.response);
             })
         })
@@ -609,8 +630,8 @@ btnSave.addEventListener("click", function () {
         bookingObj.roomId = roomStateObj[bookingRoomType.value];
         bookingObj.admin.userId = localStorage.getItem("userId");
         bookingObj.cats = [];
-        document.querySelectorAll(".form-check-input").forEach(function(item){
-            if(item.checked){
+        document.querySelectorAll(".form-check-input").forEach(function (item) {
+            if (item.checked) {
                 bookingObj.cats.push(parseInt(item.dataset.catid));
             }
         })
@@ -620,7 +641,7 @@ btnSave.addEventListener("click", function () {
         updateBooking(bookingObj);
         renderData(bookingObj, roomObj, userObj);
         btnToggle();
-    }else{
+    } else {
         roomStateUpdate = [];
         btnToggle();
         roomNotEnough();

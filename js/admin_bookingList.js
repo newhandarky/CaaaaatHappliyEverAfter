@@ -5,6 +5,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { _url } from "./config";
 import { reLogin } from "./loginIsTimeUp";
+import moment from "moment";
 
 /*------------------------------------*\
     doms
@@ -19,7 +20,7 @@ const getPages = document.querySelector(".getPages");
     變數
 \*------------------------------------*/
 // 取得當前年月份的字串
-let getBookingMonth = `${localStorage.getItem("thisYear")}-${localStorage.getItem("thisMonth")}`;
+let getBookingMonth = `${localStorage.getItem("thisMonth")}`;
 let getOneMonthBooking = [];
 let defaultPage = 1;
 let pagesCount = 0;
@@ -77,7 +78,6 @@ function showPagination() {
                 getBookingData(defaultPage);
             }
         }else if(e.target.classList.contains("page-link")){     //點選頁頁切數字切換顯示頁數
-            console.log(e.target.parentElement.dataset.page);
             defaultPage = e.target.parentElement.dataset.page;
             document.querySelector(".active").classList.remove("active"); // 移除當前頁籤
             pageNums.forEach(function (item) {
@@ -98,6 +98,7 @@ function getAllBookingData() {
         },
     })
         .then(function (res) {
+            console.log(res.data);
             let bookingCount = 0;
             res.data.forEach(function (item) {
                 if (item.checkIn.startsWith(getBookingMonth)) {
@@ -107,7 +108,7 @@ function getAllBookingData() {
             pagination(bookingCount);  // 取得數量顯示下方分頁
         }).catch(function (err) {
             console.log(err);            
-            reLogin(err.response.data);
+            // reLogin(err.response.data);
         })
 }
 
@@ -142,17 +143,17 @@ function getBookingData(num) {
         getOneMonthBooking = [];
     }).catch(function (err) {
         console.log(err);
-        reLogin(err.response.data);    
+        // reLogin(err.response.data);    
     })
 }
 
 // 渲染table資料
-function renderTable(arr) {
+export function renderTable(arr) {
     const tbody = document.querySelector(".tbody");
     let str = "";
     arr.forEach(function (item) {       // 
         str += `<tr>
-                <th class="text-nowrap text-center" scope="row"><a class="bookingNum" data-bookingnum="${item.id}" href="../pages/admin_updateBooking.html">${item.id}</a></th>       
+                <th class="text-nowrap border-0 text-center d-flex align-items-center justify-content-center" scope="row"><a class="bookingNum adminLink" data-bookingnum="${item.id}" href="../pages/admin_updateBooking.html">${item.id}</a></th>       
                 <td class="text-nowrap text-center">${item.name}</td>
                 <td class="text-nowrap text-center">${item.checkIn}</td>
                 <td class="text-nowrap text-center">${item.quantity}</td>
@@ -178,14 +179,14 @@ function pagination(pages) {
     }
     pagesCount = Math.ceil((pages) / 8);    // 取得下方分頁數量
     let previous = ` <li class="page-item previous">
-                        <a class="page-link previous p-4">Previous</a>
+                        <a class="page-link py-3 px-6 previous">Previous</a>
                     </li> `;
     let next = `<li class="page-item next">
-                        <a class="page-link next p-4">Next</a>
+                        <a class="page-link py-3 px-6 next">Next</a>
                     </li>`
     let pagesStr = "";
     for (let i = 1; i <= pagesCount; i++) {
-        pagesStr += `<li class="page-item pageNum" data-page="${i}"><a class="page-link p-4">${i}</a></li>`
+        pagesStr += `<li class="page-item pageNum" data-page="${i}"><a class="page-link py-3 px-6">${i}</a></li>`
     }
     getPages.innerHTML = previous + pagesStr + next;
     showPagination();
@@ -197,42 +198,28 @@ function pagination(pages) {
 \*------------------------------------*/
 
 before.addEventListener("click", function () {
-    let year = localStorage.getItem("thisYear");
-    let month = localStorage.getItem("thisMonth");
-    month--;
-    if (month < 1) {
-        month = 12;
-        year--;
-    }
-    if (year <= 2023 && month <= 9) {
+    let month = moment(localStorage.getItem("thisMonth")).add(-1, "month").format("YYYY-MM");
+
+    if (month === "2023-08") {
         Swal.fire({
             title: "抱歉並無2023-09以前的資料",
             icon: "error"
         });
+        before.setAttribute("disabled", true);
+        return;
     }
     localStorage.setItem("thisMonth", month);
-    localStorage.setItem("thisYear", year);
-    getBookingMonth = `${year}-${month}`;
     location.reload();  // 切換月份重整網頁
 })
 
 after.addEventListener("click", function () {
-    let year = localStorage.getItem("thisYear");
-    let month = localStorage.getItem("thisMonth");
-    month++;
-    if (month > 12) {
-        month = 1;
-        year++;
-    }
+    let month = moment(localStorage.getItem("thisMonth")).add(1, "month").format("YYYY-MM");
     localStorage.setItem("thisMonth", month);
-    localStorage.setItem("thisYear", year);
-    getBookingMonth = `${year}-${month}`;
     location.reload();  // 切換月份重整網頁
 })
 
 // 點擊訂單編號時儲存訂單編號到localStorage
 tbody.addEventListener("click", function(e){
-    console.log(e.target);
     if(e.target.classList.contains("bookingNum")){
         localStorage.setItem("bookingNum", e.target.dataset.bookingnum);
     }

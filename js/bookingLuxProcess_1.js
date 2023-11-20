@@ -3,7 +3,7 @@ import { _url } from "./config";
 import { isLogin } from "./isLogin";
 
 
-//bookingProcess_1.html
+//bookingDelicateProcess_1.html
 //DOM
 let checkinDate = document.querySelector("#checkinDate");
 let checkoutDate = document.querySelector('#checkoutDate');
@@ -12,7 +12,7 @@ let dateForm = document.querySelector("#dateForm");
 console.log(toProcess_2);
 
 
-//房框日曆
+//房況日曆
 axios.get(`${_url}/roomStates`).then(function(response){
     let data = response.data;
     let array = [];
@@ -20,8 +20,8 @@ axios.get(`${_url}/roomStates`).then(function(response){
         let obj = {};
         obj.start=item.date;
         obj.title = '';
-        if(item.availableCount.delicate>0){
-            obj.title=`剩餘${item.availableCount.delicate}間`
+        if(item.availableCount.luxury>0){
+            obj.title=`剩餘${item.availableCount.luxury}間`
         }else{
             obj.title="已無空房"
         }
@@ -50,9 +50,9 @@ axios.get(`${_url}/roomStates`).then(function(response){
 checkinDate.addEventListener('change', function(e){
     axios.get(`${_url}/roomStates?date=${checkinDate.value}`).then(function(response){
         let data = response.data;
-        console.log(data[0].availableCount.delicate);
-        if(data[0].availableCount.delicate == 0){
-            console.log(data[0].availableCount.delicate);
+        console.log(data[0].availableCount.luxury);
+        if(data[0].availableCount.luxury == 0){
+            console.log(data[0].availableCount.luxury);
             alert(`${checkinDate.value}已無空房，請重新選擇`);
             return dateForm.reset();
         }
@@ -61,14 +61,15 @@ checkinDate.addEventListener('change', function(e){
 });
 
 checkoutDate.addEventListener("change", function(e){
-    if(checkinDate.value > checkoutDate.value){
-        return alert("checkout 日期不可早於checkin 日期")
+    if(checkinDate.value >= checkoutDate.value){
+        checkoutDate.value = ""
+        return alert("checkout 日期需晚於checkin 日期")
     }
     axios.get(`${_url}/roomStates?date_gte=${checkinDate.value}&date_lte=${checkoutDate.value}&date_ne=${checkoutDate.value}`).then(function(response){
         let data = response.data;
         console.log(data)
         data.forEach(function(item){
-         if(item.availableCount.delicate == 0){
+         if(item.availableCount.luxury == 0){
             alert(`${item.date}已無空房，請重新選擇`);
             return dateForm.reset();
             
@@ -90,7 +91,7 @@ toProcess_2.addEventListener("click", function(e){
          obj["checkIn"] = checkinDate.value;
          obj["checkOut"]=checkoutDate.value;
          obj['bookingDate']=new Date();
-         obj['roomType']= "精緻房"
+         obj['roomType']= "豪華房"
          console.log(obj)
          let bookingData = JSON.stringify(obj);
          sessionStorage.setItem("bookingData", bookingData);
@@ -98,3 +99,6 @@ toProcess_2.addEventListener("click", function(e){
          
         }
     });
+
+
+  

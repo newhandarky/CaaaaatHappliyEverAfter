@@ -12,11 +12,11 @@
 <body>
     <%- include('./layout/admin_header'); -%>
 
-    <main class="container pb-8">
+    <main class="container mb-15">
         <div class="row">
-            <div class="p-6">
+            <div class="adminBreadcrumb py-8">
                 <h2>
-                    <a href="#">後台首頁</a> > <a href="./admin_booking.html">訂單管理</a> > 訂單列表
+                    <a href="./admin_index.html">後台首頁</a> > <a href="./admin_booking.html">訂單管理</a> > 訂單列表
                 </h2>
             </div>
         </div>
@@ -24,21 +24,21 @@
         <%- include('./layout/admin_searchBar'); -%>
 
         <div class="row">
-            <div class="ps-8 pe-8">
-                <div class="bookingContent border border-2 rounded-2 p-8 d-flex flex-column justify-content-between">
-                    <div class="overflow-auto">
-                        <div class="d-flex justify-content-center mb-5">
+            <div class="adminBookingListContent">
+                <div class="bookingContent border border-2 rounded-2 d-flex flex-column justify-content-between">
+                    <div class="overflow-auto p-8 adminBookingDatas">
+                        <div class="d-flex justify-content-center mb-8 bookingMonthChange">
                             <div class="d-flex align-items-center">
-                                <button class="before btn btn-info pt-0 pb-0">
-                                    <span class="material-symbols-outlined pt-2">
+                                <button class="before btn btn-primary d-flex justify-content-center align-items-center">
+                                    <span class="material-symbols-outlined">
                                         chevron_left
                                     </span>
                                 </button>
                             </div>
-                            <h2 class="date ms-6 me-6"></h2>
+                            <h2 class="date mx-8 bookingMonth"></h2>
                             <div class="d-flex align-items-center">
-                                <button class="after btn btn-info pt-0 pb-0">
-                                    <span class="material-symbols-outlined pt-2">
+                                <button class="after btn btn-primary d-flex justify-content-center align-items-center">
+                                    <span class="material-symbols-outlined">
                                         chevron_right
                                     </span>
                                 </button>
@@ -48,14 +48,14 @@
                             class="table table-success table-bordered border border-dark table-hover table-responsive">
                             <thead>
                                 <tr>
-                                    <th class="text-nowrap text-center p-2" scope="col">訂單編號</th>
-                                    <th class="text-nowrap text-center p-2" scope="col">會員姓名</th>
-                                    <th class="text-nowrap text-center p-2" scope="col">入住日期</th>
-                                    <th class="text-nowrap text-center p-2" scope="col">入住天數</th>
-                                    <th class="text-nowrap text-center p-2" scope="col">預定房型</th>
-                                    <th class="text-nowrap text-center p-2" scope="col">訂單狀態</th>
-                                    <th class="text-nowrap text-center p-2" scope="col">訂單總額</th>
-                                    <th class="text-nowrap text-start p-2" scope="col">備註</th>
+                                    <th class="text-nowrap text-center" scope="col">訂單編號</th>
+                                    <th class="text-nowrap text-center" scope="col">會員姓名</th>
+                                    <th class="text-nowrap text-center" scope="col">入住日期</th>
+                                    <th class="text-nowrap text-center" scope="col">入住天數</th>
+                                    <th class="text-nowrap text-center" scope="col">預定房型</th>
+                                    <th class="text-nowrap text-center" scope="col">訂單狀態</th>
+                                    <th class="text-nowrap text-center" scope="col">訂單總額</th>
+                                    <th class="text-nowrap text-start" scope="col">備註</th>
                                 </tr>
                             </thead>
                             <tbody class="tbody">
@@ -63,7 +63,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <nav aria-label="Page navigation example" class="mt-5">
+                    <nav aria-label="Page navigation example" class="bookingNavigation mb-12">
                         <ul class="getPages pagination justify-content-center d-flex">
 
                         </ul>

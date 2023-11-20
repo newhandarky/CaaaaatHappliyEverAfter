@@ -1,91 +1,74 @@
-// /*------------------------------------*\
-//     background-color
-// \*------------------------------------*/
+/*------------------------------------*\
+    background-color
+\*------------------------------------*/
 
-// /*------------------------------------*\
-//     link style
-// \*------------------------------------*/
+/*------------------------------------*\
+    link style
+\*------------------------------------*/
+.adminLink {
+  color: $primary;
+  text-decoration: none;
+  &:hover {
+    color: $danger;
+  }
+  &::after {
+    content: "";
+    display: block;
+    width: 0%;
+    height: 2px;
+    background-color: $danger;
+    margin: 0 auto;
+    transition: width 0.8s;
+  }
+  &:hover::after {
+    width: 100%;
+  }
+}
+/*------------------------------------*\
+    h1, h2, h3, h4, h5, h6  fs-1, fs-2, fs-3, fs-4, fs-5, fs-6 caption style
+\*------------------------------------*/
 
-// /*------------------------------------*\
-//     h1, h2, h3, h4, h5, h6 style
-// \*------------------------------------*/
-h1 {
-  font-size: 4rem;
-  font-weight: 700;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+.fs-1,
+.fs-2,
+.fs-3,
+.fs-4,
+.fs-5,
+.fs-6,
+caption {
   color: $text;
 }
-h2 {
-  font-size: 2rem;
-  font-weight: 700;
-  color: $text;
-}
+
+h1,
+h2,
 h3 {
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: $text;
+  font-weight: $font-weight-bold;
 }
-h4 {
-  font-size: 1.5rem;
-  font-weight: 500;
-  color: $text;
-}
-h5 {
-  font-size: 1.25rem;
-  font-weight: 500;
-  color: $text;
-}
+
+h4,
+h5,
 h6 {
-  font-size: 1rem;
-  font-weight: 500;
-  color: $text;
+  font-weight: $font-weight-semibold;
 }
 p {
-  color: $text;
+  font-weight: $font-weight-normal;
 }
 
-// /*------------------------------------*\
-//     fs-1, fs-2, fs-3, fs-4, fs-5, fs-6 caption style
-// \*------------------------------------*/
-.fs-1 {
-  font-size: 2rem !important;
-  font-weight: 400;
-  color: $text;
-}
-.fs-2 {
-  font-size: 1.75rem !important;
-  font-weight: 400;
-  color: $text;
-}
-.fs-3 {
-  font-size: 1.5rem !important;
-  font-weight: 400;
-  color: $text;
-}
-.fs-4 {
-  font-size: 1.25rem !important;
-  font-weight: 400;
-  color: $text;
-}
-.fs-5 {
-  font-size: 1.125rem !important;
-  font-weight: 400;
-  color: $text;
-}
+.fs-1,
+.fs-2,
+.fs-3,
+.fs-4,
+.fs-5,
 .fs-6 {
-  font-size: 1rem !important;
-  font-weight: 400;
-  color: $text;
-}
-.fs-7 {
-  font-size: 1rem !important;
-  font-weight: 400;
-  color: $text;
+  font-weight: $font-weight-normal;
 }
 
-caption {
-  font-size: 14px;
-  font-weight: 200;
-}
 /*------------------------------------*\
     ul, ol, li style
 \*------------------------------------*/
@@ -110,6 +93,100 @@ body {
 /*------------------------------------*\
     btn icon
 \*------------------------------------*/
+/* 自訂按鈕樣式 */
+.primaryStrokeToFill-btn-primary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 1px $primary;
+  border-radius: 2rem;
+  padding: 0.3rem 1.2rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  button,
+  a {
+    text-align: center;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    color: $primary !important;
+  }
+  &:hover {
+    background-color: $primary;
+    button,
+    a {
+      color: $white !important;
+    }
+  }
+}
+
+.primaryFill-btn-primary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 1px $primary;
+  border-radius: 2rem;
+  padding: 0.3rem 1.2rem;
+  background-color: $primary;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  button,
+  a {
+    text-align: center;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    color: $white !important;
+  }
+  &:hover {
+    border-color: #e46d23;
+    background-color: #e46d23;
+  }
+}
+
+.primaryStroke-btn-primary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 1px $primary;
+  border-radius: 2rem;
+  padding: 0.3rem 1.2rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  button,
+  a {
+    text-align: center;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    color: $primary !important;
+  }
+  &:hover {
+    background-color: $primary02;
+  }
+}
+
+.primaryNoneToFill-btn-primary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 1px $primary;
+  border-radius: 2rem;
+  padding: 0.3rem 1.2rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  button,
+  a {
+    text-align: center;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    color: $primary !important;
+  }
+  &:hover {
+    background-color: $primary;
+    button,
+    a {
+      color: $white !important;
+    }
+  }
+}
 
 /*------------------------------------*\
     input

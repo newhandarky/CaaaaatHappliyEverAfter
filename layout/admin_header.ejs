@@ -2,8 +2,8 @@
 
 <header class="adminHeader bg-neutral03">
     <div class="container">
-        <div class="row p-6">
-            <div class="d-flex justify-content-between align-items-center p-0">
+        <div class="row py-6">
+            <div class="d-flex justify-content-between align-items-center">
                 <div>
                     <a href="../pages/admin_index.html">
                         <img src="https://raw.githubusercontent.com/newhandarky/CaaaaatHappliyEverAfter/0e256f0b76088eb06998f784d1469dd6f7b5b1e3/assets/images/LogoHorizontal.svg" alt="logo圖片">
@@ -15,8 +15,8 @@
                         <li>
                             <p class="welcome align-middle"></p>
                         </li>
-                        <li class="ms-20">
-                            <div class="">
+                        <li class="ms-4">
+                            <div class="d-flex">
                                 <select name="adminAccount" class="adminAccount">
                                     <option selected>請選擇</option>
                                     <option value="1052">更換後台人員1052</option>
@@ -24,24 +24,27 @@
                                     <option value="1054">更換後台人員1054</option>
                                     <option value="1055">更換後台人員1055</option>
                                 </select>
-                                <a class="adminLogin ms-4" href="#">登入</a>
-                                <a class="loginTimeOut ms-4" href="#">登入逾時</a>
+                                <div class="d-flex">
+                                    <a class="adminLink adminLogin align-middle ms-4" href="#">登入</a>
+                                    <!-- 模擬登入逾時的測試, 功能完成後移除 -->
+                                    <!-- <a class="adminLink loginTimeOut ms-4" href="#">登入逾時</a> -->
+                                </div>
                             </div>
                         </li>
                         <li class="ms-4">
-                            <a class="align-middle" href="../pages/admin_account.html">帳號管理</a>
+                            <a class="adminLink align-middle" href="../pages/admin_account.html">帳號管理</a>
                         </li>
                         <li class="ms-4">
-                            <a class="align-middle" href="../pages/admin_booking.html">訂單管理</a>
+                            <a class="adminLink align-middle" href="../pages/admin_booking.html">訂單管理</a>
                         </li>
                         <li class="ms-4">
-                            <a class="align-middle" href="../pages/admin_rooms.html">客房管理</a>
+                            <a class="adminLink align-middle" href="../pages/admin_rooms.html">客房管理</a>
                         </li>
                         <li class="ms-4">
-                            <a class="align-middle" href="../pages/admin_article.html">文章管理</a>
+                            <a class="adminLink align-middle" href="../pages/admin_article.html">文章管理</a>
                         </li>
                         <li class="ms-4 logout">
-                            <a class="logout align-middle" href="#">登出</a>
+                            <a class="adminLink logout align-middle" href="#">登出</a>
                         </li>
                     </ul>
                 </nav>

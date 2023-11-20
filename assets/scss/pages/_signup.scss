@@ -1,0 +1,47 @@
+.signupContent {
+  height: 100vh;
+}
+.signupForm {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 400px;
+  input,
+  .gender {
+    border: none;
+    width: 100%;
+  }
+  input,
+  .gender {
+    box-shadow: 0 3px 0 $gray-400;
+  }
+
+  .gender {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 2rem;
+    .radio {
+      width: 16px;
+      height: 16px;
+      display: inline-block;
+      accent-color: $text;
+      box-shadow: none;
+      height: auto;
+    }
+  }
+  .input {
+    height: 50px;
+  }
+  .signupBtns {
+    width: 100%;
+    margin: 1rem;
+    .signupBtn {
+      min-width: 7rem;
+    }
+  }
+}

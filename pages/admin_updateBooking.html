@@ -12,22 +12,22 @@
 <body>
     <%- include('./layout/admin_header'); -%>
 
-        <main class="container pb-15">
-            <div class="row">
-                <div class="p-8">
+        <main class="container mb-15">
+            <div class="row adminBreadcrumb">
+                <div class="py-8">
                     <h2>
-                        <a href="#">後台首頁</a> > <a href="./admin_booking.html">訂單管理</a> > <a
+                        <a href="./admin_index.html">後台首頁</a> > <a href="./admin_booking.html">訂單管理</a> > <a
                             href="./admin_bookingList.html">訂單列表</a> > 檢視訂單
                     </h2>
                 </div>
             </div>
 
-            <%- include('./layout/admin_searchBar'); -%>
+            <!-- <%- include('./layout/admin_searchBar'); -%> -->
                 <div class="row">
-                    <div class="ps-8 pe-8">
+                    <div>
                         <div
-                            class="bookingContent border border-2 rounded-2 p-8 d-flex flex-column justify-content-between">
-                            <div class="d-flex justify-content-between ">
+                            class="bookingContent p-8 border border-2 rounded-2 adminBooking_content d-flex flex-column justify-content-between">
+                            <div class="d-flex justify-content-between mb-6">
                                 <h2 class="">檢視訂單</h2>
                                 <div class="d-flex align-items-center">
                                     <label for="bookingId" class="form-label text-nowrap">訂單編號</label>
@@ -44,11 +44,11 @@
                             </div>
                             <form class="d-flex justify-content-between">
                                 <div class="col-6 row">
-                                    <div class="mb-3 col-6">
+                                    <div class="mb-4 col-6">
                                         <label for="memberName" class="form-label">會員姓名</label>
                                         <input type="text" class="form-control memberName" id="memberName" disabled readonly>
                                     </div>
-                                    <div class="mb-3 col-6">
+                                    <div class="mb-4 col-6">
                                         <label for="bookingState" class="form-label">訂單狀態</label>
                                         <select id="bookingState" class="form-select bookingState">
                                             <option selected>請選擇</option>
@@ -58,22 +58,22 @@
                                             <option>已取消</option>
                                         </select>
                                     </div>
-                                    <div class="mb-3 col-6">
+                                    <div class="mb-4 col-6">
                                         <label for="checkIn" class="form-label">入住日期</label>
                                         <input type="date" class="form-control checkIn" id="checkIn">
                                     </div>
 
-                                    <div class="mb-3 col-6">
+                                    <div class="mb-4 col-6">
                                         <label for="checkOut" class="form-label">退房日期</label>
                                         <input type="date" class="form-control checkOut" id="checkOut">
                                     </div>
 
-                                    <div class="mb-3 col-6">
+                                    <div class="mb-4 col-6">
                                         <label for="memberPhone" class="form-label">連絡電話</label>
                                         <input type="tel" class="form-control memberPhone" id="memberPhone" disabled readonly>
                                     </div>
 
-                                    <div class="mb-3 col-6">
+                                    <div class="mb-4 col-6">
                                         <label for="bookingRoomType" class="form-label">預定房型</label>
                                         <select id="bookingRoomType" class="form-select bookingRoomType">
                                             <option selected>請選擇</option>
@@ -83,37 +83,36 @@
                                         </select>
                                     </div>
 
-                                    <div class="mb-3 col-6">
+                                    <div class="mb-4 col-3">
                                         <label for="bookingDays" class="form-label">入住天數</label>
                                         <input type="number" class="form-control bookingDays" id="bookingDays">
                                     </div>
+                                    <div class="mb-4 col-3">
+                                        <label for="checkInCats" class="form-label">入住貓咪數量</label>
+                                        <input type="number" class="form-control checkInCats" id="checkInCats" disabled readonly>
+                                    </div>
+                                    <div class="mb-4 col-3">
+                                        <label for="plusCatPay" class="form-label">加貓費用</label>
+                                        <input type="number" class="form-control plusCatPay" id="plusCatPay" disabled readonly>
+                                    </div>
 
-                                    <div class="mb-3 col-6">
+                                    <div class="mb-4 col-3">
                                         <label for="totalPrice" class="form-label">訂單總額</label>
                                         <input type="number" class="form-control totalPrice" id="totalPrice" disabled readonly>
                                     </div>
-                                    <h6 class="mb-1">入住貓咪</h6>
+                                    <h6 class="mb-2">入住貓咪</h6>
                                     <div class="row getCats">
-
-
-                                        <!-- <div class="col-4">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="memberCat">
-                                                <label class="form-check-label memberCat" for="memberCat"></label>
-                                            </div>
-                                        </div> -->
-
 
                                     </div>
                                 </div>
                                 <div class="col-6">
 
-                                    <div class="mb-3 col-12">
+                                    <div class="mb-4 col-12">
                                         <label for="remark" class="form-label col-12">訂單備註</label>
                                         <textarea class="textarea col-12 remark py-1 px-3" id="remark" name="remark"
                                             rows="6"></textarea>
                                     </div>
-                                    <h3 class="fs-6 mb-3">訂單修改履歷</h3>
+                                    <h3 class="fs-6 mb-4">訂單修改履歷</h3>
                                     <div class="col-12 bookingStateTable overflow-auto">
                                         <table class="table table-bordered ">
                                             <thead>
