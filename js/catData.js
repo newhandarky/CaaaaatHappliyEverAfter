@@ -2,6 +2,13 @@ import axios from "axios";
 import { _url } from "./config";
 import { isLogin } from "./isLogin";
 
+// aside bar 顯示當前頁面
+// 因為有兩個 aside bar 所以要用 querySelectorAll
+const asideLocation = document.querySelectorAll("#catData");
+asideLocation.forEach((element) => {
+  element.classList.add("onThisPage");
+});
+
 //取得所需要的資療及DOM元素
 const userTokenAndData = JSON.parse(localStorage.getItem("userTokenAndData"));
 const { accessToken, user } = userTokenAndData;
@@ -66,21 +73,84 @@ function lodingCat() {
         //準備 innerHtml 添加資料
 
         let createCatDataDOM = JSON.stringify(`
-        <div id="catContainer_${index}" class="catContainer">
-        <h1 id="catName_${index}" class="catName">${catName}</h1>
-        <ul>
-          <li id="catGender_${index}" class="catGender">性別：${genderToChiniese()}</li>
-          <li id="catBirthday_${index}" class="catBirthday">生日：${birthday}</li>
-          <li id="catBreeds_${index}" class="catBreeds">品種：${catBreeds}</li>
-          <li id="catColors_${index}" class="catColors">花色：${colors}</li>
-          <li id="catWeight_${index}" class="catWeight">體重：${weight} Kg</li>
-        </ul>
-        <img id="catPhoto_${index}" src="${catPhoto}" alt="貓咪照片" />
-        <br />
-        <a id="catEdit_${index}" data-Index="${index}" data-catId="${id}" class="catEdit" href="./editCat.html">編輯資料</a>
-        <button id="catDelete_${index}" data-Index="${index}" data-catId="${id}" class="catDelete" >刪除資料</button>
-      </div>
-      `);
+        <div class="d-flex flex-column">
+            <div
+              class="catData d-flex flex-lg-row flex-column justify-content-center align-items-center"
+            >
+              <div
+                id="userDataPresent"
+                class="userDataPresent flex-grow-1 position-relative d-flex justify-content-center"
+              >
+                <div
+                  id="catContainer_${index}"
+                  class="w-10 d-inline-flex flex-column"
+                >
+                  <h1 id="catName_${index}" class="catName">${catName}</h1>
+                  <ul>
+                    <li id="catGender_${index}" class="catGender">
+                      性別：${genderToChiniese()}
+                    </li>
+                    <li id="catBirthday_${index}" class="catBirthday">
+                      生日：${birthday}
+                    </li>
+                    <li id="catBreeds_${index}" class="catBreeds">
+                      品種：${catBreeds}
+                    </li>
+                    <li id="catColors_${index}" class="catColors">
+                      花色：${colors}
+                    </li>
+                    <li id="catWeight_${index}" class="catWeight">
+                      體重：${weight} Kg
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div
+                id="userPhotoPresent"
+                class="userPhotoPresent position-relative flex-grow-1 d-flex justify-content-center align-items-center"
+              >
+                <img
+                  class="photoFrame position-absolute"
+                  src="../assets/images/photoFrame.svg"
+                  alt="photoFrame"
+                />
+                <div class="photoGroup position-absolute">
+                  <img
+                    id="catPhoto_${index}"
+                    class="photo img-fluid rounded mx-auto d-block"
+                    src="${catPhoto}"
+                    alt="貓咪照片"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              class="catBtns d-flex flex-column justify-content-around align-items-center"
+            >
+              <div class="catBtn primaryStroke-btn-primary">
+                <a
+                  id="catEdit_${index}"
+                  data-Index="${index}"
+                  data-catId="${id}"
+                  class="catEdit"
+                  href="./editCat.html"
+                  >編輯貓咪</a
+                >
+              </div>
+              <div class="catBtn primaryFill-btn-primary">
+                <button
+                  id="catDelete_${index}"
+                  data-Index="${index}"
+                  data-catId="${id}"
+                  class="catDelete"
+                >
+                  刪除貓咪
+                </button>
+              </div>
+            </div>
+          </div>
+          <hr class="m-5" style="border: 1.5px solid black;">
+        `);
 
         resultDom += JSON.parse(createCatDataDOM);
         console.log(resultDom);
@@ -156,9 +226,9 @@ function lodingCat() {
       ) {
         const catInfoDOM = document.getElementById("catInfo");
         let createCatAddDataDOM = JSON.stringify(`
-        <div id="catContainer_add" class="catContainer">
-        <h1 id="catAddTitle" class="catAddTitle">快來新增您的愛貓！</h1>        
-      </div>
+        <div id="catContainer_add" class="catContainer d-flex justify-content-center align-items-center m-5">
+          <h1 id="catAddTitle" class="catAddTitle">快來新增您的愛貓！</h1>        
+        </div>
       `);
 
         let resultDom = JSON.parse(createCatAddDataDOM);

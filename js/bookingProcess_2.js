@@ -102,7 +102,7 @@ toProcess_3.addEventListener("click", function(e){
         obj["catId"].push(response.data[0]['id']);
         console.log(JSON.stringify(obj));
         sessionStorage.setItem("catInfo",JSON.stringify(obj) );
-        window.location.href="./bookingProcess_3.html"
+         window.location.href="./bookingProcess_3.html"
         
         
     });
@@ -120,7 +120,8 @@ toProcess_3.addEventListener("click", function(e){
             obj["catId"].push(response.data[0]['id']);
             console.log(JSON.stringify(obj));
             sessionStorage.setItem("catInfo",JSON.stringify(obj) );
-            window.location.href="./bookingProcess_3.html"
+         
+        window.location.href="./bookingProcess_3.html"
             
         });
 
@@ -136,12 +137,16 @@ toProcess_3.addEventListener("click", function(e){
             obj["catId"].push(response.data[0]['id']);
             console.log(JSON.stringify(obj));
             sessionStorage.setItem("catInfo",JSON.stringify(obj) );
-            window.location.href="./bookingProcess_3.html"
+          
+         window.location.href="./bookingProcess_3.html"
             
         });
+        
 
     };
 
+  
+            
 
 
 

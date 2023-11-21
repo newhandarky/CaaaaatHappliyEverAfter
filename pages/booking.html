@@ -7,15 +7,79 @@
   </head>
   <body>
     <%- include('./layout/header'); -%>
+    
+    <div class="container">
+      <!-- <div class="d-inline-flex align-items-center my-3">
+        <img class="img-fluid dogPaw mx-2" src="../assets/icons/dogPaw.svg" alt="dogPaw">
+        <h1>線上訂房</h1>
+      </div> -->
 
-    <h1>這是線上訂房</h1>
+      <!-- <p class="ps-3 my-3"></p> -->
 
-    <ul>
+     <div class="row">
+      <div class="col-lg-6 col-12" style="padding-top: 50px; padding-bottom: 50px;">
+        <div class="d-flex flex-start ">
+          <div class="text type01 d-lg-flex align-items-center">
+            <div class="d-inline-flex align-items-center">
+              <img class="img-fluid dogPaw mx-2" src="../assets/icons/dogPaw.svg" alt="dogPaw">
+              <h1 class="d-none d-lg-block ">線上訂房</h1>
+               <h2 class="d-lg-none">線上訂房</h2>
+            </div>
+
+            <p class="mt-3 ms-3">
+              點選房型查看更多資訊
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+        
+      </div>
+
       
-      <li><a href="">經典房</a></li>
-      <li><a href="bookingDelicateRoom.html">精緻房</a></li>
-      <li><a href="">標準房</a></li>
-    </ul>
+
+
+
+          <!-- 房型區塊 -->
+    <div style="padding-bottom: 50px;" class="container">
+      <div class="row g-0 d-lg-flex justify-content-lg-between flex-lg-nowrap">
+        <div class="catRoom position-relative rounded-3 col-lg-4 mx-2">
+          <a href="bookingDelicateRoom.html">
+          <div class="roomImgText position-absolute bottom-0">
+            <h3 class="text">精緻房</h3>
+          </div>
+          <img src="../assets/images/catRoom_Delicate.png" alt="delicate" />
+        </a>
+        </div>
+
+        <div class="catRoom position-relative rounded-3 col-lg-4 mx-2">
+          <a href="bookingClassicRoom.html">
+          <div class="roomImgText position-absolute bottom-0">
+            <h3 class="text">經典房</h3>
+          </div>
+          <img src="../assets/images/catRoom_Classic.png" alt="classic" />
+        </a>
+        </div>
+
+        <div class="catRoom position-relative rounded-3 col-lg-4 mx-2">
+          <a href="bookingLuxRoom.html">
+          <div class="roomImgText position-absolute bottom-0">
+            <h3 class="text">豪華房</h3>
+          </div>
+          <img src="../assets/images/catRoom_luxury.png" alt="luxury" />
+        </a>
+        </div>
+      </div>
+    </div>
+
+
+    </div>
+
+    
+
+    
 
 
     <%- include('./layout/footer'); -%>
