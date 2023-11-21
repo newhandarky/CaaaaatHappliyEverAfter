@@ -1,4 +1,25 @@
 .catBarInfo {
-  max-width: 600px;
-  border: solid 1px;
+  padding: 1rem;
+  .catsQuantity {
+    margin-left: 2rem;
+  }
+  .bookingId {
+    margin-left: 2.3rem;
+  }
+  .orderBtns {
+    margin: 0.5rem 0;
+    padding: 0 8rem;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .catBarContainer {
+    width: 245px;
+  }
+  .catBarInfo {
+    .orderBtns {
+      margin: 0.5rem 0;
+      padding: 0 1rem;
+    }
+  }
 }

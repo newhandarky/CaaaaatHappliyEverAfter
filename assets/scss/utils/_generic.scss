@@ -245,10 +245,11 @@ body {
 .catBarContainer {
   position: relative;
   .catEars {
+    max-width: 650px;
     display: flex;
     justify-content: space-between;
     .catEar {
-      padding: 0 1.2rem;
+      padding: 0 1.5rem;
       padding-bottom: 0;
       img {
         max-width: 100%;
@@ -258,7 +259,7 @@ body {
   }
   .catBarBorder {
     bottom: 0;
-    width: 100%;
+    max-width: 650px;
     border: solid 3px $primary;
     background-color: $background;
     border-radius: 1rem;
