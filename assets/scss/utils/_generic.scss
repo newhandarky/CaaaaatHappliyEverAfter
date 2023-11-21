@@ -241,6 +241,32 @@ body {
   }
 }
 
+//自訂貓咪內容文字樣板
+.catBarContainer {
+  position: relative;
+  .catEars {
+    display: flex;
+    justify-content: space-between;
+    .catEar {
+      padding: 0 1.2rem;
+      padding-bottom: 0;
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    }
+  }
+  .catBarBorder {
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid 3px $primary;
+    background-color: $background;
+    border-radius: 1rem;
+  }
+}
 /*------------------------------------*\
     input
 \*------------------------------------*/
