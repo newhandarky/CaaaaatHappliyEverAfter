@@ -11,7 +11,6 @@ import c3 from "c3";
 /*------------------------------------*\
     doms
 \*------------------------------------*/
-const roomSelected = document.querySelector(".form-select");
 const bookingMonth = document.querySelector(".bookingMonth");
 const before = document.querySelector(".before");
 const after = document.querySelector(".after");
@@ -29,9 +28,9 @@ const roomObj = {
 }
 
 bookingMonth.textContent = getBookingMonth;
-if(moment(getBookingMonth).isBefore(moment())){
-    before.setAttribute("disabled", true)
-}
+// if(moment(getBookingMonth).isBefore(moment())){
+//     before.setAttribute("disabled", true)
+// }
 /*------------------------------------*\
     function
 \*------------------------------------*/
@@ -50,7 +49,8 @@ axios.get(`${_url}/660/roomStates`, {
         
         res.data.forEach(function(item){
             // 房況日期不可在今日之前
-            if(!moment(item.date).isBefore(moment()) && item.date.startsWith(getBookingMonth)){
+            // if(!moment(item.date).isBefore(moment()) && item.date.startsWith(getBookingMonth)){
+            if(item.date.startsWith(getBookingMonth)){
                 monthBookingArr.push(item);
             }
         })
@@ -94,7 +94,7 @@ axios.get(`${_url}/660/roomStates`, {
                 },
                 y: {
                     tick: {
-                        values: [0, 1, 2, 3]
+                        values: [0, 1, 2, 3, 4, 5]
                     }
                 }
             },
