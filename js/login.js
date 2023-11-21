@@ -28,7 +28,13 @@ function login(userAccount) {
         JSON.parse(localStorage.getItem("userTokenAndData")).user.role ===
         "admin"
       ) {
-        window.location.href = "./admin_index.html"; // 後台工作人員轉址到後台
+        // 將所需資料儲存後轉址到後台
+        localStorage.setItem("userRole", JSON.parse(localStorage.getItem("userTokenAndData")).user.role);
+        localStorage.setItem("userName", JSON.parse(localStorage.getItem("userTokenAndData")).user.name);
+        localStorage.setItem("userId", JSON.parse(localStorage.getItem("userTokenAndData")).user.id);
+        localStorage.setItem("userLoginToken", JSON.parse(localStorage.getItem("userTokenAndData")).accessToken);
+        localStorage.removeItem("userTokenAndData");
+        window.location.href = "./admin_index.html"; 
       } else {
         window.location.href = "./index.html";
       }
