@@ -13,98 +13,157 @@
           <%- include('./layout/aside'); -%>
         </div>
         <div class="col-lg-9">
-          <h1>新增貓咪</h1>
-          <form id="addCatFrom" class="addCatFrom" method="GET">
-            <label for="catName">姓名：</label>
-            <input
-              id="catName"
-              class="form-control"
-              type="text"
-              name="name"
-              placeholder="請輸入姓名"
-              required
-            />
-            <label>性別：</label>
-            <div class="form-control">
-              <input
-                id="catMale"
-                type="radio"
-                name="catGender"
-                value="male"
-                required
-              />
-              <label for="catMale">男</label>
-              <input
-                id="catFemale"
-                type="radio"
-                name="catGender"
-                value="female"
-                required
-              />
-              <label for="catFemale">女</label>
-              <input
-                id="catOther"
-                type="radio"
-                name="catGender"
-                value="other"
-                required
-              />
-              <label for="catOther">其他</label>
-            </div>
-
-            <label for="catBirthday">生日：</label>
-            <input
-              id="catBirthday"
-              class="form-control"
-              type="text"
-              placeholder="請輸入生日"
-              name="catBirthday"
-              required
-            />
-            <label for="catBreeds">品種：</label>
-            <input
-              id="catBreeds"
-              class="form-control"
-              type="text"
-              name="phone"
-              placeholder="請輸入品種"
-              required
-            />
-            <label for="catColors">花色：</label>
-            <input
-              id="catColors"
-              class="form-control"
-              type="text"
-              placeholder="請輸入花色"
-              name="address"
-              required
-            />
-            <label for="catWeight">體重：</label>
-            <input
-              id="catWeight"
-              class="form-control"
-              type="number"
-              placeholder="請輸入體重"
-              name="weight"
-              step="0.1"
-              required
-            />
-            <br />
-            <img
-              id="catPhoto"
-              src="https://i.imgur.com/slCGtuf.png"
-              alt="貓咪照片"
-            />
-            <br />
-            <input id="myCatFile" class="myFile" type="file" />
-            <br />
-            <button id="finishAdd" type="submit" class="finishAdd">
-              新增貓咪
-            </button>
-            <a id="cancelAdd" class="cancelAdd" href="./catData.html"
-              >取消新增</a
+          <div class="d-flex justify-content-center align-items-center m-5">
+            <div
+              class="d-inline-flex flex-column justify-content-center align-items-center"
             >
-          </form>
+              <form id="addCatFrom" class="addCatFrom" method="GET">
+                <h1 class="text-center">新增貓咪</h1>
+                <div id="catPhotoPresent" class="PhotoPresent">
+                  <img src="../assets/images/photoFrame.svg" alt="photoFrame" />
+                  <div>
+                    <img
+                      id="catPhoto"
+                      src="https://i.imgur.com/slCGtuf.png"
+                      alt="貓咪照片"
+                    />
+                  </div>
+                </div>
+                <div class="selectImgFile">
+                  <label for="myCatFile">上傳照片</label>
+                  <input id="myCatFile" type="file" />
+                </div>
+                <div
+                  class="d-flex justify-content-center align-items-center m-1 py-3"
+                >
+                  <label for="catName">姓名：</label>
+                  <input
+                    id="catName"
+                    class="form-control"
+                    type="text"
+                    name="name"
+                    placeholder="請輸入姓名"
+                    required
+                  />
+                </div>
+
+                <div
+                  class="d-flex justify-content-center align-items-center m-1 py-3"
+                >
+                  <label>性別：</label>
+                  <div id="gender" class="form-control my-3 gender">
+                    <div>
+                      <input
+                        id="catMale"
+                        class="radio mx-1"
+                        type="radio"
+                        name="catGender"
+                        value="male"
+                        required
+                      />
+                      <label for="catMale">男</label>
+                    </div>
+
+                    <div>
+                      <input
+                        id="catFemale"
+                        class="radio mx-1"
+                        type="radio"
+                        name="catGender"
+                        value="female"
+                        required
+                      />
+                      <label for="catFemale">女</label>
+                    </div>
+
+                    <div>
+                      <input
+                        id="catOther"
+                        class="radio mx-1"
+                        type="radio"
+                        name="catGender"
+                        value="other"
+                        required
+                      />
+                      <label for="catOther">其他</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="d-flex justify-content-center align-items-center m-1 py-3"
+                >
+                  <label for="catBirthday">生日：</label>
+                  <input
+                    id="catBirthday"
+                    class="form-control"
+                    type="text"
+                    placeholder="請輸入生日"
+                    name="catBirthday"
+                    required
+                  />
+                </div>
+
+                <div
+                  class="d-flex justify-content-center align-items-center m-1 py-3"
+                >
+                  <label for="catBreeds">品種：</label>
+                  <input
+                    id="catBreeds"
+                    class="form-control"
+                    type="text"
+                    name="phone"
+                    placeholder="請輸入品種"
+                    required
+                  />
+                </div>
+
+                <div
+                  class="d-flex justify-content-center align-items-center m-1 py-3"
+                >
+                  <label for="catColors">花色：</label>
+                  <input
+                    id="catColors"
+                    class="form-control"
+                    type="text"
+                    placeholder="請輸入花色"
+                    name="address"
+                    required
+                  />
+                </div>
+
+                <div
+                  class="d-flex justify-content-center align-items-center m-1 py-3"
+                >
+                  <label for="catWeight">體重：</label>
+                  <input
+                    id="catWeight"
+                    class="form-control"
+                    type="number"
+                    placeholder="請輸入體重"
+                    name="weight"
+                    step="0.1"
+                    required
+                  />
+                </div>
+
+                <div
+                  class="btns d-flex flex-column justify-content-center align-items-center"
+                >
+                  <div class="primaryStroke-btn-primary m-2">
+                    <button id="finishAdd" type="submit" class="finishEdit">
+                      新增貓咪
+                    </button>
+                  </div>
+                  <div class="primaryFill-btn-primary m-2">
+                    <a id="cancelAdd" class="cancelEdit" href="./catData.html"
+                      >取消新增</a
+                    >
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </div>
