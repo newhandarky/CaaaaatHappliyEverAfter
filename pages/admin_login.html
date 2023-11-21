@@ -15,12 +15,32 @@
     <title>admin_login</title>
   </head>
   <body>
-    <%- include('./layout/admin_header'); -%>
+    <!-- 後台登入頁面的導覽列只需要 logo 和回到前台連結就好，登入後才會顯示其他導覽列項目 -->
+    <header class="adminHeader bg-neutral03">
+      <div class="container">
+        <div class="row py-6">
+          <div class="d-flex justify-content-between align-items-center">
+            <a href="../pages/admin_index.html">
+              <img
+                src="https://raw.githubusercontent.com/newhandarky/CaaaaatHappliyEverAfter/0e256f0b76088eb06998f784d1469dd6f7b5b1e3/assets/images/LogoHorizontal.svg"
+                alt="logo圖片"
+              />
+            </a>
+            <a class="" href="../pages/index.html">回到前台</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- 在 admin_login.html 畫面把 admin_header.ejs 隱藏 -->
+    <div class="d-none"><%- include('./layout/admin_header'); -%></div>
+
     <div
-      class="container d-flex flex-column justify-content-center align-items-center mt-164"
+      class="adminLoginWrap container d-flex flex-column justify-content-center align-items-center mt-16"
     >
       <h2 class="fs-2 mb-6">歡迎登入</h2>
-      <form class="row">
+      <p class="errorText"></p>
+      <form class="referenceNode row">
         <div class="col-12 mb-8">
           <input
             type="text"
@@ -40,9 +60,9 @@
           />
         </div>
         <div class="col-12">
-          <button class="fs-5 btn btn-success w-100 p-3" type="submit">
+          <a role="button" class="adminLoginBtn fs-5 btn btn-success w-100 p-3">
             登入
-          </button>
+          </a>
         </div>
         <p class="text-primary">
           <small><a href="#">聯繫開發人員？</a></small>
@@ -51,13 +71,12 @@
     </div>
 
     <script type="module" src="../main.js"></script>
+    <script
+      type="module"
+      src="../js/admin_login.js
+    "
+    ></script>
   </body>
 </html>
 
 <!-- 補上驗證功能 -->
-
-<!-- 登入跟登出只會出現一個 -->
-
-<!-- 後台首頁不會在導覽列上
-登出後，點 logo 會跳到登入頁
-登入後，點 logo 會跳到後台首頁 -->
