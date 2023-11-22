@@ -1,0 +1,18 @@
+.fs-36 {
+  font-size: 36px !important;
+}
+
+.userImage {
+  width: 150px;
+}
+
+.statusWrap {
+  height: 50vh !important;
+  @include media-min-992 {
+    width: 49.5% !important;
+  }
+}
+
+.pageNavigateBtn {
+  width: 150px;
+}

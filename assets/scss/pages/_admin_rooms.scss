@@ -1,0 +1,12 @@
+.addNewBtn {
+  &:hover {
+    color: white !important;
+  }
+}
+.adminRoomList {
+  a {
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+}
