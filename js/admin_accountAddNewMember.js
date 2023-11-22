@@ -34,12 +34,14 @@ sendNewMember.addEventListener("click", function (e) {
     phone: memberTel.value,
     address: memberAddress.value,
     userPhoto: "https://i.imgur.com/rUTLxZC.jpg",
+    nickname: memberNickName.value,
+    joinDate: memberArrivedDate.value,
+    emergencyContactPerson: memberEmergencyContact.value,
+    emergencyContactPerson: memberEmergencyContactTel.value,
+    emergencyContactRelation: memberEmergencyContactRel.value,
+    memberStatus: memberStatus.value,
     lastLoginTime: "",
     role: "admin",
-    emergencyContact: memberEmergencyContact.value,
-    emergencyContactTel: memberEmergencyContactTel.value,
-    emergencyContactRel: memberEmergencyContactRel.value,
-    memberStatus: memberStatus.value,
     id: parseInt(memberId.value),
   };
 

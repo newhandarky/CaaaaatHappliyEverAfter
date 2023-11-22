@@ -71,15 +71,31 @@ adminLoginBtn.addEventListener("click", function () {
 
           // 將令牌存儲在你的應用程式中，以便未來的請求使用
           // 這裡假設你使用 localStorage 來存儲令牌
-          localStorage.setItem("userToken", token);
+          localStorage.setItem("userLoginToken", token);
           localStorage.setItem("userName", res.data.user.name);
+          localStorage.setItem("userId", res.data.user.id);
           localStorage.setItem("userRole", res.data.user.role);
 
-          console.log("Login successful. Token:", token);
+          //   console.log("Login successful. Token:", token);
 
           //   登入成功跳轉到後台首頁
           location.href = "admin_index.html";
           // 在這裡可以進一步處理登入成功的邏輯
+
+          // 最近登入時間
+          // 登入成功後，取得當前時間
+          var loginTime = new Date();
+
+          // 將登入時間轉換為字串，方便存儲
+          var loginTimeString = loginTime.toISOString();
+
+          // 使用 localStorage 存儲登入時間
+          localStorage.setItem("userLoginTime", loginTimeString);
+
+          // 暫存存到 json-server 中 -> 時效 1 小時
+          axios.patch(`${_url}/users/${id}`, {
+            lastLoginTime: `${loginTimeString}`,
+          });
         })
         .catch(function (error) {
           // 登入失敗，處理錯誤

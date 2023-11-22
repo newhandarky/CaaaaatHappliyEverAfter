@@ -25,7 +25,7 @@ function renderData() {
             <td>${item.name}</td>
             <td>${item.phone}</td>
             <td>${item.address}</td>
-            <td>${item.birthday}</td>
+            <td>${item.joinDate}</td>
             <td class="text-center">
               <a class="editMember" href="./admin_accountEditMember.html?id=${item.id}">
                 <span class="material-symbols-outlined"> edit_square </span>
