@@ -95,7 +95,7 @@ body {
 \*------------------------------------*/
 /* 自訂按鈕樣式 */
 .primaryStrokeToFill-btn-primary {
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   border: solid 1px $primary;
@@ -121,7 +121,7 @@ body {
 }
 
 .primaryFill-btn-primary {
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   border: solid 1px $primary;
@@ -145,7 +145,7 @@ body {
 }
 
 .primaryStroke-btn-primary {
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   border: solid 1px $primary;
@@ -167,7 +167,7 @@ body {
 }
 
 .primaryNoneToFill-btn-primary {
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   border: solid 1px $primary;

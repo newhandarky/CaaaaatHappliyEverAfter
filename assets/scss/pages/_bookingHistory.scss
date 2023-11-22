@@ -1,31 +1,42 @@
-.catBarInfo {
+.catBarBorder {
   position: relative;
-  padding: 1rem;
-  .catsQuantity {
-    margin-left: 2rem;
-  }
-  .bookingId {
-    margin-left: 2.3rem;
-  }
-  .price {
-    margin-left: 3rem;
+  .catBarInfo {
+    position: relative;
+    padding: 1rem;
+    .catsQuantity {
+      margin-left: 2rem;
+    }
+    .bookingId {
+      margin-left: 2.3rem;
+    }
   }
   .orderBtns {
+    display: flex;
     position: absolute;
-    bottom: 1rem;
-    right: 5rem;
+    right: 0;
+    bottom: 0;
+    justify-content: end;
+    align-items: center;
+    margin: 0.5rem 0;
+    padding: 0 1rem;
+    & > div {
+      width: 150px;
+    }
   }
 }
+
 @media screen and (max-width: 768px) {
-  .catBarInfo {
-    .price {
-      margin-left: 0rem;
-    }
-    .catBarInfo {
-      .orderBtns {
-        position: static;
-        margin: 0.5rem 0;
-        padding: 0 1rem;
+  .catBarBorder {
+    .orderBtns {
+      position: relative;
+      display: flex;
+      right: 0;
+      bottom: 0px;
+      justify-content: center;
+      margin: 0.5rem 0;
+      padding: 0 1rem;
+      & > div {
+        width: 200px;
       }
     }
   }
@@ -35,11 +46,12 @@
   .catBarContainer {
     width: 245px;
   }
+}
+.catBarBorder {
   .catBarInfo {
     .orderBtns {
-      position: static;
-      margin: 0.5rem 0;
-      padding: 0 1rem;
+      display: flex;
+      justify-content: center;
     }
   }
 }
