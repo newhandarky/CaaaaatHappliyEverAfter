@@ -4,7 +4,7 @@ import { _url } from "./config";
 // DOM
 const memberId = document.querySelector(".memberId");
 const memberName = document.querySelector(".memberName");
-const memberNickName = document.querySelector(".memberNickName");
+const memberNickname = document.querySelector(".memberNickname");
 const memberTel = document.querySelector(".memberTel");
 const memberArrivedDate = document.querySelector(".memberArrivedDate");
 const memberEmergencyContact = document.querySelector(
@@ -30,14 +30,14 @@ sendNewMember.addEventListener("click", function (e) {
     password: memberPassword.value,
     name: memberName.value,
     gender: "",
-    birthday: memberArrivedDate.value,
+    birthday: "",
     phone: memberTel.value,
     address: memberAddress.value,
     userPhoto: "https://i.imgur.com/rUTLxZC.jpg",
-    nickname: memberNickName.value,
+    nickname: memberNickname.value,
     joinDate: memberArrivedDate.value,
     emergencyContactPerson: memberEmergencyContact.value,
-    emergencyContactPerson: memberEmergencyContactTel.value,
+    emergencyContactPhone: memberEmergencyContactTel.value,
     emergencyContactRelation: memberEmergencyContactRel.value,
     memberStatus: memberStatus.value,
     lastLoginTime: "",

@@ -20,7 +20,10 @@ const memberEmergencyContactRel = document.querySelector(
 const memberAccount = document.querySelector(".memberAccount");
 const memberPassword = document.querySelector(".memberPassword");
 const memberAddress = document.querySelector(".memberAddress");
+const memberStatus = document.querySelector(".memberStatus");
+const accountEditSaveBtn = document.querySelector(".accountEditSaveBtn");
 
+// 初始畫面渲染
 axios
   .get(`${_url}/users/${id}`)
   .then(function (res) {
@@ -35,7 +38,28 @@ axios
     memberAccount.value = res.data.email;
     memberPassword.value = res.data.email.slice(0, 11);
     memberAddress.value = res.data.address;
+    memberStatus.value = res.data.memberStatus;
   })
   .catch(function (error) {
     console.log(error);
   });
+
+// 儲存變更按鈕
+accountEditSaveBtn.addEventListener("click", function (e) {
+  let obj = {
+    password: memberPassword.value,
+    name: memberName.value,
+    phone: memberTel.value,
+    address: memberAddress.value,
+    nickname: memberNickname.value,
+    emergencyContactPerson: memberEmergencyContact.value,
+    emergencyContactPhone: memberEmergencyContactTel.value,
+    emergencyContactRelation: memberEmergencyContactRel.value,
+    memberStatus: memberStatus.value,
+  };
+
+  // 使用 patch 更新部分內容
+  axios.patch(`${_url}/users/${id}`, obj).catch(function (error) {
+    console.log(error);
+  });
+});
