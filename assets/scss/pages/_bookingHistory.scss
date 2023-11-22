@@ -1,4 +1,5 @@
 .catBarInfo {
+  position: relative;
   padding: 1rem;
   .catsQuantity {
     margin-left: 2rem;
@@ -6,9 +7,26 @@
   .bookingId {
     margin-left: 2.3rem;
   }
+  .price {
+    margin-left: 3rem;
+  }
   .orderBtns {
-    margin: 0.5rem 0;
-    padding: 0 8rem;
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .catBarInfo {
+    .price {
+      margin-left: 1rem;
+    }
+    .orderBtns {
+      position: static;
+      margin: 0.5rem 0;
+      padding: 0 5rem;
+    }
   }
 }
 
@@ -17,7 +35,11 @@
     width: 245px;
   }
   .catBarInfo {
+    .price {
+      margin-left: 0rem;
+    }
     .orderBtns {
+      position: static;
       margin: 0.5rem 0;
       padding: 0 1rem;
     }
