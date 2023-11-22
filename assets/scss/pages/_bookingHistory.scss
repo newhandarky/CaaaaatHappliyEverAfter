@@ -13,19 +13,20 @@
   .orderBtns {
     position: absolute;
     bottom: 1rem;
-    right: 1rem;
+    right: 5rem;
   }
 }
-
 @media screen and (max-width: 768px) {
   .catBarInfo {
     .price {
-      margin-left: 1rem;
+      margin-left: 0rem;
     }
-    .orderBtns {
-      position: static;
-      margin: 0.5rem 0;
-      padding: 0 5rem;
+    .catBarInfo {
+      .orderBtns {
+        position: static;
+        margin: 0.5rem 0;
+        padding: 0 1rem;
+      }
     }
   }
 }
@@ -35,9 +36,6 @@
     width: 245px;
   }
   .catBarInfo {
-    .price {
-      margin-left: 0rem;
-    }
     .orderBtns {
       position: static;
       margin: 0.5rem 0;
