@@ -90,7 +90,7 @@ function showPagination() {
     })
 
 }
-// 抓整個月份訂房數量
+// 抓所有訂單資料
 function getAllBookingData() {
     axios.get(`${_url}/660/bookings?_expand=user&_expand=room`, {
         headers: {
@@ -105,6 +105,9 @@ function getAllBookingData() {
                     bookingCount++;  // 取得當月資料筆數
                 }
             })
+
+            console.log(bookingCount);
+
             pagination(bookingCount);  // 取得數量顯示下方分頁
         }).catch(function (err) {
             console.log(err);            
@@ -134,9 +137,11 @@ function getBookingData(num) {
             }
         })
         // 如果取得的月份無資料就清空表格
-        if (getOneMonthBooking.length === 0) {
-            cleanTable();
-        }
+        // if (getOneMonthBooking.length === 0) {
+        //     cleanTable();
+        // }
+
+        console.log(getOneMonthBooking);
 
         renderTable(getOneMonthBooking);
         // 渲染資料後陣列清空避免資料重複渲染   

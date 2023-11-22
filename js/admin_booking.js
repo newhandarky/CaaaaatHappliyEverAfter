@@ -21,13 +21,17 @@ const btnNewBooking = document.querySelector(".btnNewBooking");
 const btnTodayCheckIn = document.querySelector(".btnTodayCheckIn");
 const btnTodayCheckOut = document.querySelector(".btnTodayCheckOut");
 const checkBookingTable = document.querySelector(".checkBookingTable");
-
+// 純測試
+const bookingTest = document.querySelector(".bookingTest");
+bookingTest.addEventListener("click", function(){
+    location = "../pages/admin_bookingTest.html"
+})
 /*------------------------------------*\
     變數
 \*------------------------------------*/
 // 暫存日期資料
 // localStorage.setItem("thisMonth", moment().format("YYYY-MM"));
-localStorage.setItem("thisMonth", moment().add(1, "months").format("YYYY-MM"));
+localStorage.setItem("thisMonth", moment().format("YYYY-MM"));
 let bookingStatesObject = {
     "thisMonthCount": 0,
     "newBooking": 0,
@@ -108,7 +112,7 @@ Promise.all([roomStatesPromise, bookingsPromise])
                 monthBookingRate.luxuryRoomCount += item.availableCount.luxury;
             }          
         })
-        monthBookingRate.roomCounts = roomStatesArr.length * 9;
+        monthBookingRate.roomCounts = roomStatesArr.length * 15;
 
         let thisMonthBookingRate = Math.round(((monthBookingRate.roomCounts) - 
             (monthBookingRate.classicRoomCount + monthBookingRate.delicateRoomCount + monthBookingRate.luxuryRoomCount))

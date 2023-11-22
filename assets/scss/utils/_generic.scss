@@ -95,7 +95,7 @@ body {
 \*------------------------------------*/
 /* 自訂按鈕樣式 */
 .primaryStrokeToFill-btn-primary {
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   border: solid 1px $primary;
@@ -121,7 +121,7 @@ body {
 }
 
 .primaryFill-btn-primary {
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   border: solid 1px $primary;
@@ -145,7 +145,7 @@ body {
 }
 
 .primaryStroke-btn-primary {
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   border: solid 1px $primary;
@@ -167,7 +167,7 @@ body {
 }
 
 .primaryNoneToFill-btn-primary {
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   border: solid 1px $primary;
@@ -241,6 +241,29 @@ body {
   }
 }
 
+//自訂貓咪內容文字樣板
+.catBarContainer {
+  position: relative;
+  .catEars {
+    display: flex;
+    justify-content: space-between;
+    .catEar {
+      padding: 0 1.5rem;
+      padding-bottom: 0;
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    }
+  }
+  .catBarBorder {
+    bottom: 0;
+    max-width: 650px;
+    border: solid 3px $primary;
+    background-color: $background;
+    border-radius: 1rem;
+  }
+}
 /*------------------------------------*\
     input
 \*------------------------------------*/

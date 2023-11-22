@@ -1,0 +1,67 @@
+.catBarBorder {
+  position: relative;
+  width: 800px;
+  .catBarInfo {
+    position: relative;
+    padding: 1rem;
+    .catsQuantity {
+      margin-left: 1rem;
+    }
+    .bookingId {
+      margin-left: 1rem;
+    }
+    .orderDate {
+      font-size: 14px;
+    }
+  }
+  .orderBtns {
+    display: flex;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    justify-content: end;
+    align-items: center;
+    margin: 0.5rem 0;
+    padding: 0 1rem;
+    & > div {
+      width: 150px;
+    }
+  }
+}
+
+.bookingHistoryFilter {
+  width: 300px;
+  box-shadow: 0 5px 0 $gray-400;
+}
+
+@media screen and (max-width: 768px) {
+  .catBarBorder {
+    width: auto;
+    .orderBtns {
+      position: relative;
+      display: flex;
+      right: 0;
+      bottom: 0px;
+      justify-content: center;
+      margin: 0.5rem 0;
+      padding: 0 1rem;
+      & > div {
+        width: 200px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .catBarContainer {
+    width: 245px;
+  }
+}
+.catBarBorder {
+  .catBarInfo {
+    .orderBtns {
+      display: flex;
+      justify-content: center;
+    }
+  }
+}

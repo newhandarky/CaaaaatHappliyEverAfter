@@ -5,24 +5,101 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>精緻房</title>
   </head>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
  
   <body>
     <%- include('./layout/header'); -%>
-    <h1>精緻房</h1>
-    <h5 class="delicateRoomDimension"></h5>
-    <h5>設備：</h5>
-    <ul class="delicateRoomFacility">
-    </ul>
 
-    <ul>
-      <li>貓貴賓上限: <span class="delicateRoomCatNum"></span></li>
-      <li>陽光玩耍時間：最低15分鐘</li>
-      <li>價格: <span class="delicateRoomPrice"></span></li>
-      <li>超時費:150元 / 1hr</li>
-      <li>加貓費:300元 / 1貓</li>
-    </ul>
+    <div class="container">
 
-    <button><a href="bookingDelicateProcess_1.html" class="bookingNow">立即訂房</a></button>
+    <div class="row d-lg-flex justify-content-lg-between" style="padding-top: 50px; padding-bottom: 50px;">
+      <div class="col-lg-6 col-12" >
+        <div  class="d-flex flex-start justify-content-lg-between flex-wrap" style="margin-bottom: 50px;">
+          <div class="text type01 d-lg-flex align-items-center">
+            <div class="d-inline-flex align-items-center">
+              <img class="img-fluid dogPaw mx-2" src="../assets/icons/dogPaw.svg" alt="dogPaw">
+              <h1 class="d-none d-lg-block ">精緻房</h1>
+               <h2 class="d-lg-none">精緻房</h2>
+               
+            </div>
+          </div>
+           
+        </div>
+
+        <div style="padding-bottom: 50px;">
+
+          <div class="">
+    
+           <div class="mb-2 d-flex">
+            <h5 class="fs-6 "><p class="size roomFeature">尺寸</p></h5>
+            <h5 class="delicateRoomDimension fs-6 d-flex align-items-center w-100"></h5>
+          
+          </div>
+    
+          <div class="mb-2 d-lg-flex">
+            <div class="fs-6 " ><p class="roomFeature">設備</p></div>
+            <ul class="delicateRoomFacility d-flex flex-wrap w-100">
+            </ul>
+          </div>
+        
+          <ul >
+            <li class="mb-2"><div class="fs-6 d-flex ">
+               <p class="roomFeature">入住貓上限</p>
+              <p class="delicateRoomCatNum"></p>
+            </li>
+    
+            <li class="mb-2"><div class="fs-6 d-flex ">
+              <p class="roomFeature">陽光時間</p>
+             <p>最低15分鐘 </p>
+           </li>
+    
+           <li class="mb-2"><div class="fs-6 d-flex ">
+            <p class="roomFeature">價格</p>
+           <p class="delicateRoomPrice"></p>
+         </li>
+    
+         <li class="mb-2"><div class="fs-6 d-flex ">
+          <p class="roomFeature">超時費</p>
+         <p>150元 / 1hr </p>
+       </li>
+    
+       <li class="mb-2"><div class="fs-6 d-flex ">
+        <p class="roomFeature">加貓費</p>
+       <p>300元 / 1貓</p>
+     </li>
+    
+          </ul>
+    
+          <button type="button" class=" btn btn-outline-primary bookNowBtn border border-primary d-none d-lg-block fs-4 rounded-pill mt-3"><a href="bookingDelicateProcess_1.html" class="bookingNow"><p class="px-4">立即訂房</p></a></button>
+    
+    
+            
+          </div>
+    
+
+          
+    
+        </div>
+
+      </div>
+
+      <div class="col-lg-6 col-12  " >
+        <img src="../assets/images/ImgRoom01.png" alt="" class="w-100" style="border-radius: 2rem;">
+      </div>
+
+
+    </div>
+
+    <div class="d-flex justify-content-center mb-5">
+    
+      <button type="button" class=" btn btn-outline-primary bookNowBtn border border-primary d-block d-lg-none fs-4 rounded-pill mb-3 w-50"><a href="bookingDelicateProcess_1.html" class="bookingNow"><p class="px-4">立即訂房</p></a></button>
+
+      </div>
+
+
+
+
+  </div>
    
 
     
@@ -34,5 +111,7 @@
     <script type="module" src="../js/booking.js"></script>
     <script type="module" src="../js/aside.js"></script>
     <script type="module" src="../js/aside.js"></script>
+
+    
   </body>
 </html>

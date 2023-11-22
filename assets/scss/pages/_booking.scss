@@ -1,0 +1,17 @@
+.roomFeature{
+    width: 115px; 
+};
+
+.bookNowBtn{
+border: 1px solid $primary;
+p{
+    color:$primary
+}
+&:hover{
+   background-color: $primary;
+   p{
+       color:black;
+   }
+};
+}
+
