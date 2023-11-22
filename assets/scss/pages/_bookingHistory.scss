@@ -1,5 +1,6 @@
 .catBarBorder {
   position: relative;
+  width: 800px;
   .catBarInfo {
     position: relative;
     padding: 1rem;
@@ -27,6 +28,7 @@
 
 @media screen and (max-width: 768px) {
   .catBarBorder {
+    width: auto;
     .orderBtns {
       position: relative;
       display: flex;
