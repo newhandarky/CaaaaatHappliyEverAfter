@@ -3,6 +3,8 @@ console.log("suc");
 import axios from "axios";
 import { _url } from "./config";
 import { isLogin } from "./isLogin";
+import flatpickr from "flatpickr";
+import Swal from 'sweetalert2';
 
 //bookingClassicProcess_1.html
 //DOM
@@ -11,6 +13,15 @@ let checkoutDate = document.querySelector('#checkoutDate');
 let toProcess_2 = document.querySelector(".toProcess_2");
 let dateForm = document.querySelector("#dateForm");
 console.log(toProcess_2);
+
+//找到今天的日期
+let date = new Date();
+let currentYear = date.getFullYear();
+console.log(currentYear);
+console.log(date.getDate());
+console.log(date.getMonth()+1);
+let currentDate = `${currentYear}-${date.getMonth()+1}-${date.getDate()}`;
+console.log(currentDate);
 
 
 //房況日曆
@@ -54,7 +65,7 @@ checkinDate.addEventListener('change', function(e){
        // console.log(data[0].availableCount.classic);
         if(data[0].availableCount.classic == 0){
           //  console.log(data[0].availableCount.classic);
-            alert(`${checkinDate.value}已無空房，請重新選擇`);
+          Swal.fire(`${checkinDate.value}已無空房，請重新選擇`);
             return dateForm.reset();
         }
         
@@ -65,7 +76,8 @@ checkoutDate.addEventListener("change", function(e){
     if(checkinDate.value >= checkoutDate.value){
         console.log(checkoutDate.value);
         checkoutDate.value = ""
-        return alert("checkout 日期需晚於checkin 日期");
+        return Swal.fire("退房日期需晚於入住日期");
+
         
     }
     axios.get(`${_url}/roomStates?date_gte=${checkinDate.value}&date_lte=${checkoutDate.value}&date_ne=${checkoutDate.value}`).then(function(response){
@@ -73,7 +85,7 @@ checkoutDate.addEventListener("change", function(e){
         console.log(data)
         data.forEach(function(item){
          if(item.availableCount.classic == 0){
-            alert(`${item.date}已無空房，請重新選擇`);
+            Swal.fire(`${item.date}已無空房，請重新選擇`);
             return dateForm.reset();
             
          }
@@ -82,11 +94,12 @@ checkoutDate.addEventListener("change", function(e){
 
 
 toProcess_2.addEventListener("click", function(e){
-   e.preventDefault();
-     const toProcess_2Herf = toProcess_2.getAttribute("href");
-     isLogin(toProcess_2Herf)
+     e.preventDefault();
+     
     if(checkoutDate.value == "" || checkinDate.value == ""){
-        return  alert("您尚未選擇chech in 或 check out 時間")
+   
+        Swal.fire(`您尚未選擇入住或退房時間`);
+        return dateForm.reset();
     }
 
     else{
@@ -98,10 +111,25 @@ toProcess_2.addEventListener("click", function(e){
          console.log(obj)
          let bookingData = JSON.stringify(obj);
          sessionStorage.setItem("bookingData", bookingData);
+         const toProcess_2Herf = toProcess_2.getAttribute("href");
+         isLogin(toProcess_2Herf);
          window.location.href = "./bookingProcess_2.html";
          
         }
     });
 
+    //flatpickr
+flatpickr("#checkinDate", {
+    enableTime: false,
+    dateFormat: "Y-m-d",
+    minDate: currentDate,
+    maxDate: "2024-02-29"
+  });
 
+  flatpickr("#checkoutDate", {
+    enableTime: false,
+    dateFormat: "Y-m-d",
+    minDate: currentDate,
+    maxDate: "2024-02-29"
+  });
 

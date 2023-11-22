@@ -1,3 +1,4 @@
+//3種房型的房型介紹
 .roomFeature{
     width: 115px; 
 };
@@ -10,8 +11,46 @@ p{
 &:hover{
    background-color: $primary;
    p{
-       color:black;
+       color:$primary02;
    }
 };
+};
+
+//bookingProcess_1
+
+.material-symbols-outlined {
+ color:$primary;
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
 }
+
+.checkedDate{
+    border: 1px solid transparent;
+    background-color: transparent;
+};
+
+.calendarIcon{
+    width: 32px;
+};
+
+:root{
+    --fc-event-bg-color: #E2c6c4;
+    --fc-event-border-color: #00000000;
+    --bs-link-color:#E2c6c4;
+    --fc-button-bg-color: #00000000;
+    --fc-button-border-color: #fa863e;
+    --fc-button-text-color: #fa863e;
+    --fc-cutton-hover-bg-color:#00000000;
+    --fc-button-hover-bg-color:#00000000;
+    --fc-button-hover-border-color:#fa863e;
+    
+};
+
+.fc .fc-toolbar-title{
+    font-size: 16px;
+    font-weight: 400;
+};
 
