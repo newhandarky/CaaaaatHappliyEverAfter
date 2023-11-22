@@ -5,6 +5,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import moment from "moment";
 import { _url } from "./config";
+import { headerObj } from "./admin_config";
 import { reLogin } from "./loginIsTimeUp";
 
 /*------------------------------------*\
@@ -40,11 +41,8 @@ let userObj;
     axios取得資料
 \*------------------------------------*/
 // 取得訂單資料
-let bookingObj = await axios.get(`${_url}/660/bookings/${localStorage.getItem('bookingNum')}`, {
-    headers: {
-        authorization: `Bearer ${localStorage.getItem("userLoginToken")}`,
-    },
-}).then(async function (res) {
+let bookingObj = await axios.get(`${_url}/660/bookings/${localStorage.getItem('bookingNum')}`, headerObj)
+.then(async function (res) {
     userObj = await getUser(res.data.userId); // 透過訂單取得user資料
     return res.data;
 }).catch(function (err) {
@@ -65,11 +63,8 @@ let bookingObj = await axios.get(`${_url}/660/bookings/${localStorage.getItem('b
 });
 
 // 取得客房資料
-let roomObj = await axios.get(`${_url}/660/rooms/`, {
-    headers: {
-        authorization: `Bearer ${localStorage.getItem("userLoginToken")}`,
-    },
-}).then(function (res) {
+let roomObj = await axios.get(`${_url}/660/rooms/`, headerObj)
+.then(function (res) {
     return res.data;
 }).catch(function (err) {
     console.log(err);
@@ -77,11 +72,8 @@ let roomObj = await axios.get(`${_url}/660/rooms/`, {
 })
 
 // 取得每日房況資料
-let roomStatesObj = await axios.get(`${_url}/660/roomstates/`, {
-    headers: {
-        authorization: `Bearer ${localStorage.getItem("userLoginToken")}`,
-    },
-}).then(function (res) {
+let roomStatesObj = await axios.get(`${_url}/660/roomstates/`, headerObj)
+.then(function (res) {
     // console.log(res.data);
     return res.data;
 }).catch(function (err) {
@@ -94,11 +86,8 @@ let roomStatesObj = await axios.get(`${_url}/660/roomstates/`, {
 \*------------------------------------*/
 // 取得user資料
 function getUser(userId) {
-    return axios.get(`${_url}/660/users/${userId}`, {
-        headers: {
-            authorization: `Bearer ${localStorage.getItem("userLoginToken")}`,
-        },
-    }).then(function (res) {
+    return axios.get(`${_url}/660/users/${userId}`, headerObj)
+    .then(function (res) {
         return res.data;
     }).catch(function (err) {
         console.log(err);
@@ -113,11 +102,7 @@ async function getHistory(bookingHistoryArr) {
 
     for (const item of bookingHistoryArr) {
         try {
-            const res = await axios.get(`${_url}/660/bookingHistorys/${item}`, {
-                headers: {
-                    authorization: `Bearer ${localStorage.getItem("userLoginToken")}`,
-                },
-            });
+            const res = await axios.get(`${_url}/660/bookingHistorys/${item}`, headerObj);
             const logObj = {};
             logObj.updateTime = res.data.updateTime;
             logObj.catNum = res.data.catNum;
@@ -261,11 +246,8 @@ function alertErrForDate() {
 
 // 根據修改狀態新增bookingHistory
 function addBookingHistory(bookingHistoryObj) {
-    axios.post(`${_url}/660/bookingHistorys`, bookingHistoryObj, {
-        headers: {
-            authorization: `Bearer ${localStorage.getItem("userLoginToken")}`,
-        },
-    }).then(function (res) {
+    axios.post(`${_url}/660/bookingHistorys`, bookingHistoryObj, headerObj)
+    .then(function (res) {
         saveHistoryBackBooking(res.data);
     }).catch(function (err) {
         console.log(err);
@@ -275,11 +257,8 @@ function addBookingHistory(bookingHistoryObj) {
 
 // 將修改後的bookingHistoryObj ID寫入對應訂單
 function saveHistoryBackBooking(bookingHistoryObj) {
-    axios.get(`${_url}/660/bookings/${bookingHistoryObj.bookingsId}`, {
-        headers: {
-            authorization: `Bearer ${localStorage.getItem("userLoginToken")}`,
-        },
-    }).then(function (res) {
+    axios.get(`${_url}/660/bookings/${bookingHistoryObj.bookingsId}`, headerObj)
+    .then(function (res) {
         const newBookingObj = res.data;
         newBookingObj.history.push(bookingHistoryObj.id);       // 將更新履歷寫入原本訂單的history陣列內
 
@@ -301,11 +280,8 @@ function dataNotSaved() {
 
 // 更新訂單資料
 function updateBooking(newBookingObj) {
-    axios.patch(`${_url}/660/bookings/${newBookingObj.id}`, newBookingObj, {
-        headers: {
-            authorization: `Bearer ${localStorage.getItem("userLoginToken")}`,
-        },
-    }).then(function (res) {
+    axios.patch(`${_url}/660/bookings/${newBookingObj.id}`, newBookingObj, headerObj)
+    .then(function (res) {
         renderData(res.data, roomObj, userObj)  // 渲染更新後的資料
     }).catch(function (err) {
         console.log(err);
@@ -455,11 +431,7 @@ btnCancel.addEventListener("click", function () {
             // 修改訂單狀態為取消
             axios.patch(`${_url}/660/bookings/${localStorage.getItem("bookingNum")}`, {
                 "state": "已取消"
-            }, {
-                headers: {
-                    authorization: `Bearer ${localStorage.getItem("userLoginToken")}`,
-                },
-            }).then(function (res) {
+            }, headerObj).then(function (res) {
 
                 const bookingHistoryObj = {};
                 setNewBookingHistoryObj(bookingHistoryObj, "已取消");
@@ -476,11 +448,8 @@ btnCancel.addEventListener("click", function () {
                 newRoomStates.forEach(function (newItem) {
                     roomStatesObj.forEach(function (oldItem) {
                         if (newItem.date === oldItem.date) {
-                            axios.patch(`${_url}/660/roomStates/${newItem.id}`, newItem, {
-                                headers: {
-                                    authorization: `Bearer ${localStorage.getItem("userLoginToken")}`,
-                                },
-                            }).then(function (res) {
+                            axios.patch(`${_url}/660/roomStates/${newItem.id}`, newItem, headerObj)
+                            .then(function (res) {
                                 addBookingHistory(bookingHistoryObj);
                                 const Toast = Swal.mixin({
                                     toast: true,
