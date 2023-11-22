@@ -25,7 +25,7 @@ function lodingBookin() {
     })
     .then((res) => {
       const allBookingData = res.data;
-
+      console.log(res);
       allBookingData.forEach((element, index) => {
         //抽出所需要的資料
         const {
@@ -43,7 +43,9 @@ function lodingBookin() {
 
         //抓到 DOM 並呈現資料
         const bookingInfo = document.getElementById("bookingInfo");
-        bookingInfo.innerHTML += ` <div class="catBarContainer">
+        bookingInfo.innerHTML += ` 
+        <br>
+        <div class="catBarContainer">
         <div class="catEars">
           <div class="catEar">
             <img src="../assets/images/catEar02.svg" alt="catEar02" />
