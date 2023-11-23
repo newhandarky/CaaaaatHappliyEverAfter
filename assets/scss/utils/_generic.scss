@@ -192,6 +192,26 @@ body {
   }
 }
 
+.primaryDisabled-btn-primary {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 1px $gray-200;
+  border-radius: 2rem;
+  padding: 0.3rem 1.2rem;
+  background-color: $gray-200;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  button,
+  a {
+    width: 100%;
+    text-align: center;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    color: $gray-500 !important;
+  }
+}
+
 //自訂相框樣式
 .PhotoPresent {
   position: relative;
