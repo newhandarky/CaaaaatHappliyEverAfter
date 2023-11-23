@@ -5,34 +5,36 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { _url } from "./config";
 
-export async function reLogin(str) {
-    const user = {}
-    // 如果傳入的錯誤訊息是帳號逾時
-    // if (str === 'jwt expired') {
-    if (str !== 'jwt expired') {
-        const { value: email } = await Swal.fire({
+export function reLogin(str) {
+    const user = {};
+
+    if (str === 'jwt expired') {
+        Swal.fire({
             title: "您的帳號登入已逾時, 請重新登入",
             input: "email",
             inputLabel: "您的帳號",
             inputPlaceholder: "Enter your email address"
-        });
+        }).then(({ value: email }) => {
+            user.email = email;
 
-        const { value: password } = await Swal.fire({
-            title: "請輸入您的密碼",
-            input: "password",
-            inputLabel: "Password",
-            inputPlaceholder: "Enter your password",
-            inputAttributes: {
-                maxlength: "20",
-                autocapitalize: "off",
-                autocorrect: "off"
-            }
+            return Swal.fire({
+                title: "請輸入您的密碼",
+                input: "password",
+                inputLabel: "Password",
+                inputPlaceholder: "Enter your password",
+                inputAttributes: {
+                    maxlength: "20",
+                    autocapitalize: "off",
+                    autocorrect: "off"
+                }
+            });
+        }).then(({ value: password }) => {
+            user.password = password;
+            login(user);
         });
-        user.email = email;
-        user.password = password
-        login(user);
     }
 }
+
 
 function login(user) {
     axios.post(`${_url}/login`, user)
