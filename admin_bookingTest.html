@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>純測試訂單頁面</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,700,0,200" />
+  <script type="module" crossorigin src="/CaaaaatHappliyEverAfter/assets/admin_bookingTest-fed04a08.js"></script>
+  <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/config-82256151.js">
+  <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/sweetalert2.all-bdf3eb51.js">
+  <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/admin_header-36cd02a6.js">
+  <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/moment-fbc5633a.js">
+  <link rel="stylesheet" href="/CaaaaatHappliyEverAfter/assets/config-0f49d4b3.css">
+</head>
+
+<body>
+    
+
+<header class="adminHeader bg-neutral03">
+    <div class="container">
+        <div class="row py-6">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <a href="../pages/admin_index.html">
+                        <img src="https://raw.githubusercontent.com/newhandarky/CaaaaatHappliyEverAfter/0e256f0b76088eb06998f784d1469dd6f7b5b1e3/assets/images/LogoHorizontal.svg" alt="logo圖片">
+                    </a>
+                    
+                </div>
+                <nav class="">
+                    <ul class="d-flex mb-0">
+                        <li>
+                            <p class="welcome align-middle"></p>
+                        </li>
+                        <li class="ms-4">
+                            <div class="d-flex">
+                                <select name="adminAccount" class="adminAccount">
+                                    <option selected>請選擇</option>
+                                    <option value="1052">更換後台人員1052</option>
+                                    <option value="1053">更換後台人員1053</option>
+                                    <option value="1054">更換後台人員1054</option>
+                                    <option value="1055">更換後台人員1055</option>
+                                </select>
+                                <div class="d-flex">
+                                    <a class="adminLink adminLogin align-middle ms-4" href="#">登入</a>
+                                    <!-- 模擬登入逾時的測試, 功能完成後移除 -->
+                                    <!-- <a class="adminLink loginTimeOut ms-4" href="#">登入逾時</a> -->
+                                </div>
+                            </div>
+                        </li>
+                        <li class="ms-4">
+                            <a class="adminLink align-middle" href="../pages/admin_account.html">帳號管理</a>
+                        </li>
+                        <li class="ms-4">
+                            <a class="adminLink align-middle" href="../pages/admin_booking.html">訂單管理</a>
+                        </li>
+                        <li class="ms-4">
+                            <a class="adminLink align-middle" href="../pages/admin_rooms.html">客房管理</a>
+                        </li>
+                        <li class="ms-4">
+                            <a class="adminLink align-middle" href="../pages/admin_article.html">文章管理</a>
+                        </li>
+                        <li class="ms-4 logout">
+                            <a class="adminLink logout align-middle" href="#">登出</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+</header>
+
+        <main class="container mb-15">
+            <div class="row adminBreadcrumb">
+                <div class="py-8">
+                    <h2>
+                        <a href="./admin_index.html">後台首頁</a> > <a href="./admin_booking.html">訂單管理</a> > 測試訂單
+                    </h2>
+                </div>
+            </div>
+
+            <div class="row">
+                <div>
+                    <div
+                        class="bookingContent p-8 border border-2 rounded-2 adminBooking_content d-flex flex-column justify-content-between">
+                        <div class="d-flex justify-content-between mb-6">
+                            <h2 class="">模擬新增訂單</h2>
+
+                            <div class="d-flex align-items-center btns">
+                                <button class="btn addBOoking btn-warning text-white">訂單送出</button>
+                                <button class="ms-3 btn btnBack btn-success">返回列表</button>
+                            </div>
+
+                        </div>
+                        <form class="d-flex justify-content-between">
+                            <div class="col-6 row">
+                                <div class="mb-4 col-6">
+                                    <label for="selectUser" class="form-label">選擇會員</label>
+                                    <select id="selectUser" class="form-select selectUser">
+                                    </select>
+                                </div>
+                                <div class="mb-4 col-6">
+                                    <label for="bookingDate" class="form-label">下單日期</label>
+                                    <input type="date" class="form-control bookingDate" id="bookingDate">
+                                </div>
+                                <div class="mb-4 col-6">
+                                    <label for="checkIn" class="form-label">入住日期</label>
+                                    <input type="date" class="form-control checkIn" id="checkIn">
+                                </div>
+
+                                <div class="mb-4 col-6">
+                                    <label for="checkOut" class="form-label">退房日期</label>
+                                    <input type="date" class="form-control checkOut" id="checkOut">
+                                </div>
+
+                                <div class="mb-4 col-6">
+                                    <label for="memberName" class="form-label">會員姓名</label>
+                                    <input type="text" class="form-control memberName" id="memberName" disabled
+                                        readonly>
+                                </div>
+
+                                <div class="mb-4 col-6">
+                                    <label for="bookingRoomType" class="form-label">預定房型</label>
+                                    <select id="bookingRoomType" class="form-select bookingRoomType">
+                                        <option selected>請選擇</option>
+                                        <option>經典房</option>
+                                        <option>精緻房</option>
+                                        <option>豪華房</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-4 col-3">
+                                    <label for="bookingDays" class="form-label">入住天數</label>
+                                    <input type="number" class="form-control bookingDays" id="bookingDays">
+                                </div>
+                                <div class="mb-4 col-3">
+                                    <label for="checkInCats" class="form-label">入住貓咪數量</label>
+                                    <input type="number" class="form-control checkInCats" id="checkInCats" disabled
+                                        readonly>
+                                </div>
+                                <div class="mb-4 col-3">
+                                    <label for="plusCatPay" class="form-label">加貓費用</label>
+                                    <input type="number" class="form-control plusCatPay" id="plusCatPay" disabled
+                                        readonly>
+                                </div>
+
+                                <div class="mb-4 col-3">
+                                    <label for="totalPrice" class="form-label">訂單總額</label>
+                                    <input type="number" class="form-control totalPrice" id="totalPrice" disabled
+                                        readonly>
+                                </div>
+                                <h6 class="mb-2">入住貓咪</h6>
+                                <div class="row getCats">
+
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="mb-4 col-12">
+                                    <label for="remark" class="form-label col-12">訂單備註</label>
+                                    <textarea class="textarea col-12 remark py-1 px-3" id="remark" name="remark"
+                                        rows="4"></textarea>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <table class="table historyRes">
+                                            
+                                        </table>
+                                    </div>
+                                    <div class="col-6">
+                                        <table class="table bookingRes">
+                                            
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+
+        
+        
+</body>
+
+</html>

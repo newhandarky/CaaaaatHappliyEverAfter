@@ -4,37 +4,192 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>index</title>
-    <script type="module" crossorigin src="/CaaaaatHappliyEverAfter/assets/main-2bba8404.js"></script>
-    <link rel="stylesheet" href="/CaaaaatHappliyEverAfter/assets/main-c4773201.css">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0"
+    />
+    <title>admin_index</title>
+    <script type="module" crossorigin src="/CaaaaatHappliyEverAfter/assets/admin_index-5300a77f.js"></script>
+    <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/config-82256151.js">
+    <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/sweetalert2.all-bdf3eb51.js">
+    <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/admin_header-36cd02a6.js">
+    <link rel="stylesheet" href="/CaaaaatHappliyEverAfter/assets/config-0f49d4b3.css">
   </head>
   <body>
-    <header class="d-flex justify-content-between p-5">
-    <div>
-        <a href="../pages/admin_index.html">後台首頁</a>
-    </div>
-    <nav>
-        <ul class="d-flex ">
-            <li>
-                <a href="../pages/admin_account.html">帳號管理</a>
-            </li>
-            <li class="ms-3">
-                <a href="../pages/admin_booking.html">訂單管理</a>
-            </li>
-            <li class="ms-3">
-                <a href="../pages/admin_rooms.html">客房管理</a>
-            </li>
-            <li class="ms-3">
-                <a href="../pages/admin_article.html">文章管理</a>
-            </li>
-            <li class="ms-3">
-                <a class="logout" href="../pages/logout.html">登出</a>
-            </li>
-        </ul>
-    </nav>
-</header>
-    <h1>歡迎來到CaaaaatHappliyEverAfter後台首頁</h1>
+    
 
+<header class="adminHeader bg-neutral03">
+    <div class="container">
+        <div class="row py-6">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <a href="../pages/admin_index.html">
+                        <img src="https://raw.githubusercontent.com/newhandarky/CaaaaatHappliyEverAfter/0e256f0b76088eb06998f784d1469dd6f7b5b1e3/assets/images/LogoHorizontal.svg" alt="logo圖片">
+                    </a>
+                    
+                </div>
+                <nav class="">
+                    <ul class="d-flex mb-0">
+                        <li>
+                            <p class="welcome align-middle"></p>
+                        </li>
+                        <li class="ms-4">
+                            <div class="d-flex">
+                                <select name="adminAccount" class="adminAccount">
+                                    <option selected>請選擇</option>
+                                    <option value="1052">更換後台人員1052</option>
+                                    <option value="1053">更換後台人員1053</option>
+                                    <option value="1054">更換後台人員1054</option>
+                                    <option value="1055">更換後台人員1055</option>
+                                </select>
+                                <div class="d-flex">
+                                    <a class="adminLink adminLogin align-middle ms-4" href="#">登入</a>
+                                    <!-- 模擬登入逾時的測試, 功能完成後移除 -->
+                                    <!-- <a class="adminLink loginTimeOut ms-4" href="#">登入逾時</a> -->
+                                </div>
+                            </div>
+                        </li>
+                        <li class="ms-4">
+                            <a class="adminLink align-middle" href="../pages/admin_account.html">帳號管理</a>
+                        </li>
+                        <li class="ms-4">
+                            <a class="adminLink align-middle" href="../pages/admin_booking.html">訂單管理</a>
+                        </li>
+                        <li class="ms-4">
+                            <a class="adminLink align-middle" href="../pages/admin_rooms.html">客房管理</a>
+                        </li>
+                        <li class="ms-4">
+                            <a class="adminLink align-middle" href="../pages/admin_article.html">文章管理</a>
+                        </li>
+                        <li class="ms-4 logout">
+                            <a class="adminLink logout align-middle" href="#">登出</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+</header>
+
+    <section class="container d-flex align-items-center">
+      <img class="userImage rounded-circle mt-8 me-8" src="" />
+      <!-- 後面用 JS 渲染 -->
+      <p class="welcomeText fs-4"></p>
+    </section>
+    <main class="container my-9">
+      <div class="d-flex justify-content-between flex-wrap mb-lg-4">
+        <div
+          class="statusWrap w-100 d-flex flex-column justify-content-between p-4 mb-4 mb-lg-0 bg-primary02"
+        >
+          <h3 class="border-bottom border-2 border-dark mb-4">帳號狀態</h3>
+          <table class="table table-bordered border-dark">
+            <thead>
+              <tr>
+                <th>使用者名稱</th>
+                <th>最後登入時間</th>
+              </tr>
+            </thead>
+            <tbody class="indexAccountTbody"></tbody>
+          </table>
+          <a
+            class="pageNavigateBtn d-flex justify-content-center align-items-center btn btn-primary d-block text-center text-white ms-auto"
+            href="./admin_account.html"
+            ><span class="material-symbols-outlined"> arrow_forward </span
+            >前往帳號管理</a
+          >
+        </div>
+        <div
+          class="statusWrap w-100 d-flex flex-column justify-content-between p-4 mb-4 mb-lg-0 bg-primary02"
+        >
+          <h3 class="border-bottom border-2 border-dark mb-4">訂單總覽</h3>
+          <div class="d-flex justify-content-around">
+            <div class="text-center">
+              <p class="fs-4">已確認訂單</p>
+              <p class="fs-36">10</p>
+            </div>
+            <div class="text-center">
+              <p class="fs-4">今日營業額</p>
+              <p class="fs-36">$10000</p>
+            </div>
+          </div>
+          <a
+            class="pageNavigateBtn d-flex justify-content-center align-items-center btn btn-primary d-block text-center text-white ms-auto"
+            href="./admin_booking.html"
+            ><span class="material-symbols-outlined"> arrow_forward </span
+            >前往訂單管理</a
+          >
+        </div>
+      </div>
+      <div class="d-flex justify-content-between flex-wrap">
+        <div
+          class="statusWrap w-100 d-flex flex-column justify-content-between p-4 mb-4 mb-lg-0 bg-primary02"
+        >
+          <h3 class="border-bottom border-2 border-dark mb-4">客房總覽</h3>
+          <table class="table table-bordered border-dark">
+            <thead>
+              <tr>
+                <th>房間類型</th>
+                <th>每晚價格</th>
+              </tr>
+            </thead>
+            <tbody class="indexRoomTbody"></tbody>
+          </table>
+          <a
+            class="pageNavigateBtn d-flex justify-content-center align-items-center btn btn-primary d-block text-center text-white ms-auto"
+            href="./admin_rooms.html"
+            ><span class="material-symbols-outlined"> arrow_forward </span
+            >前往客房管理</a
+          >
+        </div>
+        <div
+          class="statusWrap w-100 d-flex flex-column justify-content-between p-4 bg-primary02"
+        >
+          <h3 class="border-bottom border-2 border-dark">文章總覽</h3>
+          <div class="d-flex justify-content-around">
+            <div class="card" style="width: 8rem">
+              <img class="card-img-top" src="https://fakeimg.pl/150/" />
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <div class="d-flex justify-content-end align-items-center">
+                  <span class="material-symbols-outlined me-4"> thumb_up </span>
+                  <span class="material-symbols-outlined"> chat </span>
+                </div>
+              </div>
+            </div>
+            <div class="card" style="width: 8rem">
+              <img class="card-img-top" src="https://fakeimg.pl/150/" />
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <div class="d-flex justify-content-end align-items-center">
+                  <span class="material-symbols-outlined me-4"> thumb_up </span>
+                  <span class="material-symbols-outlined"> chat </span>
+                </div>
+              </div>
+            </div>
+            <div class="card" style="width: 8rem">
+              <img class="card-img-top" src="https://fakeimg.pl/150/" />
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <div class="d-flex justify-content-end align-items-center">
+                  <span class="material-symbols-outlined me-4"> thumb_up </span>
+                  <span class="material-symbols-outlined"> chat </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a
+            class="pageNavigateBtn d-flex justify-content-center align-items-center btn btn-primary d-block text-center text-white ms-auto"
+            href="./admin_article.html"
+            ><span class="material-symbols-outlined"> arrow_forward </span
+            >前往文章管理</a
+          >
+        </div>
+      </div>
+    </main>
+    
     
   </body>
 </html>

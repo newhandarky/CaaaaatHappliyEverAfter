@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0"
+    />
+    <title>admin_rooms</title>
+    <script type="module" crossorigin src="/CaaaaatHappliyEverAfter/assets/admin_rooms-bea6ad45.js"></script>
+    <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/config-82256151.js">
+    <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/sweetalert2.all-bdf3eb51.js">
+    <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/admin_header-36cd02a6.js">
+    <link rel="stylesheet" href="/CaaaaatHappliyEverAfter/assets/config-0f49d4b3.css">
+  </head>
+  <body>
+    
+
+<header class="adminHeader bg-neutral03">
+    <div class="container">
+        <div class="row py-6">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <a href="../pages/admin_index.html">
+                        <img src="https://raw.githubusercontent.com/newhandarky/CaaaaatHappliyEverAfter/0e256f0b76088eb06998f784d1469dd6f7b5b1e3/assets/images/LogoHorizontal.svg" alt="logo圖片">
+                    </a>
+                    
+                </div>
+                <nav class="">
+                    <ul class="d-flex mb-0">
+                        <li>
+                            <p class="welcome align-middle"></p>
+                        </li>
+                        <li class="ms-4">
+                            <div class="d-flex">
+                                <select name="adminAccount" class="adminAccount">
+                                    <option selected>請選擇</option>
+                                    <option value="1052">更換後台人員1052</option>
+                                    <option value="1053">更換後台人員1053</option>
+                                    <option value="1054">更換後台人員1054</option>
+                                    <option value="1055">更換後台人員1055</option>
+                                </select>
+                                <div class="d-flex">
+                                    <a class="adminLink adminLogin align-middle ms-4" href="#">登入</a>
+                                    <!-- 模擬登入逾時的測試, 功能完成後移除 -->
+                                    <!-- <a class="adminLink loginTimeOut ms-4" href="#">登入逾時</a> -->
+                                </div>
+                            </div>
+                        </li>
+                        <li class="ms-4">
+                            <a class="adminLink align-middle" href="../pages/admin_account.html">帳號管理</a>
+                        </li>
+                        <li class="ms-4">
+                            <a class="adminLink align-middle" href="../pages/admin_booking.html">訂單管理</a>
+                        </li>
+                        <li class="ms-4">
+                            <a class="adminLink align-middle" href="../pages/admin_rooms.html">客房管理</a>
+                        </li>
+                        <li class="ms-4">
+                            <a class="adminLink align-middle" href="../pages/admin_article.html">文章管理</a>
+                        </li>
+                        <li class="ms-4 logout">
+                            <a class="adminLink logout align-middle" href="#">登出</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+</header>
+    <main class="container p-8">
+      <h2 class="mb-5"><a href="./admin_index.html">首頁</a> > 客房管理</h2>
+      <div class="roomsWrap border border-gray rounded-3 py-10 px-5">
+        <div class="titleWrap d-flex align-items-center">
+          <h2 class="fs-2 me-11">房型總覽</h2>
+          <!-- a-href 先不做新增房型連結 -->
+          <a
+            href="./admin_roomsAddRoom.html"
+            role="button"
+            class="addNewBtn btn btn-outline-primary border border-1 border-primary rounded-1 fs-5 p-1"
+          >
+            新增房型
+          </a>
+        </div>
+        <div class="px-6 mt-10">
+          <table class="table align-middle fs-2 text-center">
+            <thead>
+              <tr>
+                <th scope="col">封面圖片</th>
+                <th scope="col">房型名稱</th>
+                <th scope="col">價格/貓</th>
+                <th scope="col">貓咪上限</th>
+                <th scope="col">操作</th>
+              </tr>
+            </thead>
+            <!-- 取 render 資料渲染 -->
+            <tbody class="adminRoomList"></tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+    
+    
+  </body>
+</html>

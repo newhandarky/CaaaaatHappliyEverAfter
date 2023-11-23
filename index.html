@@ -5,36 +5,475 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>index</title>
-    <script type="module" crossorigin src="/CaaaaatHappliyEverAfter/assets/main-2bba8404.js"></script>
-    <link rel="stylesheet" href="/CaaaaatHappliyEverAfter/assets/main-c4773201.css">
+    <script type="module" crossorigin src="/CaaaaatHappliyEverAfter/assets/index-3b28e16c.js"></script>
+    <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/config-82256151.js">
+    <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/navbar-5c89ec87.js">
+    <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/index-a4e39586.js">
+    <link rel="stylesheet" href="/CaaaaatHappliyEverAfter/assets/config-0f49d4b3.css">
   </head>
   <body>
-    <header class="d-flex justify-content-between p-5">
-    <div>
-        <a href="../pages/index.html">首頁LOGO</a>
-    </div>
-    <nav>
-        <ul class="d-flex ">
-            <li>
-                <a href="../pages/aboutus.html">關於我們</a>
-            </li>
-            <li class="ms-3">
-                <a href="../pages/roooms.html">旅館介紹</a>
-            </li>
-            <li class="ms-3">
-                <a href="../pages/booking.html">線上訂房</a>
-            </li>
-            <li class="ms-3">
-                <a href="../pages/article.html">文章總攬</a>
-            </li>
-            <li class="ms-3">
-                <a href="../pages/member.html">會員功能</a>
-            </li>
-        </ul>
-    </nav>
-</header>
-    <h1>歡迎來到CaaaaatHappliyEverAfter首頁</h1>
+    <header class="header navbar navbar-expand-lg p-0">
+  <div class="navBar container p-0">
+    <a class="navbar-brand mx-5 my-3" href="../pages/index.html"
+      ><img src="/CaaaaatHappliyEverAfter/assets/LogoHorizontal-e5352593.svg" alt="Logo"
+    /></a>
 
+    <!-- 汉堡菜单按钮 -->
+    <button
+      class="navbar-toggler mx-3"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto d-flex align-items-center">
+        <li class="nav-item mx-3 my-3">
+          <a id="aboutus" class="nav-link p-0" href="../pages/aboutus.html"
+            >關於我們</a
+          >
+        </li>
+        <li class="nav-item mx-3 my-3 roooms">
+          <a id="roooms" class="nav-link p-0" href="../pages/roooms.html"
+            >旅館介紹</a
+          >
+        </li>
+        <li class="nav-item mx-3 my-3 booking">
+          <a id="booking" class="nav-link p-0" href="../pages/booking.html"
+            >線上訂房</a
+          >
+        </li>
+        <li class="nav-item mx-3 my-3 article">
+          <a id="article" class="nav-link p-0" href="../pages/article.html"
+            >文章總覽</a
+          >
+        </li>
+        <li
+          id="memberBtn"
+          class="nav-item mx-3 my-3 primaryStrokeToFill-btn-primary"
+        >
+          <a
+            id="memberFunction"
+            class="nav-link p-0"
+            href="../pages/member.html"
+          >
+            <i class="bi bi-person"></i>會員功能
+          </a>
+        </li>
+        
+        <li class="nav-item mx-3 my-3 burgerAside d-lg-none d-block"><aside class="aside h-100 d-flex flex-column align-items-center">
+  <a id="memberData" class="fs-3 my-3" href="../pages/member.html">
+    <div class="d-flex justify-content-center">
+      <img class="me-2" src="/CaaaaatHappliyEverAfter/assets/iconPerson-8a45aa43.svg" alt="iconPerson" />
+      <p>資料管理</p>
+    </div>
+  </a>
+
+  <a id="catData" class="fs-3 my-3" href="../pages/catData.html">
+    <div class="d-flex justify-content-center">
+      <img class="me-2" src="/CaaaaatHappliyEverAfter/assets/iconCat-708e9fdb.svg" alt="iconCat" />
+      <p>我的貓咪</p>
+    </div></a
+  >
+
+  <a id="bookingHistory" class="fs-3 my-3" href="../pages/bookingHistory.html"
+    ><div class="d-flex justify-content-center">
+      <img class="me-2" src="/CaaaaatHappliyEverAfter/assets/iconHouse-71419e42.svg" alt="iconHouse" />
+      <p>訂房紀錄</p>
+    </div></a
+  >
+
+  <a id="importantNotice" class="fs-3 my-3" href="../pages/importantNotice.html"
+    ><div class="d-flex justify-content-center">
+      <img class="me-2" src="/CaaaaatHappliyEverAfter/assets/iconCatPaw-2f0507f5.svg" alt="iconCatPaw" />
+      <p>重要通知</p>
+    </div></a
+  >
+</aside>
+</li>
+
+    </div>
+  </div>
+</header>
+    <!-- Banner區塊 -->
+    <div class="container-fluid">
+      <div class="row g-0">
+        <!-- 主圖區塊 -->
+        <div class="col-12 position-relative">
+          <div
+            class="image-container position-relative d-flex justify-content-center align-items-start"
+          >
+            <img
+              src="/CaaaaatHappliyEverAfter/assets/ImgBanner-192ebce2.png"
+              class="img-fluid d-lg-block d-sm-none d-none"
+              alt="indexPhoto"
+            /><img
+              src="/CaaaaatHappliyEverAfter/assets/ImgBanner-md-6086b8a5.png"
+              class="img-fluid d-lg-none d-sm-block d-none"
+              alt="indexPhoto"
+            /><img
+              src="/CaaaaatHappliyEverAfter/assets/ImgBanner-sm-cc3f5e81.png"
+              class="img-fluid d-lg-none d-sm-none d-block"
+              alt="indexPhoto"
+            />
+            <div
+              class="position-absolute w-100 top-0 start-50 translate-middle-x"
+            >
+              <div class="container">
+                <div class="row image-text">
+                  <h1>貓の幸福角落</h1>
+                  <h2>在城市裡保留一個屬於貓的幸福角落</h2>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 快速預約房型區塊 -->
+          <div class="searchBar position-absolute bottom-0">
+            <h2 class="roomBarTitle">快速預約房型</h2>
+            <div class="container">
+              <div class="row allInputBar">
+                <div class="col-lg-3 col-12">
+                  <!--input 按鈕自製模組-->
+                  <div id="catRoomInput_checkIn" class="catRoomInput">
+                    <div class="inputBar">
+                      <p class="fs-7 m-0">入住日期</p>
+                      <input
+                        id="checkIn"
+                        type="text"
+                        class="inputText position-relative"
+                        placeholder="請輸入日期"
+                      />
+                    </div>
+
+                    <img
+                      class="icon"
+                      src="/CaaaaatHappliyEverAfter/assets/iconDate-4f6e3dc2.svg"
+                      alt="date_icon"
+                    />
+                  </div>
+                </div>
+                <div class="col-lg-3 col-12">
+                  <!--input 按鈕自製模組-->
+                  <div id="catRoomInput_checkOut" class="catRoomInput">
+                    <div class="inputBar">
+                      <p class="fs-7 m-0">退房日期</p>
+                      <input
+                        id="checkOut"
+                        type="text"
+                        class="inputText position-relative"
+                        placeholder="請輸入日期"
+                      />
+                    </div>
+
+                    <img
+                      class="icon"
+                      src="/CaaaaatHappliyEverAfter/assets/iconDate-4f6e3dc2.svg"
+                      alt="date_icon"
+                    />
+                  </div>
+                </div>
+                <div class="col-lg-4 col-12">
+                  <!--input 按鈕自製模組-->
+                  <div id="catRoomInput_roomType" class="catRoomInput">
+                    <div class="inputBar">
+                      <p class="fs-7 m-0">房型</p>
+                      <select id="roomType" class="roomType position-relative">
+                        <option disabled selected style="color: #ced4da">
+                          請選擇
+                        </option>
+                        <option value="經典房">經典房</option>
+                        <option value="精緻房">精緻房</option>
+                        <option value="豪華房">豪華房</option>
+                      </select>
+                    </div>
+
+                    <img
+                      class="icon"
+                      src="/CaaaaatHappliyEverAfter/assets/iconArrowDown-36313634.svg"
+                      alt="date_icon"
+                    />
+                  </div>
+                </div>
+                <div class="col-lg-2 col-12">
+                  <button type="button" class="searchBarBtn catRoomInput">
+                    <p class="fs-5 m-0">立即預約</p>
+                    <img
+                      class="icon"
+                      src="/CaaaaatHappliyEverAfter/assets/dogPaw-d9d49432.svg"
+                      alt="date_icon"
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 房型區塊 -->
+    <div class="container-fluid">
+      <div class="row g-0">
+        <div class="col-lg-4 col-12 catRoom position-relative">
+          <div class="roomImgText position-absolute bottom-0">
+            <h3 class="text">精緻房</h3>
+          </div>
+          <img src="/CaaaaatHappliyEverAfter/assets/catRoom_Delicate-0542b434.png" alt="delicate" />
+        </div>
+        <div class="col-lg-4 col-12 catRoom position-relative">
+          <div class="roomImgText position-absolute bottom-0">
+            <h3 class="text">經典房</h3>
+          </div>
+          <img src="/CaaaaatHappliyEverAfter/assets/catRoom_Classic-196b5202.png" alt="classic" />
+        </div>
+        <div class="col-lg-4 col-12 catRoom position-relative">
+          <div class="roomImgText position-absolute bottom-0">
+            <h3 class="text">豪華房</h3>
+          </div>
+          <img src="/CaaaaatHappliyEverAfter/assets/catRoom_luxury-110863c6.png" alt="luxury" />
+        </div>
+      </div>
+    </div>
+
+    <!-- 宣傳資訊區塊 1 -->
+    <div class="container-fluid">
+      <div class="row g-0">
+        <div class="col-lg-6 col-12 promote d-flex justify-content-end">
+          <div
+            class="promoteText d-flex flex-column justify-content-center align-items-center"
+          >
+            <div class="textArea position-relative">
+              <img
+                class="ImgCat01 position-absolute"
+                src="/CaaaaatHappliyEverAfter/assets/ImgCat01-5e929482.svg"
+                alt="ImgCat01"
+              />
+              <h3>獨立安全的專屬房間</h3>
+              <div class="d-flex align-items-center my-3">
+                <img
+                  class="icon"
+                  src="/CaaaaatHappliyEverAfter/assets/dogPaw-d9d49432.svg"
+                  alt="date_icon"
+                />
+
+                <h6 class="mx-1 my-0">房間均高 300 公分</h6>
+              </div>
+              <div class="d-flex align-items-center my-3">
+                <img
+                  class="icon"
+                  src="/CaaaaatHappliyEverAfter/assets/dogPaw-d9d49432.svg"
+                  alt="date_icon"
+                />
+
+                <h6 class="mx-1 my-0">24 小時獨立房內監視器</h6>
+              </div>
+              <div class="d-flex align-items-center my-3">
+                <img
+                  class="icon"
+                  src="/CaaaaatHappliyEverAfter/assets/dogPaw-d9d49432.svg"
+                  alt="date_icon"
+                />
+
+                <h6 class="mx-1 my-0">一級防水木製房間</h6>
+              </div>
+              <div class="d-flex align-items-center my-3">
+                <img
+                  class="icon"
+                  src="/CaaaaatHappliyEverAfter/assets/dogPaw-d9d49432.svg"
+                  alt="date_icon"
+                />
+
+                <h6 class="mx-1 my-0">房內獨立抽風機、除濕機</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="col-lg-6 col-12 promote position-relative d-flex justify-content-center align-items-center"
+        >
+          <div class="promoteImg">
+            <img
+              class="img-fluid"
+              src="/CaaaaatHappliyEverAfter/assets/ImgFeature02-37254df8.png"
+              alt="ImgFeature02"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 宣傳資訊區塊 2 -->
+    <div class="container-fluid">
+      <div class="row g-0">
+        <div
+          class="col-lg-6 order-lg-1 col-12 order-2 promote position-relative d-flex justify-content-center align-items-center"
+        >
+          <div class="promoteImg">
+            <img
+              class="img-fluid"
+              src="/CaaaaatHappliyEverAfter/assets/ImgFeature01-18126665.png"
+              alt="ImgFeature01"
+            />
+          </div>
+        </div>
+        <div
+          class="col-lg-6 order-lg-2 col-12 order-1 promote d-flex justify-content-start"
+        >
+          <div
+            class="promoteText d-flex flex-column justify-content-center align-items-center"
+          >
+            <div class="textArea position-relative">
+              <img
+                class="ImgCat02 position-absolute"
+                src="/CaaaaatHappliyEverAfter/assets/ImgCat02-2aeae466.svg"
+                alt="ImgCat01"
+              />
+              <h3>一位照護員照顧 6-8 間房</h3>
+              <div class="d-flex align-items-center my-3">
+                <img
+                  class="icon"
+                  src="/CaaaaatHappliyEverAfter/assets/dogPaw-d9d49432.svg"
+                  alt="date_icon"
+                />
+
+                <h6 class="mx-1 my-0">完善的溝通與團隊合作</h6>
+              </div>
+              <div class="d-flex align-items-center my-3">
+                <img
+                  class="icon"
+                  src="/CaaaaatHappliyEverAfter/assets/dogPaw-d9d49432.svg"
+                  alt="date_icon"
+                />
+
+                <h6 class="mx-1 my-0">時間管理與效率高</h6>
+              </div>
+              <div class="d-flex align-items-center my-3">
+                <img
+                  class="icon"
+                  src="/CaaaaatHappliyEverAfter/assets/dogPaw-d9d49432.svg"
+                  alt="date_icon"
+                />
+
+                <h6 class="mx-1 my-0">每日家庭聯絡簿</h6>
+              </div>
+              <div class="d-flex align-items-center my-3">
+                <img
+                  class="icon"
+                  src="/CaaaaatHappliyEverAfter/assets/dogPaw-d9d49432.svg"
+                  alt="date_icon"
+                />
+
+                <h6 class="mx-1 my-0">主動報告飲食起居和排便狀況</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 顧客評價區塊 -->
+
+    <div class="container">
+      <div class="row evaluate">
+        <div
+          class="col-12 d-inline-flex justify-content-center align-items-end"
+        >
+          <div
+            class="title d-inline-flex justify-content-center align-items-center my-3"
+          >
+            <img
+              class="img-fluid position-absolute"
+              src="/CaaaaatHappliyEverAfter/assets/laurelWreath-3055e6e1.svg"
+              alt="laurelWreath"
+              srcset=""
+            />
+            <h3>顧客好評</h3>
+          </div>
+        </div>
+        <div class="col-lg-4 col-12">
+          <div class="personBox d-flex flex-column align-items-center mx-3 p-3">
+            <div class="photo m-3">
+              <img
+                class="img-fluid"
+                src="/CaaaaatHappliyEverAfter/assets/男生03-94897a22.jpg"
+                alt="ImgCustomer01"
+              />
+            </div>
+            <h5>貓咪爸爸 Tommy</h5>
+            <h6>
+              貓の幸福真的是一個貓咪的天堂！我的貓咪在這裡過得非常愉快，特別是我們訂了豪華房，裡面的設施非常奢華，讓貓咪玩得不亦樂乎。工作人員也非常熱情，照顧得無微不至，下次我們一定還會再來！
+            </h6>
+            <h3 class="star">★★★★★</h3>
+          </div>
+        </div>
+        <div class="col-lg-4 col-12">
+          <div class="personBox d-flex flex-column align-items-center mx-3 p-3">
+            <div class="photo m-3">
+              <img
+                class="img-fluid"
+                src="/CaaaaatHappliyEverAfter/assets/女生05-56095c3f.jpg"
+                alt="ImgCustomer01"
+              />
+            </div>
+            <h5>愛貓者 Grace</h5>
+            <h6>
+              我們住在貓の幸福的經典房，房間很溫馨，貓咪好像很享受這個地方。特別喜歡它們的社交空間，貓咪們可以一起玩耍，看著牠們互動的樣子真是太可愛了。只是希望未來能有更多的特色活動！
+            </h6>
+            <h3 class="star">★★★★☆</h3>
+          </div>
+        </div>
+        <div class="col-lg-4 col-12">
+          <div class="personBox d-flex flex-column align-items-center mx-3 p-3">
+            <div class="photo m-3">
+              <img
+                class="img-fluid"
+                src="/CaaaaatHappliyEverAfter/assets/女生01-6c5f10e4.jpg"
+                alt="ImgCustomer01"
+              />
+            </div>
+            <h5>花花控 Sophie</h5>
+            <h6>
+              貓の幸福的精緻房真的太可愛了！我帶著我的貓咪來度假，他們提供的小窩和爬架都非常適合，而且整個房間都散發著花香，非常舒適。工作人員態度也超好，會細心介紹每個房間的特色。貓咪在這裡過得非常愉快，我也感到非常放心。
+            </h6>
+            <h3 class="star">★★★★☆</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer d-flex justify-content-center align-items-center">
+  <main class="d-inline-flex flex-column align-items-center">
+    <a href="../pages/index.html"
+      ><img
+        class="logoVertical"
+        src="/CaaaaatHappliyEverAfter/assets/LogoVertical-d5e1037f.svg"
+        alt="LogoVertical"
+    /></a>
+
+    <br />
+    <h6>106 台北市大安區信義路三段 75 號 1 號 2 樓</h6>
+    <h6>02-2707-8877</h6>
+
+    <div class="icons">
+      <a href="https://www.facebook.com/?locale=zh_TW"
+        ><img
+          class="icon"
+          src="/CaaaaatHappliyEverAfter/assets/iconFacebook-78ddde9c.svg"
+          alt="LogoVertical"
+      /></a>
+      <a href="https://www.instagram.com/"
+        ><img
+          class="icon"
+          src="/CaaaaatHappliyEverAfter/assets/iconInstagram-5b0608dd.svg"
+          alt="LogoVertical"
+      /></a>
+    </div>
+  </main>
+</footer>
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script> -->
+    
     
     
   </body>

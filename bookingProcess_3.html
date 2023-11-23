@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="module" crossorigin src="/CaaaaatHappliyEverAfter/assets/bookingProcess_3-99a72294.js"></script>
+    <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/config-82256151.js">
+    <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/navbar-5c89ec87.js">
+    <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/aside-096a2e7a.js">
+    <link rel="stylesheet" href="/CaaaaatHappliyEverAfter/assets/config-0f49d4b3.css">
+  </head>
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
+
+  <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+  
+
+  <body>
+    <header class="header navbar navbar-expand-lg p-0">
+  <div class="navBar container p-0">
+    <a class="navbar-brand mx-5 my-3" href="../pages/index.html"
+      ><img src="/CaaaaatHappliyEverAfter/assets/LogoHorizontal-e5352593.svg" alt="Logo"
+    /></a>
+
+    <!-- 汉堡菜单按钮 -->
+    <button
+      class="navbar-toggler mx-3"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto d-flex align-items-center">
+        <li class="nav-item mx-3 my-3">
+          <a id="aboutus" class="nav-link p-0" href="../pages/aboutus.html"
+            >關於我們</a
+          >
+        </li>
+        <li class="nav-item mx-3 my-3 roooms">
+          <a id="roooms" class="nav-link p-0" href="../pages/roooms.html"
+            >旅館介紹</a
+          >
+        </li>
+        <li class="nav-item mx-3 my-3 booking">
+          <a id="booking" class="nav-link p-0" href="../pages/booking.html"
+            >線上訂房</a
+          >
+        </li>
+        <li class="nav-item mx-3 my-3 article">
+          <a id="article" class="nav-link p-0" href="../pages/article.html"
+            >文章總覽</a
+          >
+        </li>
+        <li
+          id="memberBtn"
+          class="nav-item mx-3 my-3 primaryStrokeToFill-btn-primary"
+        >
+          <a
+            id="memberFunction"
+            class="nav-link p-0"
+            href="../pages/member.html"
+          >
+            <i class="bi bi-person"></i>會員功能
+          </a>
+        </li>
+        
+        <li class="nav-item mx-3 my-3 burgerAside d-lg-none d-block"><aside class="aside h-100 d-flex flex-column align-items-center">
+  <a id="memberData" class="fs-3 my-3" href="../pages/member.html">
+    <div class="d-flex justify-content-center">
+      <img class="me-2" src="/CaaaaatHappliyEverAfter/assets/iconPerson-8a45aa43.svg" alt="iconPerson" />
+      <p>資料管理</p>
+    </div>
+  </a>
+
+  <a id="catData" class="fs-3 my-3" href="../pages/catData.html">
+    <div class="d-flex justify-content-center">
+      <img class="me-2" src="/CaaaaatHappliyEverAfter/assets/iconCat-708e9fdb.svg" alt="iconCat" />
+      <p>我的貓咪</p>
+    </div></a
+  >
+
+  <a id="bookingHistory" class="fs-3 my-3" href="../pages/bookingHistory.html"
+    ><div class="d-flex justify-content-center">
+      <img class="me-2" src="/CaaaaatHappliyEverAfter/assets/iconHouse-71419e42.svg" alt="iconHouse" />
+      <p>訂房紀錄</p>
+    </div></a
+  >
+
+  <a id="importantNotice" class="fs-3 my-3" href="../pages/importantNotice.html"
+    ><div class="d-flex justify-content-center">
+      <img class="me-2" src="/CaaaaatHappliyEverAfter/assets/iconCatPaw-2f0507f5.svg" alt="iconCatPaw" />
+      <p>重要通知</p>
+    </div></a
+  >
+</aside>
+</li>
+
+    </div>
+  </div>
+</header>
+    <h1>線上訂房</h1>
+
+    <ul class="d-flex">
+        <li >選擇房型與日期=></li>
+        <li >入住貓咪資訊=></li>
+        <li class="text-primary">確認訂單</li>
+    </ul>
+
+    <h3>請確認您的訂房資訊</h3>
+    <ul>
+        <li>入住日期：<span class="checkInDate"></span></li>
+        <li>退房日期：<span class="checkOutDate"></span></li>
+        <li>房間類型：<span class="roomType"></span></li>
+        <li>入住貓咪數量：<span class="catNum"></span></li>
+        <li>入住貓咪:<span class="catName"></span></li>
+        <li>價格：<span class="price"></span></li>
+        <li>特殊需求：<span class="remark"></span></li>
+
+    </ul>
+
+    <button class="toComfirmation"><a href="./index.html">確認</a></button>
+    <button class="backToBooking"><a href="./booking.html">重新選擇</a></button>
+
+    
+   
+
+    
+    
+   
+
+    
+
+    <footer class="footer d-flex justify-content-center align-items-center">
+  <main class="d-inline-flex flex-column align-items-center">
+    <a href="../pages/index.html"
+      ><img
+        class="logoVertical"
+        src="/CaaaaatHappliyEverAfter/assets/LogoVertical-d5e1037f.svg"
+        alt="LogoVertical"
+    /></a>
+
+    <br />
+    <h6>106 台北市大安區信義路三段 75 號 1 號 2 樓</h6>
+    <h6>02-2707-8877</h6>
+
+    <div class="icons">
+      <a href="https://www.facebook.com/?locale=zh_TW"
+        ><img
+          class="icon"
+          src="/CaaaaatHappliyEverAfter/assets/iconFacebook-78ddde9c.svg"
+          alt="LogoVertical"
+      /></a>
+      <a href="https://www.instagram.com/"
+        ><img
+          class="icon"
+          src="/CaaaaatHappliyEverAfter/assets/iconInstagram-5b0608dd.svg"
+          alt="LogoVertical"
+      /></a>
+    </div>
+  </main>
+</footer>
+
+    
+    
+    
+    
+    
+  </body>
+</html>

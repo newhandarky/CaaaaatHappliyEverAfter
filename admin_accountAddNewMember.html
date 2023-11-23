@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0"
+    />
+    <title>admin_account_editMember</title>
+    <script type="module" crossorigin src="/CaaaaatHappliyEverAfter/assets/admin_accountAddNewMember-fca0b3dc.js"></script>
+    <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/config-82256151.js">
+    <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/sweetalert2.all-bdf3eb51.js">
+    <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/admin_header-36cd02a6.js">
+    <link rel="stylesheet" href="/CaaaaatHappliyEverAfter/assets/config-0f49d4b3.css">
+  </head>
+  <body>
+    
+
+<header class="adminHeader bg-neutral03">
+    <div class="container">
+        <div class="row py-6">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <a href="../pages/admin_index.html">
+                        <img src="https://raw.githubusercontent.com/newhandarky/CaaaaatHappliyEverAfter/0e256f0b76088eb06998f784d1469dd6f7b5b1e3/assets/images/LogoHorizontal.svg" alt="logo圖片">
+                    </a>
+                    
+                </div>
+                <nav class="">
+                    <ul class="d-flex mb-0">
+                        <li>
+                            <p class="welcome align-middle"></p>
+                        </li>
+                        <li class="ms-4">
+                            <div class="d-flex">
+                                <select name="adminAccount" class="adminAccount">
+                                    <option selected>請選擇</option>
+                                    <option value="1052">更換後台人員1052</option>
+                                    <option value="1053">更換後台人員1053</option>
+                                    <option value="1054">更換後台人員1054</option>
+                                    <option value="1055">更換後台人員1055</option>
+                                </select>
+                                <div class="d-flex">
+                                    <a class="adminLink adminLogin align-middle ms-4" href="#">登入</a>
+                                    <!-- 模擬登入逾時的測試, 功能完成後移除 -->
+                                    <!-- <a class="adminLink loginTimeOut ms-4" href="#">登入逾時</a> -->
+                                </div>
+                            </div>
+                        </li>
+                        <li class="ms-4">
+                            <a class="adminLink align-middle" href="../pages/admin_account.html">帳號管理</a>
+                        </li>
+                        <li class="ms-4">
+                            <a class="adminLink align-middle" href="../pages/admin_booking.html">訂單管理</a>
+                        </li>
+                        <li class="ms-4">
+                            <a class="adminLink align-middle" href="../pages/admin_rooms.html">客房管理</a>
+                        </li>
+                        <li class="ms-4">
+                            <a class="adminLink align-middle" href="../pages/admin_article.html">文章管理</a>
+                        </li>
+                        <li class="ms-4 logout">
+                            <a class="adminLink logout align-middle" href="#">登出</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+</header>
+
+    <main class="container p-8">
+      <h2 class="mb-8">
+        <a href="./admin_index.html">首頁</a> >
+        <a href="./admin_account.html">後台人員管理</a> > 新增後台管理人員
+      </h2>
+      <form
+        class="memeberEditWrap w-100 border border-2 rounded-2 border-gray p-8 mb-10"
+      >
+        <h2 class="mb-8">新增後台管理人員</h2>
+        <div class="row">
+          <div class="col-12 col-lg-4 mb-8 mb-lg-0">
+            <div class="mb-8">
+              <label class="fs-4 mb-1" for="memberId">管理人員編號</label>
+              <br />
+              <input
+                id="memberId"
+                placeholder="請輸入管理員編號"
+                class="memberId fs-5 py-1 ps-2"
+                type="text"
+                required
+              />
+            </div>
+            <div class="mb-8">
+              <label class="fs-4 mb-1" for="memberName">管理人員姓名</label>
+              <br />
+              <input
+                id="memberName"
+                placeholder="請輸入管理員姓名"
+                class="memberName fs-5 py-1 ps-2"
+                type="text"
+                required
+              />
+            </div>
+            <div class="mb-8">
+              <label class="fs-4 mb-1" for="memberNickname">管理人員暱稱</label>
+              <br />
+              <input
+                id="memberNickname"
+                placeholder="請輸入管理員暱稱"
+                class="memberNickname fs-5 py-1 ps-2"
+                type="text"
+                required
+              />
+            </div>
+            <div>
+              <label class="fs-4 mb-1" for="memberTel">聯絡電話</label>
+              <br />
+              <input
+                id="memberTel"
+                placeholder="請輸入管理員電話"
+                class="memberTel fs-5 py-1 ps-2"
+                type="tel"
+                required
+              />
+            </div>
+          </div>
+          <div class="col-12 col-lg-4 mb-8 mb-lg-0">
+            <div class="mb-8">
+              <label class="fs-4 mb-1" for="memberArrivedDate">到職日期</label>
+              <br />
+              <input
+                id="memberArrivedDate"
+                placeholder="請選擇到職日期"
+                class="memberArrivedDate fs-5 py-1 ps-2"
+                type="date"
+                required
+              />
+            </div>
+            <div class="mb-8">
+              <label class="fs-4 mb-1" for="memberEmergencyContact"
+                >緊急聯絡人</label
+              >
+              <br />
+              <input
+                id="memberEmergencyContact"
+                class="memberEmergencyContact fs-5 py-1 ps-2"
+                placeholder="請輸入緊急聯絡人姓名"
+                type="text"
+                required
+              />
+            </div>
+            <div class="mb-8">
+              <label class="fs-4 mb-1" for="memberEmergencyContactTel"
+                >緊急聯絡人電話</label
+              >
+              <br />
+              <input
+                id="memberEmergencyContactTel"
+                class="memberEmergencyContactTel fs-5 py-1 ps-2"
+                placeholder="請輸入緊急聯絡人電話"
+                type="text"
+                required
+              />
+            </div>
+            <div>
+              <label class="fs-4 mb-1" for="memberEmergencyContactRel"
+                >緊急聯絡人關係</label
+              >
+              <br />
+              <input
+                id="memberEmergencyContactRel"
+                class="memberEmergencyContactRel fs-5 py-1 ps-2"
+                placeholder="請輸入緊急聯絡人關係"
+                type="text"
+                required
+              />
+            </div>
+          </div>
+          <div class="col-12 col-lg-4">
+            <div class="mb-8">
+              <label class="fs-4 mb-1" for="memberAccount"
+                >電子郵件信箱/後台登入帳號</label
+              >
+              <br />
+              <input
+                id="memberAccount"
+                placeholder="請輸入電子郵件信箱"
+                class="memberAccount w-100 fs-5 py-1 ps-2"
+                type="email"
+                required
+              />
+            </div>
+            <div class="mb-8">
+              <label class="fs-4 mb-1" for="memberPassword">後台登入密碼</label>
+              <br />
+              <input
+                id="memberPassword"
+                class="memberPassword w-100 fs-5 py-1 ps-2"
+                placeholder="請輸入密碼"
+                type="password"
+                required
+              />
+            </div>
+            <div class="mb-8">
+              <label class="fs-4 mb-1" for="memberAddress">聯絡地址</label>
+              <br />
+              <input
+                id="memberAddress"
+                class="memberAddress w-100 fs-5 py-1 ps-2"
+                placeholder="請輸入聯絡地址"
+                type="text"
+                required
+              />
+            </div>
+            <div class="d-flex justify-content-between align-items-end">
+              <div>
+                <label class="fs-4 mb-1" for="memberStatus">任職狀態</label>
+                <br />
+                <select
+                  name="memberStatus"
+                  class="memberStatus fs-5 py-1 ps-2"
+                  id="memberStatus"
+                  required
+                >
+                  <option selected>請選擇任職狀態</option>
+                  <option value="在職中">在職中</option>
+                  <option value="已離職">已離職</option>
+                </select>
+              </div>
+              <!-- 應該要重新render，因為還沒按新增所以還沒儲存到資料庫 -->
+              <a
+                class="text-white btn btn-warning"
+                href="./admin_account.html"
+                role="button"
+                >返回列表</a
+              >
+              <!-- BS5 Modal 彈跳視窗主觸發鈕 -->
+              <a
+                class="sendNewMember btn btn-success"
+                role="button"
+                data-bs-toggle="modal"
+                data-bs-target="#saveNewAccount"
+                >確定新增</a
+              >
+            </div>
+          </div>
+        </div>
+      </form>
+    </main>
+    <!-- Modal 彈跳視窗主體 -->
+    <div
+      class="modal fade"
+      id="saveNewAccount"
+      tabindex="-1"
+      aria-labelledby="saveNewAccountLabel"
+      aria-hidden="true"
+    >
+      <div class="saveNewAccountModal modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header border-0 p-0"></div>
+          <div
+            class="modal-body d-flex flex-column justify-content-center align-items-center"
+          >
+            <span
+              class="checkCircle material-symbols-outlined text-success mb-1"
+            >
+              check_circle
+            </span>
+            <p class="fs-3 mb-4">新增後台人員成功</p>
+            <a
+              href="./admin_account.html"
+              role="button"
+              class="saveNewAccountBtn btn btn-success fs-3"
+            >
+              返回人員管理頁面
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+  </body>
+</html>
