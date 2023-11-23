@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0"
+    />
+    <title>admin_rooms</title>
+  </head>
+  <body>
+    <%- include('./layout/admin_header'); -%>
+    <main class="container p-8">
+      <h2 class="mb-5"><a href="./admin_index.html">首頁</a> > 文章管理</h2>
+      <div class="border border-gray rounded-3 py-10 px-5">
+        <div class="d-flex align-items-center">
+          <h2 class="fs-2 me-11">文章總覽</h2>
+          <a
+            href="./admin_articleAddArticle.html"
+            role="button"
+            class="btn btn-outline-primary border border-1 border-primary rounded-1 fs-5 p-1"
+          >
+            新增文章
+          </a>
+        </div>
+        <div class="px-6 mt-10">
+          <table
+            class="articleWrap table table-bordered align-middle text-center"
+          >
+            <thead>
+              <tr>
+                <th scope="col">使用者</th>
+                <th scope="col">上架日期</th>
+                <th scope="col">文章標題</th>
+                <th scope="col">文章編號</th>
+                <th scope="col">關鍵字</th>
+                <th scope="col">發布狀態</th>
+                <th scope="col">編輯</th>
+              </tr>
+            </thead>
+            <!-- 取 render 資料渲染 -->
+            <tbody class="adminArticleList"></tbody>
+          </table>
+        </div>
+        <!-- aria-label 屬性用於說明該區塊功能 -->
+        <nav aria-label="article result">
+          <!-- 在 ul 中渲染分頁畫面 -->
+          <ul class="pagination justify-content-center"></ul>
+        </nav>
+      </div>
+    </main>
+    <script type="module" src="../js/admin_article.js"></script>
+    <script type="module" src="../main.js"></script>
+  </body>
+</html>

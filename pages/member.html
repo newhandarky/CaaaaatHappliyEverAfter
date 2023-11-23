@@ -12,34 +12,45 @@
         <div class="col-lg-3 d-none d-lg-block">
           <%- include('./layout/aside'); -%>
         </div>
-        <div class="col-lg-9 d-flex">
-          <!-- <h1>資料管理</h1> -->
-          <div
-            id="userDataPresent"
-            class="col-5 position-relative d-flex justify-content-center"
-          >
-            <div class="w-10 d-inline-flex flex-column">
-              <h1 id="name" class="name d-inline-block"></h1>
-              <ul class="list-inline d-inline-block">
-                <li id="email" class="my-3"></li>
-                <li id="gender" class="my-3"></li>
-                <li id="birthday" class="my-3"></li>
-                <li id="address" class="my-3"></li>
-                <li id="phone" class="my-3"></li>
-              </ul>
-              <a id="editMember" href="../pages/editMember.html"
-                >編輯會員資料</a
+        <div class="col-lg-9">
+          <div class="d-flex flex-column">
+            <div
+              class="menberData d-flex flex-lg-row flex-column justify-content-center align-items-center"
+            >
+              <div
+                id="userDataPresent"
+                class="userDataPresent flex-grow-1 position-relative d-flex justify-content-center"
               >
-              <button id="signout" class="signout">登出</button>
+                <div class="w-10 d-inline-flex flex-column">
+                  <h1 id="name" class="name d-inline-block"></h1>
+                  <ul class="list-inline d-inline-block">
+                    <li id="email" class="my-3"></li>
+                    <li id="gender" class="my-3"></li>
+                    <li id="birthday" class="my-3"></li>
+                    <li id="address" class="my-3"></li>
+                    <li id="phone" class="my-3"></li>
+                  </ul>
+                </div>
+              </div>
+              <div id="userPhotoPresent" class="PhotoPresent">
+                <img src="../assets/images/photoFrame.svg" alt="photoFrame" />
+                <div>
+                  <img id="photo" src="" alt="會員照片" />
+                </div>
+              </div>
             </div>
-          </div>
-          <div id="userPhotoPresent" class="col-7">
-            <img
-              id="photo"
-              class="rounded mx-auto d-block"
-              src=""
-              alt="會員照片"
-            />
+            <div
+              class="menberBtns d-flex flex-column justify-content-around align-items-center"
+            >
+              <div class="menberBtn primaryStroke-btn-primary">
+                <a id="editMember" href="../pages/editMember.html"
+                  >編輯會員資料</a
+                >
+              </div>
+              <div class="menberBtn primaryFill-btn-primary">
+                <button id="signout" class="signout">登出</button>
+              </div>
+            </div>
           </div>
         </div>
         <br />

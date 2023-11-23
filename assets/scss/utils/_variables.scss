@@ -298,7 +298,7 @@ $cyans: (
 // fusv-enable
 
 // scss-docs-start theme-color-variables
-$primary01: #fa863e; // $custom  $blue !default;
+$primary: #fa863e; // $custom  $blue !default;
 $primary02: #fef2eb; // $custom  新增自訂色彩 primary02
 $secondary: #faf9e0; // $custom  $gray-600 !default;
 $success: $green;
@@ -318,7 +318,7 @@ $text: #483c34; // $custom  新增自訂色彩 text
 
 // scss-docs-start theme-colors-map
 $theme-colors: (
-  "primary01": $primary01,
+  "primary": $primary,
   "primary02": $primary02,
   "secondary": $secondary,
   "success": $success,
@@ -339,7 +339,7 @@ $theme-colors: (
   // $custom  自定義變數
   "text": $text,
   // $custom  自定義變數
-  "background": $background // $custom  自定義變數,,,,,,,,
+  "background": $background // $custom  自定義變數,,,,,,,,,,,,,,,
 ) !default;
 // scss-docs-end theme-colors-map
 
@@ -624,9 +624,9 @@ $font-sizes: (
   // 24px     $fs-3-font-size,
   4: $font-size-base * 1.25,
   // 20px     $fs-4-font-size,
-  5: $font-size-base * 11.25,
+  5: $font-size-base * 1.25,
   // 18px     $fs-5-font-size,
-  6: $h6-font-size * 1 // 16px     $fs-6-font-size,,,,,,,,,
+  6: $h6-font-size * 1 // 16px     $fs-6-font-size,,,,,,,,,,,,,,,,
 ) !default;
 // scss-docs-end font-sizes
 

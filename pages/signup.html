@@ -8,74 +8,129 @@
   </head>
   <body>
     <%- include('./layout/header'); -%>
-    <h1>會員註冊</h1>
-    <form id="signupForm" class="signupForm" method="GET">
-      <input
-        id="email"
-        class="form-control"
-        type="email"
-        name="email"
-        placeholder="請輸入Email"
-        required
-      />
 
-      <input
-        id="password"
-        class="form-control"
-        type="password"
-        name="password"
-        placeholder="請輸入密碼"
-        required
-      />
+    <div class="container">
+      <div class="row signupContent">
+        <div class="col-12">
+          <div class="d-flex justify-content-center align-items-end h-100 p-5">
+            <h1>會員註冊</h1>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="signupAll position-relative">
+            <form id="signupForm" class="signupForm" method="GET">
+              <input
+                id="email"
+                class="input form-control my-3"
+                type="email"
+                name="email"
+                placeholder="請輸入Email"
+                required
+              />
 
-      <input
-        id="name"
-        class="form-control"
-        type="text"
-        name="name"
-        placeholder="請輸入姓名"
-        required
-      />
+              <input
+                id="password"
+                class="input form-control my-3"
+                type="password"
+                name="password"
+                placeholder="請輸入密碼"
+                required
+              />
 
-      <div id="gender" class="form-control">
-        <input id="male" type="radio" name="gender" value="male" required />
-        <label for="male">男</label>
-        <input id="female" type="radio" name="gender" value="female" required />
-        <label for="female">女</label>
-        <input id="other" type="radio" name="gender" value="other" required />
-        <label for="other">其他</label>
+              <input
+                id="name"
+                class="input form-control my-3"
+                type="text"
+                name="name"
+                placeholder="請輸入姓名"
+                required
+              />
+
+              <div id="gender" class="form-control my-3 gender">
+                <div>
+                  <input
+                    id="male"
+                    class="radio mx-1"
+                    type="radio"
+                    name="gender"
+                    value="male"
+                    required
+                  />
+                  <label class="fs-6" for="male">男</label>
+                </div>
+
+                <div>
+                  <input
+                    id="female"
+                    class="radio mx-1"
+                    type="radio"
+                    name="gender"
+                    value="female"
+                    required
+                  />
+                  <label class="fs-6" for="female">女</label>
+                </div>
+
+                <div>
+                  <input
+                    id="other"
+                    class="radio mx-1"
+                    type="radio"
+                    name="gender"
+                    value="other"
+                    required
+                  />
+                  <label class="fs-6" for="other">其他</label>
+                </div>
+              </div>
+
+              <input
+                id="birthday"
+                class="input form-control my-3"
+                type="text"
+                placeholder="請輸入生日"
+                class="form-control my-3"
+                name="birthday"
+                required
+              />
+
+              <input
+                id="phone"
+                class="input form-control my-3"
+                type="number"
+                placeholder="請輸入電話"
+                name="phone"
+                required
+              />
+
+              <input
+                id="address"
+                class="input form-control my-3"
+                type="text"
+                placeholder="請輸入地址"
+                name="address"
+                required
+              />
+
+              <div class="signupBtns d-flex justify-content-around">
+                <div class="primaryFill-btn-primary">
+                  <button id="signupBtn" type="submit" class="signupBtn h4">
+                    會員註冊
+                  </button>
+                </div>
+
+                <div class="primaryStroke-btn-primary">
+                  <a id="loginBtn" class="signupBtn h4" href="./login.html"
+                    >立即登入</a
+                  >
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
+    </div>
 
-      <input
-        id="birthday"
-        type="text"
-        placeholder="請輸入生日"
-        class="form-control"
-        name="birthday"
-        required
-      />
-
-      <input
-        id="phone"
-        class="form-control"
-        type="number"
-        placeholder="請輸入電話"
-        name="phone"
-        required
-      />
-
-      <input
-        id="address"
-        class="form-control"
-        type="text"
-        placeholder="請輸入地址"
-        name="address"
-        required
-      />
-
-      <button id="signupBtn" type="submit" class="signupBtn">會員註冊</button>
-      <a id="loginBtn" class="loginBtn" href="./login.html">立即登入</a>
-    </form>
     <%- include('./layout/footer'); -%>
     <script type="module" src="../main.js"></script>
     <script type="module" src="../js/navbar.js"></script>

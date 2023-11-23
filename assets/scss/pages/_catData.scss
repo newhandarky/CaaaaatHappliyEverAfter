@@ -1,0 +1,31 @@
+.catData {
+  min-height: 500px;
+  .userPhotoPresent {
+    width: 350px;
+    height: 350px;
+    .photoFrame {
+      max-height: 100%;
+    }
+    .photoGroup {
+      width: 200px;
+      height: 250px;
+      transform: translateY(30px);
+      .photo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; // 使用 cover 填充并保持比例
+      }
+    }
+  }
+}
+.catBtns {
+  .catBtn {
+    margin: 0.5rem;
+    width: 250px;
+  }
+}
+
+.catAddBtns {
+  margin: 1rem;
+  width: 300px;
+}
