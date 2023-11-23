@@ -17,11 +17,14 @@ const { accessToken, user } = userTokenAndData;
 const filterType = document.getElementById("roomType");
 filterType.addEventListener("change", (e) => {
   console.log(filterType.value);
+  lodingBooking();
 });
 
-//取消訂單按鈕的 HTML 結構
-const cancelBookingHTML = (index, id) => {
-  return `<div class="orderBtns">
+//跟後端抓資料功能
+function graspAxiosData(catRoom_api, bookings_html) {
+  //取消訂單按鈕的 HTML 結構
+  const cancelBookingHTML = (index, id) => {
+    return `<div class="orderBtns">
 <div id="btntype" class="primaryFill-btn-primary">
   <button
     id="cancelBooking_${index}"
@@ -32,24 +35,24 @@ const cancelBookingHTML = (index, id) => {
   </button>
 </div>
 </div>`;
-};
-const evaluateBookingHTML = (index, id) => {
-  return `<div class="orderBtns">
-<div id="btntype" class="primaryFill-btn-primary">
-  <a
+  };
+  const evaluateBookingHTML = (index, id) => {
+    return `<div class="orderBtns">
+<div id="btntype" class="primaryFill-btn-primary02">
+  <button
     id="evaluateBooking_${index}"
     data-bookingsId="${id}"
     class="evaluateBookingBtn orderBtn"
-    href="./evaluateBooking.html"
+    
   >
     評價訂單
-  </a>
+  </button>
 </div>
 </div>`;
-};
-const isCancelBookingHTML = (index, id) => {
-  return `<div class="orderBtns">
-<div id="btntype" class="primaryFill-btn-primary">
+  };
+  const isCancelBookingHTML = (index, id) => {
+    return `<div class="orderBtns">
+<div id="btntype" class="primaryDisabled-btn-primary">
   <button
     id="isCancelBooking_${index}"
     data-bookingsId="${id}"
@@ -59,21 +62,21 @@ const isCancelBookingHTML = (index, id) => {
   </button>
 </div>
 </div>`;
-};
+  };
 
-//主要的 HTML 結構
-const mainBokingHTML = (
-  index,
-  checkIn,
-  checkOut,
-  quantity,
-  id,
-  bookingDate,
-  price,
-  btnHTML, //這邊是給判斷用 看是哪一個東西就加入哪個按鈕
-  isCancel //如果是取消狀態 就輸入 "isCancel" 不是的話 就不用寫
-) => {
-  return ` 
+  //主要的 HTML 結構
+  const mainBokingHTML = (
+    index,
+    checkIn,
+    checkOut,
+    quantity,
+    id,
+    bookingDate,
+    price,
+    btnHTML, //這邊是給判斷用 看是哪一個東西就加入哪個按鈕
+    isCancel //如果是取消狀態 就輸入 "isCancel" 不是的話 就不用寫
+  ) => {
+    return ` 
 <br>
 <div class="catBarContainer ">
 <div class="catEars">
@@ -152,14 +155,9 @@ const mainBokingHTML = (
 </div>
 <br>
 `;
-};
-
-//呈現全部的資料
-function lodingBooking() {
-  const memberId = user.id;
-
+  };
   axios
-    .get(`${_url}/600/bookings?userId=${memberId}&_expand=user&_expand=room`, {
+    .get(catRoom_api, {
       headers: {
         authorization: `Bearer ${accessToken}`,
       },
@@ -184,96 +182,48 @@ function lodingBooking() {
 
         //抓到 DOM 並呈現資料
         const bookingInfo = document.getElementById("bookingInfo");
-        bookingInfo.innerHTML += ` 
-        <br>
-        <div class="catBarContainer ">
-        <div class="catEars">
-          <div class="catEar">
-            <img src="../assets/images/catEar02.svg" alt="catEar02" />
-          </div>
-          <div class="catEar">
-            <img src="../assets/images/catEar02.svg" alt="catEar02" />
-          </div>
-        </div>
-        <div class="catBarBorder mx-3">
-          <div class="catBarInfo d-flex flex-column ">
-            <div class="justify-content-center align-items-center">
-              <div class="d-flex flex-sm-row flex-column mb-5">
-                <h3 id="checkIn_${index}" class="d-inline-block ">
-                  ${checkIn}
-                </h3>
-                <div class="d-flex justify-content-center mx-3">
-                  <img
-                    class="img-fluid d-sm-block d-none"
-                    src="../assets/icons/arrow.svg"
-                    alt="arrow"
-                  />
-                  <img
-                    class="img-fluid d-sm-none d-block"
-                    src="../assets/icons/arrowDown.svg"
-                    alt="arrow"
-                  />
-                </div>
-
-                <h3 id="checkOut_${index}" class="d-inline-block">
-                  ${checkOut}
-                </h3>
-              </div>
-              <div class="d-flex flex-sm-row flex-column">
-                <div class="d-flex flex-column">
-                  <div class="d-flex">
-                    <h3 id="roomType_${index}" class="roomType">
-                      ${name}
-                    </h3>
-
-                    <h4
-                      id="catsQuantity_${index}"
-                      class="mt-1 catsQuantity"
-                    >
-                      ${quantity}隻貓
-                    </h4>
-                  </div>
-                  <div class="d-flex">
-                    <h5 class="text-center">訂單編號</h5>
-                    <h5
-                      id="bookingId_${index}"
-                      class="text-center bookingId"
-                    >
-                      ${id}
-                    </h5>
-                  </div>
-                  <div class="d-flex">
-                    <h6 class="orderDate">下單日期</h6>
-                    <h6
-                      id="bookingId_${index}"
-                      class="orderDate bookingId"
-                    >
-                      ${bookingDate}
-                    </h6>
-                  </div>
-                </div>
-                <div class="d-flex flex-grow-5 ms-sm-5 ms-0">
-                  <h1 id="price_${index}" class="price">${price}NT</h1>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="orderBtns">
-            <div id="btntype" class="primaryFill-btn-primary">
-              <button
-                id="cancelBooking_${index}"
-                data-bookingsId="${id}"
-                class="cancelBookingBtn orderBtn"
-              >
-                取消訂單
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <br>
-      `;
+        bookingInfo.innerHTML +=
+          bookings_html === "已預定"
+            ? mainBokingHTML(
+                index,
+                checkIn,
+                checkOut,
+                quantity,
+                id,
+                bookingDate,
+                price,
+                cancelBookingHTML(index, id)
+              )
+            : bookings_html === "已完成"
+            ? mainBokingHTML(
+                index,
+                checkIn,
+                checkOut,
+                quantity,
+                id,
+                bookingDate,
+                price,
+                evaluateBookingHTML(index, id)
+              )
+            : bookings_html === "已取消"
+            ? mainBokingHTML(
+                index,
+                checkIn,
+                checkOut,
+                quantity,
+                id,
+                bookingDate,
+                price,
+                isCancelBookingHTML(index, id),
+                "isCancel"
+              )
+            : "";
       });
+
+      console.log(bookingInfo.innerHTML);
+      if (bookingInfo.innerHTML === "") {
+        bookingInfo.innerHTML = `<h1>沒有${filterType.value}資料</h1>`;
+      }
 
       //掛載取消訂單功能
       cancelBooking();
@@ -290,10 +240,10 @@ function lodingBooking() {
       ) {
         const bookingInfo = document.getElementById("bookingInfo");
         let createCatAddDataDOM = JSON.stringify(`
-        <div id="catContainer_add" class="catContainer">
-        <h1 id="catAddTitle" class="catAddTitle">尚未有訂單資料！</h1>        
-      </div>
-      `);
+    <div id="catContainer_add" class="catContainer">
+    <h1 id="catAddTitle" class="catAddTitle">尚未有訂單資料！</h1>        
+  </div>
+  `);
 
         let resultDom = JSON.parse(createCatAddDataDOM);
 
@@ -303,6 +253,37 @@ function lodingBooking() {
         window.location.href = "./login.html";
       }
     });
+}
+
+//呈現資料
+function lodingBooking() {
+  const memberId = user.id;
+  //抓到 DOM 並呈現資料
+  const bookingInfo = document.getElementById("bookingInfo");
+  //判斷當前篩選條件
+  if (filterType.value == "已預定") {
+    bookingInfo.innerHTML = "";
+    graspAxiosData(
+      `${_url}/600/bookings?userId=${memberId}&state=已預定&_expand=user&_expand=room`,
+      filterType.value
+    );
+  } else if (filterType.value == "已完成") {
+    bookingInfo.innerHTML = "";
+    graspAxiosData(
+      `${_url}/600/bookings?userId=${memberId}&state=已退房&_expand=user&_expand=room`,
+      filterType.value
+    );
+  } else if (filterType.value == "已取消") {
+    bookingInfo.innerHTML = "";
+    graspAxiosData(
+      `${_url}/600/bookings?userId=${memberId}&state=已取消&_expand=user&_expand=room`,
+      filterType.value
+    );
+  } else {
+    bookingInfo.innerHTML = `<div id="catContainer_add" class="catContainer">
+    <h1 id="catAddTitle" class="catAddTitle">異常的篩選條件！</h1>        
+  </div>`;
+  }
 }
 
 //取消訂單功能
@@ -332,6 +313,8 @@ function cancelBooking() {
         .then((res) => {
           alert(`您已取消訂單 `);
           console.log(res);
+          //重新整理網頁
+          window.location.reload();
         })
         .catch((err) => {
           console(err);
