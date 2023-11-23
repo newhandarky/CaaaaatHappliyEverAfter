@@ -13,6 +13,12 @@ asideLocation.forEach((element) => {
 const userTokenAndData = JSON.parse(localStorage.getItem("userTokenAndData"));
 const { accessToken, user } = userTokenAndData;
 
+//篩選資料類型
+const filterType = document.getElementById("roomType");
+filterType.addEventListener("change", (e) => {
+  console.log(filterType.value);
+});
+
 //呈現全部的資料
 function lodingBookin() {
   const memberId = user.id;
@@ -121,8 +127,8 @@ function lodingBookin() {
             <div id="btntype" class="primaryFill-btn-primary">
               <button
                 id="cancelBooking_${index}"
-                data-catId="${id}"
-                class="orderBtn"
+                data-bookingsId="${id}"
+                class="cancelBookingBtn orderBtn"
               >
                 取消訂單
               </button>
@@ -133,6 +139,9 @@ function lodingBookin() {
       <br>
       `;
       });
+
+      //掛載取消訂單功能
+      cancelBooking();
     })
     .catch((err) => {
       console.log(err);
@@ -159,6 +168,42 @@ function lodingBookin() {
         window.location.href = "./login.html";
       }
     });
+}
+
+//取消訂單功能
+//取消訂房的邏輯: 修改訂單 -> 變更房型可預約狀態 -> 新增歷史紀錄
+function cancelBooking() {
+  //抓到該取消訂單的資料
+  const cancelBookingBtn = document.querySelectorAll(".cancelBookingBtn");
+  cancelBookingBtn.forEach((element) => {
+    //抓到當前資料所有的訂單 id
+    element.addEventListener("click", (e) => {
+      e.preventDefault();
+      //取得對應資料 id 等等取消修改訂單 變更房型可預約狀態 新增歷史紀錄 都要用到
+      let cancelId = element.getAttribute("data-bookingsId");
+      console.log(cancelId);
+
+      //修改 bookins 該 id 訂單資料
+      axios
+        .patch(
+          `${_url}/600/bookings/${cancelId}`,
+          { state: "已取消" },
+          {
+            headers: {
+              authorization: `Bearer ${accessToken}`,
+            },
+          }
+        )
+        .then((res) => {
+          alert(`您已取消訂單 `);
+          console.log(res);
+        })
+        .catch((err) => {
+          console(err);
+          alert("取消訂單失敗");
+        });
+    });
+  });
 }
 
 lodingBookin();
