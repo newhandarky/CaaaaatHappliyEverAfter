@@ -34,6 +34,10 @@
   box-shadow: 0 5px 0 $gray-400;
 }
 
+.isCancel {
+  opacity: 0.3;
+}
+
 @media screen and (max-width: 768px) {
   .catBarBorder {
     width: auto;
