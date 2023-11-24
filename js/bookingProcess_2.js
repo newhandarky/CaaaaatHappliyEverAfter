@@ -1,14 +1,15 @@
 import axios from "axios";
 import { _url } from "./config";
 import { isLogin } from "./isLogin";
+import Swal from 'sweetalert2';
 
 //DOM
 const chooseFirstCat = document.querySelector("#chooseFirstCat");
-const chooseFirstCatList = document.querySelector('.chooseFirstCatList');
 const chooseSecondCat = document.querySelector("#chooseSecondCat");
 const chooseThirdCat = document.querySelector("#chooseThirdCat");
 const remark = document.querySelector(".remark");
 const toProcess_3 = document.querySelector(".toProcess_3");
+
 
 //找會員的UserID編號
 let userInfo= JSON.parse(localStorage.getItem('userTokenAndData'));
@@ -84,15 +85,17 @@ axios.get(`${_url}/cats?userId=${userId}`).then(function(response){
 toProcess_3.addEventListener("click", function(e){
     e.preventDefault();
   
-    const toProcess_3Herf = toProcess_3.getAttribute('href');
-    isLogin(toProcess_3Herf);
+    // const toProcess_3Herf = toProcess_3.getAttribute('href');
+    // isLogin(toProcess_3Herf);
    
     let obj = {};
     obj["remark"]= remark.value;
     obj["catId"]= [];
+    console.log(obj)
     //選擇入住貓咪1
     if(chooseFirstCat.value === ""){
-        return alert("請選擇貓咪")
+        
+         return Swal.fire("請選擇貓咪")
     }else{
 
     let stayedCat1 = chooseFirstCat.value;

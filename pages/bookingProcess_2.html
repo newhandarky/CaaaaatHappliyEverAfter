@@ -3,48 +3,118 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>填寫入住貓咪資訊</title>
   </head>
-  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
 
   <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
   
 
   <body>
     <%- include('./layout/header'); -%>
-    <h1>線上訂房</h1>
 
-    <ul class="d-flex">
-        <li >選擇房型與日期=></li>
-        <li class="text-primary">入住貓咪資訊=></li>
-        <li>確認訂單</li>
-    </ul>
+    <div class="container">
+      <div  class="d-flex flex-start justify-content-lg-between flex-wrap" style="margin-bottom: 50px; margin-top: 50px;">
+        <div class="text type01 d-lg-flex align-items-center">
+          <div class="d-inline-flex align-items-center">
+            <img class="img-fluid dogPaw mx-2" src="../assets/icons/dogPaw.svg" alt="dogPaw">
+            <h1 class="d-none d-lg-block ">線上訂房</h1>
+             <h2 class="d-lg-none">線上訂房</h2>
+             
+          </div>
+        </div>
+         
+      </div>
 
-    選擇入住貓咪1：
-    <select name="chooseFirstCat" id="chooseFirstCat"> 
-        
-    </select> 
+      <div class="row  justify-content-center">
+        <div class=" col-12  d-flex flex-column justify-content-lg-center  ">
+          
+          <ul class="d-flex flex-lg-row flex-column flex-lg-nowrap justify-content-lg-center align-items-start">
+            <li class="text-primary d-flex"><span class="material-symbols-outlined checked me-2" >
+              check_circle
+              </span>
+              <p>選擇房型與日期</p>
+              <span class="material-symbols-outlined mx-5 d-none d-lg-block">
+                chevron_right
+                </span>
+          </li>
+      
+          <li class="text-primary d-flex"><span class="material-symbols-outlined me-2" >
+            check_circle
+            </span>
+            <p>填寫入住貓咪資訊</p>
+            <span class="material-symbols-outlined mx-5 d-none d-lg-block">
+              chevron_right
+              </span>
+        </li>
+      
+        <li class="text-primary d-flex"><span class="material-symbols-outlined me-2" style="color:#e2c6c4">
+          check_circle
+          </span>
+          <p>確認您的訂單</p>
+      </li>
+        </ul>
 
-    <br>
-    選擇入住貓咪2：
-    <select name="chooseSecondCat" id="chooseSecondCat"> 
-        <option value="" >請選擇貓咪</option>
-    </select> 
+        <div class="d-flex flex-lg-row justify-content-lg-between flex-column my-5">
 
-    <br>
-    選擇入住貓咪3：
-    <select name="chooseThirdCat" id="chooseThirdCat"> 
-        <option value="" >請選擇貓咪</option>
-    </select> 
+        <div class="col-lg-5 d-flex flex-column justify-content-lg-between">
 
-    <button><a href="./catAdd.html">新增貓咪</a></button>
+          <p class="fs-6 mb-3"> 選擇入住貓咪</p>
 
-    <form action="" method="">
-        特殊需求：
-        <input class="remark" type = "text"  placeholder="如有特殊需求，請在此輸入">
-    </form>
+        <select name="chooseFirstCat" id="chooseFirstCat" class="form-select mb-3" aria-label="Default select example">
+          <option value="" disabled selected>請選擇貓咪</option>
+        </select>
 
-    <button class="toProcess_3"><a href="./bookingProcess_3.html">下一步</a></button>
+        <select name="chooseSecondCat" id="chooseSecondCat" class="form-select mb-3" aria-label="Default select example">
+          <option value="" >請選擇貓咪</option>
+  
+        </select>
+
+        <select name="chooseThirdCat" id="chooseThirdCat" class="form-select mb-3" aria-label="Default select example">
+          <option value="" >請選擇貓咪</option>
+  
+        </select>
+
+        <div class="d-flex justify-content-lg-center justify-content-start">
+          <button type="button" class=" bookNowBtn btn btn-outline-primary border border-primary d-lg-block fs-6 rounded-pill w-50 "><a href="./catAdd.html" class="toProcess_2"><p class="px-5">新增貓咪</p></a></button>
+  
+        </div>
+      </div>
+
+      <div class="mt-5 mt-lg-0 col-lg-5 d-flex flex-column justify-content-lg-between ">
+
+        <form action="" method="" class="">
+          <p class="fs-6 mb-3">特殊需求</p>
+
+            <input style="border-radius: 16px; height: 160px;" class="remark w-100 border border-primary mb-3" type = "text"  >
+
+            
+        </form>
+
+        <div class="d-flex justify-content-lg-center justify-content-start">
+          <button type="button" class=" bookNowBtn btn btn-outline-primary border border-primary d-lg-block fs-6 rounded-pill w-50"><a href="./bookingProcess_3.html" class="toProcess_3"><p class="px-5">下一步</p></a></button>
+  
+        </div>
+
+      </div>
+      </div>
+    
+       
+
+
+        </div>
+            
+        </div>
+
+
+
+ 
+
+
+    </div>
+    
+  
+
         
 
    

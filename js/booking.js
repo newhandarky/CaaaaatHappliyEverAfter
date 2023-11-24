@@ -69,6 +69,7 @@ axios.get(`${_url}/rooms/51`).then(response =>{
 //設備
 axios.get(`${_url}/rooms/51`).then(function(response){
     let classicRoomFacilityList = response.data.facility;
+    console.log(classicRoomFacilityList);
     let str = ``
     classicRoomFacilityList.forEach(function(item){
         let content = `<li><p><span class="material-symbols-outlined fs-6">
