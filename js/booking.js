@@ -23,7 +23,7 @@ searchBarBtn.addEventListener("click", function(e){
             console.log("請填寫入住日期、退房日期與選擇房型");
         }
 
-        else if(checkOut.value <= checkIn.value){
+        else if(checkOut.value < checkIn.value){
             alert("退房日期需晚於入住日期")
              console.log("退房日期需晚於入住日期");
              checkOut.value = "";
@@ -101,13 +101,15 @@ function indexBooking(){
     sessionStorage.setItem('indexBooking', indexBookingString);
     
     if(roomType.value == "經典房"){
-        window.location.href = "./bookingClassicProcess_1.html"
+        isLogin("./bookingClassicProcess_1.html")
+         //window.location.href = "./bookingClassicProcess_1.html"
     };
     if(roomType.value == "精緻房"){
-        window.location.href = "./bookingDelicateProcess_1.html"
+        isLogin("./bookingDelicateProcess_1.html")
+        //window.location.href = "./bookingDelicateProcess_1.html"
     };
     if(roomType.value == "豪華房"){
-        window.location.href = "./bookingLuxProcess_1.html"
+        isLogin("./bookingLuxProcess_1.html")
     }
     
 };
