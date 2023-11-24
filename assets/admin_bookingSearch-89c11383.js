@@ -1,5 +1,5 @@
 import"./config-82256151.js";import"./admin_header-36cd02a6.js";import"./admin_searchBar-ddaf022e.js";import"./sweetalert2.all-bdf3eb51.js";import"./admin_config-2cf1d757.js";import"./moment-fbc5633a.js";document.querySelector(".startDate");document.querySelector(".endDate");const p=document.querySelector(".tbody"),g=document.querySelector(".searchContent"),l=document.querySelector(".getPages");g.innerHTML=localStorage.getItem("h2Content");const r=JSON.parse(localStorage.getItem("searchResult"));let t=1,i=0;console.log(r);function u(e){const s=document.querySelector(".tbody");let n="";e.forEach(function(a){n+=`<tr>
-        <th class="text-nowrap border-0 text-center d-flex align-items-center justify-content-center" scope="row"><a class="bookingNum adminLink" data-bookingnum="${a.id}" href=".admin_updateBooking.html">${a.id}</a></th>       
+        <th class="text-nowrap border-0 text-center d-flex align-items-center justify-content-center" scope="row"><a class="bookingNum adminLink" data-bookingnum="${a.id}" href="admin_updateBooking.html">${a.id}</a></th>       
         <td class="text-nowrap text-center">${a.user.name}</td>
         <td class="text-nowrap text-center">${a.checkIn}</td>
         <td class="text-nowrap text-center">${a.quantity}</td>
