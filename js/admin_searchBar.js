@@ -4,6 +4,7 @@
 import { _url } from "./config";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { headerObj } from "./admin_config";
 import moment from "moment";
 
 /*------------------------------------*\
@@ -40,16 +41,12 @@ function getBookingNum() {
         inputBookingNumber.value = "";              // 清空input
     } else if (inputBookingNumber.value !== "") {
         localStorage.setItem("bookingNum", inputBookingNumber.value);
-        location = "../pages/admin_updateBooking.html"
+        location = "admin_updateBooking.html"
     }
 }
 
 // 抓所有訂房資料
-const bookingsPromise = axios.get(`${_url}/660/bookings?_expand=user&_expand=room`, {
-    headers: {
-        authorization: `Bearer ${localStorage.getItem("userLoginToken")}`,
-    },
-})
+const bookingsPromise = axios.get(`${_url}/660/bookings?_expand=user&_expand=room`, headerObj)
 
 /*------------------------------------*\
     事件
@@ -61,16 +58,12 @@ btnDate.addEventListener("click", function () {
     // }
     let startDate = moment(inputStartDate.value);
     let endDate = moment(inputEndDate.value);
-    // 計算兩者差異年數
-    let years = endDate.diff(startDate, "years");
-    // 計算兩者差異月數，這邊要扣掉上面計算的差異年，否則會得到12個月
-    let months = endDate.diff(startDate, "month") - (years * 12);
-    // 把差異的年、月數加回來，否則會變成計算起訖日相差的天數(365天)
-    startDate.add(years, 'years').add(months, 'months');
     let diffDays = endDate.diff(startDate, 'days');
 
     // 結束日期不可與起始日期相同或更之前
     diffDays <= 0 ? alertErrForDate() : "";
+
+    console.log(diffDays);
 
     Promise.all([bookingsPromise])
         .then(function (results) {
@@ -91,7 +84,7 @@ btnDate.addEventListener("click", function () {
                 // 將起始與結束日期存入localStorage帶到下個頁面
                 localStorage.setItem("h2Content", `住房日期 <span class="text-primary">${startDate.format("YYYY-MM-DD")}</span> 到 <span class="text-primary">${endDate.format("YYYY-MM-DD")}</span> 的搜尋結果`);
                 localStorage.setItem("searchResult", JSON.stringify(resultBookings))
-                location = "../pages/admin_bookingSearch.html"
+                location = "admin_bookingSearch.html"
             }else{
                 Swal.fire({
                     title: "所查詢的日期無住房資料",

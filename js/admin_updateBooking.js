@@ -5,6 +5,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import moment from "moment";
 import { _url } from "./config";
+import { headerObj } from "./admin_config";
 import { reLogin } from "./loginIsTimeUp";
 
 /*------------------------------------*\
@@ -40,125 +41,345 @@ let userObj;
     axios取得資料
 \*------------------------------------*/
 // 取得訂單資料
-let bookingObj = await axios.get(`${_url}/660/bookings/${localStorage.getItem('bookingNum')}`, {
-    headers: {
-        authorization: `Bearer ${localStorage.getItem("userLoginToken")}`,
-    },
-}).then(async function (res) {
-    userObj = await getUser(res.data.userId); // 透過訂單取得user資料
-    return res.data;
-}).catch(function (err) {
-    console.log(err);
-    // 如果找不到訂單資料返回訂單列表
-    if (err.response.status === 404) {
-        Swal.fire({
-            title: "查詢不到資料",
-            text: "請確認輸入訂單編號是否正確",
-            icon: "error"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                location = "../pages/admin_bookingList.html"
-            } 
-        });
-    }
-    // reLogin(err.response.data);
-});
-
+const bookingPromise = axios.get(`${_url}/660/bookings/${localStorage.getItem('bookingNum')}`, headerObj)
 // 取得客房資料
-let roomObj = await axios.get(`${_url}/660/rooms/`, {
-    headers: {
-        authorization: `Bearer ${localStorage.getItem("userLoginToken")}`,
-    },
-}).then(function (res) {
-    return res.data;
-}).catch(function (err) {
-    console.log(err);
-    // reLogin(err.response.data);
-})
-
+const roomPromise = axios.get(`${_url}/660/rooms/`, headerObj)
 // 取得每日房況資料
-let roomStatesObj = await axios.get(`${_url}/660/roomstates/`, {
-    headers: {
-        authorization: `Bearer ${localStorage.getItem("userLoginToken")}`,
-    },
-}).then(function (res) {
-    // console.log(res.data);
-    return res.data;
-}).catch(function (err) {
-    console.log(err);
-    // reLogin(err.response.data);
-})
+const roomStatesPromise = axios.get(`${_url}/660/roomstates/`, headerObj)
 
+const catsPromise = axios.get(`${_url}/660/cats`, headerObj)
+
+Promise.all([bookingPromise, roomPromise, roomStatesPromise, catsPromise])
+    .then(function (results) {
+        const bookingObj = results[0].data;
+        const roomObj = results[1].data;
+        const roomStatesObj = results[2].data;
+        const catsObj = results[3].data;
+
+        const userObj = axios.get(`${_url}/660/users/${bookingObj.userId}`, headerObj)
+            .then(function (res) {
+                renderData(bookingObj, roomObj, res.data)
+                return res.data;
+            }).catch(function (err) {
+                console.log(err);
+                // reLogin(err.response.data);
+            })
+
+        // console.log(bookingObj);
+        // console.log(roomObj);
+        // console.log(roomStatesObj);
+        // console.log(catsObj);
+
+        let getCatsArr = [];
+        catsObj.forEach(function (item) {
+            item.userId == bookingObj.userId ? getCatsArr.push(item) : "";      // 比對貓咪的用戶ID與訂單的用戶ID, 相同的加入到新陣列
+        })
+        let str = "";
+        getCatsArr.forEach(function (item, index) {
+            str += `<div class="col-4">
+                    <div class="form-check">
+                        <input class="form-check-input" data-catid="${item.id}" type="checkbox" id="memberCat${index + 1}">
+                        <label class="form-check-label memberCat${index + 1}" for="memberCat${index + 1}">${item.catName}</label>
+                    </div>
+                </div>`
+            getCats.innerHTML = str;
+        })
+        // 訂單取消後資料改為disabled狀態
+        toggleData();
+
+        // 多隻貓咪時根據住宿的貓咪加上預售勾選
+        bookingObj.cats.forEach(function (cat) {
+            document.querySelectorAll(".form-check-input").forEach(function (item) {
+                if (parseInt(item.dataset.catid) === cat) {
+                    item.setAttribute("checked", true)
+                }
+            })
+        })
+
+        // 取消予已退房訂單不可再修改
+        if (bookingObj.state === "已取消" || bookingObj.state === "已退房") {
+            btnUpdate.setAttribute("disabled", true);
+        }
+
+        // 點擊送出儲存時
+        btnSave.addEventListener("click", function () {
+            // 儲存變更後的日期狀態物件
+            let newRoomStatesArr = [];
+            roomStatesObj.forEach(function (item) {       // 複製一份房況陣列判斷客房是否足夠
+                newRoomStatesArr.push(item);
+            })
+
+            // 儲存需要比對的日期物件, 之後傳到server更新
+            let roomStateUpdate = [];
+            // 將取消的日期房間數歸還到原本的相對應的房型屬性
+            setFreeRoomToRoomStates(roomStateUpdate, newRoomStatesArr);
+
+            const roomStateObjZh = {                  // 房型對比資料
+                "經典房": "classic",
+                "精緻房": "delicate",
+                "豪華房": "luxury"
+            }
+
+            // 計算是否能夠進行換房的判斷數字
+            let checkCanUpdateNum = 1;
+
+            // 以複製的房況陣列來判斷是否能接受換房
+            for (let i = 1; i <= bookingDays.value; i++) {
+                newRoomStatesArr.forEach(function (item) {
+                    if (item.date === moment(checkIn.value).add(i - 1, "day").format("YYYY-MM-DD")) {
+                        // 用房間數字做運算, 如果數字等於0即代表其中有日期已經沒房間不可進行換房
+                        checkCanUpdateNum *= item.availableCount[roomStateObjZh[bookingRoomType.value]];
+                    }
+                })
+            }
+            // 判斷數字大於0即代表尚有客房可以更換
+            if (checkCanUpdateNum > 0) {
+                for (let i = 1; i <= bookingDays.value; i++) {
+                    newRoomStatesArr.forEach(function (item) {
+                        if (item.date === moment(checkIn.value).add(i - 1, "day").format("YYYY-MM-DD")) {
+                            item.availableCount[roomStateObjZh[bookingRoomType.value]]--;
+                            roomStateUpdate.push(item);
+                        }
+                    })
+                }
+
+                // 將更新後的房況更新到server
+                roomStateUpdate.forEach(function (item) {
+                    axios.patch(`${_url}/660/roomStates/${item.id}`, item, {
+                        headers: {
+                            authorization: `Bearer ${localStorage.getItem("userLoginToken")}`,
+                        },
+                    }).then(function (res) {
+                        // console.log(res.data);
+                    }).catch(function (err) {
+                        console.log(err.response);
+                    })
+                })
+                // 準備更新履歷物件寫入server
+                const bookingHistoryObj = {};
+                setNewBookingHistoryObj(bookingHistoryObj, bookingState.value);
+                addBookingHistory(bookingHistoryObj);
+
+                const roomStateObj = {                  // 房型對比資料
+                    "經典房": 51,
+                    "精緻房": 52,
+                    "豪華房": 53
+                }
+
+                bookingObj.checkIn = checkIn.value;
+                bookingObj.checkOut = checkOut.value;
+                bookingObj.remark = remark.value;
+                bookingObj.quantity = bookingDays.value;
+                bookingObj.price = totalPrice.value;
+                bookingObj.state = bookingState.value;
+                bookingObj.roomId = roomStateObj[bookingRoomType.value];
+                bookingObj.admin.userId = localStorage.getItem("userId");
+                bookingObj.cats = [];
+                document.querySelectorAll(".form-check-input").forEach(function (item) {
+                    if (item.checked) {
+                        bookingObj.cats.push(parseInt(item.dataset.catid));
+                    }
+                })
+
+                updateBooking(bookingObj);
+                renderData(bookingObj, roomObj, userObj);
+                btnToggle();
+            } else {
+                roomStateUpdate = [];
+                btnToggle();
+                roomNotEnough();
+                renderData(bookingObj, roomObj, userObj);
+            }
+        })
+
+
+        // 點擊取消訂單時
+        btnCancel.addEventListener("click", function () {
+            Swal.fire({
+                title: "確定要取消此訂單嗎?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#3085d6",
+                confirmButtonText: "確定取消",
+                cancelButtonText: "返回訂單"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // 修改訂單狀態為取消
+                    axios.patch(`${_url}/660/bookings/${localStorage.getItem("bookingNum")}`, { "state": "已取消" }, headerObj)
+                        .then(function (res) {
+
+                            const bookingHistoryObj = {};
+                            setNewBookingHistoryObj(bookingHistoryObj, "已取消");
+
+                            renderData(bookingObj, roomObj, userObj);
+                            btnToggle();    // 訂單送出取消後切換按鈕狀態
+
+                            let newRoomStates = [];                 // 儲存變更後的日期狀態物件
+
+                            // 將取消的日期房間數歸還到原本的相對應的房型屬性
+                            setFreeRoomToRoomStates(newRoomStates, roomStatesObj);
+
+                            // 將新的日期狀態陣列的日期與原始的日期狀態陣列的日期比對, 將新的物件更新到舊物件上
+                            newRoomStates.forEach(function (newItem) {
+                                roomStatesObj.forEach(function (oldItem) {
+                                    if (newItem.date === oldItem.date) {
+                                        axios.patch(`${_url}/660/roomStates/${newItem.id}`, newItem, headerObj)
+                                            .then(function (res) {
+                                                addBookingHistory(bookingHistoryObj);
+                                                const Toast = Swal.mixin({
+                                                    toast: true,
+                                                    position: "center",
+                                                    showConfirmButton: false,
+                                                    timer: 1200,
+                                                    timerProgressBar: true,
+                                                    didOpen: (toast) => {
+                                                        toast.onmouseenter = Swal.stopTimer;
+                                                        toast.onmouseleave = Swal.resumeTimer;
+                                                    }
+                                                });
+                                                Toast.fire({
+                                                    icon: "success",
+                                                    title: "訂單已取消成功"
+                                                });
+                                            }).catch(function (err) {
+                                                console.log(err.response);
+                                            })
+                                    }
+                                })
+                            })
+                        }).catch(function (err) {
+                            console.log(err);
+                            // reLogin(err.response.data);
+                        })
+                }
+            });
+        })
+
+
+        // 將取消的日期房間數歸還到原本的相對應的房型屬性
+        function setFreeRoomToRoomStates(newRoomStates, roomStatesObj) {
+            let bookingStartDate = bookingObj.checkIn;   // 取得訂單當前日期
+            const roomStateObj = {                  // 房型對比資料
+                "51": "classic",
+                "52": "delicate",
+                "53": "luxury"
+            }
+
+            // 依日期將房間數歸還給相對應房型
+            for (let i = 0; i < bookingObj.quantity; i++) {
+                roomStatesObj.forEach(function (item) {
+                    if (item.date === moment(bookingStartDate).add(0 + i, "day").format("YYYY-MM-DD")) {
+                        item.availableCount[roomStateObj[bookingObj.roomId]]++;     // 抓出要加回的日期與對應客房
+                        newRoomStates.push(item);                                       // 推到新陣列存起來
+                    }
+                })
+            }
+        }
+
+
+        // 更新訂單資料
+        function updateBooking(newBookingObj) {
+            axios.patch(`${_url}/660/bookings/${newBookingObj.id}`, newBookingObj, headerObj)
+                .then(function (res) {
+                    renderData(res.data, roomObj, userObj)  // 渲染更新後的資料
+                }).catch(function (err) {
+                    console.log(err);
+                    // reLogin(err.response.data);
+                })
+        }
+
+
+        // 將修改後的bookingHistoryObj ID寫入對應訂單
+        function saveHistoryBackBooking(bookingHistoryObj) {
+            axios.get(`${_url}/660/bookings/${bookingHistoryObj.bookingsId}`, headerObj)
+                .then(function (res) {
+                    const newBookingObj = res.data;
+                    newBookingObj.history.push(bookingHistoryObj.id);       // 將更新履歷寫入原本訂單的history陣列內
+
+                    updateBooking(newBookingObj);       // 將更新後的訂單寫回原訂單資料
+                }).catch(function (err) {
+                    console.log(err);
+                    // reLogin(err.response.data);
+                })
+        }
+
+
+        // 根據修改狀態新增bookingHistory
+        function addBookingHistory(bookingHistoryObj) {
+            axios.post(`${_url}/660/bookingHistorys`, bookingHistoryObj, headerObj)
+                .then(function (res) {
+                    saveHistoryBackBooking(res.data);
+                }).catch(function (err) {
+                    console.log(err);
+                    // reLogin(err.response.data);
+                })
+        }
+    })
+    .catch(function (err) {
+        console.log(err);
+        // reLogin(err.response.data);    
+    });
 /*------------------------------------*\
     function
 \*------------------------------------*/
-// 取得user資料
-function getUser(userId) {
-    return axios.get(`${_url}/660/users/${userId}`, {
-        headers: {
-            authorization: `Bearer ${localStorage.getItem("userLoginToken")}`,
-        },
-    }).then(function (res) {
-        return res.data;
-    }).catch(function (err) {
-        console.log(err);
-        // reLogin(err.response.data);
-    })
-}
 
 // 取得訂單修改履歷, 並渲染資料
-async function getHistory(bookingHistoryArr) {
+function getHistory(bookingHistoryArr) {
     let logArr = [];
     let str = "";
 
-    for (const item of bookingHistoryArr) {
-        try {
-            const res = await axios.get(`${_url}/660/bookingHistorys/${item}`, {
-                headers: {
-                    authorization: `Bearer ${localStorage.getItem("userLoginToken")}`,
-                },
+    // Function to perform axios GET request
+    function fetchData(item) {
+        return axios.get(`${_url}/660/bookingHistorys/${item}`, headerObj)
+            .then(res => {
+                const logObj = {};
+                logObj.updateTime = res.data.updateTime;
+                logObj.catNum = res.data.catNum;
+                logObj.admin = res.data.admin;
+                logObj.checkIn = res.data.checkIn;
+                logObj.checkOut = res.data.checkOut;
+                logObj.quantity = res.data.quantity;
+                logObj.roomType = res.data.roomType;
+                logObj.state = res.data.state;
+                logObj.price = res.data.price;
+                logObj.remark = res.data.remark;
+                logArr.push(logObj);
+            })
+            .catch(err => {
+                console.error(err);
+                // reLogin(err.response.data);
             });
-            const logObj = {};
-            logObj.updateTime = res.data.updateTime;
-            logObj.catNum = res.data.catNum;
-            logObj.admin = res.data.admin;
-            logObj.checkIn = res.data.checkIn;
-            logObj.checkOut = res.data.checkOut;
-            logObj.quantity = res.data.quantity;
-            logObj.roomType = res.data.roomType;
-            logObj.state = res.data.state;
-            logObj.price = res.data.price;
-            logObj.remark = res.data.remark;
-            logArr.push(logObj);
-        } catch (err) {
-            console.error(err);
-            // reLogin(err.response.data);
-        }
     }
-    logArr.forEach(function (item) {
-        str += `<tr>
-                    <th class="text-nowrap p-1" scope="row">${item.updateTime}</th>
-                    <td class="text-nowrap p-1">${item.state}</td>
-                    <td class="text-nowrap p-1">${item.checkIn}</td>
-                    <td class="text-nowrap p-1">${item.checkOut}</td>
-                    <td class="text-nowrap p-1">${item.quantity}</td>
-                    <td class="text-nowrap p-1">${item.roomType}</td>
-                    <td class="text-nowrap p-1">${item.price}</td>
-                    <td class="text-nowrap p-1">${item.catNum}</td>
-                    <td class="text-nowrap p-1">${item.remark}</td>
-                    <td class="text-nowrap p-1">${item.admin}</td>
-                </tr>`;
-    });
-    tbody.innerHTML = str;
+
+    // Create an array of Promises for each item
+    const promises = bookingHistoryArr.map(item => fetchData(item));
+
+    // Use Promise.all to wait for all Promises to resolve
+    return Promise.all(promises)
+        .then(() => {
+            logArr.forEach(function (item) {
+                str += `<tr>
+                            <th class="text-nowrap p-1" scope="row">${item.updateTime}</th>
+                            <td class="text-nowrap p-1">${item.state}</td>
+                            <td class="text-nowrap p-1">${item.checkIn}</td>
+                            <td class="text-nowrap p-1">${item.checkOut}</td>
+                            <td class="text-nowrap p-1">${item.quantity}</td>
+                            <td class="text-nowrap p-1">${item.roomType}</td>
+                            <td class="text-nowrap p-1">${item.price}</td>
+                            <td class="text-nowrap p-1">${item.catNum}</td>
+                            <td class="text-nowrap p-1">${item.remark}</td>
+                            <td class="text-nowrap p-1">${item.admin}</td>
+                        </tr>`;
+            });
+            tbody.innerHTML = str;
+        });
 }
+
 
 // 渲染訂單資料
 function renderData(bookingObj, roomObj, userObj) {
     let roomType = "";
-    console.log(bookingObj);
-    // console.log(roomObj);
-    // console.log(userObj);
-
     roomObj.forEach(function (item) {
         item.id === bookingObj.roomId ? roomType = item.name : "";
     })
@@ -181,50 +402,6 @@ function renderData(bookingObj, roomObj, userObj) {
         if (item.id === bookingObj.roomId) {
             totalPrice.value = item.price * bookingObj.quantity + (bookingObj.cats.length - 1) * 300 * bookingObj.quantity;
         }
-    })
-    // totalPrice.value = bookingObj.roomId + (bookingObj.cats.length - 1) * 300 * bookingObj.quantity;
-
-
-    // 取得貓咪資料
-    let getCatsArr = [];
-    axios.get(`${_url}/660/cats`, {
-        headers: {
-            authorization: `Bearer ${localStorage.getItem("userLoginToken")}`,
-        },
-    }).then(function (res) {
-        res.data.forEach(function (item) {
-            item.userId == bookingObj.userId ? getCatsArr.push(item) : "";      // 比對貓咪的用戶ID與訂單的用戶ID, 相同的加入到新陣列
-        })
-        let str = "";
-        getCatsArr.forEach(function (item, index) {
-            str += `<div class="col-4">
-                        <div class="form-check">
-                            <input class="form-check-input" data-catid="${item.id}" type="checkbox" id="memberCat${index + 1}">
-                            <label class="form-check-label memberCat${index + 1}" for="memberCat${index + 1}">${item.catName}</label>
-                        </div>
-                    </div>`
-            getCats.innerHTML = str;
-        })
-        // 訂單取消後資料改為disabled狀態
-        toggleData();
-
-        // 多隻貓咪時根據住宿的貓咪加上預售勾選
-        bookingObj.cats.forEach(function (cat) {
-            document.querySelectorAll(".form-check-input").forEach(function (item) {
-                if (parseInt(item.dataset.catid) === cat) {
-                    item.setAttribute("checked", true)
-                }
-            })
-        })
-
-        // 取消予已退房訂單不可再修改
-        if (bookingObj.state === "已取消" || bookingObj.state === "已退房") {
-            btnUpdate.setAttribute("disabled", true);
-        }
-
-    }).catch(function (err) {
-        console.log(err);
-        // reLogin(err.response.data);
     })
 }
 
@@ -259,37 +436,6 @@ function alertErrForDate() {
     });
 }
 
-// 根據修改狀態新增bookingHistory
-function addBookingHistory(bookingHistoryObj) {
-    axios.post(`${_url}/660/bookingHistorys`, bookingHistoryObj, {
-        headers: {
-            authorization: `Bearer ${localStorage.getItem("userLoginToken")}`,
-        },
-    }).then(function (res) {
-        saveHistoryBackBooking(res.data);
-    }).catch(function (err) {
-        console.log(err);
-        // reLogin(err.response.data);
-    })
-}
-
-// 將修改後的bookingHistoryObj ID寫入對應訂單
-function saveHistoryBackBooking(bookingHistoryObj) {
-    axios.get(`${_url}/660/bookings/${bookingHistoryObj.bookingsId}`, {
-        headers: {
-            authorization: `Bearer ${localStorage.getItem("userLoginToken")}`,
-        },
-    }).then(function (res) {
-        const newBookingObj = res.data;
-        newBookingObj.history.push(bookingHistoryObj.id);       // 將更新履歷寫入原本訂單的history陣列內
-
-        updateBooking(newBookingObj);       // 將更新後的訂單寫回原訂單資料
-    }).catch(function (err) {
-        console.log(err);
-        // reLogin(err.response.data);
-    })
-}
-
 // 資料尚未儲存錯誤提示
 function dataNotSaved() {
     Swal.fire({
@@ -297,20 +443,6 @@ function dataNotSaved() {
         title: "系統提示",
         text: "資料有修改且尚未儲存, 確定取消修改資料嗎?"
     });
-}
-
-// 更新訂單資料
-function updateBooking(newBookingObj) {
-    axios.patch(`${_url}/660/bookings/${newBookingObj.id}`, newBookingObj, {
-        headers: {
-            authorization: `Bearer ${localStorage.getItem("userLoginToken")}`,
-        },
-    }).then(function (res) {
-        renderData(res.data, roomObj, userObj)  // 渲染更新後的資料
-    }).catch(function (err) {
-        console.log(err);
-        // reLogin(err.response.data);
-    })
 }
 
 // 計算被點擊的貓咪有幾隻
@@ -360,26 +492,6 @@ function setNewBookingHistoryObj(newBookingObj, bookingStateStr) {
     newBookingObj.admin = localStorage.getItem("userName");
 }
 
-// 將取消的日期房間數歸還到原本的相對應的房型屬性
-function setFreeRoomToRoomStates(newRoomStates, roomStatesObj) {
-    let bookingStartDate = bookingObj.checkIn;   // 取得訂單當前日期
-    const roomStateObj = {                  // 房型對比資料
-        "51": "classic",
-        "52": "delicate",
-        "53": "luxury"
-    }
-
-    // 依日期將房間數歸還給相對應房型
-    for (let i = 0; i < bookingObj.quantity; i++) {
-        roomStatesObj.forEach(function (item) {
-            if (item.date === moment(bookingStartDate).add(0 + i, "day").format("YYYY-MM-DD")) {
-                item.availableCount[roomStateObj[bookingObj.roomId]]++;     // 抓出要加回的日期與對應客房
-                newRoomStates.push(item);                                       // 推到新陣列存起來
-            }
-        })
-    }
-}
-
 // 房型不夠的錯誤提示
 function roomNotEnough() {
     Swal.fire({
@@ -396,13 +508,6 @@ function roomNotEnough() {
 form.addEventListener("change", function (e) {
     const startDate = moment(checkIn.value);
     const endDate = moment(checkOut.value);
-
-    // 計算兩者差異年數
-    const years = endDate.diff(startDate, "years");
-    // 計算兩者差異月數，這邊要扣掉上面計算的差異年，否則會得到12個月
-    const months = endDate.diff(startDate, "month") - (years * 12);
-    // 把差異的年、月數加回來，否則會變成計算起訖日相差的天數(365天)
-    startDate.add(years, 'years').add(months, 'months');
     const diffDays = endDate.diff(startDate, 'days');
 
     // 根據變更的日期, 天數, 房型改變顯示的金額
@@ -437,78 +542,6 @@ form.addEventListener("change", function (e) {
     }
     // 判斷入住貓咪數量是否<0
     checkCatChecked();
-
-})
-
-// 點擊取消訂單時
-btnCancel.addEventListener("click", function () {
-    Swal.fire({
-        title: "確定要取消此訂單嗎?",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#d33",
-        cancelButtonColor: "#3085d6",
-        confirmButtonText: "確定取消",
-        cancelButtonText: "返回訂單"
-    }).then((result) => {
-        if (result.isConfirmed) {
-            // 修改訂單狀態為取消
-            axios.patch(`${_url}/660/bookings/${localStorage.getItem("bookingNum")}`, {
-                "state": "已取消"
-            }, {
-                headers: {
-                    authorization: `Bearer ${localStorage.getItem("userLoginToken")}`,
-                },
-            }).then(function (res) {
-
-                const bookingHistoryObj = {};
-                setNewBookingHistoryObj(bookingHistoryObj, "已取消");
-
-                renderData(bookingObj, roomObj, userObj);
-                btnToggle();    // 訂單送出取消後切換按鈕狀態
-
-                let newRoomStates = [];                 // 儲存變更後的日期狀態物件
-
-                // 將取消的日期房間數歸還到原本的相對應的房型屬性
-                setFreeRoomToRoomStates(newRoomStates, roomStatesObj);
-
-                // 將新的日期狀態陣列的日期與原始的日期狀態陣列的日期比對, 將新的物件更新到舊物件上
-                newRoomStates.forEach(function (newItem) {
-                    roomStatesObj.forEach(function (oldItem) {
-                        if (newItem.date === oldItem.date) {
-                            axios.patch(`${_url}/660/roomStates/${newItem.id}`, newItem, {
-                                headers: {
-                                    authorization: `Bearer ${localStorage.getItem("userLoginToken")}`,
-                                },
-                            }).then(function (res) {
-                                addBookingHistory(bookingHistoryObj);
-                                const Toast = Swal.mixin({
-                                    toast: true,
-                                    position: "center",
-                                    showConfirmButton: false,
-                                    timer: 1200,
-                                    timerProgressBar: true,
-                                    didOpen: (toast) => {
-                                        toast.onmouseenter = Swal.stopTimer;
-                                        toast.onmouseleave = Swal.resumeTimer;
-                                    }
-                                });
-                                Toast.fire({
-                                    icon: "success",
-                                    title: "訂單已取消成功"
-                                });
-                            }).catch(function (err) {
-                                console.log(err.response);
-                            })
-                        }
-                    })
-                })
-            }).catch(function (err) {
-                console.log(err);
-                // reLogin(err.response.data);
-            })
-        }
-    });
 })
 
 // 訂單資料有變更時, 如果點擊其他a連結跳尚未儲存提示
@@ -519,8 +552,6 @@ document.querySelectorAll("a").forEach(function (item) {
             "精緻房": 52,
             "豪華房": 53
         }
-
-        console.log(bookingObj.cats.join(""));
 
         let newCat = "";
         document.querySelectorAll(".form-check-input").forEach(function (item) {
@@ -540,7 +571,6 @@ document.querySelectorAll("a").forEach(function (item) {
             e.preventDefault();
             return dataNotSaved();
         }
-
     })
 })
 
@@ -556,107 +586,7 @@ btnUpdateCancel.addEventListener("click", function () {
     renderData(bookingObj, roomObj, userObj);   // 還原訂單狀態
 })
 
-// 點擊送出儲存時
-btnSave.addEventListener("click", function () {
-    // 儲存變更後的日期狀態物件
-    let newRoomStatesArr = [];
-    roomStatesObj.forEach(function (item) {       // 複製一份房況陣列判斷客房是否足夠
-        newRoomStatesArr.push(item);
-    })
-
-    // 儲存需要比對的日期物件, 之後傳到server更新
-    let roomStateUpdate = [];
-    // 將取消的日期房間數歸還到原本的相對應的房型屬性
-    setFreeRoomToRoomStates(roomStateUpdate, newRoomStatesArr);
-
-    const roomStateObjZh = {                  // 房型對比資料
-        "經典房": "classic",
-        "精緻房": "delicate",
-        "豪華房": "luxury"
-    }
-
-    // 計算是否能夠進行換房的判斷數字
-    let checkCanUpdateNum = 1;
-
-    // 以複製的房況陣列來判斷是否能接受換房
-    for (let i = 1; i <= bookingDays.value; i++) {
-        newRoomStatesArr.forEach(function (item) {
-            if (item.date === moment(checkIn.value).add(i - 1, "day").format("YYYY-MM-DD")) {
-                // 用房間數字做運算, 如果數字等於0即代表其中有日期已經沒房間不可進行換房
-                checkCanUpdateNum *= item.availableCount[roomStateObjZh[bookingRoomType.value]];
-            }
-        })
-    }
-    // 判斷數字大於0即代表尚有客房可以更換
-    if (checkCanUpdateNum > 0) {
-        for (let i = 1; i <= bookingDays.value; i++) {
-            newRoomStatesArr.forEach(function (item) {
-                if (item.date === moment(checkIn.value).add(i - 1, "day").format("YYYY-MM-DD")) {
-                    item.availableCount[roomStateObjZh[bookingRoomType.value]]--;
-                    roomStateUpdate.push(item);
-                }
-            })
-        }
-
-        // 將更新後的房況更新到server
-        roomStateUpdate.forEach(function (item) {
-            axios.patch(`${_url}/660/roomStates/${item.id}`, item, {
-                headers: {
-                    authorization: `Bearer ${localStorage.getItem("userLoginToken")}`,
-                },
-            }).then(function (res) {
-                // console.log(res.data);
-            }).catch(function (err) {
-                console.log(err.response);
-            })
-        })
-        // 準備更新履歷物件寫入server
-        const bookingHistoryObj = {};
-        setNewBookingHistoryObj(bookingHistoryObj, bookingState.value);
-        addBookingHistory(bookingHistoryObj);
-
-        const roomStateObj = {                  // 房型對比資料
-            "經典房": 51,
-            "精緻房": 52,
-            "豪華房": 53
-        }
-
-        bookingObj.checkIn = checkIn.value;
-        bookingObj.checkOut = checkOut.value;
-        bookingObj.remark = remark.value;
-        bookingObj.quantity = bookingDays.value;
-        bookingObj.price = totalPrice.value;
-        bookingObj.state = bookingState.value;
-        bookingObj.roomId = roomStateObj[bookingRoomType.value];
-        bookingObj.admin.userId = localStorage.getItem("userId");
-        bookingObj.cats = [];
-        document.querySelectorAll(".form-check-input").forEach(function (item) {
-            if (item.checked) {
-                bookingObj.cats.push(parseInt(item.dataset.catid));
-            }
-        })
-
-        console.log(bookingObj);
-
-        updateBooking(bookingObj);
-        renderData(bookingObj, roomObj, userObj);
-        btnToggle();
-    } else {
-        roomStateUpdate = [];
-        btnToggle();
-        roomNotEnough();
-        renderData(bookingObj, roomObj, userObj);
-    }
-
-})
-
 // 點擊返回列表時
 btnBack.addEventListener("click", function () {
     location = "admin_bookingList.html"
 })
-
-/*------------------------------------*\
-    呼叫function
-\*------------------------------------*/
-renderData(bookingObj, roomObj, userObj);
-

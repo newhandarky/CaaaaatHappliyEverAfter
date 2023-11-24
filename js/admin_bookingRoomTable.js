@@ -5,6 +5,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import moment from "moment";
 import { _url } from "./config";
+import { headerObj } from "./admin_config";
 import * as d3 from 'd3';
 import c3 from "c3";
 
@@ -34,11 +35,7 @@ bookingMonth.textContent = getBookingMonth;
 /*------------------------------------*\
     function
 \*------------------------------------*/
-axios.get(`${_url}/660/roomStates`, {
-    headers: {
-        authorization: `Bearer ${localStorage.getItem("userLoginToken")}`,
-    },
-})
+axios.get(`${_url}/660/roomStates`, headerObj)
     .then(function (res) {
         console.log(res.data);
         let monthBookingArr = [];       // 準備接資料的陣列
@@ -72,7 +69,7 @@ axios.get(`${_url}/660/roomStates`, {
             bindto: '#chart',
             data: {
                 x: "x",
-                hide: [delicateArr, luxuryArr],
+                // hide: [delicateArr, luxuryArr],
                 columns: [
                     x,
                     classicArr,
