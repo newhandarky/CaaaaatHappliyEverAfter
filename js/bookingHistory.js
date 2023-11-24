@@ -23,12 +23,14 @@ filterType.addEventListener("change", (e) => {
 //跟後端抓資料功能
 function graspAxiosData(catRoom_api, bookings_html) {
   //取消訂單按鈕的 HTML 結構
-  const cancelBookingHTML = (index, id) => {
+  const cancelBookingHTML = (index, id, checkIn, checkOut) => {
     return `<div class="orderBtns">
 <div id="btntype" class="primaryFill-btn-primary">
   <button
     id="cancelBooking_${index}"
     data-bookingsId="${id}"
+    data-checkInDate="${checkIn}"
+    data-checkOutDate="${checkOut}"
     class="cancelBookingBtn orderBtn"
   >
     取消訂單
@@ -36,12 +38,14 @@ function graspAxiosData(catRoom_api, bookings_html) {
 </div>
 </div>`;
   };
-  const evaluateBookingHTML = (index, id) => {
+  const evaluateBookingHTML = (index, id, checkIn, checkOut) => {
     return `<div class="orderBtns">
 <div id="btntype" class="primaryFill-btn-primary02">
   <button
     id="evaluateBooking_${index}"
     data-bookingsId="${id}"
+    data-checkInDate="${checkIn}"
+    data-checkOutDate="${checkOut}"
     class="evaluateBookingBtn orderBtn"
     
   >
@@ -50,12 +54,14 @@ function graspAxiosData(catRoom_api, bookings_html) {
 </div>
 </div>`;
   };
-  const isCancelBookingHTML = (index, id) => {
+  const isCancelBookingHTML = (index, id, checkIn, checkOut) => {
     return `<div class="orderBtns">
 <div id="btntype" class="primaryDisabled-btn-primary">
   <button
     id="isCancelBooking_${index}"
     data-bookingsId="${id}"
+    data-checkInDate="${checkIn}"
+    data-checkOutDate="${checkOut}"
     class="isCancelBookingBtn orderBtn"
   >
     已取消
@@ -194,7 +200,7 @@ function graspAxiosData(catRoom_api, bookings_html) {
                 id,
                 bookingDate,
                 price,
-                cancelBookingHTML(index, id)
+                cancelBookingHTML(index, id, checkIn, checkOut)
               )
             : bookings_html === "已完成"
             ? mainBokingHTML(
@@ -206,7 +212,7 @@ function graspAxiosData(catRoom_api, bookings_html) {
                 id,
                 bookingDate,
                 price,
-                evaluateBookingHTML(index, id)
+                evaluateBookingHTML(index, id, checkIn, checkOut)
               )
             : bookings_html === "已取消"
             ? mainBokingHTML(
@@ -218,7 +224,7 @@ function graspAxiosData(catRoom_api, bookings_html) {
                 id,
                 bookingDate,
                 price,
-                isCancelBookingHTML(index, id),
+                isCancelBookingHTML(index, id, checkIn, checkOut),
                 "isCancel"
               )
             : "";
@@ -298,32 +304,42 @@ function cancelBooking() {
   cancelBookingBtn.forEach((element) => {
     //抓到當前資料所有的訂單 id
     element.addEventListener("click", (e) => {
+      // 按下刪除訂單時 偵測是否為登入狀態
       e.preventDefault();
+
+      // isLoginToHref 是自訂一的函數 判斷登入狀態 需要帶入前往的網址頁面路徑
+      isLogin();
+
       //取得對應資料 id 等等取消修改訂單 變更房型可預約狀態 新增歷史紀錄 都要用到
       let cancelId = element.getAttribute("data-bookingsId");
       console.log(cancelId);
 
-      //修改 bookins 該 id 訂單資料
-      axios
-        .patch(
-          `${_url}/600/bookings/${cancelId}`,
-          { state: "已取消" },
-          {
-            headers: {
-              authorization: `Bearer ${accessToken}`,
-            },
-          }
-        )
-        .then((res) => {
-          alert(`您已取消訂單 `);
-          console.log(res);
-          //重新整理網頁
-          window.location.reload();
-        })
-        .catch((err) => {
-          console(err);
-          alert("取消訂單失敗");
-        });
+      // //修改 bookins 該 id 訂單資料
+      // axios
+      //   .patch(
+      //     `${_url}/600/bookings/${cancelId}`,
+      //     { state: "已取消" },
+      //     {
+      //       headers: {
+      //         authorization: `Bearer ${accessToken}`,
+      //       },
+      //     }
+      //   )
+      //   .then((res) => {
+      //     alert(`您已取消訂單 `);
+      //     console.log(res);
+      //     //重新整理網頁
+      //     window.location.reload();
+      //   })
+      //   .catch((err) => {
+      //     console(err);
+      //     alert("取消訂單失敗");
+      //   });
+
+      //取得對應資料的 checkInDay 等等 變更房型可預約狀態 都要用到
+      let checkInDay = element.getAttribute("data-checkInDate");
+      let checkOutDay = element.getAttribute("data-checkOutDate");
+      console.log(checkInDay, checkOutDay);
     });
   });
 }
