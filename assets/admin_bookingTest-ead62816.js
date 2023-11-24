@@ -57,4 +57,4 @@ import{a as s,_ as d}from"./config-82256151.js";import"./admin_header-36cd02a6.j
                                                         <th scope="row">房型</th>
                                                         <td>${e.data.roomType}</td>
                                                     </tr>
-                                                </tbody>`,o.history.push(e.data.id),s.patch(`${d}/bookings/${e.data.bookingsId}`,o).then(function(r){document.querySelector(".historyId").textContent=JSON.stringify(r.data.history)})}).catch(function(e){console.log(e)})}).catch(function(t){console.log(t)})})}).catch(p=>{console.error("Error fetching data:",p)});Y.addEventListener("click",function(){location="../pages/admin_booking.html"});
+                                                </tbody>`,o.history.push(e.data.id),s.patch(`${d}/bookings/${e.data.bookingsId}`,o).then(function(r){document.querySelector(".historyId").textContent=JSON.stringify(r.data.history)})}).catch(function(e){console.log(e)})}).catch(function(t){console.log(t)})})}).catch(p=>{console.error("Error fetching data:",p)});Y.addEventListener("click",function(){location="admin_booking.html"});
