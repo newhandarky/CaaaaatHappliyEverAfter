@@ -82,10 +82,10 @@ function graspAxiosData(catRoom_api, bookings_html) {
 <div class="catBarContainer ">
 <div class="catEars">
   <div class="catEar">
-    <img src="../assets/images/catEar02.svg" alt="catEar02" />
+    <img src="https://raw.githubusercontent.com/newhandarky/CaaaaatHappliyEverAfter/7222ac29b8d1b1ab3264841bac1f6071103016c3/assets/images/catEar02.svg" alt="catEar02" />
   </div>
   <div class="catEar">
-    <img src="../assets/images/catEar02.svg" alt="catEar02" />
+    <img src="https://raw.githubusercontent.com/newhandarky/CaaaaatHappliyEverAfter/7222ac29b8d1b1ab3264841bac1f6071103016c3/assets/images/catEar02.svg" alt="catEar02" />
   </div>
 </div>
 <div class="catBarBorder mx-3">
@@ -98,12 +98,12 @@ function graspAxiosData(catRoom_api, bookings_html) {
         <div class="d-flex justify-content-center mx-3">
           <img
             class="img-fluid d-sm-block d-none"
-            src="../assets/icons/arrow.svg"
+            src="https://raw.githubusercontent.com/newhandarky/CaaaaatHappliyEverAfter/7222ac29b8d1b1ab3264841bac1f6071103016c3/assets/icons/arrow.svg"
             alt="arrow"
           />
           <img
             class="img-fluid d-sm-none d-block"
-            src="../assets/icons/arrowDown.svg"
+            src="https://raw.githubusercontent.com/newhandarky/CaaaaatHappliyEverAfter/7222ac29b8d1b1ab3264841bac1f6071103016c3/assets/icons/arrowDown.svg"
             alt="arrow"
           />
         </div>
