@@ -63,7 +63,7 @@ axios.get(`${_url}/rooms?name=${bookingData.roomType}`).then(function(response){
     console.log(`貓${catInfo.catId.length}隻`)
     let additionalCat = catInfo.catId.length-1;
     console.log(`加${additionalCat}隻貓`);
-    let totalPrice = response.data[0].price*nights + 300*additionalCat;
+    let totalPrice = `${response.data[0].price*nights + 300*additionalCat*nights}元`;
     price.innerHTML = totalPrice;
     booking.price = totalPrice; //順便把價錢打包進去下方的booking{}
     booking['quantity'] = nights;
@@ -156,8 +156,45 @@ function postPatch(){
 
 function postBooking(){
     axios.post(`${_url}/bookings`, booking).then(response =>{
-        console.log(response.data);
-        postbookingHistorys()
+        console.log(response.data['id']);
+        let bookingId = response.data['id'];
+        bookingHistorys["bookingId"] = bookingId; //把booking的ID放進去bookingHistorys{}裡面
+        console.log(`NEW bookingHistory物件`)
+        console.log(bookingHistorys)
+        console.log(bookingId);
+        
+                //把新的bookingHistorys（有bookingID)post到bookingHistorys
+                axios.post(`${_url}/bookingHistorys?bookingsId=${bookingId}`, bookingHistorys ).then((response)=>{
+                    console.log(`try`)
+                    console.log(response.data);
+        
+                    //透過bookingId與UserID取得訂單的所有bookingHistoryID;一個bookingId可能會有多種狀態
+                axios.get(`${_url}/bookingHistorys?userId=${userTokenAndData.user.id}&bookingId=${bookingId}`).then((response) => {
+                    console.log(`訂單的booking History`)
+                    console.log(response.data);
+                    let arr = response.data;
+                    let bookingHistoryId = [];
+                    arr.forEach(function(item){
+                        console.log(item['id'])
+                        bookingHistoryId.push(item.id);
+                    })
+                    console.log(bookingHistoryId);
+        
+                    booking["history"] = bookingHistoryId;
+                    console.log(booking)
+        
+                    axios.patch(`${_url}/bookings/${bookingId}`, booking).then((response)=>{
+                        console.log(response.data)
+                    });
+                    
+                })
+                });
+        
+                
+        
+            
+            
+        
     })
     .catch(error =>{
         console.error(error);
@@ -171,7 +208,9 @@ function patchData(){
     let newData = []
     //確認房間數量
     axios.get(`${_url}/roomStates?date_gte=${bookingData.checkIn}&date_lte=${bookingData.checkOut}&date_ne=${bookingData.checkOut}`).then(function(response){
+
         let data = response.data;
+        console.log(data)
         //每晚減1個房間
         data.forEach(function(item){
             if(bookingData.roomType === "經典房"){
@@ -209,49 +248,50 @@ function patchData(){
     
 };
 
-function postbookingHistorys(){
-    //取得送出的訂單的bookingId
-    axios.get(`${_url}/bookings?userId=${userTokenAndData.user.id}&bookingDate=${bookingData.bookingDate}`).then(response=>{
-        console.log(response.data);
-        console.log(`bookingID:${response.data[0].id}`)
-        let bookingId = response.data[0].id;
-        bookingHistorys["bookingId"] = bookingId; //把booking的ID放進去bookingHistorys{}裡面
-        console.log(`NEW bookingHistory物件`)
-        console.log(bookingHistorys)
-        console.log(bookingId);
+// function postbookingHistorys(){
+//     //取得送出的訂單的bookingId
+//     axios.get(`${_url}/bookings?userId=${userTokenAndData.user.id}&bookingDate=${bookingData.bookingDate}`).then(response=>{
+//         console.log(response.data);
+//         console.log(`bookingID:${response.data[0].id}`)
+//         let bookingId = response.data[0].id;
+//         bookingHistorys["bookingId"] = bookingId; //把booking的ID放進去bookingHistorys{}裡面
+//         console.log(`NEW bookingHistory物件`)
+//         console.log(bookingHistorys)
+//         console.log(bookingId);
 
-        //把新的bookingHistorys（有bookingID)post到bookingHistorys
-        axios.post(`${_url}/bookingHistorys?bookingsId=${bookingId}`, bookingHistorys ).then((response)=>{
-            console.log(`try`)
-            console.log(response.data);
+//         //把新的bookingHistorys（有bookingID)post到bookingHistorys
+//         axios.post(`${_url}/bookingHistorys?bookingsId=${bookingId}`, bookingHistorys ).then((response)=>{
+//             console.log(`try`)
+//             console.log(response.data);
 
-            //在bookingHistorys透過bookingId與UserID取得訂單的所有bookingHistoryID;一個bookingId可能會有多種狀態
-        axios.get(`${_url}/bookingHistorys?userId=${userTokenAndData.user.id}&?bookingId=${bookingId}`).then((response) => {
-            console.log(`訂單的booking History`)
-            console.log(response.data);
-            let arr = response.data;
-            let bookingHistoryId = [];
-            arr.forEach(function(item){
-                console.log(item['id'])
-                bookingHistoryId.push(item.id);
-            })
-            console.log(bookingHistoryId);
+//             //在bookingHistorys透過bookingId與UserID取得訂單的所有bookingHistoryID;一個bookingId可能會有多種狀態
+//         axios.get(`${_url}/bookingHistorys?userId=${userTokenAndData.user.id}&?bookingId=${bookingId}`).then((response) => {
+//             console.log(`訂單的booking History`)
+//             console.log(response.data);
+//             let arr = response.data;
+//             let bookingHistoryId = [];
+//             arr.forEach(function(item){
+//                 console.log(item['id'])
+//                 bookingHistoryId.push(item.id);
+//             })
+//             console.log(bookingHistoryId);
 
-            booking["history"] = bookingHistoryId;
-            console.log(booking)
+//             booking["history"] = bookingHistoryId;
+//             console.log(booking)
 
-            axios.patch(`${_url}/bookings/${bookingId}`, booking).then((response)=>{
-                console.log(response.data)
-            });
+//             axios.patch(`${_url}/bookings/${bookingId}`, booking).then((response)=>{
+//                 console.log(response.data)
+//             });
             
-        })
-        });
+//         })
+//         });
 
         
 
-    });
+//     });
     
-};
+// };
+
 
 
 

@@ -111,7 +111,7 @@ function lodingCat() {
               >
                 <img
                   class="photoFrame position-absolute"
-                  src="../assets/images/photoFrame.svg"
+                  src="https://raw.githubusercontent.com/newhandarky/CaaaaatHappliyEverAfter/7222ac29b8d1b1ab3264841bac1f6071103016c3/assets/images/photoFrame.svg"
                   alt="photoFrame"
                 />
                 <div class="photoGroup position-absolute">
