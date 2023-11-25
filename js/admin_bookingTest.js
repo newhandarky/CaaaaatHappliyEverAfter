@@ -290,6 +290,6 @@ Promise.all([user, cats, rooms, roomStates])
 
 
 btnBack.addEventListener("click", function () {
-    location = "../pages/admin_booking.html"
+    location = "admin_booking.html"
 })
 

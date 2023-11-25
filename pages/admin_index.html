@@ -4,14 +4,135 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CaaaaatHappliyEverAfter後台首頁</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0"
+    />
+    <title>admin_index</title>
   </head>
   <body>
     <%- include('./layout/admin_header'); -%>
 
-    <h1>歡迎來到CaaaaatHappliyEverAfter後台首頁</h1>
-
-    <script type="module" src="../main.js"></script>
+    <section class="container d-flex align-items-center">
+      <img class="userImage rounded-circle mt-8 me-8" src="" />
+      <!-- 後面用 JS 渲染 -->
+      <p class="welcomeText fs-4"></p>
+    </section>
+    <main class="container my-9">
+      <div class="d-flex justify-content-between flex-wrap mb-lg-4">
+        <div
+          class="statusWrap w-100 d-flex flex-column justify-content-between p-4 mb-4 mb-lg-0 bg-primary02"
+        >
+          <h3 class="border-bottom border-2 border-dark mb-4">帳號狀態</h3>
+          <table class="table table-bordered border-dark">
+            <thead>
+              <tr>
+                <th>使用者名稱</th>
+                <th>最後登入時間</th>
+              </tr>
+            </thead>
+            <tbody class="indexAccountTbody"></tbody>
+          </table>
+          <a
+            class="pageNavigateBtn d-flex justify-content-center align-items-center btn btn-primary d-block text-center text-white ms-auto"
+            href="./admin_account.html"
+            ><span class="material-symbols-outlined"> arrow_forward </span
+            >前往帳號管理</a
+          >
+        </div>
+        <div
+          class="statusWrap w-100 d-flex flex-column justify-content-between p-4 mb-4 mb-lg-0 bg-primary02"
+        >
+          <h3 class="border-bottom border-2 border-dark mb-4">訂單總覽</h3>
+          <div class="d-flex justify-content-around">
+            <div class="text-center">
+              <p class="fs-4">已確認訂單</p>
+              <p class="fs-36">10</p>
+            </div>
+            <div class="text-center">
+              <p class="fs-4">今日營業額</p>
+              <p class="fs-36">$10000</p>
+            </div>
+          </div>
+          <a
+            class="pageNavigateBtn d-flex justify-content-center align-items-center btn btn-primary d-block text-center text-white ms-auto"
+            href="./admin_booking.html"
+            ><span class="material-symbols-outlined"> arrow_forward </span
+            >前往訂單管理</a
+          >
+        </div>
+      </div>
+      <div class="d-flex justify-content-between flex-wrap">
+        <div
+          class="statusWrap w-100 d-flex flex-column justify-content-between p-4 mb-4 mb-lg-0 bg-primary02"
+        >
+          <h3 class="border-bottom border-2 border-dark mb-4">客房總覽</h3>
+          <table class="table table-bordered border-dark">
+            <thead>
+              <tr>
+                <th>房間類型</th>
+                <th>每晚價格</th>
+              </tr>
+            </thead>
+            <tbody class="indexRoomTbody"></tbody>
+          </table>
+          <a
+            class="pageNavigateBtn d-flex justify-content-center align-items-center btn btn-primary d-block text-center text-white ms-auto"
+            href="./admin_rooms.html"
+            ><span class="material-symbols-outlined"> arrow_forward </span
+            >前往客房管理</a
+          >
+        </div>
+        <div
+          class="statusWrap w-100 d-flex flex-column justify-content-between p-4 bg-primary02"
+        >
+          <h3 class="border-bottom border-2 border-dark">文章總覽</h3>
+          <div class="d-flex justify-content-around">
+            <div class="card" style="width: 8rem">
+              <img class="card-img-top" src="https://fakeimg.pl/150/" />
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <div class="d-flex justify-content-end align-items-center">
+                  <span class="material-symbols-outlined me-4"> thumb_up </span>
+                  <span class="material-symbols-outlined"> chat </span>
+                </div>
+              </div>
+            </div>
+            <div class="card" style="width: 8rem">
+              <img class="card-img-top" src="https://fakeimg.pl/150/" />
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <div class="d-flex justify-content-end align-items-center">
+                  <span class="material-symbols-outlined me-4"> thumb_up </span>
+                  <span class="material-symbols-outlined"> chat </span>
+                </div>
+              </div>
+            </div>
+            <div class="card" style="width: 8rem">
+              <img class="card-img-top" src="https://fakeimg.pl/150/" />
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <div class="d-flex justify-content-end align-items-center">
+                  <span class="material-symbols-outlined me-4"> thumb_up </span>
+                  <span class="material-symbols-outlined"> chat </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a
+            class="pageNavigateBtn d-flex justify-content-center align-items-center btn btn-primary d-block text-center text-white ms-auto"
+            href="./admin_article.html"
+            ><span class="material-symbols-outlined"> arrow_forward </span
+            >前往文章管理</a
+          >
+        </div>
+      </div>
+    </main>
     <script type="module" src="../js/admin_index.js"></script>
+    <script type="module" src="../main.js"></script>
   </body>
 </html>

@@ -29,7 +29,7 @@ const after = document.querySelector(".after");
 // 純測試
 const bookingTest = document.querySelector(".bookingTest");
 bookingTest.addEventListener("click", function () {
-    location = "../pages/admin_bookingTest.html"
+    location = "admin_bookingTest.html"
 })
 
 /*------------------------------------*\
@@ -77,7 +77,7 @@ function setSearchData(searchObj) {
         })
         localStorage.setItem("searchResult", JSON.stringify(todayCheckInBookings));
         localStorage.setItem("h2Content", `<span class="text-primary"> ${moment().format("YYYY-MM-DD")} </span> ${searchObj.searchStr}`)
-        location = "../pages/admin_bookingSearch.html"
+        location = "admin_bookingSearch.html"
     }
 }
 
@@ -210,9 +210,9 @@ bookingList.addEventListener("click", function () {
     if (bookingStatesObject.bookingCount === 0) {
         console.log("當月無訂房");
     }
-    location = "../pages/admin_bookingList.html"
+    location = "admin_bookingList.html"
 })
 
 checkBookingTable.addEventListener("click", function () {
-    location = "../pages/admin_bookingRoomTable.html"
+    location = "admin_bookingRoomTable.html"
 })

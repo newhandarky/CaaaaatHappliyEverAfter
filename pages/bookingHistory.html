@@ -13,10 +13,13 @@
           <%- include('./layout/aside'); -%>
         </div>
         <div class="col-lg-9">
+          <h2>注意 取消訂房功能尚未完成</h2>
+          <h2>看似完成 但取消我還沒有推送到歷史紀錄那邊</h2>
+          <h2>也還沒更改訂房狀態 所以先別急者推送資料</h2>
           <h1>訂房紀錄</h1>
-          <h1>以下是切版測試</h1>
+          <!-- <h1>以下是切版測試</h1>
           <div
-            class="bookingInfo d-md-block d-flex justify-content-center align-items-center"
+            class="bookingInfo d-flex justify-content-center align-items-center"
           >
             <div class="catBarContainer">
               <div class="catEars">
@@ -29,12 +32,12 @@
               </div>
               <div class="catBarBorder mx-3">
                 <div class="catBarInfo d-flex flex-column">
-                  <div
-                    class="flex-grow-4 justify-content-center align-items-center"
-                  >
-                    <div class="d-flex flex-sm-row flex-column my-5">
-                      <h3 id="checkIn" class="flex-grow-1">2023-12-10</h3>
-                      <div class="d-flex flex-grow-1 mx-3">
+                  <div class="justify-content-center align-items-center">
+                    <div class="d-flex flex-sm-row flex-column mb-5">
+                      <h3 id="checkIn_${index}" class="d-inline-block">
+                        ${checkIn}
+                      </h3>
+                      <div class="d-flex justify-content-center mx-3">
                         <img
                           class="img-fluid d-sm-block d-none"
                           src="../assets/icons/arrow.svg"
@@ -47,42 +50,88 @@
                         />
                       </div>
 
-                      <h3 id="checkOut" class="flex-grow-1">2023-12-12</h3>
+                      <h3 id="checkOut_${index}" class="d-inline-block">
+                        ${checkOut}
+                      </h3>
                     </div>
                     <div class="d-flex flex-sm-row flex-column">
-                      <div class="d-flex flex-column flex-grow-1">
+                      <div class="d-flex flex-column">
                         <div class="d-flex">
-                          <h3 id="roomType" class="roomType">精緻房</h3>
+                          <h3 id="roomType_${index}" class="roomType">
+                            ${name}
+                          </h3>
 
-                          <h4 id="catsQuantity" class="mt-1 catsQuantity">
-                            2隻貓
+                          <h4
+                            id="catsQuantity_${index}"
+                            class="mt-1 catsQuantity"
+                          >
+                            ${quantity}隻貓
                           </h4>
                         </div>
                         <div class="d-flex">
                           <h5 class="text-center">訂單編號</h5>
-                          <h5 id="bookingId" class="text-center bookingId">
-                            401
+                          <h5
+                            id="bookingId_${index}"
+                            class="text-center bookingId"
+                          >
+                            ${id}
                           </h5>
                         </div>
+                        <div class="d-flex">
+                          <h6 class="orderDate">下單日期</h6>
+                          <h6
+                            id="bookingId_${index}"
+                            class="orderDate bookingId"
+                          >
+                            ${bookingDate}
+                          </h6>
+                        </div>
                       </div>
-                      <div class="flex-grow-1 d-flex flex-column">
-                        <h1 id="price" class="price">1600NT</h1>
+                      <div class="d-flex flex-grow-5 ms-sm-5 ms-0">
+                        <h1 id="price_${index}" class="price">${price}NT</h1>
                       </div>
                     </div>
                   </div>
-                  <div class="flex-grow-1 orderBtns">
-                    <div id="btntype" class="primaryFill-btn-primary">
-                      <button id="cancelBooking" class="orderBtn">
-                        取消訂單
-                      </button>
-                    </div>
+                </div>
+                <div class="orderBtns">
+                  <div id="btntype" class="primaryFill-btn-primary">
+                    <button
+                      id="cancelBooking_${index}"
+                      data-catId="${id}"
+                      class="orderBtn"
+                    >
+                      取消訂單
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <h1>以上是切版測試</h1>
-          <div id="bookingInfo" class="bookingInfo"></div>
+          <h1>以上是切版測試</h1> -->
+          <!--input 按鈕自製模組-->
+          <div class="d-flex justify-content-md-end justify-content-center">
+            <div class="catRoomInput bookingHistoryFilter">
+              <div class="inputBar">
+                <p class="fs-7 m-0">篩選</p>
+                <select id="roomType" class="roomType position-relative">
+                  <option value="已預定">已預定</option>
+                  <option value="已完成">已完成</option>
+                  <option value="已取消">已取消</option>
+                </select>
+              </div>
+
+              <img
+                class="icon"
+                src="../assets/icons/iconArrowDown.svg"
+                alt="date_icon"
+              />
+            </div>
+          </div>
+
+          <div
+            id="bookingInfo"
+            class="bookingInfo d-flex flex-column justify-content-center align-items-center"
+          ></div>
         </div>
       </div>
     </div>
