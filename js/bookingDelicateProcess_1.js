@@ -129,4 +129,16 @@ toProcess_2.addEventListener("click", function(e){
       });
     
 
-  
+  //透過index快速訂房
+
+
+console.log(sessionStorage.getItem('indexBooking'));
+let indexBooking = JSON.parse(sessionStorage.getItem('indexBooking'));
+console.log(indexBooking);
+
+checkinDate.value = indexBooking[0].checkIn;
+checkoutDate.value = indexBooking[0].checkOut;
+console.log(checkinDate.value);
+console.log(checkoutDate.value);
+checkinDate.setAttribute('value',checkinDate.value) ;
+checkoutDate.setAttribute('value',checkinDate.value) ;
