@@ -233,9 +233,9 @@ Promise.all([user, cats, rooms, roomStates])
                     bookingHistoryObj.bookingsId = res.data.id
 
                     axios.post(`${_url}/bookingHistorys`, bookingHistoryObj)
-                    .then(function (res) {
-                        // console.log(res.data);    
-                        historyRes.innerHTML = `<thead>
+                        .then(function (res) {
+                            // console.log(res.data);    
+                            historyRes.innerHTML = `<thead>
                                                     <tr>
                                                         <th scope="col"></th>
                                                         <th scope="col">訂房履歷</th>
@@ -263,25 +263,25 @@ Promise.all([user, cats, rooms, roomStates])
                                                         <td>${res.data.roomType}</td>
                                                     </tr>
                                                 </tbody>`
-                    bookingObj.history.push(res.data.id)
-                    axios.patch(`${_url}/bookings/${res.data.bookingsId}`, bookingObj)
-                        .then(function(res){
-                            document.querySelector(".historyId").textContent = JSON.stringify(res.data.history)
+                            bookingObj.history.push(res.data.id)
+                            axios.patch(`${_url}/bookings/${res.data.bookingsId}`, bookingObj)
+                                .then(function (res) {
+                                    document.querySelector(".historyId").textContent = JSON.stringify(res.data.history)
+                                })
+
+
+                        }).catch(function (err) {
+                            console.log(err);
                         })
-                    
 
                 }).catch(function (err) {
                     console.log(err);
                 })
-
-        }).catch(function (err) {
-            console.log(err);
         })
     })
-    })
-    .catch (error => {
-    console.error('Error fetching data:', error);
-});
+    .catch(error => {
+        console.error('Error fetching data:', error);
+    });
 
 /*------------------------------------*\
     事件

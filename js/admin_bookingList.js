@@ -74,7 +74,7 @@ Promise.all([bookingsRes])
                     </li>`
             let pagesStr = "";
             for (let i = 1; i <= pagesCount; i++) {
-                pagesStr += `<li class="page-item pageNum" data-page="${i}"><a class="page-link py-3 px-6">${i}</a></li>`
+                pagesStr += `<li class="page-item pageNum" data-page="${i}"><a class="page-link py-3 px-6"><span class="text-dark">${i}</span></a></li>`
             }
             getPages.innerHTML = previous + pagesStr + next;
             showPagination();
@@ -144,7 +144,7 @@ export function renderTable(arr) {
     let str = "";
     arr.forEach(function (item) {       // 
         str += `<tr>
-                <th class="text-nowrap border-0 text-center d-flex align-items-center justify-content-center" scope="row"><a class="bookingNum adminLink" data-bookingnum="${item.id}" data-userid="${item.userId}" href="../pages/admin_updateBooking.html">${item.id}</a></th>       
+                <th class="text-nowrap border-0 text-center d-flex align-items-center justify-content-center" scope="row"><a class="bookingNum adminLink" data-bookingnum="${item.id}" data-userid="${item.userId}" href="admin_updateBooking.html">${item.id}</a></th>       
                 <td class="text-nowrap text-center">${item.name}</td>
                 <td class="text-nowrap text-center">${item.checkIn}</td>
                 <td class="text-nowrap text-center">${item.quantity}</td>
