@@ -23,7 +23,16 @@ filterType.addEventListener("change", (e) => {
 //跟後端抓資料功能
 function graspAxiosData(catRoom_api, bookings_html) {
   //取消訂單按鈕的 HTML 結構
-  const cancelBookingHTML = (index, id, checkIn, checkOut, roomType) => {
+  const cancelBookingHTML = (
+    index,
+    id,
+    checkIn,
+    checkOut,
+    roomType,
+    remark,
+    quantity,
+    price
+  ) => {
     return `<div class="orderBtns">
 <div id="btntype" class="primaryFill-btn-primary">
   <button
@@ -32,6 +41,9 @@ function graspAxiosData(catRoom_api, bookings_html) {
     data-checkInDate="${checkIn}"
     data-checkOutDate="${checkOut}"
     data-roomType="${roomType}"
+    data-remark="${remark}"
+    data-quantity="${quantity}"
+    data-price="${price}"
     class="cancelBookingBtn orderBtn"
   >
     取消訂單
@@ -39,7 +51,16 @@ function graspAxiosData(catRoom_api, bookings_html) {
 </div>
 </div>`;
   };
-  const evaluateBookingHTML = (index, id, checkIn, checkOut, roomType) => {
+  const evaluateBookingHTML = (
+    index,
+    id,
+    checkIn,
+    checkOut,
+    roomType,
+    remark,
+    quantity,
+    price
+  ) => {
     return `<div class="orderBtns">
 <div id="btntype" class="primaryFill-btn-primary02">
   <button
@@ -48,6 +69,9 @@ function graspAxiosData(catRoom_api, bookings_html) {
     data-checkInDate="${checkIn}"
     data-checkOutDate="${checkOut}"
     data-roomType="${roomType}"
+    data-remark="${remark}"
+    data-quantity="${quantity}"
+    data-price="${price}"
     class="evaluateBookingBtn orderBtn"
     
   >
@@ -56,7 +80,16 @@ function graspAxiosData(catRoom_api, bookings_html) {
 </div>
 </div>`;
   };
-  const isCancelBookingHTML = (index, id, checkIn, checkOut, roomType) => {
+  const isCancelBookingHTML = (
+    index,
+    id,
+    checkIn,
+    checkOut,
+    roomType,
+    remark,
+    quantity,
+    price
+  ) => {
     return `<div class="orderBtns">
 <div id="btntype" class="primaryDisabled-btn-primary">
   <button
@@ -65,6 +98,8 @@ function graspAxiosData(catRoom_api, bookings_html) {
     data-checkInDate="${checkIn}"
     data-checkOutDate="${checkOut}"
     data-roomType="${roomType}"
+    data-remark="${remark}"
+    data-quantity="${quantity}"
     class="isCancelBookingBtn orderBtn"
   >
     已取消
@@ -184,6 +219,7 @@ function graspAxiosData(catRoom_api, bookings_html) {
           quantity,
           state,
           price,
+          remark,
           room,
           id,
         } = element;
@@ -203,7 +239,16 @@ function graspAxiosData(catRoom_api, bookings_html) {
                 id,
                 bookingDate,
                 price,
-                cancelBookingHTML(index, id, checkIn, checkOut, name)
+                cancelBookingHTML(
+                  index,
+                  id,
+                  checkIn,
+                  checkOut,
+                  name,
+                  remark,
+                  quantity,
+                  price
+                )
               )
             : bookings_html === "已完成"
             ? mainBokingHTML(
@@ -215,7 +260,16 @@ function graspAxiosData(catRoom_api, bookings_html) {
                 id,
                 bookingDate,
                 price,
-                evaluateBookingHTML(index, id, checkIn, checkOut, name)
+                evaluateBookingHTML(
+                  index,
+                  id,
+                  checkIn,
+                  checkOut,
+                  name,
+                  remark,
+                  quantity,
+                  price
+                )
               )
             : bookings_html === "已取消"
             ? mainBokingHTML(
@@ -227,13 +281,22 @@ function graspAxiosData(catRoom_api, bookings_html) {
                 id,
                 bookingDate,
                 price,
-                isCancelBookingHTML(index, id, checkIn, checkOut, name),
+                isCancelBookingHTML(
+                  index,
+                  id,
+                  checkIn,
+                  checkOut,
+                  name,
+                  remark,
+                  quantity,
+                  price
+                ),
                 "isCancel"
               )
             : "";
       });
 
-      console.log(bookingInfo.innerHTML);
+      // console.log(bookingInfo.innerHTML);
       if (bookingInfo.innerHTML === "") {
         bookingInfo.innerHTML = `<h1>沒有${filterType.value}資料</h1>`;
       }
@@ -318,99 +381,99 @@ function cancelBooking() {
       console.log(cancelId);
 
       //新增歷史紀錄
-      // axios.post(`${_url}/600/bookings/${cancelId}`)
+      axios.post(`${_url}/600/bookings/${cancelId}`, {});
 
       //修改 bookins 該 id 訂單資料
-      axios
-        .patch(
-          `${_url}/600/bookings/${cancelId}`,
-          { state: "已取消" },
-          {
-            headers: {
-              authorization: `Bearer ${accessToken}`,
-            },
-          }
-        )
-        .then((res) => {
-          console.log("您已取消該筆訂單");
-          console.log(res);
+      // axios
+      //   .patch(
+      //     `${_url}/600/bookings/${cancelId}`,
+      //     { state: "已取消" },
+      //     {
+      //       headers: {
+      //         authorization: `Bearer ${accessToken}`,
+      //       },
+      //     }
+      //   )
+      //   .then((res) => {
+      //     console.log("您已取消該筆訂單");
+      //     console.log(res);
 
-          // 修改房型可預約狀態
-          axios
-            .get(
-              `${_url}/roomStates?date_gte=${checkInDay}&date_lte=${checkOutDay}`
-            )
-            .then((res) => {
-              const roomStatesData = res.data;
-              console.log("初始房況");
-              console.log(roomStatesData);
+      //     // 修改房型可預約狀態
+      //     axios
+      //       .get(
+      //         `${_url}/roomStates?date_gte=${checkInDay}&date_lte=${checkOutDay}`
+      //       )
+      //       .then((res) => {
+      //         const roomStatesData = res.data;
+      //         console.log("初始房況");
+      //         console.log(roomStatesData);
 
-              // 定義 PATCH 請求的 Promise 陣列
-              const patchRequests = roomStatesData.map((roomState) => {
-                let updatedRoomCount = 0;
-                let updateObj;
+      //         // 定義 PATCH 請求的 Promise 陣列
+      //         const patchRequests = roomStatesData.map((roomState) => {
+      //           let updatedRoomCount = 0;
+      //           let updateObj;
 
-                // 判斷是哪一個房型
-                if (roomType === "經典房") {
-                  updatedRoomCount = roomState.availableCount.classic + 1;
-                  updateObj = {
-                    ...roomState,
-                    availableCount: {
-                      ...roomState.availableCount,
-                      classic: updatedRoomCount,
-                    },
-                  };
-                } else if (roomType === "精緻房") {
-                  updatedRoomCount = roomState.availableCount.delicate + 1;
-                  updateObj = {
-                    ...roomState,
-                    availableCount: {
-                      ...roomState.availableCount,
-                      delicate: updatedRoomCount,
-                    },
-                  };
-                } else if (roomType === "豪華房") {
-                  updatedRoomCount = roomState.availableCount.luxury + 1;
-                  updateObj = {
-                    ...roomState,
-                    availableCount: {
-                      ...roomState.availableCount,
-                      luxury: updatedRoomCount, // 修正此處的錯誤
-                    },
-                  };
-                }
+      //           // 判斷是哪一個房型
+      //           if (roomType === "經典房") {
+      //             updatedRoomCount = roomState.availableCount.classic + 1;
+      //             updateObj = {
+      //               ...roomState,
+      //               availableCount: {
+      //                 ...roomState.availableCount,
+      //                 classic: updatedRoomCount,
+      //               },
+      //             };
+      //           } else if (roomType === "精緻房") {
+      //             updatedRoomCount = roomState.availableCount.delicate + 1;
+      //             updateObj = {
+      //               ...roomState,
+      //               availableCount: {
+      //                 ...roomState.availableCount,
+      //                 delicate: updatedRoomCount,
+      //               },
+      //             };
+      //           } else if (roomType === "豪華房") {
+      //             updatedRoomCount = roomState.availableCount.luxury + 1;
+      //             updateObj = {
+      //               ...roomState,
+      //               availableCount: {
+      //                 ...roomState.availableCount,
+      //                 luxury: updatedRoomCount, // 修正此處的錯誤
+      //               },
+      //             };
+      //           }
 
-                // 發送 PATCH 請求
-                return axios.patch(
-                  `${_url}/roomStates/${roomState.id}`,
-                  updateObj
-                );
-              });
+      //           // 發送 PATCH 請求
+      //           return axios.patch(
+      //             `${_url}/roomStates/${roomState.id}`,
+      //             updateObj
+      //           );
+      //         });
 
-              // 使用 Promise.all 發送所有 PATCH 請求
-              Promise.all(patchRequests)
-                .then((responses) => {
-                  // 在所有請求完成後執行的處理
-                  console.log("成功修改房況");
-                  console.log(responses);
+      //         // 使用 Promise.all 發送所有 PATCH 請求
+      //         Promise.all(patchRequests)
+      //           .then((responses) => {
+      //             // 在所有請求完成後執行的處理
+      //             console.log("成功修改房況");
+      //             console.log(responses);
 
-                  // 在這裡執行其他相關的邏輯，例如取消訂單等
-                  // //重新整理網頁
-                  window.location.reload();
-                })
-                .catch((error) => {
-                  console.error("Error modifying room states:", error);
-                });
-            })
-            .catch((err) => {
-              console.log(err);
-              console.log("修改房況錯誤");
-            });
-        })
-        .catch((err) => {
-          console(err);
-          console.log("取消訂單失敗");
-        });
+      //             // 在這裡執行其他相關的邏輯，例如取消訂單等
+      //             // //重新整理網頁
+      //             window.location.reload();
+      //           })
+      //           .catch((error) => {
+      //             console.error("Error modifying room states:", error);
+      //           });
+      //       })
+      //       .catch((err) => {
+      //         console.log(err);
+      //         console.log("修改房況錯誤");
+      //       });
+      //   })
+      //   .catch((err) => {
+      //     console(err);
+      //     console.log("取消訂單失敗");
+      //   });
 
       //取得對應資料的 checkInDay 等等 變更房型可預約狀態 都要用到
       let checkInDay = element.getAttribute("data-checkInDate");
