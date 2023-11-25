@@ -317,6 +317,9 @@ function cancelBooking() {
       let cancelId = element.getAttribute("data-bookingsId");
       console.log(cancelId);
 
+      //新增歷史紀錄
+      // axios.post(`${_url}/600/bookings/${cancelId}`)
+
       //修改 bookins 該 id 訂單資料
       axios
         .patch(
@@ -335,7 +338,7 @@ function cancelBooking() {
           // 修改房型可預約狀態
           axios
             .get(
-              `http://localhost:3001/roomStates?date_gte=${checkInDay}&date_lte=${checkOutDay}`
+              `${_url}/roomStates?date_gte=${checkInDay}&date_lte=${checkOutDay}`
             )
             .then((res) => {
               const roomStatesData = res.data;
@@ -379,7 +382,7 @@ function cancelBooking() {
 
                 // 發送 PATCH 請求
                 return axios.patch(
-                  `http://localhost:3001/roomStates/${roomState.id}`,
+                  `${_url}/roomStates/${roomState.id}`,
                   updateObj
                 );
               });
