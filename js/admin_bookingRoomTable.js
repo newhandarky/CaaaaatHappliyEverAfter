@@ -15,6 +15,7 @@ import c3 from "c3";
 const bookingMonth = document.querySelector(".bookingMonth");
 const before = document.querySelector(".before");
 const after = document.querySelector(".after");
+const btnReload = document.querySelector(".btnReload");
 
 /*------------------------------------*\
     變數
@@ -116,4 +117,8 @@ after.addEventListener("click", function () {
     let month = moment(localStorage.getItem("thisMonth")).add(1, "month").format("YYYY-MM");
     localStorage.setItem("thisMonth", month);
     location.reload();  // 切換月份重整網頁
+})
+
+btnReload.addEventListener("click", function(){
+    location.reload();
 })

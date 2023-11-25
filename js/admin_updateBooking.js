@@ -45,30 +45,25 @@ const bookingPromise = axios.get(`${_url}/660/bookings/${localStorage.getItem('b
 // 取得客房資料
 const roomPromise = axios.get(`${_url}/660/rooms/`, headerObj)
 // 取得每日房況資料
-const roomStatesPromise = axios.get(`${_url}/660/roomstates/`, headerObj)
-
+const roomStatesPromise = axios.get(`${_url}/660/roomstates/`, headerObj);
 const catsPromise = axios.get(`${_url}/660/cats`, headerObj)
+const userPromise = axios.get(`${_url}/660/users/${localStorage.getItem("bookingUserId")}`, headerObj)
 
-Promise.all([bookingPromise, roomPromise, roomStatesPromise, catsPromise])
+Promise.all([bookingPromise, roomPromise, roomStatesPromise, catsPromise, userPromise])
     .then(function (results) {
         const bookingObj = results[0].data;
         const roomObj = results[1].data;
         const roomStatesObj = results[2].data;
         const catsObj = results[3].data;
-
-        const userObj = axios.get(`${_url}/660/users/${bookingObj.userId}`, headerObj)
-            .then(function (res) {
-                renderData(bookingObj, roomObj, res.data)
-                return res.data;
-            }).catch(function (err) {
-                console.log(err);
-                // reLogin(err.response.data);
-            })
+        const userObj = results[4].data;
 
         // console.log(bookingObj);
         // console.log(roomObj);
         // console.log(roomStatesObj);
         // console.log(catsObj);
+        // console.log(userObj);
+
+        renderData(bookingObj, roomObj, userObj);
 
         let getCatsArr = [];
         catsObj.forEach(function (item) {
@@ -95,11 +90,6 @@ Promise.all([bookingPromise, roomPromise, roomStatesPromise, catsPromise])
                 }
             })
         })
-
-        // 取消予已退房訂單不可再修改
-        if (bookingObj.state === "已取消" || bookingObj.state === "已退房") {
-            btnUpdate.setAttribute("disabled", true);
-        }
 
         // 點擊送出儲存時
         btnSave.addEventListener("click", function () {
@@ -184,14 +174,15 @@ Promise.all([bookingPromise, roomPromise, roomStatesPromise, catsPromise])
                 updateBooking(bookingObj);
                 renderData(bookingObj, roomObj, userObj);
                 btnToggle();
+                toggleData();
             } else {
                 roomStateUpdate = [];
                 btnToggle();
                 roomNotEnough();
                 renderData(bookingObj, roomObj, userObj);
+                toggleData();
             }
         })
-
 
         // 點擊取消訂單時
         btnCancel.addEventListener("click", function () {
@@ -214,7 +205,7 @@ Promise.all([bookingPromise, roomPromise, roomStatesPromise, catsPromise])
 
                             renderData(bookingObj, roomObj, userObj);
                             btnToggle();    // 訂單送出取消後切換按鈕狀態
-
+                            toggleData();
                             let newRoomStates = [];                 // 儲存變更後的日期狀態物件
 
                             // 將取消的日期房間數歸還到原本的相對應的房型屬性
@@ -250,7 +241,7 @@ Promise.all([bookingPromise, roomPromise, roomStatesPromise, catsPromise])
                             })
                         }).catch(function (err) {
                             console.log(err);
-                            // reLogin(err.response.data);
+                            reLogin(err.response.data);
                         })
                 }
             });
@@ -285,7 +276,7 @@ Promise.all([bookingPromise, roomPromise, roomStatesPromise, catsPromise])
                     renderData(res.data, roomObj, userObj)  // 渲染更新後的資料
                 }).catch(function (err) {
                     console.log(err);
-                    // reLogin(err.response.data);
+                    reLogin(err.response.data);
                 })
         }
 
@@ -296,14 +287,12 @@ Promise.all([bookingPromise, roomPromise, roomStatesPromise, catsPromise])
                 .then(function (res) {
                     const newBookingObj = res.data;
                     newBookingObj.history.push(bookingHistoryObj.id);       // 將更新履歷寫入原本訂單的history陣列內
-
                     updateBooking(newBookingObj);       // 將更新後的訂單寫回原訂單資料
                 }).catch(function (err) {
                     console.log(err);
-                    // reLogin(err.response.data);
+                    reLogin(err.response.data);
                 })
         }
-
 
         // 根據修改狀態新增bookingHistory
         function addBookingHistory(bookingHistoryObj) {
@@ -312,13 +301,26 @@ Promise.all([bookingPromise, roomPromise, roomStatesPromise, catsPromise])
                     saveHistoryBackBooking(res.data);
                 }).catch(function (err) {
                     console.log(err);
-                    // reLogin(err.response.data);
+                    reLogin(err.response.data);
                 })
         }
+
+        // 點擊修改訂單按鈕
+        btnUpdate.addEventListener("click", function () {
+            btnToggle();
+            toggleData();// 訂單資料切換是否可編輯狀態
+        })
+
+        // 點擊取消修改按鈕
+        btnUpdateCancel.addEventListener("click", function () {
+            btnToggle();
+            toggleData();
+            renderData(bookingObj, roomObj, userObj);   // 還原訂單狀態
+        })
     })
     .catch(function (err) {
         console.log(err);
-        // reLogin(err.response.data);    
+        reLogin(err.response.data);
     });
 /*------------------------------------*\
     function
@@ -348,7 +350,7 @@ function getHistory(bookingHistoryArr) {
             })
             .catch(err => {
                 console.error(err);
-                // reLogin(err.response.data);
+                reLogin(err.response.data);
             });
     }
 
@@ -403,6 +405,10 @@ function renderData(bookingObj, roomObj, userObj) {
             totalPrice.value = item.price * bookingObj.quantity + (bookingObj.cats.length - 1) * 300 * bookingObj.quantity;
         }
     })
+    // 取消予已退房訂單不可再修改
+    if (bookingObj.state === "已取消" || bookingObj.state === "已退房") {
+        btnUpdate.setAttribute("disabled", true);
+    }
 }
 
 // 切換訂單按鈕狀態
@@ -574,17 +580,6 @@ document.querySelectorAll("a").forEach(function (item) {
     })
 })
 
-// 點擊修改訂單按鈕
-btnUpdate.addEventListener("click", function () {
-    btnToggle();
-    toggleData();// 訂單資料切換是否可編輯狀態
-})
-
-// 點擊取消修改按鈕
-btnUpdateCancel.addEventListener("click", function () {
-    btnToggle();
-    renderData(bookingObj, roomObj, userObj);   // 還原訂單狀態
-})
 
 // 點擊返回列表時
 btnBack.addEventListener("click", function () {
