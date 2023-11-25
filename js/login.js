@@ -10,6 +10,7 @@ function login(userAccount) {
   axios
     .post(`${_url}/login`, userAccount)
     .then((res) => {
+      console.log(res.data);
       let { user, accessToken } = res.data;
       //獲得的用戶資料存入 localStorage
       let userTokenAndData = {
@@ -29,12 +30,24 @@ function login(userAccount) {
         "admin"
       ) {
         // 將所需資料儲存後轉址到後台
-        localStorage.setItem("userRole", JSON.parse(localStorage.getItem("userTokenAndData")).user.role);
-        localStorage.setItem("userName", JSON.parse(localStorage.getItem("userTokenAndData")).user.name);
-        localStorage.setItem("userId", JSON.parse(localStorage.getItem("userTokenAndData")).user.id);
-        localStorage.setItem("userLoginToken", JSON.parse(localStorage.getItem("userTokenAndData")).accessToken);
+        localStorage.setItem(
+          "userRole",
+          JSON.parse(localStorage.getItem("userTokenAndData")).user.role
+        );
+        localStorage.setItem(
+          "userName",
+          JSON.parse(localStorage.getItem("userTokenAndData")).user.name
+        );
+        localStorage.setItem(
+          "userId",
+          JSON.parse(localStorage.getItem("userTokenAndData")).user.id
+        );
+        localStorage.setItem(
+          "userLoginToken",
+          JSON.parse(localStorage.getItem("userTokenAndData")).accessToken
+        );
         localStorage.removeItem("userTokenAndData");
-        window.location.href = "./admin_index.html"; 
+        window.location.href = "./admin_index.html";
       } else {
         window.location.href = "./index.html";
       }

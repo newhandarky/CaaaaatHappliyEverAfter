@@ -24,18 +24,18 @@ function renderData() {
   let str = ``;
   data.forEach(function (item) {
     str += `<tr>
-    <td><img src="https://fakeimg.pl/150/" /></td>
+    <td><img src="${item.imageUrl}" alt="${item.name}圖片"/></td>
     <td>${item.name}</td>
     <td>$${item.price}</td>
     <td>1</td>
     <td>
         <a href="./admin_roomsEditRoom.html?id=${item.id}"
-          ><span class="material-symbols-outlined fs-2 text-dark">
+          ><span class="material-symbols-outlined fs-2 text-primary">
             edit_square
           </span></a
         >
-        <a href="./admin_roomsAddRoom.html"
-          ><span class="material-symbols-outlined fs-2 text-dark">
+        <a href=""
+          ><span class="material-symbols-outlined fs-2 text-primary">
             delete
           </span></a
         >

@@ -15,40 +15,71 @@ function backToLogin() {
   location.href = "admin_login.html";
 }
 
+// 初始化畫面
+function init() {
+  // 頭像資料取得
+  let id = parseInt(localStorage.getItem("userId"));
+  axios.get(`${_url}/users/${id}`).then(function (res) {
+    renderAvatar(res);
+  });
+
+  // 帳號資料取得
+  axios.get(`${_url}/users?role=admin`).then(function (res) {
+    let data = res.data;
+    renderAccount(data);
+  });
+
+  // 房型資料取得
+  axios.get(`${_url}/rooms`).then(function (res) {
+    let data = res.data;
+    renderRoom(data);
+  });
+}
+
+init();
+
 // 頭像渲染
-let id = parseInt(localStorage.getItem("userId"));
-axios.get(`${_url}/users/${id}`).then(function (res) {
+function renderAvatar(res) {
   userImage.setAttribute("src", res.data.userPhoto);
   welcomeText.textContent = `登入人員：${res.data.name}歡迎您回來`;
-});
+}
 
 // 帳號狀態渲染
-axios.get(`${_url}/users?role=admin`).then(function (res) {
-  let data = res.data;
+function renderAccount(data) {
   let str = ``;
-  data.forEach(function (item) {
-    str += `<tr>
-        <td>
-          <div class="d-flex align-items-center">
-            <span class="material-symbols-outlined me-2">
-              account_circle
-            </span>
-            <span>${item.name}</span>
-          </div>
-        </td>
-        <td>
-          <div class="d-flex align-items-center">
-            <span class="material-symbols-outlined me-2"> schedule </span>
-            <span>${item.lastLoginTime}</span>
-          </div>
-        </td>
-      </tr>`;
-  });
-  indexAccountTbody.innerHTML = str;
-});
 
-axios.get(`${_url}/rooms`).then(function (res) {
-  let data = res.data;
+  // 解決後台首頁破版問題，所以只顯示四筆資料
+  let count = 0;
+  for (const item of data) {
+    str += `<tr>
+          <td>
+            <div class="d-flex align-items-center">
+              <span class="material-symbols-outlined me-2">
+                account_circle
+              </span>
+              <span>${item.name}</span>
+            </div>
+          </td>
+          <td>
+            <div class="d-flex align-items-center">
+              <span class="material-symbols-outlined me-2"> schedule </span>
+              <span>${item.lastLoginTime}</span>
+            </div>
+          </td>
+        </tr>`;
+
+    count++;
+
+    if (count === 4) {
+      break; // 当达到指定次数时中断循环
+    }
+  }
+
+  indexAccountTbody.innerHTML = str;
+}
+
+// 房型渲染
+function renderRoom(data) {
   let str = ``;
   data.forEach(function (item) {
     str += `<tr>
@@ -57,8 +88,7 @@ axios.get(`${_url}/rooms`).then(function (res) {
     </tr>`;
   });
   indexRoomTbody.innerHTML = str;
-});
-
+}
 /*------------------------------------*\
     儲存所需資料
 \*------------------------------------*/

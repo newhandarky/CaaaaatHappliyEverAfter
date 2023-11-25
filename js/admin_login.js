@@ -13,7 +13,7 @@ const adminLoginBtn = document.querySelector(".adminLoginBtn");
 // console.log(adminLoginPassword);
 
 let obj = {};
-adminLoginBtn.addEventListener("click", function () {
+adminLoginBtn.addEventListener("click", function (e) {
   if (
     adminLoginAccount.value.length > 21 ||
     adminLoginAccount.value.length < 21 ||
@@ -47,12 +47,11 @@ adminLoginBtn.addEventListener("click", function () {
   obj.email = adminLoginAccount.value;
   obj.password = adminLoginPassword.value;
 
-  let id = parseInt(adminLoginAccount.value.slice(9, 11));
+  let id = parseInt(adminLoginAccount.value.slice(9, 11), 10);
   // 第一層 axios 先判斷是否為 admin，不是就導回首頁
   axios
     .get(`${_url}/users/10${id}`)
     .then(function (res) {
-      console.log(res);
       if (res.data.role !== "admin") {
         location.href = "index.html";
       }
@@ -93,7 +92,8 @@ adminLoginBtn.addEventListener("click", function () {
           localStorage.setItem("userLoginTime", loginTimeString);
 
           // 暫存存到 json-server 中 -> 時效 1 小時
-          axios.patch(`${_url}/users/${id}`, {
+          // 注意 users 一定要指定 10XX 才能選擇到對應該管理員頁面
+          axios.patch(`${_url}/users/10${id}`, {
             lastLoginTime: `${loginTimeString}`,
           });
         })
