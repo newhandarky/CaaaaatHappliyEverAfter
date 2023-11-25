@@ -13,16 +13,124 @@
           <%- include('./layout/aside'); -%>
         </div>
         <div class="col-lg-9">
-          <h1>這是評價頁面</h1>
+          <div>
+            <h1>訂單資訊</h1>
+            <div class="d-flex flex-wrap">
+              <ul class="me-5">
+                <li class="my-3">入住時間：2023-11-25</li>
+                <li class="my-3">退房時間：2023-11-27</li>
+                <li class="my-3">入住房型：精緻房</li>
+              </ul>
+              <ul class="me-5">
+                <li class="my-3">貓咪數量：4隻貓</li>
+                <li class="my-3">總金額：4500 NT</li>
+                <li class="my-3">訂房編號：001</li>
+              </ul>
+            </div>
+            <hr />
+            <h3>給個星星評價與回饋吧!</h3>
+            <!-- 星星功能 -->
+            <div class="star-rating">
+              <button class="star" data-rating="1">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="50"
+                  height="50"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#000"
+                  stroke-width="1"
+                >
+                  <path
+                    d="M12 2l1.2 3.6h3.8l-3 2.4 1.2 3.6-3-2.4-3 2.4 1.2-3.6-3-2.4h3.8z"
+                  />
+                </svg>
+              </button>
+              <button class="star" data-rating="2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="50"
+                  height="50"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#000"
+                  stroke-width="1"
+                >
+                  <path
+                    d="M12 2l1.2 3.6h3.8l-3 2.4 1.2 3.6-3-2.4-3 2.4 1.2-3.6-3-2.4h3.8z"
+                  />
+                </svg>
+              </button>
+              <button class="star" data-rating="3">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="50"
+                  height="50"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#000"
+                  stroke-width="1"
+                >
+                  <path
+                    d="M12 2l1.2 3.6h3.8l-3 2.4 1.2 3.6-3-2.4-3 2.4 1.2-3.6-3-2.4h3.8z"
+                  />
+                </svg>
+              </button>
+              <button class="star" data-rating="4">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="50"
+                  height="50"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#000"
+                  stroke-width="1"
+                >
+                  <path
+                    d="M12 2l1.2 3.6h3.8l-3 2.4 1.2 3.6-3-2.4-3 2.4 1.2-3.6-3-2.4h3.8z"
+                  />
+                </svg>
+              </button>
+              <button class="star" data-rating="5">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="50"
+                  height="50"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#000"
+                  stroke-width="1"
+                >
+                  <path
+                    d="M12 2l1.2 3.6h3.8l-3 2.4 1.2 3.6-3-2.4-3 2.4 1.2-3.6-3-2.4h3.8z"
+                  />
+                </svg>
+              </button>
+            </div>
+            <form
+              class="evaluateForm d-flex flex-column justify-content-center"
+            >
+              <input
+                type="textarea"
+                class="textarea form-control"
+                placeholder="歡迎讓老闆知道貓主子這次的入住心得唷~"
+              />
+              <div class="primaryFill-btn-primary m-5">
+                <button id="evaluateBtn" type="submit" class="loginBtn h6">
+                  送出評價
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
-
 
     <%- include('./layout/footer'); -%>
 
     <script type="module" src="../main.js"></script>
     <script type="module" src="../js/navbar.js"></script>
     <script type="module" src="../js/aside.js"></script>
-    <script type="module" src="../js/importantNotice.js"></script>
+    <script type="module" src="../js/evaluateBooking.js"></script>
   </body>
 </html>
