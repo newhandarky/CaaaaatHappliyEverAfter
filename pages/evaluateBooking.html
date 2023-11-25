@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <%- include('./layout/header'); -%>
+    <div class="container p-0">
+      <div class="row min-vh-100">
+        <div class="col-lg-3 d-none d-lg-block">
+          <%- include('./layout/aside'); -%>
+        </div>
+        <div class="col-lg-9">
+          <h1>這是評價頁面</h1>
+      </div>
+    </div>
+
+
+    <%- include('./layout/footer'); -%>
+
+    <script type="module" src="../main.js"></script>
+    <script type="module" src="../js/navbar.js"></script>
+    <script type="module" src="../js/aside.js"></script>
+    <script type="module" src="../js/importantNotice.js"></script>
+  </body>
+</html>
