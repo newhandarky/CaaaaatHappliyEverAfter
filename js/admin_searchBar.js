@@ -41,7 +41,7 @@ function getBookingNum() {
         inputBookingNumber.value = "";              // 清空input
     } else if (inputBookingNumber.value !== "") {
         localStorage.setItem("bookingNum", inputBookingNumber.value);
-        location = "../pages/admin_updateBooking.html"
+        location = "admin_updateBooking.html"
     }
 }
 
@@ -84,7 +84,7 @@ btnDate.addEventListener("click", function () {
                 // 將起始與結束日期存入localStorage帶到下個頁面
                 localStorage.setItem("h2Content", `住房日期 <span class="text-primary">${startDate.format("YYYY-MM-DD")}</span> 到 <span class="text-primary">${endDate.format("YYYY-MM-DD")}</span> 的搜尋結果`);
                 localStorage.setItem("searchResult", JSON.stringify(resultBookings))
-                location = "../pages/admin_bookingSearch.html"
+                location = "admin_bookingSearch.html"
             }else{
                 Swal.fire({
                     title: "所查詢的日期無住房資料",

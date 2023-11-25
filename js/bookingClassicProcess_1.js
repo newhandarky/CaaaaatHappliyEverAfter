@@ -84,7 +84,7 @@ checkoutDate.addEventListener("change", function(e){
         let data = response.data;
         console.log(data)
         data.forEach(function(item){
-         if(item.availableCount.classic == 0){
+         if(item.availableCount.classic <= 0){
             Swal.fire(`${item.date}已無空房，請重新選擇`);
             return dateForm.reset();
             
@@ -132,4 +132,18 @@ flatpickr("#checkinDate", {
     minDate: currentDate,
     maxDate: "2024-02-29"
   });
+
+  //透過index快速訂房
+
+
+console.log(sessionStorage.getItem('indexBooking'));
+let indexBooking = JSON.parse(sessionStorage.getItem('indexBooking'));
+console.log(indexBooking);
+
+checkinDate.value = indexBooking[0].checkIn;
+checkoutDate.value = indexBooking[0].checkOut;
+console.log(checkinDate.value);
+console.log(checkoutDate.value);
+checkinDate.setAttribute('value',checkinDate.value) ;
+checkoutDate.setAttribute('value',checkinDate.value) ;
 

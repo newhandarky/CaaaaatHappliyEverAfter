@@ -33,7 +33,7 @@ function renderTable(bookingArr) {
     let str = "";
     bookingArr.forEach(function (item) {       // 
         str += `<tr>
-        <th class="text-nowrap border-0 text-center d-flex align-items-center justify-content-center" scope="row"><a class="bookingNum adminLink" data-bookingnum="${item.id}" href="../pages/admin_updateBooking.html">${item.id}</a></th>       
+        <th class="text-nowrap border-0 text-center d-flex align-items-center justify-content-center" scope="row"><a class="bookingNum adminLink" data-bookingnum="${item.id}" href="admin_updateBooking.html">${item.id}</a></th>       
         <td class="text-nowrap text-center">${item.user.name}</td>
         <td class="text-nowrap text-center">${item.checkIn}</td>
         <td class="text-nowrap text-center">${item.quantity}</td>

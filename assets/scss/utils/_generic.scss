@@ -144,6 +144,30 @@ body {
   }
 }
 
+.primaryFill-btn-primary02 {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 1px $primary02;
+  border-radius: 2rem;
+  padding: 0.3rem 1.2rem;
+  background-color: $primary02;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  button,
+  a {
+    width: 100%;
+    text-align: center;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    color: $primary !important;
+  }
+  &:hover {
+    border-color: rgb(252, 222, 203);
+    background-color: rgb(252, 222, 203);
+  }
+}
+
 .primaryStroke-btn-primary {
   display: inline-flex;
   justify-content: center;
@@ -189,6 +213,26 @@ body {
     a {
       color: $white !important;
     }
+  }
+}
+
+.primaryDisabled-btn-primary {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 1px $gray-200;
+  border-radius: 2rem;
+  padding: 0.3rem 1.2rem;
+  background-color: $gray-200;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  button,
+  a {
+    width: 100%;
+    text-align: center;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    color: $gray-500 !important;
   }
 }
 

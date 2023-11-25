@@ -5,7 +5,10 @@ import flatpickr from "flatpickr";
 import Swal from 'sweetalert2';
 
 
-//bookingDelicateProcess_1.html
+
+  
+
+//bookingLuxProcess_1.html
 //DOM
 let checkinDate = document.querySelector("#checkinDate");
 let checkoutDate = document.querySelector('#checkoutDate');
@@ -130,6 +133,16 @@ flatpickr("#checkinDate", {
     maxDate: "2024-02-29"
   });
 
+//透過index快速訂房
 
 
-  
+console.log(sessionStorage.getItem('indexBooking'));
+let indexBooking = JSON.parse(sessionStorage.getItem('indexBooking'));
+console.log(indexBooking);
+
+checkinDate.value = indexBooking[0].checkIn;
+checkoutDate.value = indexBooking[0].checkOut;
+console.log(checkinDate.value);
+console.log(checkoutDate.value);
+checkinDate.setAttribute('value',checkinDate.value) ;
+checkoutDate.setAttribute('value',checkinDate.value) ;
