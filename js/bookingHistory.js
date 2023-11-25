@@ -342,6 +342,27 @@ function graspAxiosData(catRoom_api, bookings_html) {
         bookingInfo.innerHTML += contentToAdd;
       });
 
+      //這邊做個判斷 如果 已經有評價 那評價訂單按鈕要改成 已評價 然後不能點擊
+
+      //抓到按鈕的 feedback 屬性
+
+      if (bookings_html === "已完成") {
+        const allEvaluateBookingBtn = document.querySelectorAll(
+          ".evaluateBookingBtn"
+        );
+
+        allEvaluateBookingBtn.forEach((element) => {
+          const allfeedbackData = element.getAttribute("data-feedback");
+          console.log(allfeedbackData);
+          if (allfeedbackData !== "") {
+            element.textContent = "已評價";
+            element.parentElement.className = "primaryDisabled-btn-primary";
+            console.log(element.textContent);
+            console.log(element.parentElement.className);
+          }
+        });
+      }
+
       // console.log(bookingInfo.innerHTML);
       if (bookingInfo.innerHTML === "") {
         bookingInfo.innerHTML = `<h1>沒有${filterType.value}資料</h1>`;
@@ -611,6 +632,7 @@ function evaluateBooking() {
         "evaluateBooking_Id",
         JSON.stringify(evaluateBooking_Id)
       );
+      window.location.href = "./evaluateBooking.html";
     });
   });
 }

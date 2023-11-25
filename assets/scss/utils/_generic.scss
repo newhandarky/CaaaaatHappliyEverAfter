@@ -227,6 +227,7 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
   button,
   a {
+    pointer-events: none;
     width: 100%;
     text-align: center;
     padding: 0;
