@@ -380,8 +380,64 @@ function cancelBooking() {
       let cancelId = element.getAttribute("data-bookingsId");
       console.log(cancelId);
 
-      //新增歷史紀錄
-      axios.post(`${_url}/600/bookings/${cancelId}`, {});
+      //取得按鈕上面的資料 要放入 post 用
+
+      //取得當前時間
+      function getFormattedDateTime() {
+        // 创建一个表示当前时间的 Date 对象
+        let currentDate = new Date();
+
+        // 获取年、月、日、小时、分钟和秒
+        let year = currentDate.getFullYear();
+        let month = ("0" + (currentDate.getMonth() + 1)).slice(-2); // 月份是从0开始的，所以要加1，并且保证两位数
+        let day = ("0" + currentDate.getDate()).slice(-2); // 保证两位数
+        let hours = ("0" + (currentDate.getHours() % 12 || 12)).slice(-2); // 小时取余12，保证在12小时制下，小时为1-12，并且保证两位数
+        let minutes = ("0" + currentDate.getMinutes()).slice(-2); // 保证两位数
+        let seconds = ("0" + currentDate.getSeconds()).slice(-2); // 保证两位数
+        let period = currentDate.getHours() >= 12 ? "pm" : "am"; // 判断是上午还是下午
+
+        // 将年月日小时分钟秒拼接成所需的格式
+        let formattedDateTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds} ${period}`;
+
+        // 返回格式化后的时间字符串
+        return formattedDateTime;
+      }
+
+      // 调用函数并输出结果
+      console.log("當前時間: " + getFormattedDateTime());
+
+      //取得對應資料的 checkInDay 等等 變更房型可預約狀態 都要用到
+      let checkInDay = element.getAttribute("data-checkInDate");
+      let checkOutDay = element.getAttribute("data-checkOutDate");
+      let roomType = element.getAttribute("data-roomType");
+      let remark = element.getAttribute("data-remark");
+      let quantity = element.getAttribute("data-quantity");
+      let price = element.getAttribute("data-price");
+      console.log(checkInDay, checkOutDay, roomType, remark, quantity, price);
+
+      // 新增歷史紀錄
+      axios
+        .post(`${_url}/bookingHistorys`, {
+          updateTime: getFormattedDateTime(),
+          state: "已取消",
+          quantity: quantity,
+          roomType: roomType,
+          price: price,
+          admin: "user",
+          remark: remark,
+          catNum: quantity,
+          checkIn: checkInDay,
+          checkOut: checkOutDay,
+          bookingsId: cancelId,
+        })
+        .then((res) => {
+          console.log(res);
+          console.log("新增歷史紀錄成功");
+        })
+        .catch((err) => {
+          console.log(err);
+          console.log("新增歷史紀錄失敗");
+        });
 
       //修改 bookins 該 id 訂單資料
       // axios
@@ -474,12 +530,6 @@ function cancelBooking() {
       //     console(err);
       //     console.log("取消訂單失敗");
       //   });
-
-      //取得對應資料的 checkInDay 等等 變更房型可預約狀態 都要用到
-      let checkInDay = element.getAttribute("data-checkInDate");
-      let checkOutDay = element.getAttribute("data-checkOutDate");
-      let roomType = element.getAttribute("data-roomType");
-      console.log(checkInDay, checkOutDay, roomType);
     });
   });
 }
