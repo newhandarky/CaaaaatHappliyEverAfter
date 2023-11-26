@@ -62,8 +62,9 @@ axios
   .then((res) => {
     const bookingData = res.data;
     console.log(bookingData);
-    const { checkIn, checkOut, room, quantity, price, id } = bookingData;
+    const { checkIn, checkOut, room, quantity, cats, price, id } = bookingData;
     const { name } = room;
+    const catQuantity = cats.length;
     //抓到DOM 畫面元素
     const checkInDom = document.querySelector("#checkIn");
     const checkOutDom = document.querySelector("#checkOut");
@@ -75,7 +76,7 @@ axios
     checkInDom.textContent = `入住時間：${checkIn}`;
     checkOutDom.textContent = `退房時間：${checkOut}`;
     roomTypeDom.textContent = `入住房型：${name}`;
-    catsQuantityDom.textContent = `貓咪數量：${quantity}隻貓`;
+    catsQuantityDom.textContent = `貓咪數量：${catQuantity}隻貓`;
     priceDom.textContent = `總金額：${price} NT`;
     bookingIdDom.textContent = `訂房編號：${id}`;
   })
