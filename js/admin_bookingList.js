@@ -74,7 +74,7 @@ Promise.all([bookingsRes])
                     </li>`
             let pagesStr = "";
             for (let i = 1; i <= pagesCount; i++) {
-                pagesStr += `<li class="page-item pageNum" data-page="${i}"><a class="page-link py-3 px-6">${i}</a></li>`
+                pagesStr += `<li class="page-item pageNum" data-page="${i}"><a class="page-link py-3 px-6"><span class="text-dark">${i}</span></a></li>`
             }
             getPages.innerHTML = previous + pagesStr + next;
             showPagination();
