@@ -17,14 +17,14 @@
             <h1>訂單資訊</h1>
             <div class="d-flex flex-wrap">
               <ul class="me-5">
-                <li class="my-3">入住時間：2023-11-25</li>
-                <li class="my-3">退房時間：2023-11-27</li>
-                <li class="my-3">入住房型：精緻房</li>
+                <li id="checkIn" class="my-3">入住時間：</li>
+                <li id="checkOut" class="my-3">退房時間：</li>
+                <li id="roomType" class="my-3">入住房型：</li>
               </ul>
               <ul class="me-5">
-                <li class="my-3">貓咪數量：4隻貓</li>
-                <li class="my-3">總金額：4500 NT</li>
-                <li class="my-3">訂房編號：001</li>
+                <li id="catsQuantity" class="my-3">貓咪數量：</li>
+                <li id="price" class="my-3">總金額：</li>
+                <li id="bookingId" class="my-3">訂房編號：</li>
               </ul>
             </div>
             <hr />
@@ -112,7 +112,7 @@
               class="evaluateForm d-flex flex-column justify-content-center align-items-center"
             >
               <textarea
-                id=""
+                id="comment"
                 cols="30"
                 rows="10"
                 class="textarea form-control"
@@ -120,7 +120,7 @@
               ></textarea>
 
               <div class="primaryFill-btn-primary m-5 evaluateBtn">
-                <button id="evaluateBtn" type="submit" class="loginBtn h6">
+                <button id="evaluateBtn" type="submit" class="evaluateBtn h6">
                   送出評價
                 </button>
               </div>
