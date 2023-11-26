@@ -29,6 +29,7 @@
             </div>
             <hr />
             <h3>給個星星評價與回饋吧!</h3>
+            <br />
             <!-- 星星功能 -->
             <div class="star-rating">
               <button class="star" data-rating="1">
@@ -108,14 +109,17 @@
               </button>
             </div>
             <form
-              class="evaluateForm d-flex flex-column justify-content-center"
+              class="evaluateForm d-flex flex-column justify-content-center align-items-center"
             >
-              <input
-                type="textarea"
+              <textarea
+                id=""
+                cols="30"
+                rows="10"
                 class="textarea form-control"
                 placeholder="歡迎讓老闆知道貓主子這次的入住心得唷~"
-              />
-              <div class="primaryFill-btn-primary m-5">
+              ></textarea>
+
+              <div class="primaryFill-btn-primary m-5 evaluateBtn">
                 <button id="evaluateBtn" type="submit" class="loginBtn h6">
                   送出評價
                 </button>

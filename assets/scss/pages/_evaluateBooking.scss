@@ -1,9 +1,12 @@
 .evaluateForm {
   .textarea {
     height: 380px;
+    padding-top: 10px; // 调整此值以满足您的需要
+    resize: none; // 禁止用户调整输入框大小
+    vertical-align: top; // 将文本垂直对齐到顶部
   }
-  button {
-    width: 100px;
+  .evaluateBtn {
+    width: 200px;
   }
 }
 

@@ -1,3 +1,10 @@
+// aside bar 顯示當前頁面
+// 因為有兩個 aside bar 所以要用 querySelectorAll
+const asideLocation = document.querySelectorAll("#bookingHistory");
+asideLocation.forEach((element) => {
+  element.classList.add("onThisPage");
+});
+
 //星星功能
 let getStars = 0; // 得到的星星數
 document.addEventListener("DOMContentLoaded", function () {
