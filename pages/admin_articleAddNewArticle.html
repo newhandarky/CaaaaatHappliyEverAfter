@@ -18,13 +18,13 @@
       <h2 class="mb-8">
         <a class="text-primary" href="./admin_index.html">首頁</a> >
         <a class="text-primary" href="./admin_article.html">文章管理</a> >
-        編輯文章
+        新增文章
       </h2>
       <form
         method="post"
-        class="articleEditWrap w-100 border border-2 rounded-2 border-gray p-8"
+        class="articleAddNewWrap w-100 border border-2 rounded-2 border-gray p-8"
       >
-        <h2 class="mb-8">編輯文章</h2>
+        <h2 class="mb-8">新增文章</h2>
         <div class="row p-8">
           <div class="col-12 mb-8">
             <label class="fs-4 me-1 mb-1" for="articleTitle">文章標題</label>
@@ -44,7 +44,7 @@
               placeholder="請輸入文章編號"
               class="articleId fs-5 py-1 ps-2"
               type="text"
-              disabled
+              required
             />
           </div>
           <div class="col-12 mb-8">
@@ -68,7 +68,7 @@
               class="text-white btn btn-warning me-4"
               href="./admin_article.html"
               role="button"
-              >取消變更</a
+              >取消新增</a
             >
             <!-- BS5 Modal 彈跳視窗主觸發鈕 -->
             <!-- 表單的觸發鈕 form handler type 要是 submit -->
@@ -76,7 +76,7 @@
               class="btn btn-success"
               type="submit"
               data-bs-toggle="modal"
-              data-bs-target="#saveArticle"
+              data-bs-target="#postArticle"
             >
               儲存變更
             </button>
@@ -88,7 +88,7 @@
     <!-- Modal 彈跳視窗主體 -->
     <div
       class="modal fade"
-      id="saveArticle"
+      id="postArticle"
       tabindex="-1"
       aria-labelledby="saveAccountLabel"
       aria-hidden="true"
@@ -123,6 +123,6 @@
       referrerpolicy="origin"
     ></script>
     <script type="module" src="../main.js"></script>
-    <script type="module" src="../js/admin_articleEditArticle.js"></script>
+    <script type="module" src="../js/admin_articleAddNewArticle.js"></script>
   </body>
 </html>

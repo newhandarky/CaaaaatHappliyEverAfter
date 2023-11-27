@@ -91,8 +91,8 @@ adminLoginBtn.addEventListener("click", function (e) {
           // 使用 localStorage 存儲登入時間
           localStorage.setItem("userLoginTime", loginTimeString);
 
-          // 暫存存到 json-server 中 -> 時效 1 小時
-          // 注意 users 一定要指定 10XX 才能選擇到對應該管理員頁面
+          // 暫存 lastLoginTime 存到 json-server 中 -> 時效 1 小時
+          // 注意 patch url，users 一定要指定 10XX 才能選擇到對應該管理員頁面
           axios.patch(`${_url}/users/10${id}`, {
             lastLoginTime: `${loginTimeString}`,
           });

@@ -88,5 +88,4 @@ function renderRoom(data) {
     </tr>`;
   });
   indexRoomTbody.innerHTML = str;
-<<<<<<< HEAD
 }

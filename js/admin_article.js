@@ -29,6 +29,7 @@ function renderData() {
 
   data.forEach(function (item) {
     // 登入者為 admin 才能觀看
+    // a href= ...?id=${item.id} 把使用者導到對應頁面
     if (localStorage.getItem("userRole") === "admin") {
       str += `<tr>
         <td>${localStorage.getItem("userName")}</td>
@@ -72,9 +73,9 @@ function updatePagination(totalItems) {
       init(currentPage);
     });
 
-    // 把pageItem這個DOM加入一個子節點pageLink
+    // 把 pageItem 這個 DOM 加入一個子節點 pageLink
     pageItem.appendChild(pageLink);
-    // 把paginationContainer這個DOM加入一個子節點pageItem，一層包一層
+    // 把 paginationContainer 這個 DOM 加入一個子節點pageItem，一層包一層
     paginationContainer.appendChild(pageItem);
   }
 }
