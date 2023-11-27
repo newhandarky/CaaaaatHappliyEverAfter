@@ -1,0 +1,33 @@
+.introduce_text {
+  height: 630px;
+  .title {
+    height: 384px;
+  }
+  .rooms_dogPaw {
+    width: 44px;
+    height: 44px;
+    &.dogPaw_right {
+      transform: rotate(45deg);
+    }
+  }
+  .text {
+    max-width: 855px;
+    padding: 1rem;
+    line-height: 2rem;
+    letter-spacing: 1px;
+  }
+  .catImg {
+    top: 70px;
+    .cat {
+      width: 220px;
+      .face {
+        left: 50%;
+        transform: translateX(-50%);
+        top: 50px;
+        &.closeEye {
+          top: 70px;
+        }
+      }
+    }
+  }
+}
