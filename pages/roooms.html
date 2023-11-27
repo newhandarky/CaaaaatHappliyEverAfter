@@ -10,9 +10,11 @@
 
     <div class="container">
       <div class="row g-0">
-        <div class="col-12">
-          <div class="introduce_text">
-            <div class="title d-flex justify-content-center align-items-center">
+        <div class="col-12 overflow-hidden">
+          <div class="introduce_text m-5">
+            <div
+              class="title d-flex flex-column justify-content-center align-items-center"
+            >
               <div>
                 <div class="d-flex justify-content-center align-items-center">
                   <img
@@ -32,63 +34,24 @@
                     歡迎光臨「貓の幸福」，我們致力於提供一個舒適、安全、充滿愛的貓咪度假勝地。每個客房都經過特別設計，滿足貓咪各種需求，包括舒適的床鋪、寬敞的遊戲空間以及新奇的貓玩具。我們專業的護理團隊會全程照顧您的貓咪，確保牠們在這裡度過愉快的時光。貓趣旅館更提供24小時的監控系統，確保每隻貓咪都能在安全的環境中玩耍休息。無論是短期旅行還是長期寄宿，「貓趣旅館」都是您貓咪的理想度假勝地。期待為您的貓咪打造一段愉快難忘的假期體驗！
                   </p>
                 </div>
-                <div class="d-flex justify-content-around">
+                <div class="catContainer d-flex justify-content-around">
                   <div class="catImg position-relative">
-                    <div class="cat cat_01 position-relative m-5">
-                      <img
-                        class="body img-fluid position-absolute"
-                        src="../assets/images/cat_fill_body.svg"
-                        alt="catImg"
-                      />
-                      <img
-                        class="face openEye img-fluid position-absolute"
-                        src="../assets/images/cat_fill_face_openEye.svg"
-                        alt="catImg"
-                      />
-                      <img
-                        class="face closeEye img-fluid position-absolute"
-                        src="../assets/images/cat_fill_face_closeEye.svg"
-                        alt="catImg"
-                      />
-                    </div>
+                    <div
+                      id="catMotion_01"
+                      class="cat cat_01 position-relative m-5"
+                    ></div>
                   </div>
                   <div class="catImg position-relative d-sm-block d-none">
-                    <div class="cat cat_01 position-relative m-5">
-                      <img
-                        class="body img-fluid position-absolute"
-                        src="../assets/images/cat_stroke_body.svg"
-                        alt="catImg"
-                      />
-                      <img
-                        class="face openEye img-fluid position-absolute"
-                        src="../assets/images/cat_stroke_face_openEye.svg"
-                        alt="catImg"
-                      />
-                      <img
-                        class="face closeEye img-fluid position-absolute"
-                        src="../assets/images/cat_stroke_face_closeEye.svg"
-                        alt="catImg"
-                      />
-                    </div>
+                    <div
+                      id="catMotion_02"
+                      class="cat cat_01 position-relative m-5"
+                    ></div>
                   </div>
                   <div class="catImg position-relative d-lg-block d-none">
-                    <div class="cat cat_01 position-relative m-5">
-                      <img
-                        class="body img-fluid position-absolute"
-                        src="../assets/images/cat_fill_body.svg"
-                        alt="catImg"
-                      />
-                      <img
-                        class="face openEye img-fluid position-absolute"
-                        src="../assets/images/cat_fill_face_openEye.svg"
-                        alt="catImg"
-                      />
-                      <img
-                        class="face closeEye img-fluid position-absolute"
-                        src="../assets/images/cat_fill_face_closeEye.svg"
-                        alt="catImg"
-                      />
-                    </div>
+                    <div
+                      id="catMotion_03"
+                      class="cat cat_01 position-relative m-5"
+                    ></div>
                   </div>
                 </div>
               </div>
@@ -102,5 +65,7 @@
 
     <script type="module" src="../main.js"></script>
     <script type="module" src="../js/navbar.js"></script>
+    <script type="module" src="../js/lottie.js"></script>
+    <script type="module" src="../js/rooms.js"></script>
   </body>
 </html>

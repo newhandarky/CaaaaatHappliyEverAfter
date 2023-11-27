@@ -1,7 +1,7 @@
 .introduce_text {
-  height: 630px;
+  max-height: 550px;
   .title {
-    height: 384px;
+    height: 100%;
   }
   .rooms_dogPaw {
     width: 44px;
@@ -16,17 +16,24 @@
     line-height: 2rem;
     letter-spacing: 1px;
   }
-  .catImg {
-    top: 70px;
-    .cat {
-      width: 220px;
-      .face {
-        left: 50%;
-        transform: translateX(-50%);
-        top: 50px;
-        &.closeEye {
-          top: 70px;
+
+  .catContainer {
+    .catImg {
+      top: 70px;
+      transition: 0.3s ease-in-out;
+      .cat {
+        width: 210px;
+        .face {
+          left: 50%;
+          transform: translateX(-50%);
+          top: 50px;
+          &.closeEye {
+            top: 70px;
+          }
         }
+      }
+      &:hover {
+        top: 0;
       }
     }
   }
