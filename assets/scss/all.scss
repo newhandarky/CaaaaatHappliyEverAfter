@@ -17,6 +17,9 @@
 // c3套件
 @import "../../node_modules/c3/c3.min.css";
 
+//plyr套件
+@import "../../node_modules/plyr/dist/plyr.css";
+
 @import "./layout/admin_header";
 @import "./layout/header";
 @import "./layout/aside";
@@ -33,6 +36,7 @@
 @import "./pages/catAdd.scss";
 @import "./pages/catEdit.scss";
 @import "./pages/bookingHistory.scss";
+@import "./pages/evaluateBooking.scss";
 @import "./pages/rooms.scss";
 @import "./pages/signup";
 @import "./pages/login";

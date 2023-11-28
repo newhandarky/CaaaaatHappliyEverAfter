@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FAQ</title>
+  </head>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
+  <body>
+    <%- include('./layout/header'); -%>
+
+
+
+    <div class="container">
+
+
+      <div class="row">
+        <div class="col-lg-2 col-12">
+          <section>
+            <ul style="padding-top: 50px;" class="d-flex  d-lg-block flex-wrap flex-lg-wrap justify-content-start">
+              <li class="py-2 pe-2">
+                <a href="article.html" class="d-flex align-item-center"><span class="material-symbols-outlined me-2">
+                contact_support
+                </span><p>常見問題</p></a>
+              </li>
+
+              <li class="py-2">
+                <a href="catArticle.html" class="d-flex align-item-center"><span class="material-symbols-outlined me-2">
+                info
+                </span>貓咪文章</a>
+              </li>
+
+              <!-- <li class="py-2">
+                <a href="catNews.html" class="d-flex align-item-center"><span class="material-symbols-outlined me-2">
+                favorite
+                </span>喵新聞</a>
+              </li>
+
+              <li class="py-2">
+                <a href="customerFeedback.html" class="d-flex align-item-center"><span class="material-symbols-outlined me-2">
+                reviews
+                </span>顧客反饋</a>
+              </li> -->
+            </ul>
+          </section>
+        </div>
+       <div class="col-lg-10 col-12" style="padding-top: 50px; padding-bottom: 50px;">
+         <div class="d-flex flex-start " >
+           <div class="text type01 d-lg-flex align-items-center">
+             <div class="d-inline-flex align-items-center">
+               <!-- <img class="img-fluid dogPaw mx-2" src="../assets/icons/dogPaw.svg" alt="dogPaw"> -->
+               <h1 class="d-none d-lg-block ">貓咪文章</h1>
+                <h2 class="d-lg-none" >貓咪文章</h2>
+             </div>
+           </div>
+         </div>
+
+         <div class="row d-flex justify-content-end">
+
+         <div class="col-lg-2 col-12">
+            <select class="form-select form-select-sm w-75 d-none d-lg-block" aria-label=".form-select-sm example">
+                <option selected disabled>請選擇關鍵字</option>
+                <option value="貓咪小幸福">貓咪小幸福</option>
+                <option value="貓咪奇幻世界">貓咪奇幻世界</option>
+                <option value="貓咪訓練">貓咪訓練</option>
+                <option value="如何飼養貓咪">如何飼養貓咪</option>
+              </select>
+         </div>
+        </div>
+    
+        
+ 
+
+         <!-- 文章區域 -->
+
+         <ul class="catArticleList">
+
+            <!-- <li>
+                <div class="card bg-transparent" >
+                    <div class="card-body d-flex justify-content-lg-between align-items-lg-center py-1">
+                      <h6 class="card-title mb-0">貓咪的魅力：生活中的小幸福</h6>
+                      <span class="material-symbols-outlined">
+                        expand_more
+                        </span>
+                    </div>
+                  </div>
+            </li> -->
+
+
+
+         </ul>
+       </div>
+
+     </div>
+     
+ 
+         
+       </div>
+
+    <%- include('./layout/footer'); -%>
+
+    <script type="module" src="../main.js"></script>
+    <script type="module" src="../js/navbar.js"></script>
+    <script type="module" src="../js/article.js"></script>
+  </body>
+</html>

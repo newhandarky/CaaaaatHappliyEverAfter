@@ -1,0 +1,50 @@
+.evaluateForm {
+  .textarea {
+    height: 380px;
+    padding-top: 10px; // 调整此值以满足您的需要
+    resize: none; // 禁止用户调整输入框大小
+    vertical-align: top; // 将文本垂直对齐到顶部
+  }
+  .evaluateBtn {
+    width: 200px;
+  }
+}
+
+//星星功能
+$star-size: 50px;
+$stroke-width: 1;
+
+.star-rating {
+  display: flex;
+}
+
+.star {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  outline: none;
+
+  svg {
+    width: $star-size;
+    height: $star-size;
+    fill: none; // Set fill to none for the entire SVG
+    stroke: #fa863e; // Set stroke color for the entire SVG
+    stroke-width: $stroke-width;
+    transition: fill 0.3s;
+  }
+
+  &:hover,
+  &.active,
+  &.pressed {
+    svg {
+      fill: #fa863e; // Change fill color on hover, when active, or when pressed
+      stroke: #fa863e; // Change stroke color on hover, when active, or when pressed
+    }
+  }
+
+  &:not(:last-child) {
+    margin-right: 10px;
+  }
+}

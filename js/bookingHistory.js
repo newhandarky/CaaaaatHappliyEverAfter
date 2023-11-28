@@ -1,6 +1,7 @@
 import axios from "axios";
 import { _url } from "./config";
 import { isLogin } from "./isLogin";
+import { selection } from "d3";
 
 // aside bar 顯示當前頁面
 // 因為有兩個 aside bar 所以要用 querySelectorAll
@@ -30,9 +31,11 @@ function graspAxiosData(catRoom_api, bookings_html) {
     checkOut,
     roomType,
     remark,
-    quantity,
+    catQuantity,
     price,
-    history
+    history,
+    bookingDate,
+    feedback
   ) => {
     return `<div class="orderBtns">
 <div id="btntype" class="primaryFill-btn-primary">
@@ -43,9 +46,11 @@ function graspAxiosData(catRoom_api, bookings_html) {
     data-checkOutDate="${checkOut}"
     data-roomType="${roomType}"
     data-remark="${remark}"
-    data-quantity="${quantity}"
+    data-catQuantity="${catQuantity}"
     data-price="${price}"
     data-history="${history}"
+    data-bookingDate="${bookingDate}"
+    data-feedback="${feedback}"
     class="cancelBookingBtn orderBtn"
   >
     取消訂單
@@ -60,9 +65,11 @@ function graspAxiosData(catRoom_api, bookings_html) {
     checkOut,
     roomType,
     remark,
-    quantity,
+    catQuantity,
     price,
-    history
+    history,
+    bookingDate,
+    feedback
   ) => {
     return `<div class="orderBtns">
 <div id="btntype" class="primaryFill-btn-primary02">
@@ -73,9 +80,11 @@ function graspAxiosData(catRoom_api, bookings_html) {
     data-checkOutDate="${checkOut}"
     data-roomType="${roomType}"
     data-remark="${remark}"
-    data-quantity="${quantity}"
+    data-catQuantity="${catQuantity}"
     data-price="${price}"
     data-history="${history}"
+    data-bookingDate="${bookingDate}"
+    data-feedback="${feedback}"
     class="evaluateBookingBtn orderBtn"
     
   >
@@ -91,9 +100,11 @@ function graspAxiosData(catRoom_api, bookings_html) {
     checkOut,
     roomType,
     remark,
-    quantity,
+    catQuantity,
     price,
-    history
+    history,
+    bookingDate,
+    feedback
   ) => {
     return `<div class="orderBtns">
 <div id="btntype" class="primaryDisabled-btn-primary">
@@ -104,9 +115,11 @@ function graspAxiosData(catRoom_api, bookings_html) {
     data-checkOutDate="${checkOut}"
     data-roomType="${roomType}"
     data-remark="${remark}"
-    data-quantity="${quantity}"
+    data-catQuantity="${catQuantity}"
     data-price="${price}"
     data-history="${history}"
+    data-bookingDate="${bookingDate}"
+    data-feedback="${feedback}"
     class="isCancelBookingBtn orderBtn"
   >
     已取消
@@ -120,7 +133,7 @@ function graspAxiosData(catRoom_api, bookings_html) {
     index,
     checkIn,
     checkOut,
-    quantity,
+    catQuantity,
     name,
     id,
     bookingDate,
@@ -174,7 +187,7 @@ function graspAxiosData(catRoom_api, bookings_html) {
               id="catsQuantity_${index}"
               class="mt-1 catsQuantity"
             >
-              ${quantity}隻貓
+              ${catQuantity}隻貓
             </h4>
           </div>
           <div class="d-flex">
@@ -224,88 +237,134 @@ function graspAxiosData(catRoom_api, bookings_html) {
           checkIn,
           checkOut,
           quantity,
+          cats,
           state,
           price,
           remark,
           room,
           history,
+          feedback,
           id,
         } = element;
         const { name } = room;
-        // console.log(bookingDate, checkIn, checkOut, state, price, name);
+        const catQuantity = cats.length;
+
+        // console.log(
+        //   bookingDate,
+        //   checkIn,
+        //   checkOut,
+        //   state,
+        //   price,
+        //   name,
+        //   remark,
+        //   room,
+        //   history,
+        //   feedback,
+        //   id
+        // );
 
         //抓到 DOM 並呈現資料
         const bookingInfo = document.getElementById("bookingInfo");
-        bookingInfo.innerHTML +=
-          bookings_html === "已預定"
-            ? mainBokingHTML(
-                index,
-                checkIn,
-                checkOut,
-                quantity,
-                name,
-                id,
-                bookingDate,
-                price,
-                cancelBookingHTML(
-                  index,
-                  id,
-                  checkIn,
-                  checkOut,
-                  name,
-                  remark,
-                  quantity,
-                  price,
-                  JSON.stringify(history)
-                )
-              )
-            : bookings_html === "已完成"
-            ? mainBokingHTML(
-                index,
-                checkIn,
-                checkOut,
-                quantity,
-                name,
-                id,
-                bookingDate,
-                price,
-                evaluateBookingHTML(
-                  index,
-                  id,
-                  checkIn,
-                  checkOut,
-                  name,
-                  remark,
-                  quantity,
-                  price,
-                  JSON.stringify(history)
-                )
-              )
-            : bookings_html === "已取消"
-            ? mainBokingHTML(
-                index,
-                checkIn,
-                checkOut,
-                quantity,
-                name,
-                id,
-                bookingDate,
-                price,
-                isCancelBookingHTML(
-                  index,
-                  id,
-                  checkIn,
-                  checkOut,
-                  name,
-                  remark,
-                  quantity,
-                  price,
-                  JSON.stringify(history)
-                ),
-                "isCancel"
-              )
-            : "";
+        let contentToAdd = "";
+
+        if (bookings_html === "已預定") {
+          contentToAdd = mainBokingHTML(
+            index,
+            checkIn,
+            checkOut,
+            catQuantity,
+            name,
+            id,
+            bookingDate,
+            price,
+            cancelBookingHTML(
+              index,
+              id,
+              checkIn,
+              checkOut,
+              name,
+              remark,
+              catQuantity,
+              price,
+              JSON.stringify(history),
+              bookingDate,
+              feedback
+            )
+          );
+        } else if (bookings_html === "已完成") {
+          contentToAdd = mainBokingHTML(
+            index,
+            checkIn,
+            checkOut,
+            catQuantity,
+            name,
+            id,
+            bookingDate,
+            price,
+            evaluateBookingHTML(
+              index,
+              id,
+              checkIn,
+              checkOut,
+              name,
+              remark,
+              catQuantity,
+              price,
+              JSON.stringify(history),
+              bookingDate,
+              feedback
+            )
+          );
+        } else if (bookings_html === "已取消") {
+          contentToAdd = mainBokingHTML(
+            index,
+            checkIn,
+            checkOut,
+            catQuantity,
+            name,
+            id,
+            bookingDate,
+            price,
+            isCancelBookingHTML(
+              index,
+              id,
+              checkIn,
+              checkOut,
+              name,
+              remark,
+              catQuantity,
+              price,
+              JSON.stringify(history),
+              bookingDate,
+              feedback
+            ),
+            "isCancel"
+          );
+        }
+
+        bookingInfo.innerHTML += contentToAdd;
       });
+
+      //這邊做個判斷 如果 已經有評價 那評價訂單按鈕要改成 已評價 然後不能點擊
+
+      //抓到按鈕的 feedback 屬性
+
+      if (bookings_html === "已完成") {
+        const allEvaluateBookingBtn = document.querySelectorAll(
+          ".evaluateBookingBtn"
+        );
+
+        allEvaluateBookingBtn.forEach((element) => {
+          const allfeedbackData = element.getAttribute("data-feedback");
+          console.log(allfeedbackData);
+          if (allfeedbackData !== "") {
+            element.textContent = "已評價";
+            element.parentElement.className = "primaryDisabled-btn-primary";
+            console.log(element.textContent);
+            console.log(element.parentElement.className);
+          }
+        });
+      }
 
       // console.log(bookingInfo.innerHTML);
       if (bookingInfo.innerHTML === "") {
@@ -314,6 +373,9 @@ function graspAxiosData(catRoom_api, bookings_html) {
 
       //掛載取消訂單功能
       cancelBooking();
+
+      //掛載評價訂單功能
+      evaluateBooking();
     })
     .catch((err) => {
       console.log(err);
@@ -351,19 +413,19 @@ function lodingBooking() {
   if (filterType.value == "已預定") {
     bookingInfo.innerHTML = "";
     graspAxiosData(
-      `${_url}/600/bookings?userId=${memberId}&state=已預定&_expand=user&_expand=room`,
+      `${_url}/600/bookings?userId=${memberId}&state=已預定&_expand=user&_expand=room&_sort=bookingDate&_order=desc`,
       filterType.value
     );
   } else if (filterType.value == "已完成") {
     bookingInfo.innerHTML = "";
     graspAxiosData(
-      `${_url}/600/bookings?userId=${memberId}&state=已退房&_expand=user&_expand=room`,
+      `${_url}/600/bookings?userId=${memberId}&state=已退房&_expand=user&_expand=room&_sort=bookingDate&_order=desc`,
       filterType.value
     );
   } else if (filterType.value == "已取消") {
     bookingInfo.innerHTML = "";
     graspAxiosData(
-      `${_url}/600/bookings?userId=${memberId}&state=已取消&_expand=user&_expand=room`,
+      `${_url}/600/bookings?userId=${memberId}&state=已取消&_expand=user&_expand=room&_sort=bookingDate&_order=desc`,
       filterType.value
     );
   } else {
@@ -561,4 +623,20 @@ function cancelBooking() {
   });
 }
 
+//評價訂單功能
+function evaluateBooking() {
+  const evaluateBookingBtn = document.querySelectorAll(".evaluateBookingBtn");
+  evaluateBookingBtn.forEach((element) => {
+    element.addEventListener("click", (e) => {
+      e.preventDefault();
+      const evaluateBooking_Id = element.getAttribute("data-bookingsid");
+
+      localStorage.setItem(
+        "evaluateBooking_Id",
+        JSON.stringify(evaluateBooking_Id)
+      );
+      window.location.href = "./evaluateBooking.html";
+    });
+  });
+}
 lodingBooking();
