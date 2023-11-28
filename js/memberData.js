@@ -9,6 +9,10 @@ asideLocation.forEach((element) => {
   element.classList.add("onThisPage");
 });
 
+//navAside 顯示 因為是會員功能頁面
+const navAside = document.querySelector("#navAside");
+navAside.classList.remove("d-none");
+
 //取得所需要的資療及DOM元素
 const userTokenAndData = JSON.parse(localStorage.getItem("userTokenAndData"));
 const { accessToken, user } = userTokenAndData;

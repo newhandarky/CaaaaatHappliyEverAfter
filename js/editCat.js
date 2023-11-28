@@ -10,6 +10,10 @@ asideLocation.forEach((element) => {
   element.classList.add("onThisPage");
 });
 
+//navAside 顯示 因為是會員功能頁面
+const navAside = document.querySelector("#navAside");
+navAside.classList.remove("d-none");
+
 //flatpickr 套件使用
 flatpickr("#catBirthday", {
   enableTime: false,
