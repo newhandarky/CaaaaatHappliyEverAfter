@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FAQ</title>
+    <title>貓咪文章</title>
   </head>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
   <body>
@@ -11,23 +11,29 @@
 
 
 
-    <div class="container">
+    <div class="container " style="padding-bottom: 180px;"   >
 
 
       <div class="row">
         <div class="col-lg-2 col-12">
           <section>
             <ul style="padding-top: 50px;" class="d-flex  d-lg-block flex-wrap flex-lg-wrap justify-content-start">
-              <li class="py-2 pe-2">
+              <li class="py-2 pe-2 ">
                 <a href="article.html" class="d-flex align-item-center"><span class="material-symbols-outlined me-2">
                 contact_support
-                </span><p>常見問題</p></a>
+                </span><p class="articleTag">常見問題</p></a>
+              </li>
+
+              <li class="py-2 pe-2">
+                <a href="catArticle.html" class="d-flex align-item-center"><span class="material-symbols-outlined me-2">
+                info
+                </span><p class="articleTag" style="color: #fa863e;">貓咪文章</p></a>
               </li>
 
               <li class="py-2">
-                <a href="catArticle.html" class="d-flex align-item-center"><span class="material-symbols-outlined me-2">
-                info
-                </span>貓咪文章</a>
+                <a href="customerFeedback.html" class="d-flex align-item-center"><span class="material-symbols-outlined me-2">
+                  thumb_up
+                  </span><p class="articleTag">顧客回饋</p></a>
               </li>
 
               <!-- <li class="py-2">
@@ -45,7 +51,7 @@
           </section>
         </div>
        <div class="col-lg-10 col-12" style="padding-top: 50px; padding-bottom: 50px;">
-         <div class="d-flex flex-start " >
+         <div class="d-flex justify-content-center justify-content-lg-start " style="padding-bottom: 24px;" >
            <div class="text type01 d-lg-flex align-items-center">
              <div class="d-inline-flex align-items-center">
                <!-- <img class="img-fluid dogPaw mx-2" src="../assets/icons/dogPaw.svg" alt="dogPaw"> -->
@@ -57,9 +63,10 @@
 
          <div class="row d-flex justify-content-end">
 
-         <div class="col-lg-2 col-12">
-            <select class="form-select form-select-sm w-75 d-none d-lg-block" aria-label=".form-select-sm example">
-                <option selected disabled>請選擇關鍵字</option>
+         <div class="col-lg-3 col-12 mb-5">
+            <select class="form-select form-select-sm w-75 d-none d-lg-block" aria-label=".form-select-sm example" id="selector">
+                <option selected disabled>關鍵字</option>
+                <option value="全部">全部</option>
                 <option value="貓咪小幸福">貓咪小幸福</option>
                 <option value="貓咪奇幻世界">貓咪奇幻世界</option>
                 <option value="貓咪訓練">貓咪訓練</option>
@@ -73,7 +80,7 @@
 
          <!-- 文章區域 -->
 
-         <ul class="catArticleList">
+         <ul class="catArticleList col-lg-10 col-12"  >
 
             <!-- <li>
                 <div class="card bg-transparent" >
