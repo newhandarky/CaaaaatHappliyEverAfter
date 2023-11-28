@@ -4,9 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <script type="module" crossorigin src="/CaaaaatHappliyEverAfter/assets/config-1ccbba12.js"></script>
-    <script type="module" crossorigin src="/CaaaaatHappliyEverAfter/assets/navbar-0e9c41dc.js"></script>
-    <link rel="stylesheet" href="/CaaaaatHappliyEverAfter/assets/config-454d03e0.css">
+    <script type="module" crossorigin src="/CaaaaatHappliyEverAfter/assets/roooms-8f301824.js"></script>
+    <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/config-d9eb516d.js">
+    <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/navbar-ecc42be7.js">
+    <link rel="stylesheet" href="/CaaaaatHappliyEverAfter/assets/config-3629e609.css">
   </head>
   <body>
     <header class="header navbar navbar-expand-lg p-0">
@@ -33,7 +34,7 @@
           >
         </li>
         <li class="nav-item mx-3 my-3 roooms">
-          <a id="roooms" class="nav-link p-0" href="roooms.html"
+          <a id="rooms" class="nav-link p-0" href="roooms.html"
             >旅館介紹</a
           >
         </li>
@@ -95,8 +96,69 @@
   </div>
 </header>
 
-    <h1>這是客房介紹頁面</h1>
-
+    <div class="container">
+      <div class="row g-0">
+        <div class="col-12 overflow-hidden">
+          <div class="introduce_text m-5">
+            <div
+              class="title d-flex flex-column justify-content-center align-items-center"
+            >
+              <div>
+                <div class="d-flex justify-content-center align-items-center">
+                  <img
+                    class="img-fluid rooms_dogPaw dogPaw_left mx-2"
+                    src="/CaaaaatHappliyEverAfter/assets/dogPaw-d9d49432.svg"
+                    alt="dogPaw"
+                  />
+                  <div class="d-inline-flex flex-wrap justify-content-center"><h1 class="titleText">歡迎來到</h1><h1 class="titleText">貓の幸福</h1></div>
+                  
+                  <img
+                    class="img-fluid rooms_dogPaw dogPaw_right mx-2"
+                    src="/CaaaaatHappliyEverAfter/assets/dogPaw-d9d49432.svg"
+                    alt="dogPaw"
+                  />
+                </div>
+                <div class="text">
+                  <p>
+                    歡迎光臨「貓の幸福」，我們致力於提供一個舒適、安全、充滿愛的貓咪度假勝地。每個客房都經過特別設計，滿足貓咪各種需求，包括舒適的床鋪、寬敞的遊戲空間以及新奇的貓玩具。我們專業的護理團隊會全程照顧您的貓咪，確保牠們在這裡度過愉快的時光。貓趣旅館更提供24小時的監控系統，確保每隻貓咪都能在安全的環境中玩耍休息。無論是短期旅行還是長期寄宿，「貓趣旅館」都是您貓咪的理想度假勝地。期待為您的貓咪打造一段愉快難忘的假期體驗！
+                  </p>
+                </div>
+                <div class="catContainer d-flex justify-content-around">
+                  <div class="catImg position-relative">
+                    <div
+                      id="catMotion_01"
+                      class="cat cat_01 position-relative"
+                    ></div>
+                  </div>
+                  <div class="catImg position-relative d-sm-block d-none">
+                    <div
+                      id="catMotion_02"
+                      class="cat cat_01 position-relative"
+                    ></div>
+                  </div>
+                  <div class="catImg position-relative d-lg-block d-none">
+                    <div
+                      id="catMotion_03"
+                      class="cat cat_01 position-relative"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row g-0">
+        <div class="col-12 p-0">
+          <video id="myVideo" autoplay loop controls="false">
+            <!-- 請插入你的影片文件路徑 -->
+            <source src="/CaaaaatHappliyEverAfter/assets/catVideo-bd8c79cd.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+      </div>
+    </div>
     <footer class="footer d-flex justify-content-center align-items-center">
   <main class="d-inline-flex flex-column align-items-center">
     <a href="index.html"
@@ -128,6 +190,9 @@
 </footer>
 
     
+    
+    
+    <script src="../node_modules/plyr/dist/plyr.js"></script>
     
   </body>
 </html>
