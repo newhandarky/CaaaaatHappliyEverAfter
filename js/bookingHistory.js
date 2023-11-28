@@ -31,7 +31,7 @@ function graspAxiosData(catRoom_api, bookings_html) {
     checkOut,
     roomType,
     remark,
-    quantity,
+    catQuantity,
     price,
     history,
     bookingDate,
@@ -46,7 +46,7 @@ function graspAxiosData(catRoom_api, bookings_html) {
     data-checkOutDate="${checkOut}"
     data-roomType="${roomType}"
     data-remark="${remark}"
-    data-quantity="${quantity}"
+    data-catQuantity="${catQuantity}"
     data-price="${price}"
     data-history="${history}"
     data-bookingDate="${bookingDate}"
@@ -65,7 +65,7 @@ function graspAxiosData(catRoom_api, bookings_html) {
     checkOut,
     roomType,
     remark,
-    quantity,
+    catQuantity,
     price,
     history,
     bookingDate,
@@ -80,7 +80,7 @@ function graspAxiosData(catRoom_api, bookings_html) {
     data-checkOutDate="${checkOut}"
     data-roomType="${roomType}"
     data-remark="${remark}"
-    data-quantity="${quantity}"
+    data-catQuantity="${catQuantity}"
     data-price="${price}"
     data-history="${history}"
     data-bookingDate="${bookingDate}"
@@ -100,7 +100,7 @@ function graspAxiosData(catRoom_api, bookings_html) {
     checkOut,
     roomType,
     remark,
-    quantity,
+    catQuantity,
     price,
     history,
     bookingDate,
@@ -115,7 +115,7 @@ function graspAxiosData(catRoom_api, bookings_html) {
     data-checkOutDate="${checkOut}"
     data-roomType="${roomType}"
     data-remark="${remark}"
-    data-quantity="${quantity}"
+    data-catQuantity="${catQuantity}"
     data-price="${price}"
     data-history="${history}"
     data-bookingDate="${bookingDate}"
@@ -133,7 +133,7 @@ function graspAxiosData(catRoom_api, bookings_html) {
     index,
     checkIn,
     checkOut,
-    quantity,
+    catQuantity,
     name,
     id,
     bookingDate,
@@ -187,7 +187,7 @@ function graspAxiosData(catRoom_api, bookings_html) {
               id="catsQuantity_${index}"
               class="mt-1 catsQuantity"
             >
-              ${quantity}隻貓
+              ${catQuantity}隻貓
             </h4>
           </div>
           <div class="d-flex">
@@ -237,6 +237,7 @@ function graspAxiosData(catRoom_api, bookings_html) {
           checkIn,
           checkOut,
           quantity,
+          cats,
           state,
           price,
           remark,
@@ -246,6 +247,8 @@ function graspAxiosData(catRoom_api, bookings_html) {
           id,
         } = element;
         const { name } = room;
+        const catQuantity = cats.length;
+
         // console.log(
         //   bookingDate,
         //   checkIn,
@@ -264,12 +267,12 @@ function graspAxiosData(catRoom_api, bookings_html) {
         const bookingInfo = document.getElementById("bookingInfo");
         let contentToAdd = "";
 
-        if (bookings_html === "已預定") {
+        if (bookings_html === "已預訂") {
           contentToAdd = mainBokingHTML(
             index,
             checkIn,
             checkOut,
-            quantity,
+            catQuantity,
             name,
             id,
             bookingDate,
@@ -281,7 +284,7 @@ function graspAxiosData(catRoom_api, bookings_html) {
               checkOut,
               name,
               remark,
-              quantity,
+              catQuantity,
               price,
               JSON.stringify(history),
               bookingDate,
@@ -293,7 +296,7 @@ function graspAxiosData(catRoom_api, bookings_html) {
             index,
             checkIn,
             checkOut,
-            quantity,
+            catQuantity,
             name,
             id,
             bookingDate,
@@ -305,7 +308,7 @@ function graspAxiosData(catRoom_api, bookings_html) {
               checkOut,
               name,
               remark,
-              quantity,
+              catQuantity,
               price,
               JSON.stringify(history),
               bookingDate,
@@ -317,7 +320,7 @@ function graspAxiosData(catRoom_api, bookings_html) {
             index,
             checkIn,
             checkOut,
-            quantity,
+            catQuantity,
             name,
             id,
             bookingDate,
@@ -329,7 +332,7 @@ function graspAxiosData(catRoom_api, bookings_html) {
               checkOut,
               name,
               remark,
-              quantity,
+              catQuantity,
               price,
               JSON.stringify(history),
               bookingDate,
@@ -407,10 +410,10 @@ function lodingBooking() {
   //抓到 DOM 並呈現資料
   const bookingInfo = document.getElementById("bookingInfo");
   //判斷當前篩選條件
-  if (filterType.value == "已預定") {
+  if (filterType.value == "已預訂") {
     bookingInfo.innerHTML = "";
     graspAxiosData(
-      `${_url}/600/bookings?userId=${memberId}&state=已預定&_expand=user&_expand=room&_sort=bookingDate&_order=desc`,
+      `${_url}/600/bookings?userId=${memberId}&state=已預訂&_expand=user&_expand=room&_sort=bookingDate&_order=desc`,
       filterType.value
     );
   } else if (filterType.value == "已完成") {
