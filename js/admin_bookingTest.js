@@ -156,7 +156,7 @@ Promise.all([user, cats, rooms, roomStates])
                 "checkIn": checkIn.value,
                 "checkOut": checkOut.value,
                 "roomId": roomId,
-                "state": "已預定",
+                "state": "已預訂",
                 "quantity": parseInt(bookingDays.value),
                 "price": parseInt(totalPrice.value) + parseInt(plusCatPay.value),
                 "cats": [],
@@ -174,7 +174,7 @@ Promise.all([user, cats, rooms, roomStates])
 
             const bookingHistoryObj = {
                 "updateTime": `${bookingDate.value} ${moment().format("hh:mm:ss a")}`,
-                "state": "已預定",
+                "state": "已預訂",
                 "quantity": parseInt(bookingDays.value),
                 "roomType": bookingRoomType.value,
                 "price": parseInt(totalPrice.value) + parseInt(plusCatPay.value),
