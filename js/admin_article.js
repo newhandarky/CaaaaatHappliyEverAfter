@@ -33,11 +33,11 @@ function renderData() {
     if (localStorage.getItem("userRole") === "admin") {
       str += `<tr>
         <td>${localStorage.getItem("userName")}</td>
-        <td>2023-01-01</td>
+        <td>${item.lastEditOrPublishTime}</td>
         <td>${item.title}</td>
         <td>${item.id}</td>
         <td>${item.keyword}</td>
-        <td>已發佈</td>
+        <td>${item.status}</td>
         <td><a class="editArticle" href="./admin_articleEditArticle.html?id=${
           item.id
         }">

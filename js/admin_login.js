@@ -85,8 +85,10 @@ adminLoginBtn.addEventListener("click", function (e) {
           // 登入成功後，取得當前時間
           var loginTime = new Date();
 
-          // 將登入時間轉換為字串，方便存儲
-          var loginTimeString = loginTime.toISOString();
+          // 將登入時間轉換為字串，方便存儲，把 toISOString改成 toLocaleString 使用 UTC+8 時區
+          var loginTimeString = loginTime.toLocaleString("en-US", {
+            timeZone: "Asia/Taipei",
+          });
 
           // 使用 localStorage 存儲登入時間
           localStorage.setItem("userLoginTime", loginTimeString);

@@ -2,11 +2,12 @@
   .modal-content {
     height: 40vh;
   }
-  .checkCircle {
-    font-size: 72px;
-    line-height: 1;
-    @include media-min-992 {
-      font-size: 90px;
-    }
+}
+
+.iconSizing {
+  font-size: 72px;
+  line-height: 1;
+  @include media-min-992 {
+    font-size: 90px;
   }
 }
