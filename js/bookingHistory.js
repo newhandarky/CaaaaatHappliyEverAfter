@@ -271,7 +271,7 @@ function graspAxiosData(catRoom_api, bookings_html) {
         const bookingInfo = document.getElementById("bookingInfo");
         let contentToAdd = "";
 
-        if (bookings_html === "已預定") {
+        if (bookings_html === "已預訂") {
           contentToAdd = mainBokingHTML(
             index,
             checkIn,
@@ -414,10 +414,10 @@ function lodingBooking() {
   //抓到 DOM 並呈現資料
   const bookingInfo = document.getElementById("bookingInfo");
   //判斷當前篩選條件
-  if (filterType.value == "已預定") {
+  if (filterType.value == "已預訂") {
     bookingInfo.innerHTML = "";
     graspAxiosData(
-      `${_url}/600/bookings?userId=${memberId}&state=已預定&_expand=user&_expand=room&_sort=bookingDate&_order=desc`,
+      `${_url}/600/bookings?userId=${memberId}&state=已預訂&_expand=user&_expand=room&_sort=bookingDate&_order=desc`,
       filterType.value
     );
   } else if (filterType.value == "已完成") {

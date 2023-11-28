@@ -141,8 +141,6 @@ console.log(bookingHistorys)
 toComfirmation.addEventListener("click", function(e){
     e.preventDefault();
     postPatch();
-    // window.alert("貓的幸福歡迎您的到來！")
-    // window.location.href = "./index.html"
 })
 
 
