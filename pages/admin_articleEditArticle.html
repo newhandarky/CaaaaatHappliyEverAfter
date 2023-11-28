@@ -9,7 +9,7 @@
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0"
     />
 
-    <title>admin_account_editMember</title>
+    <title>編輯文章</title>
   </head>
   <body>
     <%- include('./layout/admin_header'); -%>
@@ -89,7 +89,7 @@
             <!-- 
               BS5 Modal 跳出是否刪除按鈕：
               是 -> 刪除
-              否 -> 返回文章編輯
+              否 -> 返回原頁面
             -->
             <a
               class="btn btn-danger"
@@ -132,11 +132,11 @@
               >
                 是
               </a>
-              <!-- 按否直接透過 dismiss modal 關閉跳出 -->
+              <!-- 按否直接跳回文章首頁，不保留任何修改 -->
               <a
+                href="./admin_article.html"
                 role="button"
                 class="cancelSaveAsDraftBtn btn btn-success text-white fs-3"
-                data-bs-dismiss="modal"
               >
                 否
               </a>

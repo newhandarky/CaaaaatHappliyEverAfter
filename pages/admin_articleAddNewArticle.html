@@ -63,11 +63,11 @@
             <textarea id="articleContent"></textarea>
           </div>
           <div class="col-12 d-flex justify-content-end align-items-end">
-            <!-- 應該要重新 render，因為還沒按新增所以還沒儲存到資料庫 -->
             <a
               class="text-white btn btn-warning me-4"
-              href="./admin_article.html"
               role="button"
+              data-bs-toggle="modal"
+              data-bs-target="#cancelPost"
               >取消新增</a
             >
             <!-- BS5 Modal 彈跳視窗主觸發鈕 -->
@@ -78,22 +78,64 @@
               data-bs-toggle="modal"
               data-bs-target="#postArticle"
             >
-              儲存變更
+              發佈文章
             </button>
           </div>
         </div>
       </form>
     </main>
 
-    <!-- Modal 彈跳視窗主體 -->
+    <!-- 取消新增 Modal 彈跳視窗主體 -->
+    <div
+      class="modal fade"
+      id="cancelPost"
+      tabindex="-1"
+      aria-labelledby="cancelPostLabel"
+      aria-hidden="true"
+    >
+      <div class="cancelPostModal modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header border-0 p-0"></div>
+          <div
+            class="modal-body d-flex flex-column justify-content-center align-items-center"
+          >
+            <span
+              class="iconSizing material-symbols-outlined text-warning mb-1"
+            >
+              help
+            </span>
+            <p class="fs-3 mb-4">是否要儲存為草稿？</p>
+            <div>
+              <!-- href="./admin_article.html" -->
+              <a
+                role="button"
+                class="saveAsDraftBtn btn btn-danger text-white fs-3 me-12"
+              >
+                是
+              </a>
+              <!-- 按否直接跳回文章首頁，不保留任何修改 -->
+              <a
+                href="./admin_article.html"
+                role="button"
+                class="cancelSaveAsDraftBtn btn btn-success text-white fs-3"
+              >
+                否
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 儲存變更 Modal 彈跳視窗主體 -->
     <div
       class="modal fade"
       id="postArticle"
       tabindex="-1"
-      aria-labelledby="saveAccountLabel"
+      aria-labelledby="postArticleLabel"
       aria-hidden="true"
     >
-      <div class="saveAccountModal modal-dialog modal-dialog-centered">
+      <div class="postArticleModal modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header border-0 p-0"></div>
           <div
@@ -104,11 +146,11 @@
             >
               check_circle
             </span>
-            <p class="fs-3 mb-4">後台人員編輯完成</p>
+            <p class="fs-3 mb-4">文章發佈成功</p>
             <a
               href="./admin_article.html"
               role="button"
-              class="savaAccountBtn btn btn-success text-white fs-3"
+              class="postArticleBtn btn btn-success text-white fs-3"
             >
               返回人員管理頁面
             </a>
