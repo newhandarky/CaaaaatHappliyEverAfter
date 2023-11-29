@@ -412,6 +412,9 @@ function graspAxiosData(catRoom_api, bookings_html) {
         alert(err);
         window.location.href = "./login.html";
       }
+      //當資料載入完成時，隱藏 loading 元素
+      const loadingDom = document.querySelector("#loading");
+      loadingDom.classList.toggle("d-none");
     });
 }
 
