@@ -6,6 +6,8 @@ import { _url } from "./config";
 const adminArticleList = document.querySelector(".adminArticleList");
 // 分頁導覽
 const paginationContainer = document.querySelector(".pagination");
+const articleSearch = document.querySelector(".articleSearch");
+const mySearch = document.querySelector("#mySearch");
 
 // 每頁顯示的資料數量
 const perPage = 3;
@@ -81,7 +83,7 @@ function pagination(data, nowPage) {
 // 表格渲染
 function renderTable(newData) {
   let str = ``;
-  console.log(newData);
+  // console.log(newData);
   newData.forEach(function (item) {
     // 登入者為 admin 才能觀看
     // a href= ...?id=${item.id} 把使用者導到對應頁面
@@ -143,7 +145,7 @@ function pageBtn(page) {
   paginationContainer.innerHTML = str;
 }
 
-function switchPage(e) {
+function switchPage(e, searchData) {
   e.preventDefault();
 
   // 如果點擊的不是一個 a 連結，就中斷連結。因為 nodeName 出來是大寫所以用 "A" 表示
@@ -152,8 +154,62 @@ function switchPage(e) {
   // 抓取 data-page 屬性來確定目前分頁，以此渲染畫面及分頁導覽列
   const page = e.target.dataset.page;
   // console.log(page);
-  pagination(data, page);
+
+  // 如果 searchData 有資料，就使用 searchData 渲染畫面
+  const searchDataLength = searchData.length;
+  if (searchDataLength !== 0) {
+    pagination(searchData, page);
+  } else {
+    pagination(data, page);
+  }
 }
 
-// 監聽分頁導覽列
-paginationContainer.addEventListener("click", switchPage);
+// 監聽分頁導覽列，需要帶入 searchData 參數去判斷是否為搜尋後的資料
+paginationContainer.addEventListener("click", function (event) {
+  switchPage(event, searchData);
+});
+
+// 搜尋欄位監聽
+articleSearch.addEventListener("submit", keywordSearch);
+
+// 儲存與搜尋關鍵字相符的整筆資料。宣告為全域變數使用，因為 switchPage 函式也會用到
+let searchData = [];
+
+// 搜尋功能
+function keywordSearch(e) {
+  e.preventDefault();
+
+  // 儲存所有原 data 的關鍵字的陣列
+  let filterData = [];
+  // searchData 一定要在每次監聽事件啟用時清空，不然會把每一次的搜尋紀錄都加進去
+  searchData = [];
+
+  // 原資料集跑 forEach，為了把關鍵字推進 filterData，並把符合搜尋關鍵字整筆資料推進 searchData
+  data.forEach(function (item) {
+    // 把所有文章的關鍵字加入 filterData
+    filterData.push(item.keyword);
+    // 把關鍵字陣列跑 filter，回傳的 filterKeyword 會是符合搜尋關鍵字的陣列
+    const filterKeyword = filterData.filter(function (keyword) {
+      // console.log(keyword);
+      // mySearch.value 要去跟 filterData 的每一個 keyword 比對，如果字詞有包含，就加入新陣列，最後會存成變數 filterKeyword
+      return keyword.includes(mySearch.value);
+    });
+    // console.log(filterKeyword);
+
+    // filterKeyword 裡的關鍵字(每一個 item) 要去跟 原資料關鍵字 item.keyword 比對，如果字詞有包含，就把原資料 item 放到 searchData 裡面，然後要當作參數傳到 pagination
+    filterKeyword.forEach(function (i) {
+      // console.log(i, item);
+      if (i === item.keyword) {
+        // console.log(i);
+        searchData.push(item);
+      }
+    });
+  });
+
+  // console.log(filterData);
+  // console.log(searchData);
+
+  // 把搜尋結果顯示的資料裝成一筆 searchData 再丟回 pagintion
+  // nowPage 參數傳入 1，把預設設置成分頁第一頁
+  pagination(searchData, 1);
+}
