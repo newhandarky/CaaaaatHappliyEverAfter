@@ -9,6 +9,10 @@ asideLocation.forEach((element) => {
   element.classList.add("onThisPage");
 });
 
+//navAside 顯示 因為是會員功能頁面
+const navAside = document.querySelector("#navAside");
+navAside.classList.remove("d-none");
+
 //取得所需要的資療及DOM元素
 const userTokenAndData = JSON.parse(localStorage.getItem("userTokenAndData"));
 const { accessToken, user } = userTokenAndData;
@@ -28,6 +32,10 @@ function lodingCat() {
       },
     })
     .then((res) => {
+      //當資料載入完成時，隱藏 loading 元素
+      const loadingDom = document.querySelector("#loading");
+      loadingDom.classList.add("d-none");
+
       //回傳貓咪資料
       const userCat = res.data;
       //抓到後端回傳的貓咪資料 到 localstorage 的 userTokenAndData
@@ -238,6 +246,9 @@ function lodingCat() {
         alert(err);
         window.location.href = "./login.html";
       }
+      //當資料載入完成時，隱藏 loading 元素
+      const loadingDom = document.querySelector("#loading");
+      loadingDom.classList.add("d-none");
     });
 }
 

@@ -37,22 +37,13 @@
                 </div>
                 <div class="catContainer d-flex justify-content-around">
                   <div class="catImg position-relative">
-                    <div
-                      id="catMotion_01"
-                      class="cat cat_01 position-relative"
-                    ></div>
+                    <img class="cat cat_01" src="../assets/images/catMotion_01.gif" alt="catMotion_01" />
                   </div>
                   <div class="catImg position-relative d-sm-block d-none">
-                    <div
-                      id="catMotion_02"
-                      class="cat cat_01 position-relative"
-                    ></div>
+                    <img class="cat cat_02" src="../assets/images/catMotion_02.gif" alt="catMotion_02" />
                   </div>
                   <div class="catImg position-relative d-lg-block d-none">
-                    <div
-                      id="catMotion_03"
-                      class="cat cat_01 position-relative"
-                    ></div>
+                    <img class="cat cat_03" src="../assets/images/catMotion_03.gif" alt="catMotion_03" />
                   </div>
                 </div>
               </div>
@@ -64,7 +55,7 @@
     <div class="container-fluid">
       <div class="row g-0">
         <div class="col-12 p-0">
-          <video id="myVideo" autoplay loop controls="false">
+          <video id="myVideo" class="catVideo" autoplay loop controls>
             <!-- 請插入你的影片文件路徑 -->
             <source src="../assets/images/catVideo.mp4" type="video/mp4">
             Your browser does not support the video tag.
@@ -75,8 +66,6 @@
 
     <script type="module" src="../main.js"></script>
     <script type="module" src="../js/navbar.js"></script>
-    <script type="module" src="../js/lottie.js"></script>
-    <script src="../node_modules/plyr/dist/plyr.js"></script>
     <script type="module" src="../js/rooms.js"></script>
   </body>
 </html>

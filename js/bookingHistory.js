@@ -10,6 +10,10 @@ asideLocation.forEach((element) => {
   element.classList.add("onThisPage");
 });
 
+//navAside 顯示 因為是會員功能頁面
+const navAside = document.querySelector("#navAside");
+navAside.classList.remove("d-none");
+
 //取得所需要的資療及DOM元素
 const userTokenAndData = JSON.parse(localStorage.getItem("userTokenAndData"));
 const { accessToken, user } = userTokenAndData;
@@ -17,6 +21,9 @@ const { accessToken, user } = userTokenAndData;
 //篩選資料類型
 const filterType = document.getElementById("roomType");
 filterType.addEventListener("change", (e) => {
+  //當資料載入完成時，隱藏 loading 元素
+  const loadingDom = document.querySelector("#loading");
+  loadingDom.classList.toggle("d-none");
   console.log(filterType.value);
   lodingBooking();
 });
@@ -376,6 +383,10 @@ function graspAxiosData(catRoom_api, bookings_html) {
 
       //掛載評價訂單功能
       evaluateBooking();
+
+      //當資料載入完成時，隱藏 loading 元素
+      const loadingDom = document.querySelector("#loading");
+      loadingDom.classList.toggle("d-none");
     })
     .catch((err) => {
       console.log(err);
@@ -401,6 +412,9 @@ function graspAxiosData(catRoom_api, bookings_html) {
         alert(err);
         window.location.href = "./login.html";
       }
+      //當資料載入完成時，隱藏 loading 元素
+      const loadingDom = document.querySelector("#loading");
+      loadingDom.classList.toggle("d-none");
     });
 }
 

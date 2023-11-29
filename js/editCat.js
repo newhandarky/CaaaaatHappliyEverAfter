@@ -10,6 +10,10 @@ asideLocation.forEach((element) => {
   element.classList.add("onThisPage");
 });
 
+//navAside 顯示 因為是會員功能頁面
+const navAside = document.querySelector("#navAside");
+navAside.classList.remove("d-none");
+
 //flatpickr 套件使用
 flatpickr("#catBirthday", {
   enableTime: false,
@@ -79,6 +83,10 @@ function showOriginalData() {
       catColorsDom.value = colors;
       catWeightDom.value = weight;
       catPhotoDom.setAttribute("src", catPhoto);
+
+      //當資料載入完成時，隱藏 loading 元素
+      const loadingDom = document.querySelector("#loading");
+      loadingDom.classList.add("d-none");
     })
     .catch((err) => {
       console.log(err);
