@@ -22,15 +22,12 @@ const btnNewBooking = document.querySelector(".btnNewBooking");
 const btnTodayCheckIn = document.querySelector(".btnTodayCheckIn");
 const btnTodayCheckOut = document.querySelector(".btnTodayCheckOut");
 const checkBookingTable = document.querySelector(".checkBookingTable");
+const bookingTables = document.querySelector(".bookingTables");
 const date = document.querySelector(".date");
 const before = document.querySelector(".before");
 const after = document.querySelector(".after");
 
-// 純測試
-const bookingTest = document.querySelector(".bookingTest");
-bookingTest.addEventListener("click", function () {
-    location = "admin_bookingTest.html"
-})
+
 
 /*------------------------------------*\
     變數
@@ -215,4 +212,7 @@ bookingList.addEventListener("click", function () {
 
 checkBookingTable.addEventListener("click", function () {
     location = "admin_bookingRoomTable.html"
+})
+bookingTables.addEventListener("click", function () {
+    location = "admin_bookingTables.html"
 })
