@@ -3,16 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>後台檢視房況表</title>
+    <title>後台檢視房型住房比例表</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,700,0,200" />
-  <script type="module" crossorigin src="/CaaaaatHappliyEverAfter/assets/admin_bookingRoomTable-b0e3e17d.js"></script>
-  <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/config-3a988531.js">
-  <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/sweetalert2.all-0b6d9928.js">
-  <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/admin_header-7e1106b6.js">
-  <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/admin_config-2cf1d757.js">
-  <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/moment-fbc5633a.js">
-  <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/admin_searchBar-b09565eb.js">
-  <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/transform-4d2927c0.js">
+  <script type="module" crossorigin src="/CaaaaatHappliyEverAfter/assets/config-3a988531.js"></script>
+  <script type="module" crossorigin src="/CaaaaatHappliyEverAfter/assets/sweetalert2.all-0b6d9928.js"></script>
+  <script type="module" crossorigin src="/CaaaaatHappliyEverAfter/assets/admin_header-7e1106b6.js"></script>
+  <script type="module" crossorigin src="/CaaaaatHappliyEverAfter/assets/admin_config-2cf1d757.js"></script>
+  <script type="module" crossorigin src="/CaaaaatHappliyEverAfter/assets/moment-fbc5633a.js"></script>
+  <script type="module" crossorigin src="/CaaaaatHappliyEverAfter/assets/admin_searchBar-b09565eb.js"></script>
   <link rel="stylesheet" href="/CaaaaatHappliyEverAfter/assets/config-ce598213.css">
 </head>
 <body>
@@ -115,7 +113,7 @@
         <div>
             <div class="border border-2 rounded-2">
                 <div class="p-6 d-flex justify-content-between align-items-center">
-                    <h2 class="text-nowrap">檢視房況</h2>
+                    <h2 class="text-nowrap">檢視房型住房比例</h2>
                     <button class="btn btn-primary text-white btnReload">重整頁面</button>
                 </div>
                 <div class="d-flex justify-content-center mb-6 bookingMonthChange">
@@ -136,9 +134,8 @@
                     </div>
                 </div>
                 <div class="px-6 pb-8 overflow-auto">
-                    <div id="chart"></div>
                 </div>
-                <h3 class="text-center mb-8">點擊房型可切換資料</h3>
+                <div id="chart"></div>
             </div>
         </div>
     </div>
