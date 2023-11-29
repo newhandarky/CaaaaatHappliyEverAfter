@@ -93,11 +93,12 @@ checkoutDate.addEventListener("change", function(e){
          if(item.availableCount.classic <= 0){
             noRoomDate+= `${item.date} `;    
          }});
-         console.log(noRoomDate)
-         alert(`${noRoomDate}已無空房，請重新選擇`);
-         checkoutDate.value = "";
-         checkinDate.value="";
-          return
+         if(noRoomDate !== ""){
+            alert(`${noRoomDate}已無空房，請重新選擇`);
+            checkoutDate.value = "";
+            checkinDate.value="";
+             return   
+         }
 
 })});
 
@@ -127,28 +128,25 @@ toProcess_2.addEventListener("click", function(e){
         data.forEach(function(item){
          if(item.availableCount.classic <= 0){
             noRoomDate += `${item.date} `;    
-         };
-
-         if (noRoomDate !== ''){
-            alert(`${noRoomDate}已無空房，請重新選擇`);
-            checkoutDate.value = "";
-            checkinDate.value="";
-            return
-         };
-           
-             let obj = {};
-                obj["checkIn"] = checkinDate.value;
-                obj["checkOut"]=checkoutDate.value;
-                obj['bookingDate']=new Date();
-                obj['roomType']= "經典房"
-                console.log(obj)
-                let bookingData = JSON.stringify(obj);
-                sessionStorage.setItem("bookingData", bookingData);
-                isLogin("./bookingProcess_2.html");
-                
-               
-         
+         };        
     });
+
+    if (noRoomDate !== ''){
+        alert(`${noRoomDate}已無空房，請重新選擇`);
+        checkoutDate.value = "";
+        checkinDate.value="";
+        return
+     };
+       
+         let obj = {};
+            obj["checkIn"] = checkinDate.value;
+            obj["checkOut"]=checkoutDate.value;
+            obj['bookingDate']=currentDate;
+            obj['roomType']= "經典房"
+            console.log(obj)
+            let bookingData = JSON.stringify(obj);
+            sessionStorage.setItem("bookingData", bookingData);
+            isLogin("./bookingProcess_2.html");
 
 
 
