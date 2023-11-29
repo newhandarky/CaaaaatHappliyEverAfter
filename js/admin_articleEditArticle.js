@@ -32,6 +32,7 @@ function init() {
       articleContent.textContent = res.data.content;
 
       // 初始渲染 tinymce：文字編輯器 tinyMCE，selector 的值對應 html textarea id
+
       tinymce.init({
         selector: "textarea#articleContent",
       });

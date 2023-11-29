@@ -8,7 +8,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
     />
-    <title>admin_rooms</title>
+    <title>文章管理</title>
   </head>
   <body>
     <%- include('./layout/admin_header'); -%>
@@ -16,6 +16,23 @@
       <h2 class="mb-5">
         <a class="text-primary" href="./admin_index.html">首頁</a> > 文章管理
       </h2>
+      <div class="d-flex align-items-center mb-5">
+        <input
+          type="search"
+          id="mySearch"
+          class="me-5 p-2"
+          name="q"
+          placeholder="請輸入關鍵字"
+        />
+
+        <button
+          class="d-flex align-items-center btn btn-primary text-white fs-4"
+        >
+          <span class="material-symbols-outlined text-white me-1 py-1">
+            search </span
+          >搜尋
+        </button>
+      </div>
       <div class="border border-gray rounded-3 py-10 px-5">
         <div class="d-flex align-items-center">
           <h2 class="fs-2 me-11">文章總覽</h2>
@@ -27,6 +44,7 @@
             新增文章
           </a>
         </div>
+
         <div class="px-6 mt-10">
           <table
             class="articleWrap table table-bordered align-middle text-center"
