@@ -21,6 +21,9 @@ const { accessToken, user } = userTokenAndData;
 //篩選資料類型
 const filterType = document.getElementById("roomType");
 filterType.addEventListener("change", (e) => {
+  //當資料載入完成時，隱藏 loading 元素
+  const loadingDom = document.querySelector("#loading");
+  loadingDom.classList.toggle("d-none");
   console.log(filterType.value);
   lodingBooking();
 });
@@ -380,6 +383,10 @@ function graspAxiosData(catRoom_api, bookings_html) {
 
       //掛載評價訂單功能
       evaluateBooking();
+
+      //當資料載入完成時，隱藏 loading 元素
+      const loadingDom = document.querySelector("#loading");
+      loadingDom.classList.toggle("d-none");
     })
     .catch((err) => {
       console.log(err);
@@ -405,6 +412,9 @@ function graspAxiosData(catRoom_api, bookings_html) {
         alert(err);
         window.location.href = "./login.html";
       }
+      //當資料載入完成時，隱藏 loading 元素
+      const loadingDom = document.querySelector("#loading");
+      loadingDom.classList.toggle("d-none");
     });
 }
 

@@ -63,6 +63,10 @@ function lodingMember() {
         "src",
         userPhoto || "https://i.imgur.com/rUTLxZC.jpg"
       );
+
+      //當資料載入完成時，隱藏 loading 元素
+      const loadingDom = document.querySelector("#loading");
+      loadingDom.classList.add("d-none");
     })
     .catch((err) => {
       console.log(err);

@@ -32,6 +32,10 @@ function lodingCat() {
       },
     })
     .then((res) => {
+      //當資料載入完成時，隱藏 loading 元素
+      const loadingDom = document.querySelector("#loading");
+      loadingDom.classList.add("d-none");
+
       //回傳貓咪資料
       const userCat = res.data;
       //抓到後端回傳的貓咪資料 到 localstorage 的 userTokenAndData
@@ -242,6 +246,9 @@ function lodingCat() {
         alert(err);
         window.location.href = "./login.html";
       }
+      //當資料載入完成時，隱藏 loading 元素
+      const loadingDom = document.querySelector("#loading");
+      loadingDom.classList.add("d-none");
     });
 }
 

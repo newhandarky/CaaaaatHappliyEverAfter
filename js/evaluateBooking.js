@@ -116,7 +116,7 @@ evaluateBtn.addEventListener("click", (e) => {
         }).then((result) => {
           /* Read more about isConfirmed, isDenied below */
           if (result.isConfirmed) {
-            isLogin("../pages/bookingHistory.html");
+            isLogin("./bookingHistory.html");
           }
         });
       });

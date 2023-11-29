@@ -26,6 +26,7 @@
     "moment": "^2.29.4",
     "sass": "^1.61.0",
     "sass-loader": "^13.2.2",
+    "spin.js": "^4.1.1",
     "sweetalert2": "^11.9.0",
     "swiper": "^11.0.5",
     "vite-plugin-live-reload": "^3.0.2"
