@@ -97,18 +97,19 @@ checkoutDate.addEventListener("change", function(e){
          if(item.availableCount.luxury <= 0){
             noRoomDate+= `${item.date} `;             
          }});
-         console.log(noRoomDate)
-         alert(`${noRoomDate}已無空房，請重新選擇`);
-         checkoutDate.value = "";
-         checkinDate.value="";
-        return
+         console.log(noRoomDate);
+         if(noRoomDate !== ""){
+            alert(`${noRoomDate}已無空房，請重新選擇`);
+            checkoutDate.value = "";
+            checkinDate.value="";
+           return
+         };
 })});
 
 
 
 toProcess_2.addEventListener("click", function(e){
    e.preventDefault();
-
    axios.get(`${_url}/roomStates?date_gte=${checkinDate.value}&date_lte=${checkoutDate.value}&date_ne=${checkoutDate.value}`).then(function(response){
     if(checkoutDate.value == "" || checkinDate.value == ""){
 
@@ -126,32 +127,31 @@ toProcess_2.addEventListener("click", function(e){
     };
 
     let data = response.data;
-    console.log(data)
+    console.log(data);
+    let noRoomDate = '';
+
     data.forEach(function(item){
      if(item.availableCount.luxury <= 0){
-        alert(`${item.date}已無空房，請重新選擇`);
-        checkinDate.value = "";
-        checkoutDate.value = "";
-        return 
-        
-     }else{
-        
-            let obj = {};
-            obj["checkIn"] = checkinDate.value;
-            obj["checkOut"]=checkoutDate.value;
-            obj['bookingDate']=new Date();
-            obj['roomType']= "豪華房"
-            console.log(obj)
-            let bookingData = JSON.stringify(obj);
-            sessionStorage.setItem("bookingData", bookingData);
-            //const toProcess_2Herf = toProcess_2.getAttribute("href");
-            isLogin("./bookingProcess_2.html")
-            //window.location.href = "./bookingProcess_2.html";
-            
-           
-     }
-});
+        noRoomDate+= `${item.date} `
+     }});
 
+if (noRoomDate !== ""){
+    alert(`${noRoomDate}已無空房，請重新選擇`);
+    checkoutDate.value = "";
+    checkinDate.value="";
+     return
+     };
+
+             
+     let obj = {};
+     obj["checkIn"] = checkinDate.value;
+     obj["checkOut"]=checkoutDate.value;
+     obj['bookingDate']=currentDate;
+     obj['roomType']= "豪華房"
+     console.log(obj)
+     let bookingData = JSON.stringify(obj);
+     sessionStorage.setItem("bookingData", bookingData);
+     isLogin("./bookingProcess_2.html");
 })
     
     });
