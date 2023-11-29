@@ -22,8 +22,6 @@ const searchResult = JSON.parse(localStorage.getItem("searchResult"));
 let defaultPage = 1;
 let pagesCount = 0;
 
-console.log(searchResult);
-
 /*------------------------------------*\
     function
 \*------------------------------------*/

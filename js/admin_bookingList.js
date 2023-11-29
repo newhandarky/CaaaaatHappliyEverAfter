@@ -35,10 +35,8 @@ date.textContent = getBookingMonth;
 // 抓所有訂單資料
 Promise.all([bookingsRes])
     .then(([bookingsRes]) => {
-        console.log(bookingsRes.data);
         const bookingDate = bookingsRes.data;
-        let bookingCount = 0;
-        
+        let bookingCount = 0;        
 
         bookingDate.forEach(function (item) {
             if (item.checkIn.startsWith(getBookingMonth)) {
