@@ -30,15 +30,11 @@ const roomObj = {
 }
 
 bookingMonth.textContent = getBookingMonth;
-// if(moment(getBookingMonth).isBefore(moment())){
-//     before.setAttribute("disabled", true)
-// }
 /*------------------------------------*\
     function
 \*------------------------------------*/
 axios.get(`${_url}/660/roomStates`, headerObj)
     .then(function (res) {
-        // console.log(res.data);
         let monthBookingArr = [];       // 準備接資料的陣列
         let classicArr = [];
         let delicateArr = [];
@@ -46,8 +42,6 @@ axios.get(`${_url}/660/roomStates`, headerObj)
         let x = ["x"];
 
         res.data.forEach(function (item) {
-            // 房況日期不可在今日之前
-            // if(!moment(item.date).isBefore(moment()) && item.date.startsWith(getBookingMonth)){
             if (item.date.startsWith(getBookingMonth)) {
                 monthBookingArr.push(item);
             }
@@ -110,7 +104,6 @@ axios.get(`${_url}/660/roomStates`, headerObj)
                     }
                     Promise.all(roomStatesPromise)
                         .then(function (results) {
-                            console.log(results);
                             Swal.fire({
                                 title: "資料建立成功",
                                 confirmButtonText: "Save",
@@ -182,7 +175,6 @@ axios.get(`${_url}/660/roomStates`, headerObj)
 /*------------------------------------*\
     事件
 \*------------------------------------*/
-
 // 月份往前與往後
 before.addEventListener("click", function () {
     let month = moment(localStorage.getItem("thisMonth")).add(-1, "month").format("YYYY-MM");

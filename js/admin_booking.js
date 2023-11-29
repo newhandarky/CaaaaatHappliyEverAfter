@@ -27,8 +27,6 @@ const date = document.querySelector(".date");
 const before = document.querySelector(".before");
 const after = document.querySelector(".after");
 
-
-
 /*------------------------------------*\
     變數
 \*------------------------------------*/
@@ -82,8 +80,6 @@ Promise.all([roomStatesPromise, bookingsPromise])
     .then(function (results) {
         const roomStatesRes = results[0].data;
         const bookingData = results[1].data;
-
-        // console.log(roomStatesRes);
 
         // 抓取所選取的整個月份的資料
         function getOneMonthBooking(monthStr) {
