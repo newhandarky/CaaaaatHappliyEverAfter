@@ -1,0 +1,12 @@
+// SweetAlert2 樣式
+.swal2-confirm.btn-custom-confirm {
+  margin: 0 8px;
+  background-color: $primary;
+  color: $white;
+}
+
+.swal2-cancel.btn-custom-cancel {
+  margin: 0 8px;
+  background-color: $primary02;
+  color: $primary;
+}
