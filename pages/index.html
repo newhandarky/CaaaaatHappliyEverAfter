@@ -88,22 +88,29 @@
                 <div class="col-lg-4 col-12">
                   <!--input 按鈕自製模組-->
                   <div id="catRoomInput_roomType" class="catRoomInput">
-                    <div class="inputBar">
+                    <div id="roomType_select" class="inputBar">
                       <p class="fs-7 m-0">房型</p>
                       <select id="roomType" class="roomType position-relative">
-                        <option value="" disabled selected style="color: #ced4da">
+                        <option
+                          value=""
+                          disabled
+                          selected
+                          style="color: #ced4da"
+                          class="room"
+                        >
                           請選擇
                         </option>
-                        <option value="經典房">經典房</option>
-                        <option value="精緻房">精緻房</option>
-                        <option value="豪華房">豪華房</option>
+                        <option value="經典房" class="room">經典房</option>
+                        <option value="精緻房" class="room">精緻房</option>
+                        <option value="豪華房" class="room">豪華房</option>
                       </select>
                     </div>
 
                     <img
+                      id="roomType_icon"
                       class="icon"
                       src="../assets/icons/iconArrowDown.svg"
-                      alt="date_icon"
+                      alt="roomType_icon"
                     />
                   </div>
                 </div>
@@ -126,24 +133,34 @@
     <!-- 房型區塊 -->
     <div class="container-fluid">
       <div class="row g-0">
-        <div class="col-lg-4 col-12 catRoom position-relative">
-          <div class="roomImgText position-absolute bottom-0">
-            <h3 class="text">精緻房</h3>
-          </div>
-          <img src="../assets/images/catRoom_Delicate.png" alt="delicate" />
-        </div>
-        <div class="col-lg-4 col-12 catRoom position-relative">
+        <a
+          class="col-lg-4 col-12 catRoom position-relative"
+          href="./bookingClassicRoom.html"
+        >
           <div class="roomImgText position-absolute bottom-0">
             <h3 class="text">經典房</h3>
           </div>
           <img src="../assets/images/catRoom_Classic.png" alt="classic" />
-        </div>
-        <div class="col-lg-4 col-12 catRoom position-relative">
+        </a>
+        <a
+          class="col-lg-4 col-12 catRoom position-relative"
+          href="./bookingDelicateRoom.html"
+        >
+          <div class="roomImgText position-absolute bottom-0">
+            <h3 class="text">精緻房</h3>
+          </div>
+          <img src="../assets/images/catRoom_Delicate.png" alt="delicate" />
+        </a>
+
+        <a
+          class="col-lg-4 col-12 catRoom position-relative"
+          href="./bookingLuxRoom.html"
+        >
           <div class="roomImgText position-absolute bottom-0">
             <h3 class="text">豪華房</h3>
           </div>
           <img src="../assets/images/catRoom_luxury.png" alt="luxury" />
-        </div>
+        </a>
       </div>
     </div>
 

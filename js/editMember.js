@@ -2,6 +2,7 @@ import axios from "axios";
 import { _url } from "./config";
 import { isLogin } from "./isLogin";
 import flatpickr from "flatpickr";
+import Swal from "sweetalert2";
 
 // aside bar 顯示當前頁面
 // 因為有兩個 aside bar 所以要用 querySelectorAll
@@ -73,7 +74,7 @@ function showOriginalData() {
 
       //當資料載入完成時，隱藏 loading 元素
       const loadingDom = document.querySelector("#loading");
-      loadingDom.classList.add("d-none");
+      loadingDom.classList.toggle("d-none");
     })
     .catch((err) => {
       console.log(err);
@@ -87,6 +88,7 @@ showOriginalData();
 // // 變更資料 function
 function editData(userData) {
   const memberId = user.id;
+
   axios
     .patch(`${_url}/600/users/${memberId}`, userData, {
       headers: {
@@ -95,16 +97,43 @@ function editData(userData) {
     })
     .then((res) => {
       console.log(res);
-      alert("修改會員資料成功");
-      window.location.href = "./member.html";
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: "btn btn-custom-confirm",
+          cancelButton: "btn btn-custom-cancel",
+        },
+        buttonsStyling: false,
+      });
+      swalWithBootstrapButtons
+        .fire({
+          title: "修改會員成功",
+          icon: "success",
+          confirmButtonText: "確定",
+        })
+        .then((result) => {
+          //按下確定後頁面跳轉
+          window.location.href = "./member.html";
+        });
     })
     .catch((err) => {
       //錯誤提示
       console.log(err);
-      alert(
-        `修改會員資料失敗 請重新登入後嘗試 /n錯誤提示：${err.response.data}`
-      );
-      window.location.href = "./login.html";
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: "btn btn-custom-confirm",
+          cancelButton: "btn btn-custom-cancel",
+        },
+        buttonsStyling: false,
+      });
+      swalWithBootstrapButtons
+        .fire({
+          title: "修改會員失敗",
+          text: "請重新登入後再嘗試",
+          confirmButtonText: "確定",
+        })
+        .then((result) => {
+          window.location.href = "./login.html";
+        });
     });
 }
 
@@ -115,6 +144,12 @@ editMemberFrom.addEventListener("submit", (e) => {
   //先判斷是否為登入狀態
   // isLoginStay 是自訂一的函數 判斷登入狀態
   isLogin();
+
+  //當資料載入時，顯示 loading 元素 並隱藏 editMember 元素
+  const editMemberDom = document.querySelector("#editMember");
+  editMemberDom.classList.toggle("d-none");
+  const loadingDom = document.querySelector("#loading");
+  loadingDom.classList.toggle("d-none");
 
   //抓取表單資料 除了圖片
 
