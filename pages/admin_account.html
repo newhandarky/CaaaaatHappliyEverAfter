@@ -21,9 +21,8 @@
       </h2>
       <div class="d-flex justify-content-end mb-8">
         <a
-          href="./admin_accountEditMember.html"
           role="button"
-          class="btn btn-warning text-white rounded-1 me-4 p-3"
+          class="editAccountBtn btn btn-warning text-white rounded-1 me-4 p-3"
         >
           編輯人員
         </a>
@@ -35,20 +34,25 @@
           新增人員
         </a>
       </div>
-      <table class="table table-bordered border-gray align-middle fs-4">
-        <thead>
-          <tr>
-            <th scope="col">員工編號</th>
-            <th scope="col">員工姓名</th>
-            <th scope="col">聯絡電話</th>
-            <th scope="col">聯絡地址</th>
-            <th scope="col">到職日期</th>
-            <th class="text-center" scope="col">編輯</th>
-          </tr>
-        </thead>
-        <!-- 取render資料渲染 -->
-        <tbody class="adminMemberList"></tbody>
-      </table>
+
+      <div class="table-responsive">
+        <table
+          class="cellNoWrap table table-bordered border-gray align-middle fs-4"
+        >
+          <thead>
+            <tr>
+              <th scope="col">員工編號</th>
+              <th scope="col">員工姓名</th>
+              <th scope="col">聯絡電話</th>
+              <th scope="col">聯絡地址</th>
+              <th scope="col">到職日期</th>
+              <th class="text-center" scope="col">編輯</th>
+            </tr>
+          </thead>
+          <!-- 取render資料渲染 -->
+          <tbody class="adminMemberList"></tbody>
+        </table>
+      </div>
     </main>
     <script type="module" src="../js/admin_account.js"></script>
     <script type="module" src="../main.js"></script>
