@@ -13,6 +13,14 @@
           <%- include('./layout/aside'); -%>
         </div>
         <div class="col-lg-9">
+          <!-- 呈現載入提示畫面 -->
+          <div
+            id="loading"
+            class="loading w-100 h-100 d-flex justify-content-center align-items-center"
+          >
+            <img src="../assets/icons/catLoading.gif" alt="catLoading" />
+          </div>
+
           <div class="d-flex flex-column">
             <div
               class="menberData d-flex flex-lg-row flex-column justify-content-center align-items-center"
@@ -43,9 +51,7 @@
               class="menberBtns d-flex flex-column justify-content-around align-items-center"
             >
               <div class="menberBtn primaryStroke-btn-primary">
-                <a id="editMember" href="editMember.html"
-                  >編輯會員資料</a
-                >
+                <a id="editMember" href="editMember.html">編輯會員資料</a>
               </div>
               <div class="menberBtn primaryFill-btn-primary">
                 <button id="signout" class="signout">登出</button>

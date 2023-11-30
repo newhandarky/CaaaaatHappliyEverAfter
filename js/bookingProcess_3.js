@@ -63,8 +63,8 @@ axios.get(`${_url}/rooms?name=${bookingData.roomType}`).then(function(response){
     console.log(`貓${catInfo.catId.length}隻`)
     let additionalCat = catInfo.catId.length-1;
     console.log(`加${additionalCat}隻貓`);
-    let totalPrice = `${response.data[0].price*nights + 300*additionalCat*nights}元`;
-    price.innerHTML = totalPrice;
+    let totalPrice = response.data[0].price*nights + 300*additionalCat*nights;
+    price.innerHTML = `${totalPrice}元`;
     booking.price = totalPrice; //順便把價錢打包進去下方的booking{}
     booking['quantity'] = nights;
     bookingHistorys['quantity'] = nights;
@@ -141,8 +141,6 @@ console.log(bookingHistorys)
 toComfirmation.addEventListener("click", function(e){
     e.preventDefault();
     postPatch();
-    // window.alert("貓的幸福歡迎您的到來！")
-    // window.location.href = "./index.html"
 })
 
 

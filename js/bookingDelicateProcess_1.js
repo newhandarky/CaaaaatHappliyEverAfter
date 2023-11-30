@@ -61,56 +61,93 @@ axios.get(`${_url}/roomStates`).then(function(response){
 checkinDate.addEventListener('change', function(e){
     axios.get(`${_url}/roomStates?date=${checkinDate.value}`).then(function(response){
         let data = response.data;
-        console.log(data[0].availableCount.delicate);
-        if(data[0].availableCount.delicate == 0){
-            console.log(data[0].availableCount.delicate);
-            Swal.fire(`${checkinDate.value}已無空房，請重新選擇`);
-            return dateForm.reset();
+       // console.log(data[0].availableCount.delicate);
+        if(data[0].availableCount.delicate <= 0){
+         //   console.log(data[0].availableCount.delicate);
+            alert(`${checkinDate.value}已無空房，請重新選擇`);
+            return checkinDate.value = ""
         }
         
     })
 });
 
 checkoutDate.addEventListener("change", function(e){
-    if(checkinDate.value >= checkoutDate.value){
-        checkoutDate.value = ""
-        return Swal.fire("退房日期需晚於入住日期");
+    if(checkinDate.value == ""){
+        checkoutDate.value = "";
+        return alert("請先選擇入住日期");
     }
+    if(checkinDate.value >= checkoutDate.value){
+        checkoutDate.value = "";
+        checkinDate.value="";
+        return alert("退房日期需晚於入住日期");
+    };
+
     axios.get(`${_url}/roomStates?date_gte=${checkinDate.value}&date_lte=${checkoutDate.value}&date_ne=${checkoutDate.value}`).then(function(response){
         let data = response.data;
         console.log(data)
+        let noRoomDate = '';
         data.forEach(function(item){
-         if(item.availableCount.delicate == 0){
-            Swal.fire(`${item.date}已無空房，請重新選擇`);
-            return dateForm.reset();
-            
-         }
-})})});
+         if(item.availableCount.delicate <= 0){
+            noRoomDate+= `${item.date} `;
+         }}); 
+    console.log(noRoomDate)
+    if (noRoomDate !== ""){
+    alert(`${noRoomDate}已無空房，請重新選擇`);
+    checkoutDate.value = "";
+    checkinDate.value="";
+     return
+     };
+})
+});
 
 
 
 toProcess_2.addEventListener("click", function(e){
    e.preventDefault();
-    
+   axios.get(`${_url}/roomStates?date_gte=${checkinDate.value}&date_lte=${checkoutDate.value}&date_ne=${checkoutDate.value}`).then(function(response){
     if(checkoutDate.value == "" || checkinDate.value == ""){
-        Swal.fire(`您尚未選擇入住或退房時間`);
-        return dateForm.reset();
-    }
 
-    else{
-         let obj = {};
-         obj["checkIn"] = checkinDate.value;
-         obj["checkOut"]=checkoutDate.value;
-         obj['bookingDate']=new Date();
-         obj['roomType']= "精緻房"
-         console.log(obj)
-         let bookingData = JSON.stringify(obj);
-         sessionStorage.setItem("bookingData", bookingData);
-         const toProcess_2Herf = toProcess_2.getAttribute("href");
-         isLogin(toProcess_2Herf)
-         window.location.href = "./bookingProcess_2.html";
-         
-        }
+       alert(`您尚未選擇入住或退房時間`);
+       checkoutDate.value == "" ;
+        checkinDate.value == "";
+        return;
+    };
+
+    if(checkinDate.value >= checkoutDate.value){
+        console.log(checkoutDate.value);
+        checkoutDate.value == "" ;
+        checkinDate.value == "";
+        return alert("退房日期需晚於入住日期"); 
+    };
+    
+    let data = response.data;
+    console.log(data)
+    let noRoomDate = ''
+
+    data.forEach(function(item){
+     if(item.availableCount.delicate<= 0){
+        noRoomDate+= `${item.date} `;   
+     } });
+
+     if (noRoomDate !== ""){
+        alert(`${noRoomDate}已無空房，請重新選擇`);
+        checkoutDate.value = "";
+        checkinDate.value="";
+         return
+         };
+     
+        let obj = {};
+        obj["checkIn"] = checkinDate.value;
+        obj["checkOut"]=checkoutDate.value;
+        obj['bookingDate']=currentDate;
+        obj['roomType']= "精緻房"
+        console.log(obj)
+        let bookingData = JSON.stringify(obj);
+        sessionStorage.setItem("bookingData", bookingData);
+        isLogin("./bookingProcess_2.html");
+
+})
+
     });
 
     //flatpickr
@@ -129,7 +166,7 @@ toProcess_2.addEventListener("click", function(e){
       });
     
 
-  //透過index快速訂房
+  //取出透過index快速訂房的資料
 
 
 console.log(sessionStorage.getItem('indexBooking'));

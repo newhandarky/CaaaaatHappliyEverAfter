@@ -30,35 +30,105 @@ const roomObj = {
 }
 
 bookingMonth.textContent = getBookingMonth;
-// if(moment(getBookingMonth).isBefore(moment())){
-//     before.setAttribute("disabled", true)
-// }
 /*------------------------------------*\
     function
 \*------------------------------------*/
 axios.get(`${_url}/660/roomStates`, headerObj)
     .then(function (res) {
-        console.log(res.data);
         let monthBookingArr = [];       // 準備接資料的陣列
         let classicArr = [];
         let delicateArr = [];
         let luxuryArr = [];
         let x = ["x"];
-        
-        res.data.forEach(function(item){
-            // 房況日期不可在今日之前
-            // if(!moment(item.date).isBefore(moment()) && item.date.startsWith(getBookingMonth)){
-            if(item.date.startsWith(getBookingMonth)){
+
+        res.data.forEach(function (item) {
+            if (item.date.startsWith(getBookingMonth)) {
                 monthBookingArr.push(item);
             }
         })
 
-        monthBookingArr.forEach(function(item){
-            classicArr.push(item.availableCount.classic);
-            delicateArr.push(item.availableCount.delicate);
-            luxuryArr.push(item.availableCount.luxury);
-            x.push(item.date)
-        })        
+        if (monthBookingArr.length === 0) {
+            Swal.fire({
+                title: "尚未建立此月份的防況資料 是否建立?",
+                showDenyButton: true,
+                confirmButtonText: "確定建立",
+                denyButtonText: `取消返回`
+            }).then((result) => {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "center",
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
+                    icon: "info",
+                    title: "資料建立中"
+                });
+                if (result.isConfirmed) {
+                    let startDate = moment(getBookingMonth).format("YYYY-MM-DD");
+                    let endDate = moment(getBookingMonth).add(1, "month").format("YYYY-MM-DD");
+                    let diffDays = moment(endDate).diff(startDate, 'days');
+                    let roomStatesPromise = [];
+                    for (let i = 0; i < diffDays; i++) {
+                        let roomStateObj = {
+                            "date": moment(getBookingMonth).add(i, "days").format("YYYY-MM-DD"),
+                            "availableCount": {
+                                "classic": 5,
+                                "delicate": 5,
+                                "luxury": 5
+                            },
+                            "status": {
+                                "classic_A_canUse": true,
+                                "classic_B_canUse": true,
+                                "classic_C_canUse": true,
+                                "classic_D_canUse": true,
+                                "classic_E_canUse": true,
+                                "delicate_A_canUse": true,
+                                "delicate_B_canUse": true,
+                                "delicate_C_canUse": true,
+                                "delicate_D_canUse": true,
+                                "delicate_E_canUse": true,
+                                "luxury_A_canUse": true,
+                                "luxury_B_canUse": true,
+                                "luxury_C_canUse": true,
+                                "luxury_D_canUse": true,
+                                "luxury_E_canUse": true
+                            }
+                        }
+                        roomStatesPromise.push(axios.post(`${_url}/660/roomStates`, roomStateObj, headerObj));
+                    }
+                    Promise.all(roomStatesPromise)
+                        .then(function (results) {
+                            Swal.fire({
+                                title: "資料建立成功",
+                                confirmButtonText: "Save",
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload();
+                                }
+                            });
+                        }).catch(function (err) {
+                            console.log(err.response);
+                        })
+                } else if (result.isDenied) {
+                    Swal.fire("資料尚未建立", "", "info");
+                }
+            });
+        } else {
+            monthBookingArr.forEach(function (item) {
+                classicArr.push(item.availableCount.classic);
+                delicateArr.push(item.availableCount.delicate);
+                luxuryArr.push(item.availableCount.luxury);
+                x.push(item.date)
+            })
+        }
+
+
 
         // 陣列開頭加上房型
         classicArr.unshift(roomObj.classic);
@@ -83,7 +153,7 @@ axios.get(`${_url}/660/roomStates`, headerObj)
                     豪華房: 'area-step',
                 }
             },
-            axis:{
+            axis: {
                 x: {
                     type: "timeseries",
                     tick: {
@@ -97,15 +167,14 @@ axios.get(`${_url}/660/roomStates`, headerObj)
                 }
             },
         });
-        
+
     }).catch(function (err) {
-        console.log(err);            
+        console.log(err);
     })
 
 /*------------------------------------*\
     事件
 \*------------------------------------*/
-
 // 月份往前與往後
 before.addEventListener("click", function () {
     let month = moment(localStorage.getItem("thisMonth")).add(-1, "month").format("YYYY-MM");
@@ -119,6 +188,6 @@ after.addEventListener("click", function () {
     location.reload();  // 切換月份重整網頁
 })
 
-btnReload.addEventListener("click", function(){
+btnReload.addEventListener("click", function () {
     location.reload();
 })

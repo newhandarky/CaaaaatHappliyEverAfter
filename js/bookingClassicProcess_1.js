@@ -28,11 +28,11 @@ console.log(currentDate);
 axios.get(`${_url}/roomStates`).then(function(response){
     let data = response.data;
     let array = [];
-    data. forEach(function(item){
+    data.forEach(function(item){
         let obj = {};
         obj.start=item.date;
         obj.title = '';
-        if(item.availableCount.classic){
+        if(item.availableCount.classic>0){
             obj.title=`剩餘${item.availableCount.classic}間`
         }else{
             obj.title="已無空房"
@@ -63,59 +63,96 @@ checkinDate.addEventListener('change', function(e){
     axios.get(`${_url}/roomStates?date=${checkinDate.value}`).then(function(response){
         let data = response.data;
        // console.log(data[0].availableCount.classic);
-        if(data[0].availableCount.classic == 0){
+        if(data[0].availableCount.classic <= 0){
           //  console.log(data[0].availableCount.classic);
-          Swal.fire(`${checkinDate.value}已無空房，請重新選擇`);
-            return dateForm.reset();
+          alert(`${checkinDate.value}已無空房，請重新選擇`);
+          checkinDate.value = "";
+          checkoutDate.value = ""
+          return 
         }
         
     })
 });
 
 checkoutDate.addEventListener("change", function(e){
+    if(checkinDate.value == ""){
+        checkoutDate.value = "";
+        return alert("請先選擇入住日期");
+    };
     if(checkinDate.value >= checkoutDate.value){
         console.log(checkoutDate.value);
-        checkoutDate.value = ""
-        return Swal.fire("退房日期需晚於入住日期");
-
-        
-    }
+        checkoutDate.value = "";
+        checkinDate.value="";
+        return alert("退房日期需晚於入住日期");   
+    };
     axios.get(`${_url}/roomStates?date_gte=${checkinDate.value}&date_lte=${checkoutDate.value}&date_ne=${checkoutDate.value}`).then(function(response){
         let data = response.data;
         console.log(data)
+        let noRoomDate = '';
         data.forEach(function(item){
          if(item.availableCount.classic <= 0){
-            Swal.fire(`${item.date}已無空房，請重新選擇`);
-            return dateForm.reset();
-            
+            noRoomDate+= `${item.date} `;    
+         }});
+         if(noRoomDate !== ""){
+            alert(`${noRoomDate}已無空房，請重新選擇`);
+            checkoutDate.value = "";
+            checkinDate.value="";
+             return   
          }
-})})});
+
+})});
 
 
 
 toProcess_2.addEventListener("click", function(e){
      e.preventDefault();
-     
-    if(checkoutDate.value == "" || checkinDate.value == ""){
-   
-        Swal.fire(`您尚未選擇入住或退房時間`);
-        return dateForm.reset();
-    }
+     if(checkoutDate.value == "" || checkinDate.value == ""){
+        alert(`您尚未選擇入住或退房時間`);
+        checkoutDate.value == "" ;
+         checkinDate.value == "";
+         return;
+     };
 
-    else{
+     if(checkinDate.value >= checkoutDate.value){
+         console.log(checkoutDate.value);
+         checkoutDate.value == "" ;
+         checkinDate.value == "";
+         return alert("退房日期需晚於入住日期"); 
+     };
+
+    axios.get(`${_url}/roomStates?date_gte=${checkinDate.value}&date_lte=${checkoutDate.value}&date_ne=${checkoutDate.value}`).then(function(response){
+
+        let data = response.data;
+        console.log(data);
+        let noRoomDate = '';
+        data.forEach(function(item){
+         if(item.availableCount.classic <= 0){
+            noRoomDate += `${item.date} `;    
+         };        
+    });
+
+    if (noRoomDate !== ''){
+        alert(`${noRoomDate}已無空房，請重新選擇`);
+        checkoutDate.value = "";
+        checkinDate.value="";
+        return
+     };
+       
          let obj = {};
-         obj["checkIn"] = checkinDate.value;
-         obj["checkOut"]=checkoutDate.value;
-         obj['bookingDate']=new Date();
-         obj['roomType']= "經典房"
-         console.log(obj)
-         let bookingData = JSON.stringify(obj);
-         sessionStorage.setItem("bookingData", bookingData);
-         const toProcess_2Herf = toProcess_2.getAttribute("href");
-         isLogin(toProcess_2Herf);
-         window.location.href = "./bookingProcess_2.html";
-         
-        }
+            obj["checkIn"] = checkinDate.value;
+            obj["checkOut"]=checkoutDate.value;
+            obj['bookingDate']=currentDate;
+            obj['roomType']= "經典房"
+            console.log(obj)
+            let bookingData = JSON.stringify(obj);
+            sessionStorage.setItem("bookingData", bookingData);
+            isLogin("./bookingProcess_2.html");
+
+
+
+
+})
+
     });
 
     //flatpickr
@@ -133,7 +170,7 @@ flatpickr("#checkinDate", {
     maxDate: "2024-02-29"
   });
 
-  //透過index快速訂房
+  //取出透過index快速訂房的資料
 
 
 console.log(sessionStorage.getItem('indexBooking'));
