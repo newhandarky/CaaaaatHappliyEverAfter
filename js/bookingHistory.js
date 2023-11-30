@@ -466,8 +466,8 @@ function cancelBooking() {
       //sweetalert2 警告判斷
       const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
-          confirmButton: "btn btn-success",
-          cancelButton: "btn btn-danger",
+          confirmButton: "btn btn-custom-confirm",
+          cancelButton: "btn btn-custom-cancel",
         },
         buttonsStyling: false,
       });
@@ -643,46 +643,95 @@ function cancelBooking() {
                             console.log("成功修改房況");
                             console.log(responses);
 
-                            Swal.fire({
-                              title: "訂單已刪除",
-                              icon: "success",
+                            //彈跳確認提示 按下後重新整理畫面
+                            const swalWithBootstrapButtons = Swal.mixin({
+                              customClass: {
+                                confirmButton: "btn btn-custom-confirm",
+                                cancelButton: "btn btn-custom-cancel",
+                              },
+                              buttonsStyling: false,
                             });
-
-                            // 在這裡執行其他相關的邏輯，例如取消訂單等
-                            // //重新整理網頁
-                            window.location.reload();
+                            swalWithBootstrapButtons
+                              .fire({
+                                title: "訂單已刪除",
+                                icon: "success",
+                                confirmButtonText: "確定",
+                              })
+                              .then((result) => {
+                                if (result.isConfirmed) {
+                                  // 在這裡執行其他相關的邏輯，例如取消訂單等
+                                  // //重新整理網頁
+                                  window.location.reload();
+                                }
+                              });
                           })
                           .catch((error) => {
                             console.error(
                               "Error modifying room states:",
                               error
                             );
+                            const swalWithBootstrapButtons = Swal.mixin({
+                              customClass: {
+                                confirmButton: "btn btn-custom-confirm",
+                                cancelButton: "btn btn-custom-cancel",
+                              },
+                              buttonsStyling: false,
+                            });
+                            swalWithBootstrapButtons.fire({
+                              icon: "error",
+                              title: "訂單刪除失敗",
+                              confirmButtonText: "確定",
+                            });
                           });
                       })
                       .catch((err) => {
                         console.log(err);
                         console.log("修改房況錯誤");
-                        Swal.fire({
+                        const swalWithBootstrapButtons = Swal.mixin({
+                          customClass: {
+                            confirmButton: "btn btn-custom-confirm",
+                            cancelButton: "btn btn-custom-cancel",
+                          },
+                          buttonsStyling: false,
+                        });
+                        swalWithBootstrapButtons.fire({
                           icon: "error",
                           title: "訂單刪除失敗",
+                          confirmButtonText: "確定",
                         });
                       });
                   })
                   .catch((err) => {
                     console(err);
                     console.log("取消訂單失敗");
-                    Swal.fire({
+                    const swalWithBootstrapButtons = Swal.mixin({
+                      customClass: {
+                        confirmButton: "btn btn-custom-confirm",
+                        cancelButton: "btn btn-custom-cancel",
+                      },
+                      buttonsStyling: false,
+                    });
+                    swalWithBootstrapButtons.fire({
                       icon: "error",
                       title: "訂單刪除失敗",
+                      confirmButtonText: "確定",
                     });
                   });
               })
               .catch((err) => {
                 console.log(err);
                 console.log("新增歷史紀錄失敗");
-                Swal.fire({
+                const swalWithBootstrapButtons = Swal.mixin({
+                  customClass: {
+                    confirmButton: "btn btn-custom-confirm",
+                    cancelButton: "btn btn-custom-cancel",
+                  },
+                  buttonsStyling: false,
+                });
+                swalWithBootstrapButtons.fire({
                   icon: "error",
                   title: "訂單刪除失敗",
+                  confirmButtonText: "確定",
                 });
               });
           }

@@ -17,6 +17,9 @@
 // c3套件
 @import "../../node_modules/c3/c3.min.css";
 
+// 修改套件樣式通用
+@import "./utils/moduleGeneric";
+
 @import "./layout/admin_header";
 @import "./layout/header";
 @import "./layout/aside";
