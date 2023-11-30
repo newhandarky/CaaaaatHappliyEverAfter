@@ -142,6 +142,7 @@ evaluateBtn.addEventListener("click", (e) => {
         swalWithBootstrapButtons
           .fire({
             title: "評論送出成功",
+            icon: "success",
             confirmButtonText: "確定",
           })
           .then((result) => {
@@ -164,6 +165,7 @@ evaluateBtn.addEventListener("click", (e) => {
           .fire({
             title: "評論送出失敗",
             text: "請重新登入後再嘗試",
+            icon: "error",
             confirmButtonText: "確定",
           })
           .then((result) => {

@@ -7,15 +7,24 @@
   </head>
   <body>
     <%- include('./layout/header'); -%>
+
     <div class="container">
       <div class="row loginContent">
-        <div class="col-12">
+        <!-- 呈現載入提示畫面 -->
+        <div
+          id="loading"
+          class="loading w-100 h-100 d-flex justify-content-center align-items-center"
+        >
+          <img src="../assets/icons/catLoading.gif" alt="catLoading" />
+        </div>
+
+        <div id="loginTitle" class="col-12 d-none">
           <div class="d-flex justify-content-center align-items-end h-100 p-5">
             <h1>會員登入</h1>
           </div>
         </div>
-        <div class="col-12">
-          <div class="loginAll position-relative">
+        <div id="loginAll" class="col-12 d-none">
+          <div id="loginAll" class="loginAll position-relative">
             <form
               id="loginForm"
               class="loginForm position-relative"
