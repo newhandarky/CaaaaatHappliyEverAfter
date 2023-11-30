@@ -14,7 +14,7 @@ const toProcess_3 = document.querySelector(".toProcess_3");
 //找會員的UserID編號
 let userInfo= JSON.parse(localStorage.getItem('userTokenAndData'));
 let userId = userInfo.user.id
-console.log(userId)
+//console.log(userId)
 
 //用UserID 去找他的貓咪有誰
 
@@ -24,7 +24,7 @@ axios.get(`${_url}/cats?userId=${userId}`).then(function(response){
     data.forEach(function(item){
         array.push(item.catName); //把物件資料的貓咪名字推進去array裡面
     });
-    console.log(array); //user的貓咪名字
+    //console.log(array); //user的貓咪名字
     //入住貓咪1的選單
     let catList = `<option value="" disabled selected>請選擇貓咪</option>`;
     array.forEach(function(item){
@@ -43,7 +43,7 @@ axios.get(`${_url}/cats?userId=${userId}`).then(function(response){
                 catList2Array.push(item)
             }
         });
-        console.log(catList2Array); //確定只有另一隻還沒被選到的貓
+       // console.log(catList2Array); //確定只有另一隻還沒被選到的貓
         let catList2 = `<option value="" >請選擇貓咪</option>`;
         catList2Array.forEach(function(item){
             let contentText = `<option value=${item}>${item}</option> `;
@@ -65,7 +65,7 @@ axios.get(`${_url}/cats?userId=${userId}`).then(function(response){
                 catList3Array.push(item);
             };
         });
-        console.log(catList3Array);//還沒被選到的貓
+        //console.log(catList3Array);//還沒被選到的貓
         catList3Array.forEach(function(item){
             let contentText = `<option value=${item}>${item}</option> `;
             catList3 += contentText;
@@ -91,7 +91,7 @@ toProcess_3.addEventListener("click", function(e){
     let obj = {};
     obj["remark"]= remark.value;
     obj["catId"]= [];
-    console.log(obj)
+   // console.log(obj)
     //選擇入住貓咪1
     if(chooseFirstCat.value === ""){
         
@@ -101,9 +101,9 @@ toProcess_3.addEventListener("click", function(e){
     let stayedCat1 = chooseFirstCat.value;
     axios.get(`${_url}/cats?userId=${userId}&catName=${stayedCat1}`).then(function(response){
         // obj["cat1"]  = response.data[0]['id']
-        console.log(response.data[0]['id'])
+       // console.log(response.data[0]['id'])
         obj["catId"].push(response.data[0]['id']);
-        console.log(JSON.stringify(obj));
+      //  console.log(JSON.stringify(obj));
         sessionStorage.setItem("catInfo",JSON.stringify(obj) );
          window.location.href="./bookingProcess_3.html"
         
@@ -119,9 +119,9 @@ toProcess_3.addEventListener("click", function(e){
         let stayedCat2 = chooseSecondCat.value;
         axios.get(`${_url}/cats?userId=${userId}&catName=${stayedCat2}`).then(function(response){
 
-            console.log(response.data[0]['id'])
+          //  console.log(response.data[0]['id'])
             obj["catId"].push(response.data[0]['id']);
-            console.log(JSON.stringify(obj));
+           // console.log(JSON.stringify(obj));
             sessionStorage.setItem("catInfo",JSON.stringify(obj) );
          
         window.location.href="./bookingProcess_3.html"
@@ -136,9 +136,9 @@ toProcess_3.addEventListener("click", function(e){
 
         let stayedCat3 = chooseThirdCat.value;
         axios.get(`${_url}/cats?userId=${userId}&catName=${stayedCat3}`).then(function(response){
-            console.log(response.data[0]['id'])
+           // console.log(response.data[0]['id'])
             obj["catId"].push(response.data[0]['id']);
-            console.log(JSON.stringify(obj));
+          //  console.log(JSON.stringify(obj));
             sessionStorage.setItem("catInfo",JSON.stringify(obj) );
           
          window.location.href="./bookingProcess_3.html"
