@@ -1,10 +1,14 @@
 import axios from "axios";
+import moment from "moment";
 import { _url } from "./config";
 
 const userImage = document.querySelector(".userImage");
 const welcomeText = document.querySelector(".welcomeText");
 const indexAccountTbody = document.querySelector(".indexAccountTbody");
+const orderNumToday = document.querySelector(".orderNumToday");
+const orderRevenueToday = document.querySelector(".orderRevenueToday");
 const indexRoomTbody = document.querySelector(".indexRoomTbody");
+const articleCardWrap = document.querySelector(".articleCardWrap");
 
 // 若沒有登入直接跳到登入頁面
 if (localStorage.length === 0) {
@@ -15,33 +19,47 @@ function backToLogin() {
   location.href = "admin_login.html";
 }
 
+// 把 axios.get 獨立出來
+function fetchData(url, callback) {
+  axios
+    .get(url)
+    .then(function (res) {
+      callback(res.data);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+}
+
 // 初始化畫面
 function init() {
   // 頭像資料取得
-  let id = parseInt(localStorage.getItem("userId"));
-  axios.get(`${_url}/users/${id}`).then(function (res) {
-    renderAvatar(res);
-  });
+  fetchData(`${_url}/users?role=admin`, renderAvatar);
 
   // 帳號資料取得
-  axios.get(`${_url}/users?role=admin`).then(function (res) {
-    let data = res.data;
-    renderAccount(data);
-  });
+  fetchData(`${_url}/users?role=admin`, renderAccount);
+
+  // 訂單資料取得
+  fetchData(`${_url}/bookings`, renderOrder);
 
   // 房型資料取得
-  axios.get(`${_url}/rooms`).then(function (res) {
-    let data = res.data;
-    renderRoom(data);
-  });
+  fetchData(`${_url}/rooms`, renderRoom);
+
+  // 文章資料取得
+  fetchData(`${_url}/article`, renderArticle);
 }
 
 init();
 
 // 頭像渲染
-function renderAvatar(res) {
-  userImage.setAttribute("src", res.data.userPhoto);
-  welcomeText.textContent = `登入人員：${res.data.name}歡迎您回來`;
+let id = parseInt(localStorage.getItem("userId"));
+function renderAvatar(data) {
+  data.forEach(function (item) {
+    if (item.id === id) {
+      userImage.setAttribute("src", item.userPhoto);
+      welcomeText.textContent = `登入人員：${item.name}歡迎您回來`;
+    }
+  });
 }
 
 // 帳號狀態渲染
@@ -78,6 +96,25 @@ function renderAccount(data) {
   indexAccountTbody.innerHTML = str;
 }
 
+// 訂單渲染
+function renderOrder(data) {
+  // 取得當日日期
+  let todayDate = moment().format("YYYY-MM-DD");
+
+  // 統計當日訂單數量
+  let orderCount = 0;
+  let orderRevenue = 0;
+  data.forEach(function (item) {
+    if (item.bookingDate === todayDate) {
+      orderCount++;
+      orderRevenue += item.price;
+    }
+  });
+
+  orderNumToday.textContent = orderCount;
+  orderRevenueToday.textContent = `$${orderRevenue}`;
+}
+
 // 房型渲染
 function renderRoom(data) {
   let str = ``;
@@ -88,4 +125,26 @@ function renderRoom(data) {
     </tr>`;
   });
   indexRoomTbody.innerHTML = str;
+}
+
+// 文章渲染
+function renderArticle(data) {
+  let str = ``;
+  data.forEach(function (item, index) {
+    // 用 index 控制，只顯示 3 筆
+    if (index <= 2) {
+      str += `<div class="card" style="width: 8rem">
+      <img class="card-img-top" src="${item.photo}" />
+      <div class="card-body">
+        <h2 class="card-title text-truncate fs-6">${item.title}</h2>
+        <div class="d-flex justify-content-end align-items-center">
+          <span class="material-symbols-outlined me-4"> thumb_up </span>
+          <span class="material-symbols-outlined"> chat </span>
+        </div>
+      </div>
+    </div>`;
+    }
+  });
+
+  articleCardWrap.innerHTML = str;
 }
