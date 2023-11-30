@@ -1,6 +1,7 @@
 // import
 import axios from "axios";
 import Swal from "sweetalert2";
+import moment from "moment";
 import { _url } from "./config";
 import { reLogin } from "./loginIsTimeUp";
 
@@ -14,6 +15,7 @@ const adminLoginBtn = document.querySelector(".adminLoginBtn");
 
 let obj = {};
 adminLoginBtn.addEventListener("click", function (e) {
+  // 判斷登入帳號、密碼格式
   if (
     adminLoginAccount.value.length > 21 ||
     adminLoginAccount.value.length < 21 ||
@@ -48,6 +50,7 @@ adminLoginBtn.addEventListener("click", function (e) {
   obj.password = adminLoginPassword.value;
 
   let id = parseInt(adminLoginAccount.value.slice(9, 11), 10);
+
   // 第一層 axios 先判斷是否為 admin，不是就導回首頁
   axios
     .get(`${_url}/users/10${id}`)
@@ -83,20 +86,15 @@ adminLoginBtn.addEventListener("click", function (e) {
 
           // 最近登入時間
           // 登入成功後，取得當前時間
-          var loginTime = new Date();
-
-          // 將登入時間轉換為字串，方便存儲，把 toISOString改成 toLocaleString 使用 UTC+8 時區
-          var loginTimeString = loginTime.toLocaleString("en-US", {
-            timeZone: "Asia/Taipei",
-          });
+          let lastLoginTime = moment().format("YYYY年MM月DD日 HH:mm:ss");
 
           // 使用 localStorage 存儲登入時間
-          localStorage.setItem("userLoginTime", loginTimeString);
+          localStorage.setItem("userLoginTime", lastLoginTime);
 
           // 暫存 lastLoginTime 存到 json-server 中 -> 時效 1 小時
           // 注意 patch url，users 一定要指定 10XX 才能選擇到對應該管理員頁面
           axios.patch(`${_url}/users/10${id}`, {
-            lastLoginTime: `${loginTimeString}`,
+            lastLoginTime: `${lastLoginTime}`,
           });
         })
         .catch(function (error) {
