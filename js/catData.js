@@ -1,6 +1,7 @@
 import axios from "axios";
 import { _url } from "./config";
 import { isLogin } from "./isLogin";
+import Swal from "sweetalert2";
 
 // aside bar 顯示當前頁面
 // 因為有兩個 aside bar 所以要用 querySelectorAll
@@ -34,7 +35,7 @@ function lodingCat() {
     .then((res) => {
       //當資料載入完成時，隱藏 loading 元素
       const loadingDom = document.querySelector("#loading");
-      loadingDom.classList.add("d-none");
+      loadingDom.classList.toggle("d-none");
 
       //回傳貓咪資料
       const userCat = res.data;
@@ -200,24 +201,68 @@ function lodingCat() {
           // isLoginToHref 是自訂一的函數 判斷登入狀態 需要帶入前往的網址頁面路徑
           isLogin();
 
-          //執行刪除貓咪
-          const catEditId = element.getAttribute("data-catId");
-          console.log(catEditId);
-          axios
-            .delete(`${_url}/600/cats/${catEditId}`, {
-              headers: {
-                authorization: `Bearer ${accessToken}`,
-              },
+          //彈跳確認提示 按下後確認刪除
+          const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+              confirmButton: "btn btn-custom-confirm",
+              cancelButton: "btn btn-custom-cancel",
+            },
+            buttonsStyling: false,
+          });
+          swalWithBootstrapButtons
+            .fire({
+              title: "確定要刪除貓咪嗎?",
+              text: "刪除後將無法還原此貓咪資料",
+              icon: "warning",
+              showCancelButton: true,
+              confirmButtonText: "是的 我要刪除!",
+              cancelButtonText: "不 取消刪除!",
+              reverseButtons: true,
             })
-            .then((res) => {
-              console.log(res);
-              alert("刪除貓咪成功");
-              window.location.href = "./catData.html";
-            })
-            .catch((err) => {
-              console.log(err);
-              alert("刪除貓咪失敗");
-              window.location.href = "./login.html";
+            .then((result) => {
+              if (result.isConfirmed) {
+                //當資料載入時，顯示 loading 元素 並隱藏 catInfo 元素
+                const catInfoDom = document.querySelector("#catInfo");
+                catInfoDom.classList.toggle("d-none");
+                const loadingDom = document.querySelector("#loading");
+                loadingDom.classList.toggle("d-none");
+
+                //執行刪除貓咪
+                const catEditId = element.getAttribute("data-catId");
+                console.log(catEditId);
+                axios
+                  .delete(`${_url}/600/cats/${catEditId}`, {
+                    headers: {
+                      authorization: `Bearer ${accessToken}`,
+                    },
+                  })
+                  .then((res) => {
+                    console.log(res);
+                    swalWithBootstrapButtons
+                      .fire({
+                        title: "貓咪已刪除",
+                        icon: "success",
+                        confirmButtonText: "確定",
+                      })
+                      .then((result) => {
+                        //按下確定後頁面跳轉
+                        window.location.href = "./catData.html";
+                      });
+                  })
+                  .catch((err) => {
+                    console.log(err);
+
+                    swalWithBootstrapButtons
+                      .fire({
+                        title: "刪除貓咪失敗",
+                        text: "請重新登入後再嘗試",
+                        confirmButtonText: "確定",
+                      })
+                      .then((result) => {
+                        window.location.href = "./login.html";
+                      });
+                  });
+              }
             });
         });
       });

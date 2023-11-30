@@ -14,6 +14,10 @@ asideLocation.forEach((element) => {
 const navAside = document.querySelector("#navAside");
 navAside.classList.remove("d-none");
 
+//當資料載入完成時，隱藏 loading 元素
+const loadingDom = document.querySelector("#loading");
+loadingDom.classList.toggle("d-none");
+
 let getStars = 0; // 得到的星星數
 
 //星星功能
@@ -94,9 +98,27 @@ axios
 const evaluateBtn = document.querySelector("#evaluateBtn");
 evaluateBtn.addEventListener("click", (e) => {
   e.preventDefault();
+  //當資料載入時，顯示 loading 元素 並隱藏 evaluateBooking 元素
+  const evaluateBookingDom = document.querySelector("#evaluateBooking");
+  evaluateBookingDom.classList.toggle("d-none");
+  const loadingDom = document.querySelector("#loading");
+  loadingDom.classList.toggle("d-none");
+
   let getComment = document.querySelector("#comment").value; //得到的評論
   if (getStars === 0) {
-    Swal.fire("請輸入星星數量在發送評論！");
+    evaluateBookingDom.classList.toggle("d-none");
+    loadingDom.classList.toggle("d-none");
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "btn btn-custom-confirm",
+        cancelButton: "btn btn-custom-cancel",
+      },
+      buttonsStyling: false,
+    });
+    swalWithBootstrapButtons.fire({
+      title: "請輸入星星數量在發送評論！",
+      confirmButtonText: "確定",
+    });
   } else {
     axios
       .patch(
@@ -110,15 +132,43 @@ evaluateBtn.addEventListener("click", (e) => {
       )
       .then((res) => {
         console.log(res);
-        Swal.fire({
-          title: "評論送出成功",
-          confirmButtonText: "確定",
-        }).then((result) => {
-          /* Read more about isConfirmed, isDenied below */
-          if (result.isConfirmed) {
-            isLogin("./bookingHistory.html");
-          }
+        const swalWithBootstrapButtons = Swal.mixin({
+          customClass: {
+            confirmButton: "btn btn-custom-confirm",
+            cancelButton: "btn btn-custom-cancel",
+          },
+          buttonsStyling: false,
         });
+        swalWithBootstrapButtons
+          .fire({
+            title: "評論送出成功",
+            confirmButtonText: "確定",
+          })
+          .then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+              isLogin("./bookingHistory.html");
+            }
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+        const swalWithBootstrapButtons = Swal.mixin({
+          customClass: {
+            confirmButton: "btn btn-custom-confirm",
+            cancelButton: "btn btn-custom-cancel",
+          },
+          buttonsStyling: false,
+        });
+        swalWithBootstrapButtons
+          .fire({
+            title: "評論送出失敗",
+            text: "請重新登入後再嘗試",
+            confirmButtonText: "確定",
+          })
+          .then((result) => {
+            window.location.href = "./login.html";
+          });
       });
   }
 });
