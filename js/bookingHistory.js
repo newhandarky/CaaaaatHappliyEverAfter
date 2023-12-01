@@ -19,6 +19,7 @@ const userTokenAndData = JSON.parse(localStorage.getItem("userTokenAndData"));
 const { accessToken, user } = userTokenAndData;
 
 let roomTypeValue = roomType.getAttribute("data-value");
+
 //自製 select 點擊
 const body_Dom = document.querySelector("body");
 
@@ -49,7 +50,12 @@ optionType_Dom.forEach((optionType) => {
     //當資料載入完成時，隱藏 loading 元素
     const loadingDom = document.querySelector("#loading");
     loadingDom.classList.toggle("d-none");
-
+    const bookingHistoryFilter_Dom = document.querySelector(
+      "#bookingHistoryFilter"
+    );
+    bookingHistoryFilter_Dom.classList.add("d-none");
+    const titleDom = document.querySelector("#title");
+    titleDom.classList.add("d-none");
     console.log(roomTypeValue);
     lodingBooking();
   });
@@ -400,6 +406,12 @@ function graspAxiosData(catRoom_api, bookings_html) {
       //當資料載入完成時，隱藏 loading 元素
       const loadingDom = document.querySelector("#loading");
       loadingDom.classList.toggle("d-none");
+      const bookingHistoryFilter_Dom = document.querySelector(
+        "#bookingHistoryFilter"
+      );
+      bookingHistoryFilter_Dom.classList.remove("d-none");
+      const titleDom = document.querySelector("#title");
+      titleDom.classList.remove("d-none");
     })
     .catch((err) => {
       console.log(err);
