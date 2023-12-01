@@ -17,6 +17,35 @@ const roomType = document.querySelector("#roomType");
 let roomTypeValue = roomType.getAttribute("data-value");
 // console.log(roomTypeValue);
 
+//自製 select 點擊
+const body_Dom = document.querySelector("body");
+
+const catRoomInput_roomType_Dom = document.querySelector(
+  "#catRoomInput_roomType"
+);
+const selectType_Dom = document.querySelector("#selectType");
+
+body_Dom.addEventListener("click", (e) => {
+  e.stopPropagation();
+  selectType_Dom.classList.remove("show");
+});
+
+catRoomInput_roomType_Dom.addEventListener("click", (e) => {
+  e.stopPropagation();
+  selectType_Dom.classList.toggle("show");
+});
+
+const optionType_Dom = document.querySelectorAll(".optionType");
+optionType_Dom.forEach((optionType) => {
+  optionType.addEventListener("click", (e) => {
+    const optionValue = e.target.value;
+    roomType.innerHTML = `<p>${optionValue}</p>`;
+    roomType.setAttribute("data-value", optionValue);
+    roomTypeValue = optionValue;
+    console.log(roomType);
+  });
+});
+
 searchBarBtn.addEventListener("click", function (e) {
   //console.log("請填寫入住日期、退房日期與選擇房型");
   if (
@@ -121,42 +150,6 @@ searchBarBtn.addEventListener("click", function (e) {
   }
 });
 
-function indexBooking() {
-  let indexBookingArr = [];
-  let indexBooking = {};
-  indexBooking["checkIn"] = checkIn.value;
-  indexBooking["checkOut"] = checkOut.value;
-  indexBooking["roomType"] = roomTypeValue;
-  //console.log(indexBooking);
-  indexBookingArr.push(indexBooking);
-  let indexBookingString = JSON.stringify(indexBookingArr);
-  //console.log(indexBookingString);
-  sessionStorage.setItem("indexBooking", indexBookingString);
-
-  if (roomTypeValue == "經典房") {
-    isLogin("./bookingClassicProcess_1.html");
-    //window.location.href = "./bookingClassicProcess_1.html"
-  }
-  if (roomTypeValue == "精緻房") {
-    isLogin("./bookingDelicateProcess_1.html");
-    //window.location.href = "./bookingDelicateProcess_1.html"
-  }
-  if (roomTypeValue == "豪華房") {
-    isLogin("./bookingLuxProcess_1.html");
-  }
-}
-
-const optionType_Dom = document.querySelectorAll(".optionType");
-optionType_Dom.forEach((optionType) => {
-  optionType.addEventListener("click", (e) => {
-    const optionValue = e.target.value;
-    roomType.innerHTML = `<p>${optionValue}</p>`;
-    roomType.setAttribute("data-value", optionValue);
-    roomTypeValue = optionValue;
-    console.log(roomType);
-  });
-});
-
 searchBarBtn.addEventListener("click", function (e) {
   //console.log("請填寫入住日期、退房日期與選擇房型");
   if (
@@ -165,13 +158,14 @@ searchBarBtn.addEventListener("click", function (e) {
     roomTypeValue == "請選擇"
   ) {
     // alert("請填寫入住日期、退房日期與選擇房型")
-    // Swal.fire(`您尚未選擇入住或退房時間或選擇房型`)
-    alert("您尚未選擇入住或退房時間或選擇房型");
+    Swal.fire(`您尚未選擇入住或退房時間或選擇房型`);
+    // alert("您尚未選擇入住或退房時間或選擇房型");
     roomType.innerHTML = `<p style="color: #ced4da">請選擇</p>`;
     console.log("請填寫入住日期、退房日期與選擇房型");
     return;
   } else if (checkOut.value <= checkIn.value) {
-    alert("退房日期需晚於入住日期");
+    // alert("退房日期需晚於入住日期");
+    Swal.fire(`退房日期需晚於入住日期`);
     console.log("退房日期需晚於入住日期");
     checkOut.value = "";
     checkIn.value = "";
@@ -197,7 +191,8 @@ searchBarBtn.addEventListener("click", function (e) {
 
         console.log(noRoomDate);
         if (noRoomDate !== "") {
-          alert(`${noRoomDate}已無空房，請重新選擇`);
+          // alert(`${noRoomDate}已無空房，請重新選擇`);
+          // Swal.fire(`${noRoomDate}已無空房，請重新選擇`);
           checkOut.value = "";
           checkIn.value = "";
           roomTypeValue = "";
@@ -225,7 +220,8 @@ searchBarBtn.addEventListener("click", function (e) {
         });
         console.log(noRoomDate);
         if (noRoomDate !== "") {
-          alert(`${noRoomDate}已無空房，請重新選擇`);
+          // alert(`${noRoomDate}已無空房，請重新選擇`);
+          // Swal.fire(`${noRoomDate}已無空房，請重新選擇`);
           checkOut.value = "";
           checkIn.value = "";
           roomTypeValue = "";
@@ -253,7 +249,8 @@ searchBarBtn.addEventListener("click", function (e) {
           }
         });
         if (noRoomDate !== "") {
-          alert(`${noRoomDate}已無空房，請重新選擇`);
+          // alert(`${noRoomDate}已無空房，請重新選擇`);
+          // Swal.fire(`${noRoomDate}已無空房，請重新選擇`);
           checkOut.value = "";
           checkIn.value = "";
           roomTypeValue = "";
