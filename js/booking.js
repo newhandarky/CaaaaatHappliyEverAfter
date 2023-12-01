@@ -54,6 +54,7 @@ searchBarBtn.addEventListener("click", function (e) {
     // alert("請填寫入住日期、退房日期與選擇房型")
     // Swal.fire(`您尚未選擇入住或退房時間或選擇房型`)
     alert("您尚未選擇入住或退房時間或選擇房型");
+    roomType.innerHTML = `<p style="color: #ced4da">請選擇</p>`;
     console.log("請填寫入住日期、退房日期與選擇房型");
     return;
   } else if (checkOut.value <= checkIn.value) {
@@ -61,6 +62,7 @@ searchBarBtn.addEventListener("click", function (e) {
     console.log("退房日期需晚於入住日期");
     checkOut.value = "";
     checkIn.value = "";
+    roomType.innerHTML = `<p style="color: #ced4da">請選擇</p>`;
     return;
   }
   //選到經典房
@@ -86,6 +88,7 @@ searchBarBtn.addEventListener("click", function (e) {
           checkOut.value = "";
           checkIn.value = "";
           roomTypeValue = "";
+          roomType.innerHTML = `<p style="color: #ced4da">請選擇</p>`;
           return;
         }
         indexBooking();
@@ -113,6 +116,7 @@ searchBarBtn.addEventListener("click", function (e) {
           checkOut.value = "";
           checkIn.value = "";
           roomTypeValue = "";
+          roomType.innerHTML = `<p style="color: #ced4da">請選擇</p>`;
           return;
         }
         indexBooking();
@@ -140,6 +144,7 @@ searchBarBtn.addEventListener("click", function (e) {
           checkOut.value = "";
           checkIn.value = "";
           roomTypeValue = "";
+          roomType.innerHTML = `<p style="color: #ced4da">請選擇</p>`;
           return;
         }
 

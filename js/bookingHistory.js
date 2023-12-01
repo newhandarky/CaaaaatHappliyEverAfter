@@ -425,8 +425,9 @@ function graspAxiosData(catRoom_api, bookings_html) {
       ) {
         const bookingInfo = document.getElementById("bookingInfo");
         let createCatAddDataDOM = JSON.stringify(`
-    <div id="catContainer_add" class="catContainer">
-    <h1 id="catAddTitle" class="catAddTitle">尚未有訂單資料！</h1>        
+    <div id="catContainer_add" class="catContainer p-5">
+    <h2 id="catAddTitle" class="catAddTitle text-center" >尚未有訂單資料！</h2>
+    <h6 >點擊 線上訂房 即可開始預訂房間囉！</h6>        
   </div>
   `);
 
