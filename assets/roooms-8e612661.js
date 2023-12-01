@@ -1,1 +1,0 @@
-import"./bootstrap.min-5750ef26.js";import"./navbar-a947fc30.js";import"./config-4096d6dc.js";const e=document.getElementById("rooms");e.style.color="#FA863E";const t=document.getElementById("myVideo");t.removeAttribute("controls");t.addEventListener("ended",function(){t.play()});

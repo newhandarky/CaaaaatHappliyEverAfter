@@ -5,14 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>index</title>
-    <script type="module" crossorigin src="/CaaaaatHappliyEverAfter/assets/index-c0d6cb6a.js"></script>
-    <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/bootstrap.min-5750ef26.js">
+    <script type="module" crossorigin src="/CaaaaatHappliyEverAfter/assets/index-c0b454a4.js"></script>
+    <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/sweetalert2.all-1988d671.js">
     <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/config-4096d6dc.js">
-    <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/navbar-a947fc30.js">
+    <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/navbar-bd5379fb.js">
     <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/index-a4e39586.js">
-    <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/sweetalert2.all-9b43cc60.js">
-    <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/booking-5e5d92e1.js">
-    <link rel="stylesheet" href="/CaaaaatHappliyEverAfter/assets/bootstrap-ef8af88f.css">
+    <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/booking-152257db.js">
+    <link rel="stylesheet" href="/CaaaaatHappliyEverAfter/assets/sweetalert2-5d4ef2d3.css">
     <link rel="stylesheet" href="/CaaaaatHappliyEverAfter/assets/animate-2d4c25b0.css">
   </head>
   <body>
@@ -35,22 +34,22 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto d-flex align-items-center">
         <li class="nav-item mx-3 my-3">
-          <a id="aboutus" class="nav-link p-0" href="aboutus.html"
+          <a id="aboutusNav" class="nav-link p-0" href="aboutus.html"
             >關於我們</a
           >
         </li>
         <li class="nav-item mx-3 my-3 roooms">
-          <a id="rooms" class="nav-link p-0" href="roooms.html"
+          <a id="roomsNav" class="nav-link p-0" href="roooms.html"
             >旅館介紹</a
           >
         </li>
         <li class="nav-item mx-3 my-3 booking">
-          <a id="booking" class="nav-link p-0" href="booking.html"
+          <a id="bookingNav" class="nav-link p-0" href="booking.html"
             >線上訂房</a
           >
         </li>
         <li class="nav-item mx-3 my-3 article">
-          <a id="article" class="nav-link p-0" href="article.html"
+          <a id="articleNav" class="nav-link p-0" href="article.html"
             >文章總覽</a
           >
         </li>
@@ -180,24 +179,40 @@
                 </div>
                 <div class="col-lg-4 col-12">
                   <!--input 按鈕自製模組-->
-                  <div id="catRoomInput_roomType" class="catRoomInput">
-                    <div class="inputBar">
-                      <p class="fs-7 m-0">房型</p>
-                      <select id="roomType" class="roomType position-relative">
-                        <option value="" disabled selected style="color: #ced4da">
-                          請選擇
-                        </option>
-                        <option value="經典房">經典房</option>
-                        <option value="精緻房">精緻房</option>
-                        <option value="豪華房">豪華房</option>
-                      </select>
-                    </div>
+                  <div class="catRoomInputContainer position-relative">
+                    <div id="catRoomInput_roomType" class="catRoomInput">
+                      <div id="roomType_select" class="inputBar">
+                        <p class="fs-7 m-0">房型</p>
+                        <div
+                          id="roomType"
+                          data-value="請選擇"
+                          class="position-relative"
+                        >
+                          <p style="color: #ced4da">請選擇</p>
+                        </div>
+                      </div>
 
-                    <img
-                      class="icon"
-                      src="/CaaaaatHappliyEverAfter/assets/iconArrowDown-36313634.svg"
-                      alt="date_icon"
-                    />
+                      <img
+                        id="roomType_icon"
+                        class="icon"
+                        src="/CaaaaatHappliyEverAfter/assets/iconArrowDown-36313634.svg"
+                        alt="roomType_icon"
+                      />
+                    </div>
+                    <div
+                      id="selectType"
+                      class="selectType d-flex flex-column position-absolute w-100"
+                    >
+                      <button value="經典房" class="optionType room">
+                        經典房
+                      </button>
+                      <button value="精緻房" class="optionType room">
+                        精緻房
+                      </button>
+                      <button value="豪華房" class="optionType optionLast room">
+                        豪華房
+                      </button>
+                    </div>
                   </div>
                 </div>
                 <div class="col-lg-2 col-12">
@@ -219,24 +234,34 @@
     <!-- 房型區塊 -->
     <div class="container-fluid">
       <div class="row g-0">
-        <div class="col-lg-4 col-12 catRoom position-relative">
-          <div class="roomImgText position-absolute bottom-0">
-            <h3 class="text">精緻房</h3>
-          </div>
-          <img src="/CaaaaatHappliyEverAfter/assets/catRoom_Delicate-0542b434.png" alt="delicate" />
-        </div>
-        <div class="col-lg-4 col-12 catRoom position-relative">
+        <a
+          class="col-lg-4 col-12 catRoom position-relative"
+          href="./bookingClassicRoom.html"
+        >
           <div class="roomImgText position-absolute bottom-0">
             <h3 class="text">經典房</h3>
           </div>
           <img src="/CaaaaatHappliyEverAfter/assets/catRoom_Classic-196b5202.png" alt="classic" />
-        </div>
-        <div class="col-lg-4 col-12 catRoom position-relative">
+        </a>
+        <a
+          class="col-lg-4 col-12 catRoom position-relative"
+          href="./bookingDelicateRoom.html"
+        >
+          <div class="roomImgText position-absolute bottom-0">
+            <h3 class="text">精緻房</h3>
+          </div>
+          <img src="/CaaaaatHappliyEverAfter/assets/catRoom_Delicate-0542b434.png" alt="delicate" />
+        </a>
+
+        <a
+          class="col-lg-4 col-12 catRoom position-relative"
+          href="./bookingLuxRoom.html"
+        >
           <div class="roomImgText position-absolute bottom-0">
             <h3 class="text">豪華房</h3>
           </div>
           <img src="/CaaaaatHappliyEverAfter/assets/catRoom_luxury-110863c6.png" alt="luxury" />
-        </div>
+        </a>
       </div>
     </div>
 
@@ -446,7 +471,7 @@
       </div>
     </div>
 
-    <footer class="footer d-flex justify-content-center align-items-center ">
+    <footer class="footer d-flex justify-content-center align-items-center">
   <main class="d-inline-flex flex-column align-items-center">
     <a href="index.html"
       ><img
