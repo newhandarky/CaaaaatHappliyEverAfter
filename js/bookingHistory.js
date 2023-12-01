@@ -18,14 +18,47 @@ navAside.classList.remove("d-none");
 const userTokenAndData = JSON.parse(localStorage.getItem("userTokenAndData"));
 const { accessToken, user } = userTokenAndData;
 
-//篩選資料類型
-const filterType = document.getElementById("roomType");
-filterType.addEventListener("change", (e) => {
-  //當資料載入完成時，隱藏 loading 元素
-  const loadingDom = document.querySelector("#loading");
-  loadingDom.classList.toggle("d-none");
-  console.log(filterType.value);
-  lodingBooking();
+let roomTypeValue = roomType.getAttribute("data-value");
+
+//自製 select 點擊
+const body_Dom = document.querySelector("body");
+
+const catRoomInput_bookingHistoryFilter_Dom = document.querySelector(
+  "#catRoomInput_bookingHistoryFilter"
+);
+const selectType_Dom = document.querySelector("#selectType");
+
+body_Dom.addEventListener("click", (e) => {
+  e.stopPropagation();
+  selectType_Dom.classList.remove("show");
+});
+
+catRoomInput_bookingHistoryFilter_Dom.addEventListener("click", (e) => {
+  e.stopPropagation();
+  selectType_Dom.classList.toggle("show");
+});
+
+const optionType_Dom = document.querySelectorAll(".optionType");
+optionType_Dom.forEach((optionType) => {
+  optionType.addEventListener("click", (e) => {
+    const optionValue = e.target.value;
+    roomType.innerHTML = `<p>${optionValue}</p>`;
+    roomType.setAttribute("data-value", optionValue);
+    roomTypeValue = optionValue;
+    console.log(roomType);
+
+    //當資料載入完成時，隱藏 loading 元素
+    const loadingDom = document.querySelector("#loading");
+    loadingDom.classList.toggle("d-none");
+    const bookingHistoryFilter_Dom = document.querySelector(
+      "#bookingHistoryFilter"
+    );
+    bookingHistoryFilter_Dom.classList.add("d-none");
+    const titleDom = document.querySelector("#title");
+    titleDom.classList.add("d-none");
+    console.log(roomTypeValue);
+    lodingBooking();
+  });
 });
 
 //跟後端抓資料功能
@@ -256,20 +289,6 @@ function graspAxiosData(catRoom_api, bookings_html) {
         const { name } = room;
         const catQuantity = cats.length;
 
-        // console.log(
-        //   bookingDate,
-        //   checkIn,
-        //   checkOut,
-        //   state,
-        //   price,
-        //   name,
-        //   remark,
-        //   room,
-        //   history,
-        //   feedback,
-        //   id
-        // );
-
         //抓到 DOM 並呈現資料
         const bookingInfo = document.getElementById("bookingInfo");
         let contentToAdd = "";
@@ -375,7 +394,7 @@ function graspAxiosData(catRoom_api, bookings_html) {
 
       // console.log(bookingInfo.innerHTML);
       if (bookingInfo.innerHTML === "") {
-        bookingInfo.innerHTML = `<h1>沒有${filterType.value}資料</h1>`;
+        bookingInfo.innerHTML = `<h1>沒有${roomTypeValue}資料</h1>`;
       }
 
       //掛載取消訂單功能
@@ -387,6 +406,12 @@ function graspAxiosData(catRoom_api, bookings_html) {
       //當資料載入完成時，隱藏 loading 元素
       const loadingDom = document.querySelector("#loading");
       loadingDom.classList.toggle("d-none");
+      const bookingHistoryFilter_Dom = document.querySelector(
+        "#bookingHistoryFilter"
+      );
+      bookingHistoryFilter_Dom.classList.remove("d-none");
+      const titleDom = document.querySelector("#title");
+      titleDom.classList.remove("d-none");
     })
     .catch((err) => {
       console.log(err);
@@ -400,8 +425,9 @@ function graspAxiosData(catRoom_api, bookings_html) {
       ) {
         const bookingInfo = document.getElementById("bookingInfo");
         let createCatAddDataDOM = JSON.stringify(`
-    <div id="catContainer_add" class="catContainer">
-    <h1 id="catAddTitle" class="catAddTitle">尚未有訂單資料！</h1>        
+    <div id="catContainer_add" class="catContainer p-5">
+    <h2 id="catAddTitle" class="catAddTitle text-center" >尚未有訂單資料！</h2>
+    <h6 >點擊 線上訂房 即可開始預訂房間囉！</h6>        
   </div>
   `);
 
@@ -415,6 +441,10 @@ function graspAxiosData(catRoom_api, bookings_html) {
       //當資料載入完成時，隱藏 loading 元素
       const loadingDom = document.querySelector("#loading");
       loadingDom.classList.toggle("d-none");
+      const bookingHistoryFilter = document.querySelector(
+        "#bookingHistoryFilter"
+      );
+      bookingHistoryFilter.classList.toggle("d-none");
     });
 }
 
@@ -424,23 +454,23 @@ function lodingBooking() {
   //抓到 DOM 並呈現資料
   const bookingInfo = document.getElementById("bookingInfo");
   //判斷當前篩選條件
-  if (filterType.value == "已預訂") {
+  if (roomTypeValue == "已預訂") {
     bookingInfo.innerHTML = "";
     graspAxiosData(
       `${_url}/600/bookings?userId=${memberId}&state=已預訂&_expand=user&_expand=room&_sort=bookingDate&_order=desc`,
-      filterType.value
+      roomTypeValue
     );
-  } else if (filterType.value == "已完成") {
+  } else if (roomTypeValue == "已完成") {
     bookingInfo.innerHTML = "";
     graspAxiosData(
       `${_url}/600/bookings?userId=${memberId}&state=已退房&_expand=user&_expand=room&_sort=bookingDate&_order=desc`,
-      filterType.value
+      roomTypeValue
     );
-  } else if (filterType.value == "已取消") {
+  } else if (roomTypeValue == "已取消") {
     bookingInfo.innerHTML = "";
     graspAxiosData(
       `${_url}/600/bookings?userId=${memberId}&state=已取消&_expand=user&_expand=room&_sort=bookingDate&_order=desc`,
-      filterType.value
+      roomTypeValue
     );
   } else {
     bookingInfo.innerHTML = `<div id="catContainer_add" class="catContainer">
