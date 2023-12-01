@@ -14,18 +14,18 @@ import 'swiper/css/pagination';
 //FAQ
 //DOM
 const articleList = document.querySelector(".articleList");
-const articleTitle = document.querySelector(".articleTitle");
-const cardBody = document.querySelector(".card-body");
-console.log(articleTitle);
+//const articleTitle = document.querySelector(".articleTitle");
+//const cardBody = document.querySelector(".card-body");
+//console.log(articleTitle);
 
 axios.get(`${_url}/faqs`).then(function(response){
-    console.log(response.data);
+ //   console.log(response.data);
     let data = response.data;
-    console.log(data);
+  //  console.log(data);
     let str = '';
     data.forEach(function(item){
-        console.log(item.title);
-        console.log(item.content);
+    //    console.log(item.title);
+     //   console.log(item.content);
         str += `<li class="mb-3  id="">
         <p class="articleTag">
            <a class="border border-primary w-100  btn articleTitle text-start" data-bs-toggle="collapse" href="#${item.title}" role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -40,7 +40,7 @@ axios.get(`${_url}/faqs`).then(function(response){
          </div>
        </li>`
     });
-    console.log(str);
+   // console.log(str);
     articleList.innerHTML = str
     
 
@@ -50,7 +50,7 @@ axios.get(`${_url}/faqs`).then(function(response){
 //DOM
 const catArticleList = document.querySelector(".catArticleList");
 const selector = document.querySelector('#selector');
-console.log(selector);
+//console.log(selector);
 
 axios.get(`${_url}/article`).then(function(response){
     let data = response.data;
@@ -79,7 +79,7 @@ axios.get(`${_url}/article`).then(function(response){
            
         });
 
-        console.log(filterData);
+      //  console.log(filterData);
         render(filterData)
 
      })
@@ -134,7 +134,7 @@ function render(data){
 </div>
     </li>`
     });
-    console.log(str);
+   // console.log(str);
     catArticleList.innerHTML = str;
 }
 
@@ -180,22 +180,22 @@ var swiper = new Swiper(".mySwiper", {
           };
           
       });
-      console.log(userFeedbackList);
+    // console.log(userFeedbackList);
 
       userFeedbackList.forEach(function(item){
         axios.get(`${_url}/users/${item.userId}`).then(function(response){
-            console.log(response.data);
+         //   console.log(response.data);
             let userPhoto = response.data.userPhoto;
-            console.log(userPhoto);
+        //    console.log(userPhoto);
             
             let name  = response.data.name; //找到名字
             //console.log(name.split('')[0]);
             let lastName = name.split('')[0] //找到姓
             let add = response.data.address;
             let area = ''; //找到住哪個縣市
-            console.log(add.split(''));
+         //   console.log(add.split(''));
             area += (add.split(''))[0] + (add.split(''))[1] + (add.split(''))[2]
-            console.log(area);
+         //   console.log(area);
     
             let gender = ''; //找到先生小姐
             if(response.data.gender == 'female'){
@@ -206,7 +206,7 @@ var swiper = new Swiper(".mySwiper", {
             };
     
             axios.get(`${_url}/bookings?userId=${item.userId}`).then(function(response){
-                console.log(response.data);
+             //   console.log(response.data);
                 let feedbackStr = '';
                 let bookingData = response.data;
                 let stars = 0;
@@ -217,9 +217,9 @@ var swiper = new Swiper(".mySwiper", {
                         stars += item.feedback.stars;
                     }
                 });
-                console.log(feedbackStr);
-                console.log(stars);
-                console.log(5-stars);
+         //       console.log(feedbackStr);
+           //     console.log(stars);
+             //   console.log(5-stars);
                 let starsSpan = `<span class="material-symbols-outlined">kid_star</span>`
                 let noStarSpan = `<span class="material-symbols-outlined text-light">kid_star</span>`
 
@@ -245,7 +245,7 @@ var swiper = new Swiper(".mySwiper", {
                     str += 
             `<li class="swiper-slide d-flex flex-column justify-content-around bg-primary02 border border-light
                     pb-3 mb-5" style="border-radius: 32px;">
-                    <img src="${userPhoto}" alt="" class="rounded-circle" >
+                    <img src="${userPhoto}" alt="" class=" w-75 mt-5 mb-2" style="border-radius:32px ; height:400px" >
 
                     
 
