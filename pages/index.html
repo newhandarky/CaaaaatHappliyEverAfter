@@ -87,31 +87,40 @@
                 </div>
                 <div class="col-lg-4 col-12">
                   <!--input 按鈕自製模組-->
-                  <div id="catRoomInput_roomType" class="catRoomInput">
-                    <div id="roomType_select" class="inputBar">
-                      <p class="fs-7 m-0">房型</p>
-                      <select id="roomType" class="roomType position-relative">
-                        <option
-                          value=""
-                          disabled
-                          selected
-                          style="color: #ced4da"
-                          class="room"
+                  <div class="catRoomInputContainer position-relative">
+                    <div id="catRoomInput_roomType" class="catRoomInput">
+                      <div id="roomType_select" class="inputBar">
+                        <p class="fs-7 m-0">房型</p>
+                        <div
+                          id="roomType"
+                          data-value="請選擇"
+                          class="position-relative"
                         >
-                          請選擇
-                        </option>
-                        <option value="經典房" class="room">經典房</option>
-                        <option value="精緻房" class="room">精緻房</option>
-                        <option value="豪華房" class="room">豪華房</option>
-                      </select>
-                    </div>
+                          <p style="color: #ced4da">請選擇</p>
+                        </div>
+                      </div>
 
-                    <img
-                      id="roomType_icon"
-                      class="icon"
-                      src="../assets/icons/iconArrowDown.svg"
-                      alt="roomType_icon"
-                    />
+                      <img
+                        id="roomType_icon"
+                        class="icon"
+                        src="../assets/icons/iconArrowDown.svg"
+                        alt="roomType_icon"
+                      />
+                    </div>
+                    <div
+                      id="selectType"
+                      class="selectType d-flex flex-column position-absolute w-100"
+                    >
+                      <button value="經典房" class="optionType room">
+                        經典房
+                      </button>
+                      <button value="精緻房" class="optionType room">
+                        精緻房
+                      </button>
+                      <button value="豪華房" class="optionType optionLast room">
+                        豪華房
+                      </button>
+                    </div>
                   </div>
                 </div>
                 <div class="col-lg-2 col-12">

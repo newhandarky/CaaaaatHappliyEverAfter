@@ -313,6 +313,7 @@ body {
     input
 \*------------------------------------*/
 //房型選擇按鈕
+
 .catRoomInput {
   cursor: pointer;
   border-radius: 8px;
@@ -343,24 +344,6 @@ body {
         outline: none;
       }
     }
-    .roomType {
-      cursor: pointer;
-      height: 30px;
-      border: none;
-      color: $text;
-
-      appearance: none;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      text-indent: 1px;
-      text-overflow: "";
-      &:focus {
-        outline: none;
-      }
-      option {
-        color: $text;
-      }
-    }
   }
   .icon {
     width: 30px;
@@ -369,7 +352,39 @@ body {
     right: 0;
   }
 }
+.selectType {
+  cursor: pointer;
+  height: 30px;
+  border: none;
+  color: $text;
+  z-index: 10;
+  margin-top: -1rem;
+  display: none;
+  transition: transform 0.1s ease-in-out, opacity 0.1s ease-in-out,
+    display 0.1s ease-in-out;
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  &.show {
+    pointer-events: auto;
+    transform: translateY(0px);
+    display: block;
+    opacity: 1;
+  }
 
+  .optionType {
+    border: none;
+    background-color: $white;
+    padding: 0.5rem 0;
+    &.optionLast {
+      border-radius: 0 0 10px 10px;
+    }
+    &:hover {
+      background-color: $primary02;
+      color: $primary;
+    }
+  }
+}
 /*------------------------------------*\
     color
 \*------------------------------------*/
