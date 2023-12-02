@@ -23,29 +23,6 @@ function render() {
       )} 歡迎您回來`);
 }
 
-function login(obj) {
-  axios
-    .post(`${_url}/login`, {
-      // 管理員帳密
-      email: obj.email,
-      password: obj.password,
-    })
-    .then(function (res) {
-      localStorage.setItem("userLoginToken", res.data.accessToken);
-      if (res.data.user.role === "admin") {
-        localStorage.setItem("userRole", res.data.user.role);
-        localStorage.setItem("userName", res.data.user.name);
-        localStorage.setItem("userLoginToken", res.data.accessToken);
-      } else {
-        location = "index.html";
-      }
-      render();
-    })
-    .catch(function (err) {
-      console.log(err.response);
-    });
-}
-
 /*------------------------------------*\
     事件
 \*------------------------------------*/
