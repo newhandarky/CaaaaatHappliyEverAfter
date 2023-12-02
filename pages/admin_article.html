@@ -13,10 +13,10 @@
   <body>
     <%- include('./layout/admin_header'); -%>
     <main class="container p-8">
-      <h2 class="mb-5">
-        <a class="text-primary" href="./admin_index.html">首頁</a> > 文章管理
+      <h2 class="mb-4">
+        <a class="link-primary" href="./admin_index.html">首頁</a> > 文章管理
       </h2>
-      <form class="articleSearch d-flex mb-5">
+      <form class="articleSearch d-flex mb-4">
         <input
           type="search"
           id="mySearch"
@@ -34,20 +34,20 @@
         </button>
       </form>
       <div class="border border-gray rounded-3 py-10 px-5">
-        <div class="d-flex align-items-center">
-          <h2 class="fs-2 me-11">文章總覽</h2>
+        <div class="d-flex align-items-center mb-4">
+          <h2 class="me-6">文章總覽</h2>
           <a
             href="./admin_articleAddNewArticle.html"
             role="button"
-            class="btn btn-outline-primary border border-1 border-primary rounded-1 fs-5 p-1"
+            class="btn btn-primary text-white rounded-1 fs-5 p-2"
           >
             新增文章
           </a>
         </div>
 
-        <div class="px-6 mt-10">
+        <div class="table-responsive">
           <table
-            class="articleWrap table table-bordered align-middle text-center"
+            class="articleWrap cellNoWrap table table-bordered border-gray align-middle text-center"
           >
             <thead>
               <tr>
@@ -65,7 +65,7 @@
           </table>
         </div>
         <!-- aria-label 屬性用於說明該區塊功能 -->
-        <nav aria-label="article result">
+        <nav aria-label="article result ">
           <!-- 在 ul 中渲染分頁畫面 -->
           <ul class="pagination justify-content-center"></ul>
         </nav>

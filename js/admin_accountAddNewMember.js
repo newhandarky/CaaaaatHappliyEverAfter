@@ -1,4 +1,5 @@
 import axios from "axios";
+import Swal from "sweetalert2";
 import { _url } from "./config";
 
 // DOM
@@ -21,10 +22,40 @@ const memberPassword = document.querySelector(".memberPassword");
 const memberAddress = document.querySelector(".memberAddress");
 const memberStatus = document.querySelector(".memberStatus");
 
-const sendNewMember = document.querySelector(".sendNewMember");
+const cancelNewMemberBtn = document.querySelector(".cancelNewMemberBtn");
+const memeberAddForm = document.querySelector(".memeberAddForm");
 
-// 點擊新增按鈕監聽
-sendNewMember.addEventListener("click", function (e) {
+// 取消新增按鈕
+cancelNewMemberBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  Swal.fire({
+    title: "是否要取消新增",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#20c997",
+    cancelButtonColor: "#dc3545",
+    confirmButtonText: '<span class="text-white fs-4 px-1">是</span>',
+    cancelButtonText: '<span class="text-white fs-4 px-1">否</span>',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: "已取消新增",
+        icon: "success",
+        showConfirmButton: false,
+      });
+
+      // 1 秒後回到人員管理頁面
+      setTimeout(() => {
+        window.location.href = "./admin_account.html";
+      }, 1000);
+    }
+  });
+});
+
+// 新增人員按鈕
+memeberAddForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+
   let obj = {
     email: memberAccount.value,
     password: memberPassword.value,
@@ -45,7 +76,30 @@ sendNewMember.addEventListener("click", function (e) {
     id: parseInt(memberId.value),
   };
 
-  axios.post(`${_url}/users`, obj).catch(function (error) {
-    console.log(error);
+  Swal.fire({
+    title: "是否確定新增",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#20c997",
+    cancelButtonColor: "#dc3545",
+    confirmButtonText: '<span class="text-white fs-4 px-1">是</span>',
+    cancelButtonText: '<span class="text-white fs-4 px-1">否</span>',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      axios.post(`${_url}/users`, obj).catch(function (error) {
+        console.log(error);
+      });
+
+      Swal.fire({
+        title: "後台人員新增成功",
+        icon: "success",
+        showConfirmButton: false,
+      });
+
+      // 1 秒後回到人員管理頁面
+      setTimeout(() => {
+        window.location.href = "./admin_account.html";
+      }, 1000);
+    }
   });
 });

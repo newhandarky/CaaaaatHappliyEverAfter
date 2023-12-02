@@ -107,7 +107,7 @@ function renderOrder(data) {
   data.forEach(function (item) {
     if (item.bookingDate === todayDate) {
       orderCount++;
-      orderRevenue += item.price;
+      orderRevenue += parseInt(item.price);
     }
   });
 

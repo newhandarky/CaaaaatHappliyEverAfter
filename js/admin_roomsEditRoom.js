@@ -17,9 +17,14 @@ const saveRoomBtn = document.querySelector(".saveRoomBtn");
 
 // 用 rooms?id=${id} 時，下面的 value 要 =res.data[0].屬性，因為回傳的是一筆陣列包物件
 function init() {
-  axios.get(`${_url}/rooms/${id}`).then(function (res) {
-    renderData(res);
-  });
+  axios
+    .get(`${_url}/rooms/${id}`)
+    .then(function (res) {
+      renderData(res);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 }
 
 init();
@@ -40,7 +45,7 @@ saveRoomBtn.addEventListener("click", function () {
     name: roomName.value,
     imageUrl: roomUrl.value,
     price: Number(roomPrice.value),
-    // rooms facility 要用陣列呈現字串
+    // rooms facility 要用.split呈現陣列包字串
     facility: roomFacilities.textContent.split(","),
   };
 

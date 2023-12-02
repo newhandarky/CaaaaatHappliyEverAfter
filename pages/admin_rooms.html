@@ -13,23 +13,22 @@
   <body>
     <%- include('./layout/admin_header'); -%>
     <main class="container p-8">
-      <h2 class="mb-5">
-        <a class="text-primary" href="./admin_index.html">首頁</a> > 客房管理
+      <h2 class="mb-4">
+        <a class="link-primary" href="./admin_index.html">首頁</a> > 客房管理
       </h2>
       <div class="roomsWrap border border-gray rounded-3 py-10 px-5">
         <div class="titleWrap d-flex align-items-center">
-          <h2 class="fs-2 me-11">房型總覽</h2>
-          <!-- a-href 先不做新增房型連結 -->
+          <h2 class="me-6">房型總覽</h2>
           <a
             href="./admin_roomsAddRoom.html"
             role="button"
-            class="addNewBtn btn btn-outline-primary border border-1 border-primary rounded-1 fs-5 p-1"
+            class="addNewBtn btn btn-primary text-white rounded-1 fs-5 p-2"
           >
             新增房型
           </a>
         </div>
-        <div class="px-6 mt-10">
-          <table class="table align-middle fs-2 text-center">
+        <div class="table-responsive px-6 mt-10">
+          <table class="cellNoWrap table align-middle fs-2 text-center">
             <thead>
               <tr>
                 <th scope="col">封面圖片</th>

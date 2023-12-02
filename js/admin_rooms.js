@@ -34,7 +34,7 @@ function renderData() {
             edit_square
           </span></a
         >
-        <a href=""
+        <a style="cursor: not-allowed"
           ><span class="material-symbols-outlined fs-2 text-primary">
             delete
           </span></a

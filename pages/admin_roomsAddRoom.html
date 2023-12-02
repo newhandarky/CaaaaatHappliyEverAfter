@@ -15,8 +15,8 @@
 
     <main class="container p-8">
       <h2 class="mb-8">
-        <a class="text-primary" href="./admin_index.html">首頁</a> >
-        <a class="text-primary" href="./admin_rooms.html">客房管理</a> >
+        <a class="link-primary" href="./admin_index.html">首頁</a> >
+        <a class="link-primary" href="./admin_rooms.html">客房管理</a> >
         新增房型
       </h2>
       <form
@@ -31,7 +31,7 @@
               <input
                 id="roomName"
                 placeholder="請輸入房型名稱"
-                class="roomName py-1 ps-2"
+                class="roomName w-75 py-1 ps-2"
                 type="text"
                 required
               />
@@ -42,8 +42,11 @@
               <input
                 id="roomPrice"
                 placeholder="請輸入房型價格"
-                class="roomPrice py-1 ps-2"
+                class="roomPrice w-75 py-1 ps-2"
+                step="10"
                 type="number"
+                min="300"
+                max="20000"
                 required
               />
             </div>
@@ -53,12 +56,17 @@
               <input
                 id="roomUrl"
                 placeholder="請輸入封面照網址"
-                class="roomUrl py-1 ps-2 mb-5"
+                class="roomUrl w-75 py-1 ps-2 mb-5"
                 type="url"
                 required
               />
-              <div>
-                <img src="https://fakeimg.pl/250/" />
+              <div class="position-relative">
+                <button
+                  class="previewImage position-absolute bottom-0 start-0 btn btn-primary rounded-0 text-white fs-6"
+                >
+                  預覽圖片
+                </button>
+                <img class="roomImage" />
               </div>
             </div>
           </div>
@@ -68,10 +76,10 @@
               <br />
               <input
                 id="roomCatLimit"
-                placeholder="請輸入貓咪上限"
                 class="roomCatLimit py-1 ps-2"
                 type="number"
-                required
+                value="1"
+                disabled
               />
             </div>
             <div class="fs-4 mb-6">
@@ -81,7 +89,7 @@
                 name="roomFacilities"
                 id="roomFacilities"
                 class="roomFacilities w-100 py-1 ps-2"
-                placeholder="請輸入基礎設施"
+                placeholder="請輸入基礎設施(用「,」隔開每個設施)"
                 rows="5"
               ></textarea>
             </div>
@@ -92,25 +100,64 @@
                 name="roomMustKnow"
                 id="roomMustKnow"
                 class="roomMustKnow w-100 py-1 ps-2"
-                placeholder="請輸入入住須知"
                 rows="5"
-              ></textarea>
+                disabled
+              >
+1. 請入住前確認貓咪都已注射疫苗 2. 特殊需求請在訂房時告知，若未告知恕不負責 3. 房費均已含飲食費用 4. 逾時每貓每小時加收$300</textarea
+              >
             </div>
             <div class="d-flex justify-content-end align-items-center">
-              <!-- 應該要重新render，因為還沒按新增所以還沒儲存到資料庫 -->
               <a
-                class="text-white btn btn-success me-4"
+                class="btn btn-warning text-white me-4"
                 href="./admin_rooms.html"
                 role="button"
-                >完成新增</a
+                >取消變更</a
               >
-              <a class="btn btn-danger" href="#" role="button">刪除房型</a>
+              <!-- BS5 Modal 新增成功彈跳視窗主觸發鈕 -->
+              <a
+                class="saveRoomBtn text-white btn btn-success"
+                role="button"
+                data-bs-toggle="modal"
+                data-bs-target="#addRoom"
+                >確認新增</a
+              >
             </div>
           </div>
         </div>
       </form>
     </main>
-
+    <!-- Modal 編輯成功彈跳視窗主體 -->
+    <div
+      class="modal fade"
+      id="addRoom"
+      tabindex="-1"
+      aria-labelledby="addRoomLabel"
+      aria-hidden="true"
+    >
+      <div class="addRoomModal modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header border-0 p-0"></div>
+          <div
+            class="modal-body d-flex flex-column justify-content-center align-items-center"
+          >
+            <span
+              class="checkCircle material-symbols-outlined text-success mb-1"
+            >
+              check_circle
+            </span>
+            <p class="fs-3 mb-4">房型新增成功</p>
+            <a
+              href="./admin_rooms.html"
+              role="button"
+              class="btn btn-success text-white fs-3"
+            >
+              返回客房總覽
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
     <script type="module" src="../main.js"></script>
+    <script type="module" src="../js/admin_roomsAddNewRoom.js"></script>
   </body>
 </html>

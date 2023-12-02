@@ -1,26 +1,26 @@
 import axios from "axios";
 import { _url } from "./config";
+import { headerObj } from "./admin_config";
 
-// DOM
-// 表格
-const adminArticleList = document.querySelector(".adminArticleList");
-// 分頁導覽
+const editAccountBtn = document.querySelector(".editAccountBtn");
+const adminMemberList = document.querySelector(".adminMemberList");
 const paginationContainer = document.querySelector(".pagination");
-const articleSearch = document.querySelector(".articleSearch");
+const memberSearch = document.querySelector(".memberSearch");
 const mySearch = document.querySelector("#mySearch");
+
+// 要記得轉成數字再進行比較，因為 localStorage 取出是字串
+let id = parseInt(localStorage.getItem("userId"));
 
 // 每頁顯示的資料數量
 const perPage = 3;
 
 let data;
 
-// 抓回資料庫文章數
+// 初始畫面渲染
 axios
-  .get(`${_url}/article`)
+  .get(`${_url}/660/users?role=admin`, headerObj)
   .then(function (res) {
-    // console.log(res);
     data = res.data;
-
     // 這邊等同於 init 函式效果，會根據每個分頁來渲染畫面。預設進入畫面會顯示第一頁，所以 nowPage 先帶入 1
     pagination(data, 1);
   })
@@ -83,29 +83,49 @@ function pagination(data, nowPage) {
 // 表格渲染
 function renderTable(newData) {
   let str = ``;
-  // console.log(newData);
   newData.forEach(function (item) {
-    // 登入者為 admin 才能觀看
-    // a href= ...?id=${item.id} 把使用者導到對應頁面
-    if (localStorage.getItem("userRole") === "admin") {
+    // 表格編輯人員按鈕，限制每個人只能編輯自己的帳號
+    if (item.role === "admin" && id === item.id) {
+      // a tag 內的 href 加上 ?id=${item.id} 來導入遍及管理員時對應的頁面
       str += `<tr>
-        <td>${localStorage.getItem("userName")}</td>
-        <td>${item.lastEditOrPublishTime}</td>
-        <td>${item.title}</td>
-        <td>${item.id}</td>
-        <td>${item.keyword}</td>
-        <td>${item.status}</td>
-        <td><a class="editArticle" href="./admin_articleEditArticle.html?id=${
-          item.id
-        }">
-        <span class="material-symbols-outlined link-primary"> edit_square </span>
-      </a></td>
-        </tr>`;
+            <td>${item.id}</td>
+            <td>${item.name}</td>
+            <td>${item.phone}</td>
+            <td>${item.address}</td>
+            <td>${item.joinDate}</td>
+            <td class="text-center">
+              <a class="editMember" href="./admin_accountEditMember.html?id=${item.id}">
+                <span class="material-symbols-outlined link-primary"> edit_square </span>
+              </a>
+            </td>
+          </tr>`;
+    } else {
+      str += `<tr>
+            <td>${item.id}</td>
+            <td>${item.name}</td>
+            <td>${item.phone}</td>
+            <td>${item.address}</td>
+            <td>${item.joinDate}</td>
+            <td class="text-center">
+              <a class="editMember" style="cursor: not-allowed">
+                <span class="material-symbols-outlined"> edit_square </span>
+              </a>
+            </td>
+          </tr>`;
     }
   });
-
-  adminArticleList.innerHTML = str;
+  adminMemberList.innerHTML = str;
 }
+
+// 上方編輯人員按鈕，限制每個人只能編輯自己的帳號
+editAccountBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  data.forEach(function (item) {
+    if (id == item.id) {
+      location.href = `./admin_accountEditMember.html?id=${item.id}`;
+    }
+  });
+});
 
 function pageBtn(page) {
   let str = "";
@@ -170,7 +190,7 @@ paginationContainer.addEventListener("click", function (event) {
 });
 
 // 搜尋欄位監聽
-articleSearch.addEventListener("submit", keywordSearch);
+memberSearch.addEventListener("submit", keywordSearch);
 
 // 儲存與搜尋關鍵字相符的整筆資料。宣告為全域變數使用，因為 switchPage 函式也會用到
 let searchData = [];
@@ -186,10 +206,11 @@ function keywordSearch(e) {
 
   // 原資料集跑 forEach，為了把關鍵字推進 filterData，並把符合搜尋關鍵字整筆資料推進 searchData
   data.forEach(function (item) {
-    // 把所有文章的關鍵字加入 filterData
-    filterData.push(item.title);
-    filterData.push(item.keyword);
-    // 把關鍵字陣列跑 filter，回傳的 filterKeyword 會是符合搜尋關鍵字的陣列
+    // 把所有管理員名稱及地址加入 filterData
+
+    filterData.push(item.name);
+    filterData.push(item.address);
+    // 把管理員名稱及地址陣列跑 filter，回傳的 filterKeyword 會是符合搜尋關鍵字的陣列
     const filterKeyword = filterData.filter(function (keyword) {
       // console.log(keyword);
       // mySearch.value 要去跟 filterData 的每一個 keyword 比對，如果字詞有包含，就加入新陣列，最後會存成變數 filterKeyword
@@ -200,17 +221,9 @@ function keywordSearch(e) {
     // filterKeyword 裡的關鍵字(每一個 item) 要去跟 原資料關鍵字 item.keyword 比對，如果字詞有包含，就把原資料 item 放到 searchData 裡面，然後要當作參數傳到 pagination
     filterKeyword.forEach(function (i) {
       // console.log(i, item);
-      if (i === item.title || i === item.keyword) {
+      if (i === item.name || i === item.address) {
         // console.log(i);
-        const isItemInSearchData = searchData.some(
-          (existingItem) =>
-            existingItem.title === item.title &&
-            existingItem.keyword === item.keyword
-        );
-
-        if (!isItemInSearchData) {
-          searchData.push(item);
-        }
+        searchData.push(item);
       }
     });
   });
