@@ -50,11 +50,6 @@ const roomStates = axios.get(`${_url}/roomStates`);
 // 使用Promise.all()確保請求都完成
 Promise.all([user, cats, rooms, roomStates])
     .then(([user, cats, rooms, roomStates]) => {
-        // console.log('Response 1:', user.data);
-        // console.log('Response 2:', cats.data);
-        // console.log('Response 3:', rooms.data);
-        // console.log('Response 4:', roomStates.data);
-
         // 將會員資料寫入select
         let userStr = `<option selected>請選擇</option>`;
         user.data.forEach(function (item) {
@@ -70,7 +65,6 @@ Promise.all([user, cats, rooms, roomStates])
                 }
             })
         })
-
 
         // 選取會員時同時抓取貓咪
         selectUser.addEventListener("change", function () {
@@ -187,7 +181,6 @@ Promise.all([user, cats, rooms, roomStates])
 
             axios.post(`${_url}/bookings`, bookingObj)
                 .then(function (res) {
-                    // console.log(res.data);
                     bookingRes.innerHTML = `<thead>
                                                 <tr>
                                                     <th scope="col"></th>
@@ -222,9 +215,9 @@ Promise.all([user, cats, rooms, roomStates])
                                 item.availableCount[roomObj[roomId]]--;
                                 axios.patch(`${_url}/roomStates/${item.id}`, item)
                                     .then(function (res) {
-                                        // console.log(res.data);
+                                        
                                     }).catch(function (err) {
-                                        console.log(err.response);
+                                        reLogin(err.response.data);
                                     })
                             }
                         })
@@ -233,8 +226,7 @@ Promise.all([user, cats, rooms, roomStates])
                     bookingHistoryObj.bookingsId = res.data.id
 
                     axios.post(`${_url}/bookingHistorys`, bookingHistoryObj)
-                        .then(function (res) {
-                            // console.log(res.data);    
+                        .then(function (res) { 
                             historyRes.innerHTML = `<thead>
                                                     <tr>
                                                         <th scope="col"></th>
@@ -269,27 +261,22 @@ Promise.all([user, cats, rooms, roomStates])
                                     document.querySelector(".historyId").textContent = JSON.stringify(res.data.history)
                                 })
 
-
                         }).catch(function (err) {
-                            console.log(err);
+                            reLogin(err.response.data);
                         })
 
                 }).catch(function (err) {
-                    console.log(err);
+                    reLogin(err.response.data);
                 })
         })
     })
     .catch(error => {
-        console.error('Error fetching data:', error);
+        reLogin(err.response.data);
     });
 
 /*------------------------------------*\
     事件
 \*------------------------------------*/
-
-
-
 btnBack.addEventListener("click", function () {
     location = "admin_booking.html"
 })
-

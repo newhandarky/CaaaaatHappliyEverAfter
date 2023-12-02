@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import moment from "moment";
 import { _url } from "./config";
 import { headerObj } from "./admin_config";
+import { reLogin } from "./loginIsTimeUp";
 import * as d3 from 'd3';
 import c3 from "c3";
 
@@ -113,7 +114,7 @@ axios.get(`${_url}/660/roomStates`, headerObj)
                                 }
                             });
                         }).catch(function (err) {
-                            console.log(err.response);
+                            reLogin(err.response.data);
                         })
                 } else if (result.isDenied) {
                     Swal.fire("資料尚未建立", "", "info");
@@ -169,7 +170,7 @@ axios.get(`${_url}/660/roomStates`, headerObj)
         });
 
     }).catch(function (err) {
-        console.log(err);
+        reLogin(err.response.data);
     })
 
 /*------------------------------------*\
