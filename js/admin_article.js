@@ -202,6 +202,7 @@ function keywordSearch(e) {
       // console.log(i, item);
       if (i === item.title || i === item.keyword) {
         // console.log(i);
+        // 檢查 searchData 是否已經有同一筆資料，因為 forEach 包 forEach 的結構下，會有重複加進同一筆資料的狀況
         const isItemInSearchData = searchData.some(
           (existingItem) =>
             existingItem.title === item.title &&

@@ -31,7 +31,7 @@ saveRoomBtn.addEventListener("click", function () {
   });
 });
 
-// 預覽房型圖片
+// 預覽圖片按鈕
 previewImage.addEventListener("click", renderImage);
 
 function renderImage() {

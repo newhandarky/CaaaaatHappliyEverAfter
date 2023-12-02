@@ -30,7 +30,7 @@ axios
 
 // 分頁畫面渲染
 function pagination(data, nowPage) {
-  // 取得資料總筆數(文章總數)
+  // 取得資料總筆數(管理員總數)
   const dataTotal = data.length;
 
   // 計算總頁數 = 資料總筆數 / 每頁顯示資料筆數
@@ -86,7 +86,7 @@ function renderTable(newData) {
   newData.forEach(function (item) {
     // 表格編輯人員按鈕，限制每個人只能編輯自己的帳號
     if (item.role === "admin" && id === item.id) {
-      // a tag 內的 href 加上 ?id=${item.id} 來導入遍及管理員時對應的頁面
+      // a tag 內的 href 加上 ?id=${item.id} 來導入編輯管理員時對應的頁面
       str += `<tr>
             <td>${item.id}</td>
             <td>${item.name}</td>
@@ -127,6 +127,7 @@ editAccountBtn.addEventListener("click", function (e) {
   });
 });
 
+// 分頁導覽列按鈕渲染
 function pageBtn(page) {
   let str = "";
 
@@ -165,6 +166,7 @@ function pageBtn(page) {
   paginationContainer.innerHTML = str;
 }
 
+// 切換分頁功能
 function switchPage(e, searchData) {
   e.preventDefault();
 
