@@ -1,5 +1,7 @@
 import axios from "axios";
 import { _url } from "./config";
+import Swal from "sweetalert2";
+
 // isLogin 是自訂一的函數 判斷登入狀態 可以在確認後前往的網址頁面路徑
 //偵測是否為登入狀態
 export function isLogin(href) {
@@ -32,9 +34,23 @@ export function isLogin(href) {
       })
       .catch((err) => {
         console.log(err);
-        alert("登入時間已到期 請重新登入後再執行一次");
-        localStorage.removeItem("userTokenAndData");
-        window.location.href = "./login.html";
+        const swalWithBootstrapButtons = Swal.mixin({
+          customClass: {
+            confirmButton: "btn btn-custom-confirm",
+            cancelButton: "btn btn-custom-cancel",
+          },
+          buttonsStyling: false,
+        });
+        swalWithBootstrapButtons
+          .fire({
+            title: "登入時間已到期 請重新登入後再執行一次",
+            icon: "error",
+            confirmButtonText: "確定",
+          })
+          .then((response) => {
+            localStorage.removeItem("userTokenAndData");
+            window.location.href = "./login.html";
+          });
       });
   }
 }

@@ -133,7 +133,7 @@ Promise.all([bookingsRes])
             })
         }
     }).catch(function (err) {
-        console.log(err);
+        reLogin(err.response.data);
     })
 
 // 渲染table資料

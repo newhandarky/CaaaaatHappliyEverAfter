@@ -63,8 +63,6 @@ btnDate.addEventListener("click", function () {
     // 結束日期不可與起始日期相同或更之前
     diffDays <= 0 ? alertErrForDate() : "";
 
-    console.log(diffDays);
-
     Promise.all([bookingsPromise])
         .then(function (results) {
             const allBookings = results[0].data;
@@ -94,7 +92,6 @@ btnDate.addEventListener("click", function () {
             }
         })
         .catch(function (err) {
-            console.log(err);
             reLogin(err.response.data);
         });
 })
@@ -110,4 +107,3 @@ inputBookingNumber.addEventListener("keydown", function (e) {
         getBookingNum();
     }
 })
-

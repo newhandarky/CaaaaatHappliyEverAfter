@@ -1,12 +1,21 @@
 import axios from "axios";
 import { _url } from "./config";
 import flatpickr from "flatpickr";
+import Swal from "sweetalert2";
 
 //flatpickr 套件使用
 flatpickr("#birthday", {
   enableTime: false,
   dateFormat: "Y-m-d",
 });
+
+//當資料載入完成時，隱藏 loading 元素
+const signupAllDom = document.querySelector("#signupAll");
+signupAllDom.classList.toggle("d-none");
+const signupTitleDom = document.querySelector("#signupTitle");
+signupTitleDom.classList.toggle("d-none");
+const loadingDom = document.querySelector("#loading");
+loadingDom.classList.toggle("d-none");
 
 //抓到 Dom 元素
 
@@ -19,13 +28,45 @@ function signup(userData) {
     .post(`${_url}/signup`, userData)
     .then((res) => {
       console.log(res);
-      alert("註冊成功");
-      window.location.href = "./login.html";
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: "btn btn-custom-confirm",
+          cancelButton: "btn btn-custom-cancel",
+        },
+        buttonsStyling: false,
+      });
+      swalWithBootstrapButtons
+        .fire({
+          title: "註冊成功",
+          icon: "success",
+          confirmButtonText: "確定",
+        })
+        .then((result) => {
+          window.location.href = "./login.html";
+        });
     })
     .catch((err) => {
       //錯誤提示
-      alert(`註冊失敗：${err.response.data}`);
       console.log(err);
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: "btn btn-custom-confirm",
+          cancelButton: "btn btn-custom-cancel",
+        },
+        buttonsStyling: false,
+      });
+      swalWithBootstrapButtons
+        .fire({
+          title: "註冊失敗",
+          text: err.response.data,
+          icon: "error",
+          confirmButtonText: "確定",
+        })
+        .then((response) => {
+          signupAllDom.classList.toggle("d-none");
+          signupTitleDom.classList.toggle("d-none");
+          loadingDom.classList.toggle("d-none");
+        });
     });
 }
 

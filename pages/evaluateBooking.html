@@ -13,7 +13,15 @@
           <%- include('./layout/aside'); -%>
         </div>
         <div class="col-lg-9">
-          <div>
+          <!-- 呈現載入提示畫面 -->
+          <div
+            id="loading"
+            class="loading w-100 h-100 d-flex justify-content-center align-items-center"
+          >
+            <img src="../assets/icons/catLoading.gif" alt="catLoading" />
+          </div>
+
+          <div id="evaluateBooking">
             <h1>訂單資訊</h1>
             <div class="d-flex flex-wrap">
               <ul class="me-5">

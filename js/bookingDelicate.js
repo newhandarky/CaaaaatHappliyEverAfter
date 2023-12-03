@@ -5,7 +5,7 @@ import { isLogin } from "./isLogin";
 import Swal from 'sweetalert2';
 import 'animate.css';
 
-console.log("suc")
+//console.log("suc")
 
 //bookingdelicateRoom.html
 //DOM

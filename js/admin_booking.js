@@ -193,7 +193,7 @@ Promise.all([roomStatesPromise, bookingsPromise])
         })
     })
     .catch(function (err) {
-        console.log(err);
+        reLogin(err.response.data);
     });
 
 /*------------------------------------*\
@@ -201,7 +201,7 @@ Promise.all([roomStatesPromise, bookingsPromise])
 \*------------------------------------*/
 bookingList.addEventListener("click", function () {
     if (bookingStatesObject.bookingCount === 0) {
-        console.log("當月無訂房");
+        Swal.fire("無當月訂單, 請重新查詢");
     }
     location = "admin_bookingList.html"
 })

@@ -57,12 +57,6 @@ Promise.all([bookingPromise, roomPromise, roomStatesPromise, catsPromise, userPr
         const catsObj = results[3].data;
         const userObj = results[4].data;
 
-        // console.log(bookingObj);
-        // console.log(roomObj);
-        // console.log(roomStatesObj);
-        // console.log(catsObj);
-        // console.log(userObj);
-
         renderData(bookingObj, roomObj, userObj);
 
         let getCatsArr = [];
@@ -140,9 +134,9 @@ Promise.all([bookingPromise, roomPromise, roomStatesPromise, catsPromise, userPr
                             authorization: `Bearer ${localStorage.getItem("userLoginToken")}`,
                         },
                     }).then(function (res) {
-                        // console.log(res.data);
+                        
                     }).catch(function (err) {
-                        console.log(err.response);
+                        reLogin(err.response.data);
                     })
                 })
                 // 準備更新履歷物件寫入server
@@ -234,13 +228,12 @@ Promise.all([bookingPromise, roomPromise, roomStatesPromise, catsPromise, userPr
                                                     title: "訂單已取消成功"
                                                 });
                                             }).catch(function (err) {
-                                                console.log(err.response);
+                                                reLogin(err.response.data);
                                             })
                                     }
                                 })
                             })
                         }).catch(function (err) {
-                            console.log(err);
                             reLogin(err.response.data);
                         })
                 }
@@ -268,18 +261,15 @@ Promise.all([bookingPromise, roomPromise, roomStatesPromise, catsPromise, userPr
             }
         }
 
-
         // 更新訂單資料
         function updateBooking(newBookingObj) {
             axios.patch(`${_url}/660/bookings/${newBookingObj.id}`, newBookingObj, headerObj)
                 .then(function (res) {
                     renderData(res.data, roomObj, userObj)  // 渲染更新後的資料
                 }).catch(function (err) {
-                    console.log(err);
                     reLogin(err.response.data);
                 })
         }
-
 
         // 將修改後的bookingHistoryObj ID寫入對應訂單
         function saveHistoryBackBooking(bookingHistoryObj) {
@@ -289,7 +279,6 @@ Promise.all([bookingPromise, roomPromise, roomStatesPromise, catsPromise, userPr
                     newBookingObj.history.push(bookingHistoryObj.id);       // 將更新履歷寫入原本訂單的history陣列內
                     updateBooking(newBookingObj);       // 將更新後的訂單寫回原訂單資料
                 }).catch(function (err) {
-                    console.log(err);
                     reLogin(err.response.data);
                 })
         }
@@ -300,7 +289,6 @@ Promise.all([bookingPromise, roomPromise, roomStatesPromise, catsPromise, userPr
                 .then(function (res) {
                     saveHistoryBackBooking(res.data);
                 }).catch(function (err) {
-                    console.log(err);
                     reLogin(err.response.data);
                 })
         }
@@ -319,13 +307,11 @@ Promise.all([bookingPromise, roomPromise, roomStatesPromise, catsPromise, userPr
         })
     })
     .catch(function (err) {
-        console.log(err);
         reLogin(err.response.data);
     });
 /*------------------------------------*\
     function
 \*------------------------------------*/
-
 // 取得訂單修改履歷, 並渲染資料
 function getHistory(bookingHistoryArr) {
     let logArr = [];
@@ -377,7 +363,6 @@ function getHistory(bookingHistoryArr) {
             tbody.innerHTML = str;
         });
 }
-
 
 // 渲染訂單資料
 function renderData(bookingObj, roomObj, userObj) {
@@ -579,7 +564,6 @@ document.querySelectorAll("a").forEach(function (item) {
         }
     })
 })
-
 
 // 點擊返回列表時
 btnBack.addEventListener("click", function () {
