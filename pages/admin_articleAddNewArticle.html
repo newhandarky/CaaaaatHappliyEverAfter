@@ -9,7 +9,7 @@
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0"
     />
 
-    <title>admin_account_editMember</title>
+    <title>新增文章</title>
   </head>
   <body>
     <%- include('./layout/admin_header'); -%>
@@ -22,7 +22,7 @@
       </h2>
       <form
         method="post"
-        class="articleAddNewWrap w-100 border border-2 rounded-2 border-gray p-8"
+        class="articleAddNewForm w-100 border border-2 rounded-2 border-gray p-8"
       >
         <h2 class="mb-8">新增文章</h2>
         <div class="row p-8">
@@ -43,7 +43,10 @@
               id="articleId"
               placeholder="請輸入文章編號"
               class="articleId fs-5 py-1 ps-2"
-              type="text"
+              type="number"
+              step="1"
+              min="604"
+              max="699"
               required
             />
           </div>
@@ -64,100 +67,16 @@
           </div>
           <div class="col-12 d-flex justify-content-end align-items-end">
             <a
-              class="text-white btn btn-warning me-4"
+              class="cancelSaveArticleBtn text-white btn btn-warning me-4"
               role="button"
-              data-bs-toggle="modal"
-              data-bs-target="#cancelPost"
               >取消新增</a
             >
-            <!-- BS5 Modal 彈跳視窗主觸發鈕 -->
             <!-- 表單的觸發鈕 form handler type 要是 submit -->
-            <button
-              class="btn btn-success"
-              type="submit"
-              data-bs-toggle="modal"
-              data-bs-target="#postArticle"
-            >
-              發佈文章
-            </button>
+            <button class="btn btn-success" type="submit">新增文章</button>
           </div>
         </div>
       </form>
     </main>
-
-    <!-- 取消新增 Modal 彈跳視窗主體 -->
-    <div
-      class="modal fade"
-      id="cancelPost"
-      tabindex="-1"
-      aria-labelledby="cancelPostLabel"
-      aria-hidden="true"
-    >
-      <div class="cancelPostModal modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header border-0 p-0"></div>
-          <div
-            class="modal-body d-flex flex-column justify-content-center align-items-center"
-          >
-            <span
-              class="iconSizing material-symbols-outlined text-warning mb-1"
-            >
-              help
-            </span>
-            <p class="fs-3 mb-4">是否要儲存為草稿？</p>
-            <div>
-              <!-- href="./admin_article.html" -->
-              <a
-                role="button"
-                class="saveAsDraftBtn btn btn-danger text-white fs-3 me-12"
-              >
-                是
-              </a>
-              <!-- 按否直接跳回文章首頁，不保留任何修改 -->
-              <a
-                href="./admin_article.html"
-                role="button"
-                class="cancelSaveAsDraftBtn btn btn-success text-white fs-3"
-              >
-                否
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 儲存變更 Modal 彈跳視窗主體 -->
-    <div
-      class="modal fade"
-      id="postArticle"
-      tabindex="-1"
-      aria-labelledby="postArticleLabel"
-      aria-hidden="true"
-    >
-      <div class="postArticleModal modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header border-0 p-0"></div>
-          <div
-            class="modal-body d-flex flex-column justify-content-center align-items-center"
-          >
-            <span
-              class="checkCircle material-symbols-outlined text-success mb-1"
-            >
-              check_circle
-            </span>
-            <p class="fs-3 mb-4">文章發佈成功</p>
-            <a
-              href="./admin_article.html"
-              role="button"
-              class="postArticleBtn btn btn-success text-white fs-3"
-            >
-              返回人員管理頁面
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- 文字編輯器 tinyMCE -->
     <script

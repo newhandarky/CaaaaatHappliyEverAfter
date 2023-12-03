@@ -22,7 +22,7 @@
       </h2>
       <form
         method="post"
-        class="articleEditWrap w-100 border border-2 rounded-2 border-gray p-8"
+        class="articleEditForm w-100 border border-2 rounded-2 border-gray p-8"
       >
         <h2 class="mb-8">編輯文章</h2>
         <div class="row p-8">
@@ -59,164 +59,29 @@
               required
             />
           </div>
+          <!-- tinymce 編輯器 -->
           <div class="col-12 mb-8">
             <textarea id="articleContent"></textarea>
           </div>
           <div class="col-12 d-flex justify-content-end align-items-end">
-            <!-- 應該要重新 render，因為還沒按新增所以還沒儲存到資料庫 -->
             <!-- 
-              BS5 Modal 跳出是否儲存為草稿按鈕：
-              是 -> 存草稿
-              否 -> 返回文章總覽
+              跳出是否儲存為草稿按鈕：是 -> 存草稿、否 -> 返回文章總覽
             -->
             <a
-              class="text-white btn btn-warning me-4"
+              class="saveAsDraftBtn text-white btn btn-warning me-4"
               role="button"
-              data-bs-toggle="modal"
-              data-bs-target="#saveAsDraft"
               >取消變更</a
             >
-            <!-- BS5 Modal 彈跳視窗主觸發鈕 -->
-            <!-- 表單的觸發鈕 form handler type 要是 submit -->
-            <button
-              class="btn btn-success me-4"
-              type="submit"
-              data-bs-toggle="modal"
-              data-bs-target="#saveArticle"
-            >
-              發佈文章
-            </button>
-            <!-- 
-              BS5 Modal 跳出是否刪除按鈕：
-              是 -> 刪除
-              否 -> 返回原頁面
-            -->
-            <a
-              class="btn btn-danger"
-              role="button"
-              data-bs-toggle="modal"
-              data-bs-target="#deleteArticle"
-            >
+            <!-- 表單的觸發鈕 form handler type 要是 submit。這裡儲存變更後會直接發佈 -->
+            <button class="btn btn-success me-4" type="submit">儲存變更</button>
+            <!-- 文章刪除按鈕：是 -> 刪除、否 -> 返回原頁面-->
+            <a class="deleteArticleBtn btn btn-danger" role="button">
               刪除文章
             </a>
           </div>
         </div>
       </form>
     </main>
-
-    <!-- 取消變更 Modal 彈跳視窗主體 -->
-    <div
-      class="modal fade"
-      id="saveAsDraft"
-      tabindex="-1"
-      aria-labelledby="saveAsDraftLabel"
-      aria-hidden="true"
-    >
-      <div class="saveAsDraftModal modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header border-0 p-0"></div>
-          <div
-            class="modal-body d-flex flex-column justify-content-center align-items-center"
-          >
-            <span
-              class="iconSizing material-symbols-outlined text-warning mb-1"
-            >
-              help
-            </span>
-            <p class="fs-3 mb-4">是否要儲存為草稿？</p>
-            <div>
-              <a
-                href="./admin_article.html"
-                role="button"
-                class="saveAsDraftBtn btn btn-danger text-white fs-3 me-12"
-              >
-                是
-              </a>
-              <!-- 按否直接跳回文章首頁，不保留任何修改 -->
-              <a
-                href="./admin_article.html"
-                role="button"
-                class="cancelSaveAsDraftBtn btn btn-success text-white fs-3"
-              >
-                否
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 發佈文章 Modal 彈跳視窗主體 -->
-    <div
-      class="modal fade"
-      id="saveArticle"
-      tabindex="-1"
-      aria-labelledby="saveAccountLabel"
-      aria-hidden="true"
-    >
-      <div class="saveAccountModal modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header border-0 p-0"></div>
-          <div
-            class="modal-body d-flex flex-column justify-content-center align-items-center"
-          >
-            <span
-              class="iconSizing material-symbols-outlined text-success mb-1"
-            >
-              check_circle
-            </span>
-            <p class="fs-3 mb-4">後台人員編輯完成</p>
-            <a
-              href="./admin_article.html"
-              role="button"
-              class="savaAccountBtn btn btn-success text-white fs-3"
-            >
-              返回人員管理頁面
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 刪除文章 Modal 彈跳視窗主體 -->
-    <div
-      class="modal fade"
-      id="deleteArticle"
-      tabindex="-1"
-      aria-labelledby="deleteArticleLabel"
-      aria-hidden="true"
-    >
-      <div class="deleteArticleModal modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header border-0 p-0"></div>
-          <div
-            class="modal-body d-flex flex-column justify-content-center align-items-center"
-          >
-            <span class="iconSizing material-symbols-outlined text-danger mb-1">
-              warning
-            </span>
-            <p class="fs-3 mb-4">是否確定要刪除文章？</p>
-            <div>
-              <a
-                href="./admin_article.html"
-                role="button"
-                class="deleteArticleBtn btn btn-danger text-white fs-3 me-12"
-              >
-                是
-              </a>
-              <!-- 按否直接透過 dismiss modal 關閉跳出 -->
-              <a
-                role="button"
-                class="cancelDeleteArticleBtn btn btn-success text-white fs-3"
-                data-bs-dismiss="modal"
-              >
-                否
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- 文字編輯器 tinyMCE -->
     <script
