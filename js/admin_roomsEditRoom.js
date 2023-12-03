@@ -1,6 +1,8 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 import { _url } from "./config";
+import { headerObj } from "./admin_config";
+import { reLogin } from "./loginIsTimeUp";
 
 // http://localhost:5173/CaaaaatHappliyEverAfter/pages/admin_roomsEditRoom.html?id=51，把id文字跟數字拆開，方便後面 get rooms/id
 
@@ -24,13 +26,13 @@ let data;
 // 用 rooms?id=${id} 時，下面的 value 要 =res.data[0].屬性，因為回傳的是一筆陣列包物件
 function init() {
   axios
-    .get(`${_url}/rooms/${id}`)
+    .get(`${_url}/660/rooms/${id}`, headerObj)
     .then(function (res) {
       data = res.data;
       renderData(data);
     })
     .catch(function (error) {
-      console.log(error);
+      reLogin(error.response.data);
     });
 }
 
@@ -69,20 +71,23 @@ roomEditForm.addEventListener("submit", function (e) {
   }).then((result) => {
     if (result.isConfirmed) {
       // 使用 patch 更新部分內容
-      axios.patch(`${_url}/rooms/${id}`, obj).catch(function (error) {
-        console.log(error);
-      });
+      axios
+        .patch(`${_url}/660/rooms/${id}`, obj, headerObj)
+        .then(function () {
+          Swal.fire({
+            title: "房型編輯成功",
+            icon: "success",
+            showConfirmButton: false,
+          });
 
-      Swal.fire({
-        title: "房型編輯成功",
-        icon: "success",
-        showConfirmButton: false,
-      });
-
-      // 1 秒後回到人員管理頁面
-      setTimeout(() => {
-        window.location.href = "./admin_rooms.html";
-      }, 1000);
+          // 1 秒後回到人員管理頁面
+          setTimeout(() => {
+            window.location.href = "./admin_rooms.html";
+          }, 1000);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
   });
 });
@@ -130,20 +135,23 @@ deleteRoomBtn.addEventListener("click", function (e) {
     }).then((result) => {
       if (result.isConfirmed) {
         // 從資料庫刪除房型
-        axios.delete(`${_url}/rooms/${id}`).catch(function (error) {
-          console.log(error);
-        });
+        axios
+          .delete(`${_url}/660/rooms/${id}`, headerObj)
+          .then(function () {
+            Swal.fire({
+              title: "已成功刪除房型",
+              icon: "success",
+              showConfirmButton: false,
+            });
 
-        Swal.fire({
-          title: "已成功刪除房型",
-          icon: "success",
-          showConfirmButton: false,
-        });
-
-        // 1 秒後回到房型總覽
-        setTimeout(() => {
-          window.location.href = "./admin_rooms.html";
-        }, 1000);
+            // 1 秒後回到房型總覽
+            setTimeout(() => {
+              window.location.href = "./admin_rooms.html";
+            }, 1000);
+          })
+          .catch(function (error) {
+            reLogin(error.response.data);
+          });
       }
     });
   }

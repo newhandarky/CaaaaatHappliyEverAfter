@@ -1,6 +1,8 @@
 import axios from "axios";
 import moment from "moment";
 import { _url } from "./config";
+import { headerObj } from "./admin_config";
+import { reLogin } from "./loginIsTimeUp";
 
 const userImage = document.querySelector(".userImage");
 const welcomeText = document.querySelector(".welcomeText");
@@ -20,33 +22,36 @@ function backToLogin() {
 }
 
 // 把 axios.get 獨立出來
+// callback 參數為實際執行的函式
 function fetchData(url, callback) {
   axios
-    .get(url)
+    .get(url, headerObj)
     .then(function (res) {
       callback(res.data);
     })
+    // 測試relogin是否有效
     .catch(function (error) {
-      console.log(error);
+      // console.log(error);
+      reLogin(error.response.data);
     });
 }
 
 // 初始化畫面
 function init() {
   // 頭像資料取得
-  fetchData(`${_url}/users?role=admin`, renderAvatar);
+  fetchData(`${_url}/660/users?role=admin`, renderAvatar);
 
   // 帳號資料取得
-  fetchData(`${_url}/users?role=admin`, renderAccount);
+  fetchData(`${_url}/660/users?role=admin`, renderAccount);
 
   // 訂單資料取得
-  fetchData(`${_url}/bookings`, renderOrder);
+  fetchData(`${_url}/660/bookings`, renderOrder);
 
   // 房型資料取得
-  fetchData(`${_url}/rooms`, renderRoom);
+  fetchData(`${_url}/660/rooms`, renderRoom);
 
   // 文章資料取得
-  fetchData(`${_url}/article`, renderArticle);
+  fetchData(`${_url}/660/article`, renderArticle);
 }
 
 init();
@@ -69,6 +74,7 @@ function renderAccount(data) {
   // 解決後台首頁破版問題，所以只顯示四筆資料
   let count = 0;
   for (const item of data) {
+    // console.log(item);
     str += `<tr>
           <td>
             <div class="d-flex align-items-center">

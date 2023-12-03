@@ -1,6 +1,8 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 import { _url } from "./config";
+import { headerObj } from "./admin_config";
+import { reLogin } from "./loginIsTimeUp";
 
 const adminRoomList = document.querySelector(".adminRoomList");
 
@@ -8,7 +10,7 @@ let data;
 
 function init() {
   axios
-    .get(`${_url}/rooms`)
+    .get(`${_url}/660/rooms`, headerObj)
     .then(function (res) {
       data = res.data;
       renderData();
@@ -32,9 +34,11 @@ function init() {
           }).then((result) => {
             if (result.isConfirmed) {
               // 從資料庫刪除房型
-              axios.delete(`${_url}/rooms/${id}`).catch(function (error) {
-                console.log(error);
-              });
+              axios
+                .delete(`${_url}/660/rooms/${id}`, headerObj)
+                .catch(function (error) {
+                  reLogin(error.response.data);
+                });
 
               Swal.fire({
                 title: "已成功刪除房型",
@@ -53,7 +57,7 @@ function init() {
       }
     })
     .catch(function (error) {
-      console.log(error);
+      reLogin(error.response.data);
     });
 }
 

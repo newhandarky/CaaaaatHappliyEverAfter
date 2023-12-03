@@ -4,6 +4,8 @@ import moment from "moment";
 import { _url } from "./config";
 // 載入文字編輯器套件 tinyMCE
 import tinymce from "tinymce";
+import { headerObj } from "./admin_config";
+import { reLogin } from "./loginIsTimeUp";
 
 // DOM
 // https://catroomdb.onrender.com/article?id=601，把id文字跟數字拆開，方便後面 get article/id
@@ -25,7 +27,7 @@ let data;
 // 初始畫面渲染
 function init() {
   axios
-    .get(`${_url}/article/${id}`)
+    .get(`${_url}/660/article/${id}`, headerObj)
     .then(function (res) {
       data = res.data;
       articleTitle.value = data.title;
@@ -40,7 +42,7 @@ function init() {
       });
     })
     .catch(function (error) {
-      console.log(error);
+      reLogin(error.response.data);
     });
 }
 
@@ -75,20 +77,23 @@ articleEditForm.addEventListener("submit", function (e) {
   }).then((result) => {
     if (result.isConfirmed) {
       // 使用 patch 更新部分內容
-      axios.patch(`${_url}/article/${id}`, obj).catch(function (error) {
-        console.log(error);
-      });
+      axios
+        .patch(`${_url}/660/article/${id}`, obj, headerObj)
+        .then(function () {
+          Swal.fire({
+            title: "文章編輯成功",
+            icon: "success",
+            showConfirmButton: false,
+          });
 
-      Swal.fire({
-        title: "文章編輯成功",
-        icon: "success",
-        showConfirmButton: false,
-      });
-
-      // 1 秒後回到文章總覽
-      setTimeout(() => {
-        window.location.href = "./admin_article.html";
-      }, 1000);
+          // 1 秒後回到文章總覽
+          setTimeout(() => {
+            window.location.href = "./admin_article.html";
+          }, 1000);
+        })
+        .catch(function (error) {
+          reLogin(error.response.data);
+        });
     }
   });
 });
@@ -121,18 +126,22 @@ saveAsDraftBtn.addEventListener("click", function (e) {
   }).then((result) => {
     if (result.isConfirmed) {
       // 儲存草稿的資料存進資料庫
-      axios.patch(`${_url}/article/${id}`, obj).catch(function (error) {
-        console.log(error);
-      });
-      Swal.fire({
-        title: "已成功儲存為草稿",
-        icon: "success",
-        showConfirmButton: false,
-      });
+      axios
+        .patch(`${_url}/article/${id}`, obj, headerObj)
+        .then(function () {
+          Swal.fire({
+            title: "已成功儲存為草稿",
+            icon: "success",
+            showConfirmButton: false,
+          });
 
-      setTimeout(() => {
-        window.location.href = "./admin_article.html";
-      }, 1000);
+          setTimeout(() => {
+            window.location.href = "./admin_article.html";
+          }, 1000);
+        })
+        .catch(function (error) {
+          reLogin(error.response.data);
+        });
     }
   });
 });
@@ -179,19 +188,22 @@ deleteArticleBtn.addEventListener("click", function (e) {
     }).then((result) => {
       if (result.isConfirmed) {
         // 從資料庫刪除文章
-        axios.delete(`${_url}/article/${id}`).catch(function (error) {
-          console.log(error);
-        });
+        axios
+          .delete(`${_url}/660/article/${id}`, headerObj)
+          .then(function () {
+            Swal.fire({
+              title: "已成功刪除文章",
+              icon: "success",
+              showConfirmButton: false,
+            });
 
-        Swal.fire({
-          title: "已成功刪除文章",
-          icon: "success",
-          showConfirmButton: false,
-        });
-
-        setTimeout(() => {
-          window.location.href = "./admin_article.html";
-        }, 1000);
+            setTimeout(() => {
+              window.location.href = "./admin_article.html";
+            }, 1000);
+          })
+          .catch(function (error) {
+            reLogin(error.response.data);
+          });
       }
     });
   }

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { _url } from "./config";
 import { headerObj } from "./admin_config";
+import { reLogin } from "./loginIsTimeUp";
 
 const editAccountBtn = document.querySelector(".editAccountBtn");
 const adminMemberList = document.querySelector(".adminMemberList");
@@ -25,7 +26,7 @@ axios
     pagination(data, 1);
   })
   .catch(function (error) {
-    console.log(error);
+    reLogin(error.response.data);
   });
 
 // 分頁畫面渲染

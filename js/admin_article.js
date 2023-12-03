@@ -1,5 +1,7 @@
 import axios from "axios";
 import { _url } from "./config";
+import { headerObj } from "./admin_config";
+import { reLogin } from "./loginIsTimeUp";
 
 // DOM
 // 表格
@@ -16,7 +18,7 @@ let data;
 
 // 抓回資料庫文章數
 axios
-  .get(`${_url}/article`)
+  .get(`${_url}/660/article`, headerObj)
   .then(function (res) {
     // console.log(res);
     data = res.data;
@@ -25,7 +27,7 @@ axios
     pagination(data, 1);
   })
   .catch(function (error) {
-    console.log(error);
+    reLogin(error.response.data);
   });
 
 // 分頁畫面渲染

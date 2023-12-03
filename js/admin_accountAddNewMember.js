@@ -1,6 +1,8 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 import { _url } from "./config";
+import { headerObj } from "./admin_config";
+import { reLogin } from "./loginIsTimeUp";
 
 // DOM
 const memberId = document.querySelector(".memberId");
@@ -24,6 +26,11 @@ const memberStatus = document.querySelector(".memberStatus");
 
 const cancelNewMemberBtn = document.querySelector(".cancelNewMemberBtn");
 const memeberAddForm = document.querySelector(".memeberAddForm");
+
+// 故意加上一個請求，驗證目前是否有 user token
+axios.get(`${_url}/660/users`, headerObj).catch(function (error) {
+  reLogin(error.response.data);
+});
 
 // 取消新增按鈕
 cancelNewMemberBtn.addEventListener("click", function (e) {
@@ -86,8 +93,9 @@ memeberAddForm.addEventListener("submit", function (e) {
     cancelButtonText: '<span class="text-white fs-4 px-1">否</span>',
   }).then((result) => {
     if (result.isConfirmed) {
+      // 新增人員當下馬上就會產生一組新的 jwt token 所以基本上加上 header authorization 沒意義
       axios.post(`${_url}/users`, obj).catch(function (error) {
-        console.log(error);
+        console.log(error.response.data);
       });
 
       Swal.fire({

@@ -2,6 +2,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { _url } from "./config";
 import { headerObj } from "./admin_config";
+import { reLogin } from "./loginIsTimeUp";
 
 // http://localhost:5173/CaaaaatHappliyEverAfter/pages/admin_roomsEditRoom.html?id=51，把id文字跟數字拆開，方便後面 get rooms/id
 
@@ -58,7 +59,7 @@ addNewRoomForm.addEventListener("submit", function (e) {
     facility: roomFacilities.value.split(","),
     size: [105, 145, 300],
   };
-  console.log(obj.facility);
+  // console.log(obj.facility);
   Swal.fire({
     title: "是否確定新增",
     icon: "warning",
@@ -70,20 +71,23 @@ addNewRoomForm.addEventListener("submit", function (e) {
   }).then((result) => {
     if (result.isConfirmed) {
       // 使用 post 傳遞新房型到資料庫。headerObj 為身份驗證，需放最後參數
-      axios.post(`${_url}/660/rooms`, obj, headerObj).catch(function (error) {
-        console.log(error);
-      });
+      axios
+        .post(`${_url}/660/rooms`, obj, headerObj)
+        .then(function () {
+          Swal.fire({
+            title: "房型新增成功",
+            icon: "success",
+            showConfirmButton: false,
+          });
 
-      Swal.fire({
-        title: "房型新增成功",
-        icon: "success",
-        showConfirmButton: false,
-      });
-
-      // 1 秒後回到房型管理頁面
-      setTimeout(() => {
-        window.location.href = "./admin_rooms.html";
-      }, 1000);
+          // 1 秒後回到房型管理頁面
+          setTimeout(() => {
+            window.location.href = "./admin_rooms.html";
+          }, 1000);
+        })
+        .catch(function (error) {
+          reLogin(error.response.data);
+        });
     }
   });
 });

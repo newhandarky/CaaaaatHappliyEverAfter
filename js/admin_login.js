@@ -65,8 +65,8 @@ adminLoginBtn.addEventListener("click", function (e) {
       axios
         .post(`${_url}/login`, obj)
         .then(function (res) {
-          console.log(res);
-          console.log(res.data);
+          // console.log(res);
+          // console.log(res.data);
           // 登入成功，回應中應該包含令牌
 
           const token = res.data.accessToken;
@@ -80,10 +80,6 @@ adminLoginBtn.addEventListener("click", function (e) {
 
           //   console.log("Login successful. Token:", token);
 
-          //   登入成功跳轉到後台首頁
-          location.href = "admin_index.html";
-          // 在這裡可以進一步處理登入成功的邏輯
-
           // 最近登入時間
           // 登入成功後，取得當前時間
           let lastLoginTime = moment().format("YYYY年MM月DD日 HH:mm:ss");
@@ -93,9 +89,14 @@ adminLoginBtn.addEventListener("click", function (e) {
 
           // 暫存 lastLoginTime 存到 json-server 中 -> 時效 1 小時
           // 注意 patch url，users 一定要指定 10XX 才能選擇到對應該管理員頁面
-          axios.patch(`${_url}/users/10${id}`, {
-            lastLoginTime: `${lastLoginTime}`,
-          });
+          axios
+            .patch(`${_url}/users/10${id}`, {
+              lastLoginTime: `${lastLoginTime}`,
+            })
+            .then(function () {
+              // 等資料都寫進資料庫後，再跳轉到後台首頁
+              location.href = "admin_index.html";
+            });
         })
         .catch(function (error) {
           // 登入失敗，處理錯誤
@@ -103,8 +104,6 @@ adminLoginBtn.addEventListener("click", function (e) {
             "Login failed:",
             error.response ? error.response.data : error.message
           );
-
-          // 在這裡可以進一步處理登入失敗的邏輯
         });
     });
 });

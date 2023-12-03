@@ -1,6 +1,8 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 import { _url } from "./config";
+import { headerObj } from "./admin_config";
+import { reLogin } from "./loginIsTimeUp";
 
 // http://localhost:5173/CaaaaatHappliyEverAfter/pages/admin_accountEditMember.html?id=1052，把id文字跟數字拆開，方便後面 get users/id
 const id = location.href.split("=")[1];
@@ -27,7 +29,8 @@ const memeberEditForm = document.querySelector(".memeberEditForm");
 
 // 初始畫面渲染
 axios
-  .get(`${_url}/users/${id}`)
+  // 路由代碼用 600 -> 使用者只有持有自己的 token 時，可以讀取跟寫入
+  .get(`${_url}/600/users/${id}`, headerObj)
   .then(function (res) {
     memberId.value = res.data.id;
     memberName.value = res.data.name;
@@ -43,7 +46,7 @@ axios
     memberStatus.value = res.data.memberStatus;
   })
   .catch(function (error) {
-    console.log(error);
+    reLogin(error.response.data);
   });
 
 // 取消變更按鈕
@@ -100,9 +103,11 @@ memeberEditForm.addEventListener("submit", function (e) {
   }).then((result) => {
     if (result.isConfirmed) {
       // 使用 patch 更新部分內容
-      axios.patch(`${_url}/users/${id}`, obj).catch(function (error) {
-        console.log(error);
-      });
+      axios
+        .patch(`${_url}/600/users/${id}`, obj, headerObj)
+        .catch(function (error) {
+          reLogin(error.response.data);
+        });
 
       Swal.fire({
         title: "後台人員編輯成功",
