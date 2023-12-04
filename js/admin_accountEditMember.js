@@ -1,5 +1,8 @@
 import axios from "axios";
+import Swal from "sweetalert2";
 import { _url } from "./config";
+import { headerObj } from "./admin_config";
+import { reLogin } from "./loginIsTimeUp";
 
 // http://localhost:5173/CaaaaatHappliyEverAfter/pages/admin_accountEditMember.html?id=1052，把id文字跟數字拆開，方便後面 get users/id
 const id = location.href.split("=")[1];
@@ -21,11 +24,13 @@ const memberAccount = document.querySelector(".memberAccount");
 const memberPassword = document.querySelector(".memberPassword");
 const memberAddress = document.querySelector(".memberAddress");
 const memberStatus = document.querySelector(".memberStatus");
-const accountEditSaveBtn = document.querySelector(".accountEditSaveBtn");
+const accountEditCancelBtn = document.querySelector(".accountEditCancelBtn");
+const memeberEditForm = document.querySelector(".memeberEditForm");
 
 // 初始畫面渲染
 axios
-  .get(`${_url}/users/${id}`)
+  // 路由代碼用 600 -> 使用者只有持有自己的 token 時，可以讀取跟寫入
+  .get(`${_url}/600/users/${id}`, headerObj)
   .then(function (res) {
     memberId.value = res.data.id;
     memberName.value = res.data.name;
@@ -41,11 +46,40 @@ axios
     memberStatus.value = res.data.memberStatus;
   })
   .catch(function (error) {
-    console.log(error);
+    reLogin(error.response.data);
   });
 
+// 取消變更按鈕
+accountEditCancelBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  Swal.fire({
+    title: "是否要取消變更",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#20c997",
+    cancelButtonColor: "#dc3545",
+    confirmButtonText: '<span class="text-white fs-4 px-1">是</span>',
+    cancelButtonText: '<span class="text-white fs-4 px-1">否</span>',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: "已取消變更",
+        icon: "success",
+        showConfirmButton: false,
+      });
+
+      // 1 秒後回到人員管理頁面
+      setTimeout(() => {
+        window.location.href = "./admin_account.html";
+      }, 1000);
+    }
+  });
+});
+
 // 儲存變更按鈕
-accountEditSaveBtn.addEventListener("click", function (e) {
+memeberEditForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+
   let obj = {
     password: memberPassword.value,
     name: memberName.value,
@@ -58,8 +92,33 @@ accountEditSaveBtn.addEventListener("click", function (e) {
     memberStatus: memberStatus.value,
   };
 
-  // 使用 patch 更新部分內容
-  axios.patch(`${_url}/users/${id}`, obj).catch(function (error) {
-    console.log(error);
+  Swal.fire({
+    title: "是否要儲存變更",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#20c997",
+    cancelButtonColor: "#dc3545",
+    confirmButtonText: '<span class="text-white fs-4 px-1">是</span>',
+    cancelButtonText: '<span class="text-white fs-4 px-1">否</span>',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // 使用 patch 更新部分內容
+      axios
+        .patch(`${_url}/600/users/${id}`, obj, headerObj)
+        .catch(function (error) {
+          reLogin(error.response.data);
+        });
+
+      Swal.fire({
+        title: "後台人員編輯成功",
+        icon: "success",
+        showConfirmButton: false,
+      });
+
+      // 1 秒後回到人員管理頁面
+      setTimeout(() => {
+        window.location.href = "./admin_account.html";
+      }, 1000);
+    }
   });
 });

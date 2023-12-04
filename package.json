@@ -29,6 +29,7 @@
     "sass-loader": "^13.2.2",
     "spin.js": "^4.1.1",
     "sweetalert2": "^11.9.0",
+    "tinymce": "^6.8.0",
     "swiper": "^11.0.5",
     "vite-plugin-live-reload": "^3.0.2"
   },
