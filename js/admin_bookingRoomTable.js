@@ -107,7 +107,7 @@ axios.get(`${_url}/660/roomStates`, headerObj)
                         .then(function (results) {
                             Swal.fire({
                                 title: "資料建立成功",
-                                confirmButtonText: "Save",
+                                confirmButtonText: "OK",
                             }).then((result) => {
                                 if (result.isConfirmed) {
                                     location.reload();
@@ -129,8 +129,6 @@ axios.get(`${_url}/660/roomStates`, headerObj)
             })
         }
 
-
-
         // 陣列開頭加上房型
         classicArr.unshift(roomObj.classic);
         delicateArr.unshift(roomObj.delicate);
@@ -141,7 +139,6 @@ axios.get(`${_url}/660/roomStates`, headerObj)
             bindto: '#chart',
             data: {
                 x: "x",
-                // hide: [delicateArr, luxuryArr],
                 columns: [
                     x,
                     classicArr,
