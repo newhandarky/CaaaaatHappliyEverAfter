@@ -6,10 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
-    />
-    <link
-      rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0"
     />
     <title>admin_account_editMember</title>
@@ -19,21 +15,22 @@
 
     <main class="container p-8">
       <h2 class="mb-8">
-        <a href="./admin_index.html">首頁</a> >
-        <a href="./admin_account.html">後台人員管理</a> > 編輯後台管理人員
+        <a class="link-primary" href="./admin_index.html">首頁</a> >
+        <a class="link-primary" href="./admin_account.html">人員管理</a> >
+        編輯人員
       </h2>
       <form
-        class="memeberEditWrap w-100 border border-2 rounded-2 border-gray p-8"
+        class="memeberEditForm w-100 border border-2 rounded-2 border-gray p-8"
       >
-        <h2 class="mb-8">編輯後台管理人員</h2>
+        <h2 class="mb-8">編輯人員</h2>
         <div class="row">
-          <div class="col-12 col-lg-4 mb-8 mb-lg-0">
+          <div class="col-12 col-lg-3 mb-8 mb-lg-0">
             <div class="mb-8">
               <label class="fs-4 mb-1" for="memberId">管理人員編號</label>
               <br />
               <input
                 id="memberId"
-                class="memberId fs-5 py-1 ps-2"
+                class="memberId w-100 fs-5 py-1 ps-2"
                 type="text"
                 value="1052"
                 disabled
@@ -45,7 +42,7 @@
               <input
                 id="memberName"
                 placeholder="請輸入管理員姓名"
-                class="memberName fs-5 py-1 ps-2"
+                class="memberName w-100 fs-5 py-1 ps-2"
                 type="text"
                 value="陳奕辰"
                 required
@@ -57,7 +54,7 @@
               <input
                 id="memberNickname"
                 placeholder="請輸入管理員暱稱"
-                class="memberNickname fs-5 py-1 ps-2"
+                class="memberNickname w-100 fs-5 py-1 ps-2"
                 type="text"
                 value="小辰辰"
                 required
@@ -69,19 +66,19 @@
               <input
                 id="memberTel"
                 placeholder="請輸入管理員電話"
-                class="memberTel fs-5 py-1 ps-2"
+                class="memberTel w-100 fs-5 py-1 ps-2"
                 type="tel"
                 required
               />
             </div>
           </div>
-          <div class="col-12 col-lg-4 mb-8 mb-lg-0">
+          <div class="col-12 col-lg-3 mb-8 mb-lg-0">
             <div class="mb-8">
               <label class="fs-4 mb-1" for="memberArrivedDate">到職日期</label>
               <br />
               <input
                 id="memberArrivedDate"
-                class="memberArrivedDate fs-5 py-1 ps-2"
+                class="memberArrivedDate w-100 fs-5 py-1 ps-2"
                 type="date"
                 disabled
               />
@@ -93,7 +90,7 @@
               <br />
               <input
                 id="memberEmergencyContact"
-                class="memberEmergencyContact fs-5 py-1 ps-2"
+                class="memberEmergencyContact w-100 fs-5 py-1 ps-2"
                 placeholder="請輸入緊急聯絡人姓名"
                 type="text"
                 required
@@ -106,7 +103,7 @@
               <br />
               <input
                 id="memberEmergencyContactTel"
-                class="memberEmergencyContactTel fs-5 py-1 ps-2"
+                class="memberEmergencyContactTel w-100 fs-5 py-1 ps-2"
                 placeholder="請輸入緊急聯絡人電話"
                 type="text"
                 required
@@ -119,14 +116,14 @@
               <br />
               <input
                 id="memberEmergencyContactRel"
-                class="memberEmergencyContactRel fs-5 py-1 ps-2"
+                class="memberEmergencyContactRel w-100 fs-5 py-1 ps-2"
                 placeholder="請輸入緊急聯絡人關係"
                 type="text"
                 required
               />
             </div>
           </div>
-          <div class="col-12 col-lg-4">
+          <div class="col-12 col-lg-6">
             <div class="mb-8">
               <label class="fs-4 mb-1" for="memberAccount"
                 >電子郵件信箱/後台登入帳號</label
@@ -175,58 +172,22 @@
                   <option value="已離職">已離職</option>
                 </select>
               </div>
-              <!-- 應該要重新 render，因為還沒按新增所以還沒儲存到資料庫 -->
-              <a
-                class="text-white btn btn-warning"
-                href="./admin_account.html"
-                role="button"
-                >取消變更</a
-              >
-              <!-- BS5 Modal 彈跳視窗主觸發鈕 -->
-              <a
-                class="accountEditSaveBtn btn btn-success"
-                role="button"
-                data-bs-toggle="modal"
-                data-bs-target="#saveAccount"
-                >儲存變更</a
-              >
+              <div class="d-flex justify-content-end align-items-end">
+                <a
+                  class="accountEditCancelBtn text-white btn btn-warning p-2 me-4"
+                  role="button"
+                  >取消變更</a
+                >
+                <button class="btn btn-success p-2" type="submit">
+                  儲存變更
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </form>
     </main>
 
-    <!-- Modal 彈跳視窗主體 -->
-    <div
-      class="modal fade"
-      id="saveAccount"
-      tabindex="-1"
-      aria-labelledby="saveAccountLabel"
-      aria-hidden="true"
-    >
-      <div class="savaAccountModal modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header border-0 p-0"></div>
-          <div
-            class="modal-body d-flex flex-column justify-content-center align-items-center"
-          >
-            <span
-              class="checkCircle material-symbols-outlined text-success mb-1"
-            >
-              check_circle
-            </span>
-            <p class="fs-3 mb-4">後台人員編輯完成</p>
-            <a
-              href="./admin_account.html"
-              role="button"
-              class="savaAccountBtn btn btn-success fs-3"
-            >
-              返回人員管理頁面
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
     <script type="module" src="../js/admin_accountEditMember.js"></script>
     <script type="module" src="../main.js"></script>
   </body>
