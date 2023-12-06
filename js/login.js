@@ -19,6 +19,7 @@ function login(userAccount) {
   axios
     .post(`${_url}/login`, userAccount)
     .then((res) => {
+      console.log(res.data);
       let { user, accessToken } = res.data;
       //獲得的用戶資料存入 localStorage
       let userTokenAndData = {

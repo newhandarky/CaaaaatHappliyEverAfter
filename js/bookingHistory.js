@@ -71,6 +71,7 @@ function graspAxiosData(catRoom_api, bookings_html) {
     checkOut,
     roomType,
     remark,
+    quantity,
     catQuantity,
     price,
     history,
@@ -86,6 +87,7 @@ function graspAxiosData(catRoom_api, bookings_html) {
     data-checkOutDate="${checkOut}"
     data-roomType="${roomType}"
     data-remark="${remark}"
+    data-quantity="${quantity}"
     data-catQuantity="${catQuantity}"
     data-price="${price}"
     data-history="${history}"
@@ -105,6 +107,7 @@ function graspAxiosData(catRoom_api, bookings_html) {
     checkOut,
     roomType,
     remark,
+    quantity,
     catQuantity,
     price,
     history,
@@ -120,6 +123,7 @@ function graspAxiosData(catRoom_api, bookings_html) {
     data-checkOutDate="${checkOut}"
     data-roomType="${roomType}"
     data-remark="${remark}"
+    data-quantity="${quantity}"
     data-catQuantity="${catQuantity}"
     data-price="${price}"
     data-history="${history}"
@@ -140,6 +144,7 @@ function graspAxiosData(catRoom_api, bookings_html) {
     checkOut,
     roomType,
     remark,
+    quantity,
     catQuantity,
     price,
     history,
@@ -155,6 +160,7 @@ function graspAxiosData(catRoom_api, bookings_html) {
     data-checkOutDate="${checkOut}"
     data-roomType="${roomType}"
     data-remark="${remark}"
+    data-quantity="${quantity}"
     data-catQuantity="${catQuantity}"
     data-price="${price}"
     data-history="${history}"
@@ -173,6 +179,7 @@ function graspAxiosData(catRoom_api, bookings_html) {
     index,
     checkIn,
     checkOut,
+    quantity,
     catQuantity,
     name,
     id,
@@ -224,8 +231,8 @@ function graspAxiosData(catRoom_api, bookings_html) {
             </h3>
 
             <h4
-              id="catsQuantity_${index}"
-              class="mt-1 catsQuantity"
+              id="catsquantity_${index}"
+              class="ms-1 mt-1 catsquantity"
             >
               ${catQuantity}隻貓
             </h4>
@@ -298,6 +305,7 @@ function graspAxiosData(catRoom_api, bookings_html) {
             index,
             checkIn,
             checkOut,
+            quantity,
             catQuantity,
             name,
             id,
@@ -310,6 +318,7 @@ function graspAxiosData(catRoom_api, bookings_html) {
               checkOut,
               name,
               remark,
+              quantity,
               catQuantity,
               price,
               JSON.stringify(history),
@@ -322,6 +331,7 @@ function graspAxiosData(catRoom_api, bookings_html) {
             index,
             checkIn,
             checkOut,
+            quantity,
             catQuantity,
             name,
             id,
@@ -334,6 +344,7 @@ function graspAxiosData(catRoom_api, bookings_html) {
               checkOut,
               name,
               remark,
+              quantity,
               catQuantity,
               price,
               JSON.stringify(history),
@@ -346,6 +357,7 @@ function graspAxiosData(catRoom_api, bookings_html) {
             index,
             checkIn,
             checkOut,
+            quantity,
             catQuantity,
             name,
             id,
@@ -358,6 +370,7 @@ function graspAxiosData(catRoom_api, bookings_html) {
               checkOut,
               name,
               remark,
+              quantity,
               catQuantity,
               price,
               JSON.stringify(history),
@@ -556,17 +569,20 @@ function cancelBooking() {
             let roomType = element.getAttribute("data-roomType");
             let remark = element.getAttribute("data-remark");
             let quantity = element.getAttribute("data-quantity");
+            let catQuantity = element.getAttribute("data-catquantity");
             let price = element.getAttribute("data-price");
             let history = JSON.parse(element.getAttribute("data-history"));
-            console.log(
-              checkInDay,
-              checkOutDay,
-              roomType,
-              remark,
-              quantity,
-              price,
-              history
-            );
+
+            // console.log(
+            //   checkInDay,
+            //   checkOutDay,
+            //   roomType,
+            //   remark,
+            //   quantity,
+            //   catQuantity,
+            //   price,
+            //   history
+            // );
 
             // 新增歷史紀錄
             axios
@@ -578,7 +594,7 @@ function cancelBooking() {
                 price: price,
                 admin: "user",
                 remark: remark,
-                catNum: quantity,
+                catNum: catQuantity,
                 checkIn: checkInDay,
                 checkOut: checkOutDay,
                 bookingsId: cancelId,

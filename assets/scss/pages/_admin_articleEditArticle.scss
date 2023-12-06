@@ -1,0 +1,13 @@
+.saveNewAccountModal {
+  .modal-content {
+    height: 40vh;
+  }
+}
+
+.iconSizing {
+  font-size: 72px;
+  line-height: 1;
+  @include media-min-992 {
+    font-size: 90px;
+  }
+}

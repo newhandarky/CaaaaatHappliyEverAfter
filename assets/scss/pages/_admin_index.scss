@@ -3,7 +3,10 @@
 }
 
 .userImage {
-  width: 150px;
+  width: 12vw;
+  height: 12vw;
+  object-fit: cover;
+  object-position: top center;
 }
 
 .statusWrap {
@@ -11,8 +14,20 @@
   @include media-min-992 {
     width: 49.5% !important;
   }
-}
 
-.pageNavigateBtn {
-  width: 150px;
+  .pageNavigateBtn {
+    width: 150px;
+  }
+
+  .card-img-top {
+    height: 20vw;
+    object-fit: cover;
+    object-position: center center;
+    @include media-min-768 {
+      height: 15vw;
+    }
+    @include media-min-992 {
+      height: 8vw;
+    }
+  }
 }
