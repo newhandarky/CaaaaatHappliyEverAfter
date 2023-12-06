@@ -10,11 +10,12 @@
     />
 
     <title>admin_account</title>
-    <script type="module" crossorigin src="/CaaaaatHappliyEverAfter/assets/admin_account-38788b97.js"></script>
-    <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/sweetalert2.all-1988d671.js">
-    <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/admin_header-58c6939d.js">
-    <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/config-4096d6dc.js">
-    <link rel="stylesheet" href="/CaaaaatHappliyEverAfter/assets/sweetalert2-5d4ef2d3.css">
+    <script type="module" crossorigin src="/CaaaaatHappliyEverAfter/assets/admin_account-f592cd9b.js"></script>
+    <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/sweetalert2.all-203b6da2.js">
+    <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/admin_header-cdcf5a9d.js">
+    <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/admin_config-2cf1d757.js">
+    <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/loginIsTimeUp-b8b3d4c8.js">
+    <link rel="stylesheet" href="/CaaaaatHappliyEverAfter/assets/sweetalert2-64e06f8f.css">
   </head>
   <body>
     
@@ -56,37 +57,71 @@
 </header>
 
     <main class="container p-8">
-      <h2><a href="./admin_index.html">首頁</a> > 後台人員管理</h2>
-      <div class="d-flex justify-content-end mb-8">
-        <a
-          href="./admin_accountEditMember.html"
-          role="button"
-          class="btn btn-warning text-white rounded-1 me-4 p-3"
+      <h2 class="mb-4">
+        <a class="link-primary" href="./admin_index.html">首頁</a>
+        > 人員管理
+      </h2>
+      <form class="memberSearch d-flex mb-4">
+        <input
+          type="search"
+          id="mySearch"
+          class="me-5 p-2"
+          name="q"
+          placeholder="請輸入搜尋內容"
+        />
+        <button
+          class="d-flex align-items-center btn btn-primary text-white fs-4"
+          type="submit"
         >
-          編輯人員
-        </a>
-        <a
-          href="./admin_accountAddNewMember.html"
-          role="button"
-          class="btn btn-success rounded-1 p-3"
-        >
-          新增人員
-        </a>
+          <span class="material-symbols-outlined text-white me-1 py-1">
+            search </span
+          >搜尋
+        </button>
+      </form>
+      <div class="border border-gray rounded-3 py-10 px-5">
+        <div class="d-flex justify-content-between align-items-baseline mb-4">
+          <h2>人員總覽</h2>
+          <div class="d-flex justify-content-md-end align-items-end">
+            <a
+              role="button"
+              class="editAccountBtn btn btn-warning fs-5 text-white rounded-1 me-4 p-2"
+            >
+              編輯人員
+            </a>
+            <a
+              href="./admin_accountAddNewMember.html"
+              role="button"
+              class="btn btn-success fs-5 text-white rounded-1 p-2"
+            >
+              新增人員
+            </a>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table
+            class="cellNoWrap table table-bordered border-gray align-middle fs-4"
+          >
+            <thead>
+              <tr>
+                <th scope="col">員工編號</th>
+                <th scope="col">員工姓名</th>
+                <th scope="col">聯絡電話</th>
+                <th scope="col">聯絡地址</th>
+                <th scope="col">到職日期</th>
+                <th class="text-center" scope="col">編輯</th>
+              </tr>
+            </thead>
+            <!-- 取render資料渲染 -->
+            <tbody class="adminMemberList"></tbody>
+          </table>
+        </div>
+        <!-- aria-label 屬性用於說明該區塊功能 -->
+        <nav aria-label="account result ">
+          <!-- 在 ul 中渲染分頁畫面 -->
+          <ul class="pagination justify-content-center"></ul>
+        </nav>
       </div>
-      <table class="table table-bordered border-gray align-middle fs-4">
-        <thead>
-          <tr>
-            <th scope="col">員工編號</th>
-            <th scope="col">員工姓名</th>
-            <th scope="col">聯絡電話</th>
-            <th scope="col">聯絡地址</th>
-            <th scope="col">到職日期</th>
-            <th class="text-center" scope="col">編輯</th>
-          </tr>
-        </thead>
-        <!-- 取render資料渲染 -->
-        <tbody class="adminMemberList"></tbody>
-      </table>
     </main>
     
     

@@ -6,18 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
-    />
-    <link
-      rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0"
     />
-    <title>admin_account_editMember</title>
-    <script type="module" crossorigin src="/CaaaaatHappliyEverAfter/assets/admin_articleEditArticle-c3cac7f5.js"></script>
-    <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/sweetalert2.all-1988d671.js">
-    <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/admin_header-58c6939d.js">
-    <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/config-4096d6dc.js">
-    <link rel="stylesheet" href="/CaaaaatHappliyEverAfter/assets/sweetalert2-5d4ef2d3.css">
+
+    <title>編輯文章</title>
+    <script type="module" crossorigin src="/CaaaaatHappliyEverAfter/assets/admin_articleEditArticle-6fa5e470.js"></script>
+    <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/sweetalert2.all-203b6da2.js">
+    <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/admin_header-cdcf5a9d.js">
+    <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/tinymce-0684af05.js">
+    <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/admin_config-2cf1d757.js">
+    <link rel="modulepreload" crossorigin href="/CaaaaatHappliyEverAfter/assets/loginIsTimeUp-b8b3d4c8.js">
+    <link rel="stylesheet" href="/CaaaaatHappliyEverAfter/assets/sweetalert2-64e06f8f.css">
   </head>
   <body>
     
@@ -60,16 +59,19 @@
 
     <main class="container p-8">
       <h2 class="mb-8">
-        <a href="./admin_index.html">首頁</a> >
-        <a href="./admin_account.html">文章管理</a> > 編輯文章
+        <a class="link-primary" href="./admin_index.html">首頁</a> >
+        <a class="link-primary" href="./admin_article.html">文章管理</a> >
+        編輯文章
       </h2>
       <form
-        class="articleEditWrap w-100 border border-2 rounded-2 border-gray p-8"
+        method="post"
+        class="articleEditForm w-100 border border-2 rounded-2 border-gray p-8"
       >
         <h2 class="mb-8">編輯文章</h2>
         <div class="row p-8">
           <div class="col-12 mb-8">
-            <label class="fs-4 mb-1" for="articleTitle">文章標題</label>
+            <label class="fs-4 me-1 mb-1" for="articleTitle">文章標題</label>
+            <!-- text-truncate 可以讓超出範圍的文字呈現... -->
             <input
               id="articleTitle"
               placeholder="請輸入文章標題"
@@ -79,17 +81,19 @@
             />
           </div>
           <div class="col-12 mb-8">
-            <label class="fs-4 mb-1" for="articleId">文章編號</label>
+            <label class="fs-4 me-1 mb-1" for="articleId">文章編號</label>
             <input
               id="articleId"
               placeholder="請輸入文章編號"
               class="articleId fs-5 py-1 ps-2"
               type="text"
-              required
+              disabled
             />
           </div>
           <div class="col-12 mb-8">
-            <label class="fs-4 mb-1" for="articleKeyword">文章關鍵字</label>
+            <label class="fs-4 me-1 mb-1" for="articleKeyword"
+              >文章關鍵字</label
+            >
             <input
               id="articleKeyword"
               placeholder="請輸入文章關鍵字"
@@ -98,58 +102,35 @@
               required
             />
           </div>
+          <!-- tinymce 編輯器 -->
+          <div class="col-12 mb-8">
+            <textarea id="articleContent"></textarea>
+          </div>
           <div class="col-12 d-flex justify-content-end align-items-end">
-            <!-- 應該要重新 render，因為還沒按新增所以還沒儲存到資料庫 -->
+            <!-- 
+              跳出是否儲存為草稿按鈕：是 -> 存草稿、否 -> 返回文章總覽
+            -->
             <a
-              class="text-white btn btn-warning me-4"
-              href="./admin_article.html"
+              class="saveAsDraftBtn text-white btn btn-warning me-4"
               role="button"
               >取消變更</a
             >
-            <!-- BS5 Modal 彈跳視窗主觸發鈕 -->
-            <a
-              class="btn btn-success"
-              role="button"
-              data-bs-toggle="modal"
-              data-bs-target="#saveArticle"
-              >儲存變更</a
-            >
+            <!-- 表單的觸發鈕 form handler type 要是 submit。這裡儲存變更後會直接發佈 -->
+            <button class="btn btn-success me-4" type="submit">儲存變更</button>
+            <!-- 文章刪除按鈕：是 -> 刪除、否 -> 返回原頁面-->
+            <a class="deleteArticleBtn btn btn-danger" role="button">
+              刪除文章
+            </a>
           </div>
         </div>
       </form>
     </main>
 
-    <!-- Modal 彈跳視窗主體 -->
-    <div
-      class="modal fade"
-      id="saveArticle"
-      tabindex="-1"
-      aria-labelledby="saveAccountLabel"
-      aria-hidden="true"
-    >
-      <div class="savaAccountModal modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header border-0 p-0"></div>
-          <div
-            class="modal-body d-flex flex-column justify-content-center align-items-center"
-          >
-            <span
-              class="checkCircle material-symbols-outlined text-success mb-1"
-            >
-              check_circle
-            </span>
-            <p class="fs-3 mb-4">後台人員編輯完成</p>
-            <a
-              href="./admin_article.html"
-              role="button"
-              class="savaAccountBtn btn btn-success fs-3"
-            >
-              返回人員管理頁面
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!-- 文字編輯器 tinyMCE -->
+    <script
+      src="../node_modules/tinymce/tinymce.min.js"
+      referrerpolicy="origin"
+    ></script>
     
     
   </body>
