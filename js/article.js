@@ -19,26 +19,29 @@ const articleList = document.querySelector(".articleList");
 //console.log(articleTitle);
 
 axios.get(`${_url}/faqs`).then(function(response){
- //   console.log(response.data);
+ 
     let data = response.data;
-  //  console.log(data);
+
     let str = '';
     data.forEach(function(item){
-    //    console.log(item.title);
-     //   console.log(item.content);
-        str += `<li class="mb-3  id="">
-        <p class="articleTag">
-           <a class="border border-primary w-100  btn articleTitle text-start" data-bs-toggle="collapse" href="#${item.title}" role="button" aria-expanded="false" aria-controls="collapseExample">
-            ${item.title}
-           </a>
+       console.log(item.id);
+       console.log(item.content);
 
-        </p>
-         <div class="collapse " id="${item.title}">
-          <div class="card card-body border-0 w-100 mt-1" style="background-color:#E2c6c4;">
-             ${item.content}
-         </div>
-         </div>
-       </li>`
+
+      str += `<li class="accordion-item">
+      <h2 class="accordion-header" id="headingTwo">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c${item.id}" aria-expanded="false" aria-controls="collapseTwo">
+          ${item.title}
+        </button>
+      </h2>
+      <div id="c${item.id}" class="accordion-collapse collapse" aria-labelledby="headingTwo" >
+        <div class="accordion-body">
+         ${item.content}
+        </div>
+      </div>
+    </li>`
+
+
     });
    // console.log(str);
     articleList.innerHTML = str
@@ -61,6 +64,7 @@ axios.get(`${_url}/article`).then(function(response){
         }
     })
    // console.log(data);
+   newData.reverse()
    render(newData);
 
 
