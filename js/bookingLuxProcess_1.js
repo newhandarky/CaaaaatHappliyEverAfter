@@ -30,7 +30,7 @@ if(dates<10){
    dates = "0"+dates
 }
 //console.log(dates)
-let currentDate = `${currentYear}-${date.getMonth()+1}-${dates}`;
+let currentDate = `${currentYear}-${month}-${dates}`;
 //console.log(currentDate)
 
 
@@ -78,10 +78,11 @@ checkinDate.addEventListener('change', function(e){
         //console.log(data[0].availableCount.luxury);
         if(data[0].availableCount.luxury <= 0){
           //  console.log(data[0].availableCount.luxury);
-          Swal.fire(`${checkinDate.value}已無空房，請重新選擇`);
-            checkinDate.value = "";
-            checkoutDate.value = "";
-            return 
+          Swal.fire({icon: "error",
+          text:`${checkinDate.value}已無空房，請重新選擇`,confirmButtonColor:"#fa863e"});
+          checkinDate.value = "";
+          checkoutDate.value = ""
+          return 
         }
         
     })
@@ -90,28 +91,40 @@ checkinDate.addEventListener('change', function(e){
 checkoutDate.addEventListener("change", function(e){
     if(checkinDate.value == ""){
         checkoutDate.value = "";
-        return Swal.firet("請先選擇入住日期");
+        Swal.fire({icon: "error",
+     text:"請先選擇入住日期",confirmButtonColor:"#fa863e"});
+     return 
     };
     if(checkinDate.value >= checkoutDate.value){
        // console.log(checkoutDate.value);
         checkoutDate.value = "";
         checkinDate.value="";
-        return Swal.fire("退房日期需晚於入住日期");  
+        Swal.fire({icon: "error",
+     text:"退房日期需晚於入住日期",confirmButtonColor:"#fa863e"});
+        return 
     }
     axios.get(`${_url}/roomStates?date_gte=${checkinDate.value}&date_lte=${checkoutDate.value}&date_ne=${checkoutDate.value}`).then(function(response){
         let data = response.data;
        // console.log(data)
         let noRoomDate = '';
+        let noRoomDateArr = [];
         data.forEach(function(item){
-         if(item.availableCount.luxury <= 0){
-            noRoomDate+= `${item.date} `;             
-         }});
+            if(item.availableCount.luxury <= 0){
+               noRoomDateArr.push(item.date)
+            }});
+            noRoomDateArr.sort();
+            console.log(noRoomDateArr);
+            noRoomDateArr.forEach((item)=>{
+                noRoomDate += ` ${item} ,`
+            })
+
       //   console.log(noRoomDate);
          if(noRoomDate !== ""){
-            Swal.fire(`${noRoomDate}已無空房，請重新選擇`);
+            Swal.fire({icon: "error",
+          text:`${noRoomDate}已無空房，請重新選擇`,confirmButtonColor:"#fa863e"});
             checkoutDate.value = "";
             checkinDate.value="";
-           return
+             return 
          };
 })});
 
@@ -122,33 +135,42 @@ toProcess_2.addEventListener("click", function(e){
    axios.get(`${_url}/roomStates?date_gte=${checkinDate.value}&date_lte=${checkoutDate.value}&date_ne=${checkoutDate.value}`).then(function(response){
     if(checkoutDate.value == "" || checkinDate.value == ""){
 
-        Swal.fire(`您尚未選擇入住或退房時間`);
-       checkoutDate.value == "" ;
-       checkinDate.value == "";
-        return;
+        Swal.fire({icon: "error",
+        text:"您尚未選擇入住/退房日期",confirmButtonColor:"#fa863e"});
+        checkoutDate.value == "" ;
+         checkinDate.value == "";
+         return;
     };
 
     if(checkinDate.value >= checkoutDate.value){
      //   console.log(checkoutDate.value);
         checkoutDate.value == "" ;
         checkinDate.value == "";
-        return Swal.fire("退房日期需晚於入住日期"); 
+        Swal.fire({icon: "error",
+         text:"退房日期需晚於入住日期",confirmButtonColor:"#fa863e"});
+         return 
     };
 
     let data = response.data;
     //console.log(data);
     let noRoomDate = '';
-
+    let noRoomDateArr = [];
     data.forEach(function(item){
-     if(item.availableCount.luxury <= 0){
-        noRoomDate+= `${item.date} `
-     }});
+        if(item.availableCount.luxury <= 0){
+           noRoomDateArr.push(item.date)
+        }});
+        noRoomDateArr.sort();
+        console.log(noRoomDateArr);
+        noRoomDateArr.forEach((item)=>{
+            noRoomDate += ` ${item} ,`
+        })
 
 if (noRoomDate !== ""){
-    Swal.fire(`${noRoomDate}已無空房，請重新選擇`);
+    Swal.fire({icon: "error",
+    text:`${noRoomDate}已無空房，請重新選擇`,confirmButtonColor:"#fa863e"});
     checkoutDate.value = "";
     checkinDate.value="";
-     return
+    return
      };
 
              
