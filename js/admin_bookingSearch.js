@@ -8,8 +8,6 @@ import { _url } from "./config";
 /*------------------------------------*\
     doms
 \*------------------------------------*/
-const startDate = document.querySelector(".startDate");
-const endDate = document.querySelector(".endDate");
 const tbody = document.querySelector(".tbody");
 const searchContent = document.querySelector(".searchContent");
 const getPages = document.querySelector(".getPages");
@@ -31,7 +29,7 @@ function renderTable(bookingArr) {
     let str = "";
     bookingArr.forEach(function (item) {       // 
         str += `<tr>
-        <th class="text-nowrap border-0 text-center d-flex align-items-center justify-content-center" scope="row"><a class="bookingNum adminLink" data-bookingnum="${item.id}" href="admin_updateBooking.html">${item.id}</a></th>       
+        <th class="text-nowrap border-0 text-center d-flex align-items-center justify-content-center" scope="row"><a class="bookingNum adminLink" data-bookinguserid="${item.userId}" data-bookingnum="${item.id}" href="admin_updateBooking.html">${item.id}</a></th>       
         <td class="text-nowrap text-center">${item.user.name}</td>
         <td class="text-nowrap text-center">${item.checkIn}</td>
         <td class="text-nowrap text-center">${item.quantity}</td>
@@ -39,6 +37,7 @@ function renderTable(bookingArr) {
         <td class="text-nowrap text-center">${item.state}</td>
         <td class="text-nowrap text-center">${item.price}</td>
         <td class="text-nowrap text-start">${item.remark}</td>
+        <td class="d-none" data-bookinguserid="${item.userId}"></td>
         </tr>`;
     })
     tbody.innerHTML = str;
@@ -134,6 +133,7 @@ function showPagination() {
 tbody.addEventListener("click", function(e){
     if(e.target.classList.contains("bookingNum")){
         localStorage.setItem("bookingNum", e.target.dataset.bookingnum);
+        localStorage.setItem("bookingUserId", e.target.dataset.bookinguserid);
     }
 })
 
