@@ -24,8 +24,8 @@ axios.get(`${_url}/faqs`).then(function(response){
 
     let str = '';
     data.forEach(function(item){
-       console.log(item.id);
-       console.log(item.content);
+      // console.log(item.id);
+      // console.log(item.content);
 
 
       str += `<li class="accordion-item">
@@ -63,9 +63,17 @@ axios.get(`${_url}/article`).then(function(response){
             newData.push(item);
         }
     })
-   // console.log(data);
-   newData.reverse()
-   render(newData);
+  //console.log(newData);
+
+  newData.sort(function(a,b){
+    let dateA = new Date(a.lastEditOrPublishTime)
+    //console.log(dateA);
+    let dateB = new Date(b.lastEditOrPublishTime);
+   // console.log(dateB)
+    return dateB-dateA
+  });
+  //console.log(newData)
+  render(newData)
 
 
     selector.addEventListener('change', function(e){
