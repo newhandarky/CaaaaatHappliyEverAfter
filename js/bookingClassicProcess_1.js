@@ -17,7 +17,19 @@ let dateForm = document.querySelector("#dateForm");
 //找到今天的日期
 let date = new Date();
 let currentYear = date.getFullYear();
-let currentDate = `${currentYear}-${date.getMonth()+1}-${date.getDate()}`;
+//console.log(date.getDate());
+//console.log(date.getMonth()+1);
+let month = date.getMonth()+1;
+if(month < 10){
+    month = "0"+month
+};
+let dates = date.getDate();
+if(dates<10){
+   dates = "0"+dates
+}
+//console.log(dates)
+let currentDate = `${currentYear}-${date.getMonth()+1}-${dates}`;
+//console.log(currentDate)
 
 
 
