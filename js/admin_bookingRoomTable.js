@@ -50,7 +50,7 @@ axios.get(`${_url}/660/roomStates`, headerObj)
 
         if (monthBookingArr.length === 0) {
             Swal.fire({
-                title: "尚未建立此月份的防況資料 是否建立?",
+                title: "尚未建立此月份的房況資料 是否建立?",
                 showDenyButton: true,
                 confirmButtonText: "確定建立",
                 denyButtonText: `取消返回`
