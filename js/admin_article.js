@@ -188,7 +188,7 @@ function keywordSearch(e) {
 
   // 原資料集跑 forEach，為了把關鍵字推進 filterData，並把符合搜尋關鍵字整筆資料推進 searchData
   data.forEach(function (item) {
-    // 把所有文章的關鍵字加入 filterData
+    // 把所有文章的關鍵字及標題加入 filterData
     filterData.push(item.title);
     filterData.push(item.keyword);
     // 把關鍵字陣列跑 filter，回傳的 filterKeyword 會是符合搜尋關鍵字的陣列

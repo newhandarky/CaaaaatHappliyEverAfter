@@ -117,6 +117,16 @@ cancelSaveArticleBtn.addEventListener("click", function (e) {
         .catch(function (error) {
           reLogin(error.response.data);
         });
+    } else if (result.isDismissed) {
+      Swal.fire({
+        title: "即將返回文章總覽",
+        icon: "success",
+        showConfirmButton: false,
+      });
+
+      setTimeout(() => {
+        window.location.href = "./admin_article.html";
+      }, 1000);
     }
   });
 });
