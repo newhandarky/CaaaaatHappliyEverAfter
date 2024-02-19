@@ -16,7 +16,7 @@ export function isLogin(href) {
     const user = JSON.parse(localStorage.getItem("userTokenAndData")).user;
 
     //使用 Json Server 驗證路由 /600
-    //Token 若沒過期 跳轉至指定頁面 也就是函式的 herf 參數
+    //Token 若沒過期 跳轉至指定頁面 也就是函式的 href 參數
     //Token 若過期 跳出過期警告 導航至登入頁面
     axios
       .get(`${_url}/600/users/${user.id}`, {
