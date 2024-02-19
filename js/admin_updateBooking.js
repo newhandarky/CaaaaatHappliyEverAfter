@@ -427,15 +427,6 @@ function alertErrForDate() {
     });
 }
 
-// 資料尚未儲存錯誤提示
-function dataNotSaved() {
-    Swal.fire({
-        icon: "warning",
-        title: "系統提示",
-        text: "資料有修改且尚未儲存, 確定取消修改資料嗎?"
-    });
-}
-
 // 計算被點擊的貓咪有幾隻
 function countSelectedCheckboxes(formCheckInputs) {
     let count = 0;
@@ -533,36 +524,6 @@ form.addEventListener("change", function (e) {
     }
     // 判斷入住貓咪數量是否<0
     checkCatChecked();
-})
-
-// 訂單資料有變更時, 如果點擊其他a連結跳尚未儲存提示
-document.querySelectorAll("a").forEach(function (item) {
-    item.addEventListener("click", function (e) {
-        const roomTypeForId = {
-            "經典房": 51,
-            "精緻房": 52,
-            "豪華房": 53
-        }
-
-        let newCat = "";
-        document.querySelectorAll(".form-check-input").forEach(function (item) {
-            if (item.checked) {
-                newCat += item.dataset.catid;
-            }
-        })
-
-        if (bookingState.value === "已取消") {
-            return;
-        } else if (bookingObj.checkIn !== checkIn.value
-            || bookingObj.checkOut !== checkOut.value
-            || bookingObj.state !== bookingState.value
-            || bookingObj.remark !== remark.value
-            || bookingObj.roomId !== roomTypeForId[bookingRoomType.value]
-            || bookingObj.cats.join(",") !== newCat) {
-            e.preventDefault();
-            return dataNotSaved();
-        }
-    })
 })
 
 // 點擊返回列表時

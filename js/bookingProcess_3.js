@@ -98,7 +98,7 @@ booking['cats'] = catInfo.catId;
 booking['remark'] = catInfo.remark;
 booking['state'] = "已預訂";
 booking['history'] = [];
-booking['admin']={};
+booking['admin']= {};
 if(bookingData.roomType === "經典房"){
     booking['roomId']= 51;
 };
@@ -123,7 +123,7 @@ bookingHistorys['checkOut']=bookingData.checkOut;
 bookingHistorys['userId']=userTokenAndData.user.id;
 bookingHistorys['roomType']= bookingData.roomType;
 bookingHistorys['roomId']= [];
-bookingHistorys['admin']= {};
+bookingHistorys['admin']= "user";
 if(bookingData.roomType === "經典房"){
     bookingHistorys['roomId']= 51;
 };

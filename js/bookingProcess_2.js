@@ -95,7 +95,9 @@ toProcess_3.addEventListener("click", function(e){
     //選擇入住貓咪1
     if(chooseFirstCat.value === ""){
         
-         return Swal.fire("請選擇貓咪")
+         Swal.fire({icon: "warning",
+         text:`請選擇貓咪`,confirmButtonColor:"#fa863e"});
+            return  
     }else{
 
     let stayedCat1 = chooseFirstCat.value;
