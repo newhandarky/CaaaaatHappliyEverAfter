@@ -311,12 +311,12 @@ flatpickr("#checkIn", {
   enableTime: false,
   dateFormat: "Y-m-d",
   minDate: currentDate,
-  maxDate: "2024-02-29",
+  maxDate: "2024-12-31",
 });
 
 flatpickr("#checkOut", {
   enableTime: false,
   dateFormat: "Y-m-d",
   minDate: currentDate,
-  maxDate: "2024-02-29",
+  maxDate: "2024-12-31",
 });

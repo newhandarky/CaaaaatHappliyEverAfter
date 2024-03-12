@@ -187,14 +187,14 @@ toProcess_2.addEventListener("click", function(e){
         enableTime: false,
         dateFormat: "Y-m-d",
         minDate: currentDate,
-        maxDate: "2024-02-29"
+        maxDate: "2024-12-31"
       });
     
       flatpickr("#checkoutDate", {
         enableTime: false,
         dateFormat: "Y-m-d",
         minDate: currentDate,
-        maxDate: "2024-02-29"
+        maxDate: "2024-12-31"
       });
     
 
